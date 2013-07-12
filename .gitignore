@@ -1,0 +1,10 @@
+/ebin
+/deps
+erl_crash.dump
+*.ez
+erl_crash.dump
+.dialyzer_plt
+.dialyzer.base_plt
+.*.swp
+docs
+.DSStore
