@@ -838,8 +838,8 @@ defmodule WebDriver.Protocol do
     send_request root_url, request, 0
   end
   
-  defp send_request root_url, request, 5 do
-    raise "Made 5 attempts."
+  defp send_request root_url, _request, 5 do
+    raise "We seem to have lost the connection to the browser at #{root_url}"
   end
 
   # Send the request to the underlying HTTP protocol.

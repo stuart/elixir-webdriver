@@ -12,7 +12,7 @@ defmodule WebDriver.PhantomJS.PortTest do
   end
 
   test "init starts phantomjs on the port" do
-   { :ok, state } = PhantomJS.Port.init PhantomJS.Port.State[program_name: :phantomjs]
+   { :ok, state, :hibernate } = PhantomJS.Port.init PhantomJS.Port.State[program_name: :phantomjs]
   	info = HashDict.new(Port.info(state.port))
   	name = HashDict.get info, :name
   	assert name == :os.find_executable(name)
@@ -25,13 +25,13 @@ defmodule WebDriver.PhantomJS.PortTest do
   end
 
   test "handle info with an Exit message" do
-  	assert { :stop, { :phantomjs_terminated, "reason" }, { :port, "port" } } =
+  	assert { :stop, { :browser_terminated, "reason" }, { :port, "port" } } =
   	       PhantomJS.Port.handle_info({:EXIT, "port", "reason"}, {:port, "port"})
   end
 
   test "terminate when phantomjs has died does not close the port" do
-    { :ok, state } = PhantomJS.Port.init PhantomJS.Port.State[program_name: :phantomjs]
-    assert :ok = PhantomJS.Port.terminate {:phantomjs_terminated, "reason"}, {}
+    { :ok, _state, :hibernate } = PhantomJS.Port.init PhantomJS.Port.State[program_name: :phantomjs]
+    assert :ok = PhantomJS.Port.terminate {:browser_terminated, "reason"}, {}
   end
 
   def process_info do

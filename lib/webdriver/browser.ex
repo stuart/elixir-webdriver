@@ -1,7 +1,65 @@
-defmodule Browser do
-  @moduledoc """
-    Defines a behaviour for various Browser types to implement.
-  """
-  use Behaviour
+defmodule WebDriver.Browser do
+  defmacro __using__(_opts) do
+    quote do
+      def start_link config, sup do
+        { :ok, _pid } = :gen_server.start_link {:local, config.name}, __MODULE__, 
+                                                __MODULE__.State.new(supervisor: sup), [timeout: 30000]
+      end
 
+      def init state do
+        {:ok, http_port} = WebDriver.PortFinder.select_port
+        state = set_root_url state
+        state = do_init state
+
+        Process.flag :trap_exit, true
+        port = Port.open { :spawn_executable, program_name(state) }, 
+                          [{ :args, arguments(state) }, :exit_status]
+        
+        {:ok, state} = wait_for_start state
+        self <- { :start_session_supervisor, state.supervisor }
+        { :ok, state.port(port), :hibernate }
+      end
+
+      def handle_call {:start_session, session_name}, _sender, state do
+        {:ok, pid} = :supervisor.start_child state.session_supervisor, [session_name]
+        {:reply, {:ok, pid}, state}
+      end
+      
+      def handle_cast(:stop, state) do
+        {:stop, :normal, state}
+      end
+
+      def handle_info {:start_session_supervisor, sup}, state do
+        config = WebDriver.Session.State.new(root_url: state.root_url, browser: self)
+        spec = Supervisor.Behaviour.worker(WebDriver.SessionSup,[config])
+        {:ok, pid} = :supervisor.start_child sup, spec
+        {:noreply, state.session_supervisor(pid)}
+      end
+      
+      def handle_info {:EXIT, _port, reason}, state do
+        { :stop, { :browser_terminated, reason }, state }
+      end
+
+      def handle_info({_port, {:data, info}}, state) do
+        case :application.get_env(:debug_browser) do
+          {:ok, true} -> 
+             :error_logger.info_msg "#{__MODULE__}: #{info}"
+          _ -> 
+        end
+        { :noreply, state }
+      end
+
+      def handle_info {_port ,{:exit_status, status}}, state do
+        { :stop, { :browser_terminated, status }, state }
+      end
+
+      def terminate {:browser_terminated, _reason}, state do
+        browser_terminated state
+      end
+
+      def terminate _reason, state do
+        normal_termination state
+      end
+    end
+  end
 end

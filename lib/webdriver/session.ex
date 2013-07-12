@@ -103,14 +103,25 @@ defmodule WebDriver.Session do
     cmd name, {:set_implicit_wait_timeout, [ms: ms]}
   end
 
+  @doc """
+    Get the handle of the current window. A window handle is an opaque reference
+    used for various window related functions.
+  """
   def window_handle name do
     get_value(name, :window_handle)
   end
 
+  @doc """
+    Get all the window handles associated with the browser.
+    Returns a list of window handles.
+  """
   def window_handles name do
     get_value(name, :window_handles)
   end
 
+  @doc """
+    
+  """
   def url name do
     get_value name, :url
   end

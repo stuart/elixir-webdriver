@@ -14,7 +14,7 @@ ready as yet. Both Firefox and PhantomJS support is a bit patchy.
 This library has been set up as a Mix application, so just
 add this to mix.exs dep block:
 
-``` {:webdriver, github: "stuart/elixir-webdriver"} ```
+```Elixir {:webdriver, github: "stuart/elixir-webdriver"} ```
 
 and make sure the application block of mix.exs includes: 
 ``` applications: [ :webdriver ] ```
@@ -44,7 +44,8 @@ for more on specific commands.
 
 An example session is shown here:
 
-```
+```Elixir
+
   iex(1)> config = WebDriver.Config.new(name: :browser)
   WebDriver.Config[browser: :phantomjs, name: :browser]
   iex(2)> WebDriver.start_browser config
@@ -61,6 +62,7 @@ An example session is shown here:
   "News: Elixir v0.9.0 released"
   iex(9)> WebDriver.stop_browser :browser
   :ok
+
 ```
 
 ## Requirements
