@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebDriver.Protocol</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+    <script type="text/javascript" charset="utf-8">
+      relpath = '';
+      if (relpath != '') relpath += '/';
+    </script>
+
+    <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+  </head>
+
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+
+    <div id="content">
+      <h1>
+        WebDriver.Protocol
+        
+      </h1>
+
+      
+        <div id="moduledoc" class="docstring">
+          <p>Implements the HTTP JSON wire protocol for WebDriver.
+  This is the internal protocol and is supposed to be called via the
+  WebDriver session server rather than directly.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol">https://code.google.com/p/selenium/wiki/JsonWireProtocol</a></p>
+
+<p>All these calls take a WebDriver.Config record as a first parameter.
+  The other parameters depend on the specific protocol call.</p>
+
+<p>All successful calls return {:ok, response} where response is a
+  WebDriver.Protocol.Response record.</p>
+
+<p>Failed calls return {:error, status, body} where the status is the
+  HTTP status returned and the body is the raw body of the returned
+  response.</p>
+
+<p>A WebDriver response consists of a session id, status and return value.
+  The session id is an opaque string provided by the server.
+  The status can be one of the WebDriver status codes:
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status</a></p>
+
+<p>The value varies according to the call made.</p>
+
+<p>The Response record defined here also appends the request details to 
+  that response.</p>
+
+        </div>
+      
+
+      <a href="" target="_blank" class="view_source">Source</a>
+
+      
+
+      
+
+      
+        <h2 id="functions_summary">Functions summary</h2>
+        <ul class="summary">
+          <li>
+  <span class="summary_signature">
+    <a href="#accept_alert/2">accept_alert/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#active_element/2">active_element/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#alert_text/2">alert_text/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#alert_text/3">alert_text/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#attribute/4">attribute/4</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#back/2">back/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#clear/3">clear/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#click/3">click/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#close_window/2">close_window/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#cookies/2">cookies/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#css/4">css/4</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#delete_cookie/3">delete_cookie/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#delete_cookies/2">delete_cookies/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#dismiss_alert/2">dismiss_alert/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#displayed/3">displayed/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#element/3">element/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#element/4">element/4</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#element_by_id/3">element_by_id/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#elements/3">elements/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#elements/4">elements/4</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#enabled/3">enabled/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#equals/4">equals/4</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#execute/3">execute/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#execute_async/3">execute_async/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#forward/2">forward/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#frame/3">frame/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#geo_location/2">geo_location/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#geo_location/3">geo_location/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#ime/2">ime/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#keys/3">keys/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#local_storage/0">local_storage/0</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#location/3">location/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#location_in_view/3">location_in_view/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#maximize_window/3">maximize_window/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#mouse_button_down/3">mouse_button_down/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#mouse_button_up/3">mouse_button_up/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#mouse_click/3">mouse_click/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#mouse_double_click/3">mouse_double_click/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#move_to/3">move_to/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#name/3">name/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#orientation/2">orientation/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#orientation/3">orientation/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#refresh/2">refresh/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#screenshot/2">screenshot/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#selected/3">selected/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#session/2">session/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#sessions/2">sessions/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#set_async_script_timeout/3">set_async_script_timeout/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#set_cookie/3">set_cookie/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#set_implicit_wait_timeout/3">set_implicit_wait_timeout/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#set_timeout/3">set_timeout/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#shutdown/1">shutdown/1</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#size/3">size/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#source/2">source/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#start_session/2">start_session/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#status/2">status/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#stop_session/2">stop_session/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#submit/3">submit/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#text/3">text/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#title/2">title/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#touch_click/3">touch_click/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#touch_double_click/3">touch_double_click/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#touch_down/3">touch_down/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#touch_flick/3">touch_flick/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#touch_long_click/3">touch_long_click/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#touch_move/3">touch_move/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#touch_scroll/3">touch_scroll/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#touch_up/3">touch_up/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#url/2">url/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#url/3">url/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#value/4">value/4</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#window/3">window/3</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#window_handle/2">window_handle/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#window_handles/2">window_handles/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#window_position/4">window_position/4</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#window_size/4">window_size/4</a>
+  </span>
+</li>
+
+        </ul>
+      
+
+      
+
+      
+
+      
+        <div id="functions_details" class="details_list">
+          <h2>Functions</h2>
+          <div class="detail">
+  <p class="signature" id="accept_alert/2">
+    <strong>accept_alert(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Accepts the currently displayed alert dialog
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/accept_alert">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/accept_alert</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="active_element/2">
+    <strong>active_element(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Get the element on the page that currently has focus.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/active">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/active</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="alert_text/2">
+    <strong>alert_text(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Gets the text of the currently displayed JavaScript alert(), confirm(), or prompt() dialog.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/alert_text">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/alert_text</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="alert_text/3">
+    <strong>alert_text(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Sends keystrokes to a Javascript prompt() dialog.</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="attribute/4">
+    <strong>attribute(root_url, session_id, element_id, name)</strong>
+  </p>
+  <div class="docstring"><p>Returns the value of the given element&#39;s attribute.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/attribute/:name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/attribute/:name</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="back/2">
+    <strong>back(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Navigate back to the previous page.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/back">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/back</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="clear/3">
+    <strong>clear(root_url, session_id, element_id)</strong>
+  </p>
+  <div class="docstring"><p>Clears the specified form field or textarea element.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/clear">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/clear</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="click/3">
+    <strong>click(root_url, session_id, element_id)</strong>
+  </p>
+  <div class="docstring"><p>Click on the specified element.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/click</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="close_window/2">
+    <strong>close_window(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Closes the current window.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/window">https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/window</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="cookies/2">
+    <strong>cookies(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Retreive all the cookies associated with the current page.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/cookie">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/cookie</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="css/4">
+    <strong>css(root_url, session_id, element_id, property_name)</strong>
+  </p>
+  <div class="docstring"><p>Get the computed value of an element&#39;s CSS property.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/css/:propertyName">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/css/:propertyName</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="delete_cookie/3">
+    <strong>delete_cookie(root_url, session_id, name)</strong>
+  </p>
+  <div class="docstring"><p>Delete the cookie with the given name.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/cookie/:name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/cookie/:name</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="delete_cookies/2">
+    <strong>delete_cookies(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Delete all cookies for the current page.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/cookie">https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/cookie</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="dismiss_alert/2">
+    <strong>dismiss_alert(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Dismisses the currently displayed alert dialog
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/dismiss_alert">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/dismiss_alert</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="displayed/3">
+    <strong>displayed(root_url, session_id, element_id)</strong>
+  </p>
+  <div class="docstring"><p>Returns a boolean denoting if the element is currently visible.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/displayed">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/displayed</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="element/3">
+    <strong>element(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Retreive an element from the page using the specified search strategy.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element</a></p>
+
+<p>Parameters [using: &quot;class name&quot; | &quot;css selector&quot; | &quot;id&quot; | &quot;name&quot; |
+   &quot;link text&quot; | &quot;partial link test&quot; | &quot;tag name&quot; | &quot;xpath&quot;,
+   value: string]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="element/4">
+    <strong>element(root_url, session_id, element_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Retreive an element from the page starting from the specified
+  element using the specified search strategy.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/element">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/element</a></p>
+
+<p>Parameters [using: &quot;class name&quot; | &quot;css selector&quot; | &quot;id&quot; | &quot;name&quot; |
+   &quot;link text&quot; | &quot;partial link test&quot; | &quot;tag name&quot; | &quot;xpath&quot;,
+   value: string]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="element_by_id/3">
+    <strong>element_by_id(root_url, session_id, element_id)</strong>
+  </p>
+  <div class="docstring"><p>Get the element identified by the id.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="elements/3">
+    <strong>elements(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Retreive all elements from the page using the specified search strategy.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element</a></p>
+
+<p>Parameters [using: &quot;class name&quot; | &quot;css selector&quot; | &quot;id&quot; | &quot;name&quot; |
+   &quot;link text&quot; | &quot;partial link test&quot; | &quot;tag name&quot; | &quot;xpath&quot;,
+   value: string]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="elements/4">
+    <strong>elements(root_url, session_id, element_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Retreive all elements starting from the specified element using the specified search strategy.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/elements">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/elements</a></p>
+
+<p>Parameters [using: &quot;class name&quot; | &quot;css selector&quot; | &quot;id&quot; | &quot;name&quot; |
+   &quot;link text&quot; | &quot;partial link test&quot; | &quot;tag name&quot; | &quot;xpath&quot;,
+   value: string]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="enabled/3">
+    <strong>enabled(root_url, session_id, element_id)</strong>
+  </p>
+  <div class="docstring"><p>Returns a boolean denoting if the element is enabled or not.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/enabled">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/enabled</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="equals/4">
+    <strong>equals(root_url, session_id, element_id, other_id)</strong>
+  </p>
+  <div class="docstring"><p>Determine if two element ids refer to the same DOM element.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/equals/:other">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/equals/:other</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="execute/3">
+    <strong>execute(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Execute Javascript on the page.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute</a></p>
+
+<p>Parameters: [script: string, args: list]</p>
+
+<p>## Example:</p>
+
+<pre><code>iex&gt; config = WebDriver.Config[host: &quot;localhost&quot;, port: 8080]
+iex&gt; sid = WebDriver.Protocol.start_session(config, [desiredCapabilities: []]).session_id
+iex&gt; resp = WebDriver.Protocol.execute(config, sid, [script: &quot;return 1+1&quot;, args: []])
+iex&gt; resp.value
+2
+</code></pre>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="execute_async/3">
+    <strong>execute_async(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Execute asynchronous Javascript on the page.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute_async">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute_async</a></p>
+
+<p>Parameters: [script: string, args: list]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="forward/2">
+    <strong>forward(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Navigate forward to the next page.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/forward">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/forward</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="frame/3">
+    <strong>frame(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Change the frame that has focus in the current window.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/frame">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/frame</a></p>
+
+<p>Parameters: [id: string | number | :null | WebElement]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="geo_location/2">
+    <strong>geo_location(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Retreive the current geo location of the browser.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/location">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/location</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="geo_location/3">
+    <strong>geo_location(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Set the current geo location of the browser.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/location">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/location</a></p>
+
+<p>Parameters: [lattitude: number, longitude: number, altitude: number]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="ime/2">
+    <strong>ime(_root_url, _session_id)</strong>
+  </p>
+  <div class="docstring"><p>IME FUNCTIONS ARE NOT YET IMPLEMENTED</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="keys/3">
+    <strong>keys(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Send a list of keystrokes to the currently active element.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/keys">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/keys</a></p>
+
+<p>Parameters: [value: Array<string>]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="local_storage/0">
+    <strong>local_storage()</strong>
+  </p>
+  <div class="docstring"><p>LOCAL STORAGE NOT YET IMPLEMENTED</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="location/3">
+    <strong>location(root_url, session_id, element_id)</strong>
+  </p>
+  <div class="docstring"><p>Returns the current location of the specified element
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="location_in_view/3">
+    <strong>location_in_view(root_url, session_id, element_id)</strong>
+  </p>
+  <div class="docstring"><p>Determine an element&#39;s location once it has been scrolled into view.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location_in_view">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location_in_view</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="maximize_window/3">
+    <strong>maximize_window(root_url, session_id, window_handle // &quot;current&quot;)</strong>
+  </p>
+  <div class="docstring"><p>Maximise the specified window. Use &quot;current&quot; or simply do not specify a handle to
+  maximise the current window.</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="mouse_button_down/3">
+    <strong>mouse_button_down(root_url, session_id, parameters // [])</strong>
+  </p>
+  <div class="docstring"><p>Send a mouse button down event.
+  The parameter is a number indicating which button is to be pressed.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown</a>
+  Defaults to the left button if not specified.</p>
+
+<p>Parameters: [button: 1(left) | 2(middle) | 3(right)]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="mouse_button_up/3">
+    <strong>mouse_button_up(root_url, session_id, parameters // [])</strong>
+  </p>
+  <div class="docstring"><p>Send a mouse button up event. Every button down event needs to be followed by this.
+  The parameter is a number indicating which button is to be raised.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown</a>
+  Defaults to the left button if not specified.</p>
+
+<p>Parameters: [button: 1(left) | 2(middle) | 3(right)]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="mouse_click/3">
+    <strong>mouse_click(root_url, session_id, parameters // [])</strong>
+  </p>
+  <div class="docstring"><p>Send a mouse click at the position of the last move_to command.
+  The parameter is a number indicating which button is to be clicked.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click</a>
+  Defaults to the left button if not specified.</p>
+
+<p>Parameters: [button: 1(left) | 2(middle) | 3(right)]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="mouse_double_click/3">
+    <strong>mouse_double_click(root_url, session_id, parameters // [])</strong>
+  </p>
+  <div class="docstring"><p>Send a double click at the position of the last move_to command.
+  The parameter is a number indicating which button is to be double clicked.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click</a>
+  Defaults to the left button if not specified.</p>
+
+<p>Parameters: [button: 1(left) | 2(middle) | 3(right)]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="move_to/3">
+    <strong>move_to(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Move the mouse by an offset to the specified element.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/moveto">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/moveto</a></p>
+
+<p>Parameters: [element: element_id, offsetx: number, offsety: number]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="name/3">
+    <strong>name(root_url, session_id, element_id)</strong>
+  </p>
+  <div class="docstring"><p>Get the name of the specified element.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/name</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="orientation/2">
+    <strong>orientation(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Get the current browser screen orientation.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/orientation">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/orientation</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="orientation/3">
+    <strong>orientation(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Set the current browser screen orientation
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/orientation">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/orientation</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="refresh/2">
+    <strong>refresh(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Refresh the current page.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/refresh">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/refresh</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="screenshot/2">
+    <strong>screenshot(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Retreive a screenshot of the current page.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/screenshot">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/screenshot</a></p>
+
+<p>Returns a base64 encoded PNG image.</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="selected/3">
+    <strong>selected(root_url, session_id, element_id)</strong>
+  </p>
+  <div class="docstring"><p>Returns a boolean denoting if the element is selected or not.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/selected">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/selected</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="session/2">
+    <strong>session(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Retreive information about a session.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="sessions/2">
+    <strong>sessions(root_url, _session_id // :null)</strong>
+  </p>
+  <div class="docstring"><p>Gets a list of all sessions on the server.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/sessions">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/sessions</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="set_async_script_timeout/3">
+    <strong>set_async_script_timeout(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Set the script timeout for the session.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/timeouts/async_script">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/timeouts/async_script</a></p>
+
+<p>Parameters: [ms: number]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="set_cookie/3">
+    <strong>set_cookie(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Set a cookie for the current page.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/cookie">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/cookie</a></p>
+
+<p>Parameters: [cookie: object]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="set_implicit_wait_timeout/3">
+    <strong>set_implicit_wait_timeout(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Set the implicit wait timeout for the session.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/timeouts/implicit_wait">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/timeouts/implicit_wait</a></p>
+
+<p>Parameters: [ms: number]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="set_timeout/3">
+    <strong>set_timeout(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Set timeouts on the server.
+  Parameters must include the type of timeout and the length in milliseconds (ms).
+  Valid types are &quot;script&quot; and &quot;implicit&quot;</p>
+
+<p>Parameters [type: &quot;script&quot;|&quot;implicit&quot;, ms: number]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="shutdown/1">
+    <strong>shutdown(root_url)</strong>
+  </p>
+  <div class="docstring"></div>
+  
+</div><div class="detail">
+  <p class="signature" id="size/3">
+    <strong>size(root_url, session_id, element_id)</strong>
+  </p>
+  <div class="docstring"><p>Get the size of an element in pixels.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/size">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/size</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="source/2">
+    <strong>source(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Retreive the curent page source.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/source">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/source</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="start_session/2">
+    <strong>start_session(root_url, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Creates a new session on the server.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session</a></p>
+
+<p>Parameters: [desiredCapabilities: WebDriver.Protocol.Capabilities]
+  ## Examples:</p>
+
+<pre><code>iex&gt; config = WebDriver.Config[host: &quot;localhost&quot;, port: 8080]
+iex&gt; resp = WebDriver.Protocol.start_session(config, [desiredCapabilities: []])
+iex&gt; resp.session_id
+&quot;370f0750-e1dd-11e2-af7a-8562953caa56&quot;
+</code></pre>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="status/2">
+    <strong>status(root_url, _session_id // :null)</strong>
+  </p>
+  <div class="docstring"><p>Returns the status of the WebDriver server.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status</a></p>
+
+<p>## Examples:</p>
+
+<pre><code>iex&gt; config = WebDriver.Config[host: &quot;localhost&quot;, port: 8080]
+iex&gt; resp = WebDriver.Protocol.status(config)
+iex&gt; resp.status
+0
+iex&gt; resp.session_id
+:null
+iex&gt; resp.value
+[{&quot;build&quot;,[{&quot;version&quot;,&quot;1.0.3&quot;}]},{&quot;os&quot;,[{&quot;name&quot;,&quot;mac&quot;},{&quot;version&quot;,&quot;10.8 (Mountain Lion)&quot;},{&quot;arch&quot;,&quot;32bit&quot;}]}]
+</code></pre>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="stop_session/2">
+    <strong>stop_session(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Stop the current session on the server.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId">https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="submit/3">
+    <strong>submit(root_url, session_id, element_id)</strong>
+  </p>
+  <div class="docstring"><p>Submit a FORM element. May be applied to any descendent of a FORM element.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/submit">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/submit</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="text/3">
+    <strong>text(root_url, session_id, element_id)</strong>
+  </p>
+  <div class="docstring"><p>Retreives the visible text of the element.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/text">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/text</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="title/2">
+    <strong>title(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Retreive the current page title.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/title">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/title</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="touch_click/3">
+    <strong>touch_click(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Finger tap on an element on the screen.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/click</a></p>
+
+<p>Parameters: [element: element_id] The element to tap on.</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="touch_double_click/3">
+    <strong>touch_double_click(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Double finger tap on an element on the screen.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/doubleclick">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/doubleclick</a></p>
+
+<p>Parameters: [element: element_id] The element to tap on.</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="touch_down/3">
+    <strong>touch_down(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Finger down on the screen.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/down">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/down</a></p>
+
+<p>Parameters: [x: number, y: number]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="touch_flick/3">
+    <strong>touch_flick(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Flick on the touch screen using finger motion events.
+  The element, xoffset and yoffset parameters are optional if you do not care
+  where the flick starts.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/flick">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/flick</a></p>
+
+<p>Parameters: [element: element_id, xoffset: number, yoffset: number, xSpeed: number, ySpeed: number]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="touch_long_click/3">
+    <strong>touch_long_click(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Long finger tap on an element on the screen.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/longclick">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/longclick</a></p>
+
+<p>Parameters: [element: element_id] The element to tap on.</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="touch_move/3">
+    <strong>touch_move(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Move the finger on the screen to the specified position.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/move">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/move</a></p>
+
+<p>Parameters: [x: number, y: number]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="touch_scroll/3">
+    <strong>touch_scroll(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Scroll on the touch screen using finger based motion events.
+  The element parameter is optional and can be left out if you dont
+  care where the scroll starts.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_session/:sessionId/touch/scroll">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_session/:sessionId/touch/scroll</a></p>
+
+<p>Parameters [element: element, x: number, y:number]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="touch_up/3">
+    <strong>touch_up(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Finger up on the screen
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/up">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/up</a></p>
+
+<p>Parameters: [x: number, y: number]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="url/2">
+    <strong>url(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Retreive the URL of the current page.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/url">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/url</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="url/3">
+    <strong>url(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Navigate to a new URL.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/url">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/url</a></p>
+
+<p>Parameters: [url: new_url]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="value/4">
+    <strong>value(root_url, session_id, element_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Send a list of keystrokes to the specified element.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/element/:id/value">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/element/:id/value</a></p>
+
+<p>Parameters: [value: Array<string>]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="window/3">
+    <strong>window(root_url, session_id, parameters)</strong>
+  </p>
+  <div class="docstring"><p>Change the focus to another window.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window</a></p>
+
+<p>The window may be specified by the server assigned window handle or the value of it&#39;s name attribute.</p>
+
+<p>Parameters: [name: string]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="window_handle/2">
+    <strong>window_handle(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Get the current window handle for the session.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window_handle">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window_handle</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="window_handles/2">
+    <strong>window_handles(root_url, session_id)</strong>
+  </p>
+  <div class="docstring"><p>Retreive a list of window handles available for the session.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window_handles">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window_handles</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="window_position/4">
+    <strong>window_position(root_url, session_id, window_handle // &quot;current&quot;, parameters // :null)</strong>
+  </p>
+  <div class="docstring"><p>Retreive the window position for the specified window or if not specified, the current window.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/window/:windowHandle/position">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/window/:windowHandle/position</a></p>
+
+<p>Set the window position for the specified window if parameters are sent.
+  Set window handle to &quot;current&quot; to set the current window position.</p>
+
+<p>Parameters: [x: number, y: number]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="window_size/4">
+    <strong>window_size(root_url, session_id, window_handle // &quot;current&quot;, parameters // :null)</strong>
+  </p>
+  <div class="docstring"><p>Retreive the window size. If a window handle is not specified it retreives the
+  current window.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/window/:windowHandle/size">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/window/:windowHandle/size</a></p>
+
+<p>When the parameters are specified this will change the window size.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window/:windowHandle/size">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window/:windowHandle/size</a></p>
+
+<p>Parameters: [height: number, width: number]</p>
+</div>
+  
+</div>
+        </div>
+      
+
+      
+
+      
+    </div>
+  </body>
+</html>

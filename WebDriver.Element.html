@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebDriver.Element</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+    <script type="text/javascript" charset="utf-8">
+      relpath = '';
+      if (relpath != '') relpath += '/';
+    </script>
+
+    <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+  </head>
+
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+
+    <div id="content">
+      <h1>
+        WebDriver.Element
+        
+      </h1>
+
+      
+        <div id="moduledoc" class="docstring">
+          <p>This module handles WebDriver calls directed at specific DOM elements.</p>
+
+<p>They all take an WebDriver.Element.Reference record as the first argument.
+  The WebDriver.Element.Reference is supposed to be an opaque data type and 
+  is not meant to be manipulated.</p>
+
+<p>Elements are associated with a particular session and have no meaning 
+  outside that WedDriver session.</p>
+
+<p>Accessing an element that does not exist on the page will return a response
+  of <code>{ :stale_element_reference, response }</code></p>
+
+<p>All the command functions will return <code>{:ok, response}</code> or 
+  <code>{error, response}</code> where <code>error</code> is one of those listed in 
+  WebDriver.Error.</p>
+
+        </div>
+      
+
+      <a href="" target="_blank" class="view_source">Source</a>
+
+      
+
+      
+
+      
+        <h2 id="functions_summary">Functions summary</h2>
+        <ul class="summary">
+          <li>
+  <span class="summary_signature">
+    <a href="#attribute/2">attribute/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#clear/1">clear/1</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#click/1">click/1</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#css/2">css/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#displayed?/1">displayed?/1</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#enabled?/1">enabled?/1</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#equals?/2">equals?/2</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#location/1">location/1</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#location_in_view/1">location_in_view/1</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#name/1">name/1</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#selected?/1">selected?/1</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#size/1">size/1</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#submit/1">submit/1</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#text/1">text/1</a>
+  </span>
+</li>
+<li>
+  <span class="summary_signature">
+    <a href="#value/2">value/2</a>
+  </span>
+</li>
+
+        </ul>
+      
+
+      
+
+      
+
+      
+        <div id="functions_details" class="details_list">
+          <h2>Functions</h2>
+          <div class="detail">
+  <p class="signature" id="attribute/2">
+    <strong>attribute(element, attribute_name)</strong>
+  </p>
+  <div class="docstring"><p>Returns the value of the given element&#39;s attribute.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/attribute/:name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/attribute/:name</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="clear/1">
+    <strong>clear(element)</strong>
+  </p>
+  <div class="docstring"><p>Clears the specified form field or textarea element.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/clear">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/clear</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="click/1">
+    <strong>click(element)</strong>
+  </p>
+  <div class="docstring"><p>Click on the specified element.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/click</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="css/2">
+    <strong>css(element, property_name)</strong>
+  </p>
+  <div class="docstring"><p>Get the computed value of an element&#39;s CSS property.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/css/:propertyName">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/css/:propertyName</a></p>
+
+<p>Returns a string.</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="displayed?/1">
+    <strong>displayed?(element)</strong>
+  </p>
+  <div class="docstring"><p>Returns a boolean denoting if the element is currently visible.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/displayed">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/displayed</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="enabled?/1">
+    <strong>enabled?(element)</strong>
+  </p>
+  <div class="docstring"><p>Returns a boolean denoting if the element is enabled or not.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/enabled">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/enabled</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="equals?/2">
+    <strong>equals?(element, other_element)</strong>
+  </p>
+  <div class="docstring"><p>Determine if two element ids refer to the same DOM element.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/equals/:other">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/equals/:other</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="location/1">
+    <strong>location(element)</strong>
+  </p>
+  <div class="docstring"><p>Returns the current location of the specified element in pixels
+  from the top left corner.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location</a></p>
+
+<p>Returns [x: x, y: y]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="location_in_view/1">
+    <strong>location_in_view(element)</strong>
+  </p>
+  <div class="docstring"><p>Determine an element&#39;s location once it has been scrolled into view.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location_in_view">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location_in_view</a></p>
+
+<p>Returns [x: x, y: y]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="name/1">
+    <strong>name(element)</strong>
+  </p>
+  <div class="docstring"><p>Get the name of the specified element.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/name</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="selected?/1">
+    <strong>selected?(element)</strong>
+  </p>
+  <div class="docstring"><p>Returns a boolean denoting if the element is selected or not.
+  Returns :element<em>not</em>selectable if it is not able to be selected.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/selected">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/selected</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="size/1">
+    <strong>size(element)</strong>
+  </p>
+  <div class="docstring"><p>Returns size in pixels of the specified element.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/size">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/size</a></p>
+
+<p>Returns [width: w, height: h]</p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="submit/1">
+    <strong>submit(element)</strong>
+  </p>
+  <div class="docstring"><p>Submit a FORM element. May be applied to any descendent of a FORM element.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/submit">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/submit</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="text/1">
+    <strong>text(element)</strong>
+  </p>
+  <div class="docstring"><p>Retreives the visible text of the element. Returns a string.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/text">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/text</a></p>
+</div>
+  
+</div><div class="detail">
+  <p class="signature" id="value/2">
+    <strong>value(element, value)</strong>
+  </p>
+  <div class="docstring"><p>Send a list of keystrokes to the specified element.</p>
+
+<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/element/:id/value">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/element/:id/value</a></p>
+
+<p>Parameters: [value: String]</p>
+</div>
+  
+</div>
+        </div>
+      
+
+      
+
+      
+    </div>
+  </body>
+</html>
