@@ -4,7 +4,9 @@ defmodule WebDriver.Mixfile do
   def project do
     [ app: :webdriver,
       version: "0.0.1",
-      deps: deps
+      deps: deps,
+      source_url: "https://github.com/stuart/elixir-webdriver",
+      homepage_url: "https://github.com/stuart/elixir-webdriver"
     ]
   end
 

@@ -1,6 +1,10 @@
 defmodule WebDriver.SessionSup do
   use Supervisor.Behaviour
 
+  @moduledoc """
+    This supervisor maintians sessions for a browser instance.  
+  """
+
   def start_link state do
     :supervisor.start_link __MODULE__, state
   end

@@ -1,11 +1,24 @@
 defmodule WebDriver do
   use Application.Behaviour
-  use GenServer.Behaviour
+  
+  @moduledoc """
+    This is the Elixir WebDriver application. It can be used to drive a
+    WebDriver enabled webbrowser via Elixir code.
 
-  alias WebDriver.SessionSup
-  alias WebDriver.BrowserSup
+    The current version supports PhantomJS and FireFox.
+  """
 
-  defrecord Config, browser: :phantomjs, name: nil
+  defrecord Config, browser: :phantomjs, name: nil do
+    @moduledoc """
+      Configuration for a WebDriver browser instance.
+      Note that this record will have fields added as development of 
+      the library progresses.
+
+      * `browser` - The type of browser, :phantomjs or :firefox
+      * `name` - An atom to refer to the browser for later calls.
+      
+    """
+  end
   
   @doc """
     Start the application. This is a callback called by

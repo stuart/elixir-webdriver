@@ -152,16 +152,6 @@ defmodule WebDriver.Protocol do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/url
 
     Parameters: [url: new_url]
-
-    ## Example
-      iex> config = WebDriver.Config[host: "localhost", port: 8080]
-      iex> session_id = WebDriver.Protocol.start_session(config, [desiredCapabilities: []]).session_id
-      "51f725b0-e1e8-11e2-af7a-8562953caa56"
-      iex> WebDriver.Protocol.url(config, session_id).value
-      "about:blank"
-      iex> WebDriver.Protocol.url(config, session_id, [url: "http://google.com" ])
-      iex> WebDriver.Protocol.url(config, session_id).value
-      "http://www.google.com.au/"
   """
   def url(root_url, session_id, parameters) do
     session_post root_url, session_id, "url", parameters

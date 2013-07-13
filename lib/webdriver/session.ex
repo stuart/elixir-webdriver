@@ -58,7 +58,10 @@ defmodule WebDriver.Session do
   end
 
   @doc """
-    List all the sessions on the WebDriver server.
+    List all the sessions on the WebDriver browser.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId
+
+    Returns a list of session ids.
   """
   def sessions name do
     get_value name, :sessions
@@ -66,6 +69,8 @@ defmodule WebDriver.Session do
 
   @doc """
     Get details about the current session on the WebDriver server.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId
+
     Returns a capability record.
   """
   def session name do
@@ -105,7 +110,10 @@ defmodule WebDriver.Session do
 
   @doc """
     Get the handle of the current window. A window handle is an opaque reference
-    used for various window related functions.
+    used for various window related functions.    
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window_handle
+
+    Returns: window_handle :: String
   """
   def window_handle name do
     get_value(name, :window_handle)
@@ -114,62 +122,160 @@ defmodule WebDriver.Session do
   @doc """
     Get all the window handles associated with the browser.
     Returns a list of window handles.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window_handles
+
+    Returns: window_handles :: List[String]
   """
   def window_handles name do
     get_value(name, :window_handles)
   end
 
   @doc """
-    
+    Get the current page URL
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/url
+
+    Returns: url :: String
   """
   def url name do
     get_value name, :url
   end
 
+  @doc """
+    Navigate to the specified url.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/url
+
+    Note that this may take some time and calling
+    other functions too soon may fail if the implicit wait is
+    not set at a high enough value.
+
+    ## Examples
+
+      iex> WebDriver.Session.url :session
+      "about:blank"
+      iex> WebDriver.Session.url :session, "http://www.google.com.au/"
+      iex> WebDriver.Session.url :session
+      "http://www.google.com.au/"
+
+    Parameters [url :: String]
+  """
   def url name, url do
     cmd name, {:url, [url: url]}
   end
 
+  @doc """
+    Navigate forward in the browser history. 
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/forward
+  """
   def forward name do
     cmd name, :forward
   end
 
+  @doc """
+    Navigate back in the browser history.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/back
+  """
   def back name do
     cmd name, :back
   end
 
+  @doc """
+    Refresh the current page in the browser.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/refresh
+  """
   def refresh name do
     cmd name, :refresh
   end
 
+  @doc """
+    Execute Javascript in the browser and return the result.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute
+
+    Example:
+     
+    ```
+      iex> WebDriver.Session.execute :test, "return 2+2;"
+      4
+      iex> WebDriver.Session.execute :test, "return arguments[0] * arguments[1];", [5,3]
+      15
+    ```
+
+    Parameters: [script :: String, args :: List]
+    Returns: The Javascript return value, which may be a number, 
+             string, list or object (tuple).
+  """
   def execute name, script, args // [] do
     get_value name, {:execute, [script: script, args: args]}
   end
 
+   @doc """
+    Execute Javascript asynchronously in the browser and return the result.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute_async
+
+    Parameters: [script :: String, args :: List]
+    Returns: The Javascript return value, which may be a number, 
+             string, list or object (tuple).
+  """
   def execute_async name, script, args // [] do
     get_value name, {:execute, [script: script, args: args]}
   end
 
+  @doc """
+    Get a PNG screenshot of the current page.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/screenshot
+
+    Returns: PngImage :: Binary
+  """
   def screenshot name do
     get_value name, :screenshot
   end
 
+  @doc """
+    Change the frame that has focus in the current window.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/frame
+
+    Parameters: [id: string | number | :null | WebElement]
+  """
   def frame name, id do
     cmd name, {:frame, [id: id]}
   end
 
+  @doc """
+    Change the focus to another window.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window
+
+    The window may be specified by the server assigned window handle or the value of it's name attribute.
+
+    Parameters: [window_handle :: String]
+  """
   def window name, window_handle do
     cmd name, {:window, [name: window_handle]}
   end
 
+  @doc """
+    Closes the current window.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/window
+  """
   def close_window name do
     cmd name, :close_window
   end
 
+  @doc """
+    Maximise the specified window. Use "current" or simply do not specify a handle to
+    maximise the current window.
+
+  """
   def maximize_window name do
     cmd name, :maximize_window
   end
 
+ @doc """
+    Retreive the window size. If a window handle is not specified it retreives the
+    current window.
+
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/window/:windowHandle/size
+
+    Returns: [height: number, width: number]
+  """
   def window_size name do
     resp = HashDict.new(get_value name, :window_size)
     {:ok, h} = HashDict.fetch(resp,"height")
@@ -177,10 +283,20 @@ defmodule WebDriver.Session do
     [height: h,  width: w]
   end
 
+  @doc """
+    Set the window size.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window/:windowHandle/size
+
+    Parameters: [height: number, width: number]
+  """
   def window_size name, window_handle, width, height do
     cmd name, {:window_size, window_handle, [width: width, height: height]}
   end
 
+  @doc """
+    Retreive all the cookies associated with the current page.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/cookie
+  """
   def cookies name do
     get_value name, :cookies
   end
@@ -190,23 +306,44 @@ defmodule WebDriver.Session do
     mega * 1000000 + secs + 3600
   end
 
+  @doc """
+    Set a cookie for the current page.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/cookie
+
+    Parameters: [cookie: object]
+  """
   def set_cookie name, cookie_name, value, path, domain, expiry // in_one_hour do
     cmd name, {:set_cookie,
         [cookie: [name: cookie_name, value: value, path: path, domain: domain, expiry: expiry]]}
   end
 
+  @doc """
+    Delete all cookies for the current page.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/cookie
+  """
   def delete_cookies name do
     cmd name, :delete_cookies
   end
-
+  @doc """
+    Delete the cookie with the given name.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/cookie/:name
+  """
   def delete_cookie name, cookie_name do
     cmd name, {:delete_cookie, [cookie_name]}
   end
 
+  @doc """
+    Retreive the curent page source.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/source
+  """
   def source name do
     get_value name, :source
   end
 
+  @doc """
+    Retreive the current page title.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/title
+  """
   def title name do
     get_value name, :title
   end
@@ -222,6 +359,7 @@ defmodule WebDriver.Session do
       xpath: "xpath",
       class: "class name" ]
 
+
   defp element_value value, name do
     # Don't raise exceptions when we can't find an element. Just return nothing.
     case value do
@@ -230,11 +368,55 @@ defmodule WebDriver.Session do
     end
   end
 
+  @doc """
+    Retreive an element from the page using the specified search strategy.
+    Returns the first element found that fits the search criteria.
+
+    The return value is an element reference that can be used by functions in 
+    the WebDriver.Element module for further queries.
+
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element
+
+    Valid search strategies are:
+
+    * :class - Search for an element with the given class attribute.
+    * :class_name - alias for :class
+    * :css - Search for an element using a CSS selector.
+    * :id - Find an element with the given id attribute.
+    * :name - Find an element with the given name attribute.
+    * :link - Find an link element containing the given text.
+    * :partial_link - Find a link element containing a superset of the given text. 
+    * :tag - Find a HTML tag of the given type.
+    * :xpath - Use [XPath](http://www.w3.org/TR/xpath/) to search for an element. 
+
+
+    Parameters [using :: atom, value :: String]
+
+    Returns: A (WebDriver.Element.Reference)[/WebDriver.Element.html] record.
+
+    ## Examples
+
+      iex(12)> WebDriver.Session.element :test, :css, "img.logo"    
+      WebDriver.Element.Reference[id: ":wdc:1373691496542", session: :test]
+      iex(13)> WebDriver.Session.element :test, :id, "branding" 
+      WebDriver.Element.Reference[id: ":wdc:1373691496543", session: :test]
+
+  """
   def element name, using, value do
     get_value(name, {:element, [ using: Keyword.get(@selectors,using), value: value ]})
     |> element_value(name)
   end
 
+  @doc """
+    Retreive an element from the page starting from the specified
+    element using the specified search strategy.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/element
+    
+    See element/3 for details on search strategies.
+
+    Parameters: [using :: atom, value :: String, start_element :: WebDriver.Element.Reference]
+
+  """
   def element name, using, value, start_element do
     get_value(name, {:element, start_element.id, 
                     [ using: Keyword.get(@selectors,using), value: value ]})
@@ -248,12 +430,27 @@ defmodule WebDriver.Session do
     end
   end
 
+  @doc """
+    Retreive all elements from the page using the specified search strategy.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element
+  
+    See element/3 for details on the parameters used.
+    Returns a list of Element.Reference records.
+  """
   def elements name, using, value do
     get_value(name, {:elements, 
                      [ using: Keyword.get(@selectors,using), value: value ]})
     |> elements_value name
   end
 
+  @doc """
+    Retreive all elements starting from the specified element using the specified search strategy.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/elements
+
+    See element/3 for details on the parameters used.
+    The start_element parameter must be a WebDriver.Element.Reference record.
+    Returns a list of Element.Reference records.
+  """
   def elements name, using, value, start_element do
     get_value(name, {:elements, start_element.id, 
                      [ using: Keyword.get(@selectors,using), value: value ]})
@@ -261,6 +458,10 @@ defmodule WebDriver.Session do
     |> elements_value name
   end
 
+  @doc """
+    Get the element on the page that currently has focus.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/active
+  """
   def active_element name do
     get_value(name, :active_element) |> element_value name
   end
@@ -269,14 +470,32 @@ defmodule WebDriver.Session do
   #   get_value(name, {:element_by_id, element}) |> element_value name
   # end
 
+  @doc """ 
+    Send a list of keystrokes to the currently active element.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/keys
+
+    Parameters: [ value :: String ]
+  """
   def keys name, value do
     cmd name, {:keys, [value: String.codepoints value]}
   end
 
+  @doc """
+    Get the current browser screen orientation.
+    Only works on browsers with the `rotatable` capability.
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/orientation
+  """
   def orientation name do
     get_value name, :orientation
   end
 
+  @doc """
+    Set the current browser screen orientation
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/orientation
+
+    Parameters: [screen_orientation :: atom] 
+    Screen orientaton can be either :portrait or :landscape.
+  """
   def orientation name, screen_orientation do
     case screen_orientation do
       :landscape -> cmd name, {:orientation, [ orientation: "LANDSCAPE"]}
