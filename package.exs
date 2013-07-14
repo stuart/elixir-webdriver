@@ -7,6 +7,6 @@ Expm.Package.new( name: "webdriver",
                                    email: "stuart.coyle@gmail.com"]],
                   repositories: [[ github: "stuart/elixir-webdriver"]],
                   dependencies: ["httpotion", "jsonex", "mock"],
-                  licenses: ["MIT License, Apache License"]
+                  licenses: ["MIT License", "Apache License"]
                  )
     

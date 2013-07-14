@@ -37,8 +37,8 @@ defmodule WebDriverFirefoxSessionTest do
   #   # FIXME assert [{"build", _},{"os", _}] = resp
   # end
 
-  test "start_session and stop_session", meta do
-    assert {:ok, pid} = WebDriver.start_session :ftest_browser, :test2
+  test "start_session and stop_session" do
+    assert {:ok, _pid} = WebDriver.start_session :ftest_browser, :test2
     assert :ok = WebDriver.stop_session :test2
   end
 
@@ -52,7 +52,7 @@ defmodule WebDriverFirefoxSessionTest do
 
   test "session returns the current session data" do
     { :ok, _ } = Session.start_session(:fftest)
-    response = Session.session(:fftest)
+    _response = Session.session(:fftest)
     # FIXME: Parse into a Capabilities Record.
     # assert [{"browserName",_},{"version",_},{"driverName",_},
     #         {"driverVersion",_},{"platform",_},{"javascriptEnabled",_},
