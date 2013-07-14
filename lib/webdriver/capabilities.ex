@@ -4,7 +4,7 @@ defrecord Capabilities,
           driver_name: "",
           driver_version: "",
           platform: "",
-          javascript_enabled: false,
+          javascript_enabled: true,
           takes_screenshot: false,
           handles_alerts: false,
           database_enabled: false,
@@ -15,7 +15,7 @@ defrecord Capabilities,
           web_storage_enabled: false,
           rotatable: false,
           accept_ssl_certs: false,
-          native_events: true,
+          native_events: false,
           proxy: [] do 
 
   @moduledoc """

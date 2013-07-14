@@ -263,9 +263,10 @@ defmodule WebDriver.Session do
     Maximise the specified window. Use "current" or simply do not specify a handle to
     maximise the current window.
 
+    NOTE: Firefox seems to have bug here where even passing "current" throws an error. 
   """
-  def maximize_window name do
-    cmd name, :maximize_window
+  def maximize_window name, window_handle // "current" do
+    cmd name, {:maximize_window, [window_handle]}
   end
 
  @doc """
@@ -285,6 +286,11 @@ defmodule WebDriver.Session do
 
   @doc """
     Set the window size.
+
+    NOTE: Firefox can only do manipulation on the currently focussed window. 
+    You MUST pass the window_handle parameter as "current" for Firefox or you
+    will get an error response. 
+
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window/:windowHandle/size
 
     Parameters: [height: number, width: number]
@@ -364,7 +370,7 @@ defmodule WebDriver.Session do
     # Don't raise exceptions when we can't find an element. Just return nothing.
     case value do
       {:no_such_element, _resp} -> nil
-      [{"ELEMENT", id}] -> WebDriver.Element.Reference[id: id, session: name]
+      [{"ELEMENT", id}] -> WebDriver.Element.Reference[id: URI.encode(id), session: name]
     end
   end
 

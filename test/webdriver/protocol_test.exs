@@ -63,15 +63,15 @@ defmodule WebDriverProtocolTest do
   end
 
   test "forward" do
-    test_post Protocol.forward(&1, @session_id), "/session/:session_id/forward", "[]"
+    test_post Protocol.forward(&1, @session_id), "/session/:session_id/forward", "{}"
   end
 
   test "back" do
-    test_post Protocol.back(&1, @session_id), "/session/:session_id/back", "[]"
+    test_post Protocol.back(&1, @session_id), "/session/:session_id/back", "{}"
   end
 
   test "refresh" do
-    test_post Protocol.refresh(&1, @session_id), "/session/:session_id/refresh", "[]"
+    test_post Protocol.refresh(&1, @session_id), "/session/:session_id/refresh", "{}"
   end
 
   test "execute" do
@@ -133,7 +133,7 @@ defmodule WebDriverProtocolTest do
 
   test "maximize_window" do
     test_post Protocol.maximize_window(&1, @session_id, "window_handle"),
-              "/session/:session_id/window/window_handle/maximize", "[]"
+              "/session/:session_id/window/window_handle/maximize", "{}"
   end
 
   test "cookies" do
@@ -196,12 +196,12 @@ defmodule WebDriverProtocolTest do
 
   test "click" do
     test_post Protocol.click(&1, @session_id, ":element_id"),
-     "/session/:session_id/element/:element_id/click", "[]"
+     "/session/:session_id/element/:element_id/click", "{}"
   end
 
   test "submit" do
     test_post Protocol.submit(&1, @session_id, ":element_id"),
-      "/session/:session_id/element/:element_id/submit", "[]"
+      "/session/:session_id/element/:element_id/submit", "{}"
   end
 
   test "text" do
@@ -228,7 +228,7 @@ defmodule WebDriverProtocolTest do
 
   test "clear" do
     test_post Protocol.clear(&1, @session_id, ":element_id"),
-    "/session/:session_id/element/:element_id/clear", "[]"
+    "/session/:session_id/element/:element_id/clear", "{}"
   end
 
   test "selected" do
@@ -301,13 +301,13 @@ defmodule WebDriverProtocolTest do
   test "accept_alert" do
     test_post Protocol.accept_alert(&1, @session_id),
        "/session/:session_id/accept_alert",
-                "[]"
+                "{}"
   end
 
   test "dismiss_alert" do
     test_post Protocol.dismiss_alert(&1, @session_id),
        "/session/:session_id/dismiss_alert",
-                "[]"
+                "{}"
   end
 
   test "move_to" do
@@ -318,7 +318,7 @@ defmodule WebDriverProtocolTest do
 
   test "mouse_click/2" do
     test_post Protocol.mouse_click(&1, @session_id),
-       "/session/:session_id/click", "[]"
+       "/session/:session_id/click", "{}"
   end
 
   test "mouse_click/3" do
@@ -328,7 +328,7 @@ defmodule WebDriverProtocolTest do
 
   test "mouse_button_down/2" do
     test_post Protocol.mouse_button_down(&1, @session_id),
-       "/session/:session_id/buttondown", "[]"
+       "/session/:session_id/buttondown", "{}"
   end
 
   test "mouse_button_down/3" do
@@ -338,7 +338,7 @@ defmodule WebDriverProtocolTest do
 
   test "mouse_button_up/2" do
     test_post Protocol.mouse_button_up(&1, @session_id),
-       "/session/:session_id/buttonup", "[]"
+       "/session/:session_id/buttonup", "{}"
   end
 
   test "mouse_button_up/3" do
@@ -348,7 +348,7 @@ defmodule WebDriverProtocolTest do
 
   test "mouse_double_click/2" do
     test_post Protocol.mouse_double_click(&1, @session_id),
-       "/session/:session_id/doubleclick", "[]"
+       "/session/:session_id/doubleclick", "{}"
   end
 
   test "mouse_double_click/3" do

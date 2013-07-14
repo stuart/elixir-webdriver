@@ -3,10 +3,14 @@ defmodule WebDriver.Mixfile do
 
   def project do
     [ app: :webdriver,
-      version: "0.0.1",
-      deps: deps,
+      version: "0.0.2",
       source_url: "https://github.com/stuart/elixir-webdriver",
-      homepage_url: "https://github.com/stuart/elixir-webdriver"
+      homepage_url: "http://stuart.github.io/elixir-webdriver",
+      env: [
+          dev:  [ deps: deps ++ dev_deps ],
+          test: [ deps: deps ],
+          prod: [ deps: deps ]
+        ]
     ]
   end
 
@@ -27,5 +31,9 @@ defmodule WebDriver.Mixfile do
      {:jsonex,    "2.0",   [github: "marcelog/jsonex", tag: 2.0]},
      {:ex_doc,             [github: "elixir-lang/ex_doc"]},
      {:mock,               [github: "jjh42/mock"]}]
+  end
+
+  defp dev_deps do
+    [{ :docs_ghpages, github: "jjh42/docs_ghpages" }]
   end
 end

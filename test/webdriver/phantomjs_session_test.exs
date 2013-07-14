@@ -291,12 +291,10 @@ defmodule WebDriverSessionTest do
   #   assert Session.element_by_id :test, element
   # end
 
-  @doctest true
-
   test "click on an element" do
     Session.url :test, "http://localhost:8888/page_1.html"
     element = Session.element :test, :link, "Back to Index"
-    Element.click element
+    assert {:ok, _} = Element.click element
     assert "http://localhost:8888/index.html" = Session.url :test
   end
 

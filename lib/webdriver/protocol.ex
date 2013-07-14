@@ -622,7 +622,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [button: 1(left) | 2(middle) | 3(right)]
   """
-  def mouse_click(root_url, session_id, parameters // []) do
+  def mouse_click(root_url, session_id, parameters // [{}]) do
     session_post root_url, session_id, "click", parameters
   end
 
@@ -634,7 +634,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [button: 1(left) | 2(middle) | 3(right)]
   """
-  def mouse_button_down(root_url, session_id, parameters // []) do
+  def mouse_button_down(root_url, session_id, parameters // [{}]) do
     session_post root_url, session_id, "buttondown", parameters
   end
 
@@ -646,7 +646,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [button: 1(left) | 2(middle) | 3(right)]
   """
-  def mouse_button_up(root_url, session_id, parameters // []) do
+  def mouse_button_up(root_url, session_id, parameters // [{}]) do
     session_post root_url, session_id, "buttonup", parameters
   end
 
@@ -658,7 +658,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [button: 1(left) | 2(middle) | 3(right)]
   """
-  def mouse_double_click(root_url, session_id, parameters // []) do
+  def mouse_double_click(root_url, session_id, parameters // [{}]) do
     session_post root_url, session_id, "doubleclick", parameters
   end
 
@@ -795,11 +795,11 @@ defmodule WebDriver.Protocol do
     send_request root_url, request
   end
 
-  defp session_post root_url, session_id, command, params // [] do
+  defp session_post root_url, session_id, command, params // [{}] do
     post root_url, ["session", session_id, command], params
   end
 
-  defp element_post root_url, session_id, element_id, command, params // [] do
+  defp element_post root_url, session_id, element_id, command, params // [{}] do
     post root_url, ["session", session_id, "element", element_id, command], params
   end
 

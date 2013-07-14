@@ -1,5 +1,7 @@
 defmodule WebDriver.Firefox.Profile do
-  @default_profile [ {"app.update.auto", false},
+
+  @default_profile [ 
+    {"app.update.auto", false},
     {"app.update.enabled", false},
     {"browser.dom.window.dump.enabled", true},
     {"browser.download.manager.showWhenStarting", false},
@@ -50,7 +52,10 @@ defmodule WebDriver.Firefox.Profile do
     {"toolkit.telemetry.prompted", 2},
     {"toolkit.telemetry.rejected", true},
     {"webdriver_accept_untrusted_certs", true},
-    {"webdriver_assume_untrusted_issuer", true} ]
+    {"webdriver_assume_untrusted_issuer", true},
+    {"webdriver_enable_native_events", false},
+    {"webdriver.log.file", "/tmp/log/webdriver.log"}
+  ]
 
   @webdriver_prefs [
     native_events:    "webdriver_enable_native_events",

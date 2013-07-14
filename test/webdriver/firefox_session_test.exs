@@ -12,7 +12,6 @@ defmodule WebDriverFirefoxSessionTest do
     http_server_pid = WebDriver.TestServer.start
     config = WebDriver.Config.new(browser: :firefox, name: :ftest_browser)
     WebDriver.start_browser config
-    :timer.sleep 6000
     WebDriver.start_session :ftest_browser, :fftest
     {:ok, [http_server_pid: http_server_pid]}
   end
@@ -38,9 +37,10 @@ defmodule WebDriverFirefoxSessionTest do
   #   # FIXME assert [{"build", _},{"os", _}] = resp
   # end
 
-  # test "start_session should start a WebDriver session", meta do
-  #   assert meta[:session_id] != :null
-  # end
+  test "start_session and stop_session", meta do
+    assert {:ok, pid} = WebDriver.start_session :ftest_browser, :test2
+    assert :ok = WebDriver.stop_session :test2
+  end
 
   # test "sessions lists the sessions on the Session" do
   #   # GET Sessions does not work on firefox!
@@ -50,22 +50,19 @@ defmodule WebDriverFirefoxSessionTest do
   #   # end
   # end
 
-  # test "session returns the current session data" do
-  #   { :ok, _ } = Session.start_session(:fftest)
-  #   response = Session.session(:fftest)
-  #   # FIXME: Parse into a Capabilities Record.
-  #   # assert [{"browserName",_},{"version",_},{"driverName",_},
-  #   #         {"driverVersion",_},{"platform",_},{"javascriptEnabled",_},
-  #   #         {"takesScreenshot",_},{"handlesAlerts",_},{"databaseEnabled",_},
-  #   #         {"locationContextEnabled",_},{"applicationCacheEnabled",_},
-  #   #         {"browserConnectionEnabled",_},{"cssSelectorsEnabled",_},
-  #   #         {"webStorageEnabled",_},{"rotatable",_},{"acceptSslCerts",_},
-  #   #         {"nativeEvents",_},{"proxy",_}] = response
-  # end
+  test "session returns the current session data" do
+    { :ok, _ } = Session.start_session(:fftest)
+    response = Session.session(:fftest)
+    # FIXME: Parse into a Capabilities Record.
+    # assert [{"browserName",_},{"version",_},{"driverName",_},
+    #         {"driverVersion",_},{"platform",_},{"javascriptEnabled",_},
+    #         {"takesScreenshot",_},{"handlesAlerts",_},{"databaseEnabled",_},
+    #         {"locationContextEnabled",_},{"applicationCacheEnabled",_},
+    #         {"browserConnectionEnabled",_},{"cssSelectorsEnabled",_},
+    #         {"webStorageEnabled",_},{"rotatable",_},{"acceptSslCerts",_},
+    #         {"nativeEvents",_},{"proxy",_}] = response
+  end
 
-  # test "stop session" do
-  #   check :stop_session
-  # end
 
   test "set_timeout" do
     check :set_timeout, ["script", 5000]
@@ -95,7 +92,6 @@ defmodule WebDriverFirefoxSessionTest do
     assert "about:blank" == Session.url :fftest
    end
 
-  # # FIXME econnrefused
   test "url/2" do
     check :url, ["http://localhost:8888/index.html"]
     assert Session.url(:fftest) == "http://localhost:8888/index.html"
@@ -152,24 +148,25 @@ defmodule WebDriverFirefoxSessionTest do
     assert {:no_such_window, _} = Session.window :fftest, "xyz"
   end
 
-  # JAVASCRIPT ERROR
-  # test "close window" do
-  #   check :close_window
+  #JAVASCRIPT ERROR This test really buggers everything up
+  #test "close window" do
+  #  check :close_window
+  #end
+
+  # test "window size" do
+  #   size = Session.window_size :fftest
+  #   assert is_number(Keyword.get(size, :height))
+  #   assert is_number(Keyword.get(size, :width))
   # end
 
-  test "window size" do
-    size = Session.window_size :fftest
-    assert is_number(Keyword.get(size, :height))
-    assert is_number(Keyword.get(size, :width))
-  end
-
-  # FIXME Window operations only supported for currently focussed window
+  # Window operations only supported for currently focussed window
   # test "set the window size" do
-  #   check :window_size, [Session.window_handle(:fftest), 240, 480]
+  #   check :window_size, ["current", 240, 480]
   # end
 
   # test "maximize window" do
-  #   check :maximize_window
+  #   # FIXME: Does not work on Firefox.
+  #   check :maximize_window, ["current"]
   # end
 
   # FIXME: [[{"name","name"},{"value","value"},{"path","/"},{"domain","localhost"},{"secure",false},{"expiry",1373610137}]]
@@ -271,44 +268,42 @@ defmodule WebDriverFirefoxSessionTest do
     assert [] = Session.elements :fftest, :tag, "none"
   end
 
-  # FIXME: firefox does not support this
-  # test "active element" do
-  #   Session.url :fftest, "http://localhost:8888/page_1.html"
-  #   assert is_element? Session.active_element :fftest
-  # end
+  #FIXME: firefox does not support this
+  #test "active element" do
+  #  Session.url :fftest, "http://localhost:8888/page_1.html"
+  #  assert is_element? Session.active_element :fftest
+  #end
 
-  # # Not working on phantomjs or firefox
+  # Not working on phantomjs or firefox
   # test "get orientation" do
   #   check :orientation
   # end
 
-  # # test "set orientation" do
-  # #   check :orientation, [:landscape]
-  # # end
+  # test "set orientation" do
+  #   check :orientation, [:landscape]
+  # end
 
-  # # test "element by id" do
-  # #   # This behaviour is currently undefined in the specification.
-  # #   # Phantomjs returns a url encoded version of the internal element id.
-  # #   Session.url :fftest, "http://localhost:8888/page_1.html"
-  # #   element = Session.element :fftest, :class_name, "blue"
-  # #   assert Session.element_by_id :fftest, element
-  # # end
-
-  # FIXME: Click does not follow the link.
-  # test "click on an element" do
+  # test "element by id" do
+  #   # This behaviour is currently undefined in the specification.
+  #   # Phantomjs returns a url encoded version of the internal element id.
   #   Session.url :fftest, "http://localhost:8888/page_1.html"
-  #   element = Session.element :fftest, :link, "Back to Index"
-  #   Element.click element
-  #   assert "http://localhost:8888/index.html" = Session.url :fftest
+  #   element = Session.element :fftest, :class_name, "blue"
+  #   assert Session.element_by_id :fftest, element
   # end
 
-  # FIXME: Times out and dies
-  # test "submit a form" do
-  #   Session.url :fftest, "http://localhost:8888/page_2.html"
-  #   form = Session.element :fftest, :tag, "form"
-  #   Element.submit form
-  #   assert "http://localhost:8888/page_3.html?some_text=Text" == Session.url :fftest
-  # end
+  test "click on an element" do
+    Session.url :fftest, "http://localhost:8888/page_1.html"
+    element = Session.element :fftest, :link, "Back to Index"
+    {:ok, _} = Element.click element
+    assert "http://localhost:8888/index.html" = Session.url :fftest
+  end
+
+  test "submit a form" do
+    Session.url :fftest, "http://localhost:8888/page_2.html"
+    form = Session.element :fftest, :tag, "form"
+    Element.submit form
+    assert "http://localhost:8888/page_3.html?some_text=Text" == Session.url :fftest
+  end
 
   test "text value of an element" do
     Session.url :fftest, "http://localhost:8888/page_1.html"
@@ -316,24 +311,23 @@ defmodule WebDriverFirefoxSessionTest do
     assert "Test Div" == Element.text element
   end
 
-  # FIXME Does not submit
-  # test "send keystrokes to an element" do
-  #   Session.url :fftest, "http://localhost:8888/page_2.html"
-  #   field = Session.element :fftest, :id, "123"
-  #   Element.value field, "Val"
-  #   Element.submit field
-  #   assert "http://localhost:8888/page_3.html?some_text=TextVal" == Session.url :fftest
-  # end
+  test "send keystrokes to an element" do
+    Session.url :fftest, "http://localhost:8888/page_2.html"
+    field = Session.element :fftest, :id, "123"
+    Element.value field, "Val"
+    {:ok, _} = Element.submit field
+    assert "http://localhost:8888/page_3.html?some_text=TextVal" == Session.url :fftest
+  end
   
-  # FIXME Does not submit
-  # test "send keystrokes to the current element" do
-  #   Session.url :fftest, "http://localhost:8888/page_2.html"
-  #   field = Session.element :fftest, :id, "123"
-  #   Element.click field
-  #   Session.keys :fftest, "New Text"
-  #   Element.submit field
-  #   assert "http://localhost:8888/page_3.html?some_text=New+Text" == Session.url :fftest
-  # end
+  # Firefox does not clear the element before sending keys. PhantomJS does.
+  test "send keystrokes to the current element" do
+    Session.url :fftest, "http://localhost:8888/page_2.html"
+    field = Session.element :fftest, :id, "123"
+    Element.click field
+    Session.keys :fftest, "New Text"
+    Element.submit field
+    assert "http://localhost:8888/page_3.html?some_text=TextNew+Text" == Session.url :fftest
+  end
 
   test "name" do
     Session.url :fftest, "http://localhost:8888/page_1.html"
@@ -341,14 +335,13 @@ defmodule WebDriverFirefoxSessionTest do
     assert "div" == Element.name element
   end
 
-  # FIXME does not submit 
-  # test "clear an element" do
-  #   Session.url :fftest, "http://localhost:8888/page_2.html"
-  #   field = Session.element :fftest, :id, "123"
-  #   Element.clear field
-  #   Element.submit field
-  #   assert "http://localhost:8888/page_3.html?some_text=" == Session.url :fftest
-  # end
+  test "clear an element" do
+    Session.url :fftest, "http://localhost:8888/page_2.html"
+    field = Session.element :fftest, :id, "123"
+    Element.clear field
+    Element.submit field
+    assert "http://localhost:8888/page_3.html?some_text=" == Session.url :fftest
+  end
 
   test "selected? returns boolean if an element is selected" do
     Session.url :fftest, "http://localhost:8888/page_2.html"
@@ -359,12 +352,12 @@ defmodule WebDriverFirefoxSessionTest do
     assert false === Element.selected? other_option
   end
 
-  # FIXME Firefox returns false here.
-  # test "selected? returns nil if element is unselectable" do
-  #   Session.url :fftest, "http://localhost:8888/page_2.html"
-  #   option = Session.element :fftest, :tag, "label"
-  #   assert nil == Element.selected? option
-  # end
+  # Firefox returns false here whereas PhantomJS returns nil
+  test "selected? returns false if element is unselectable" do
+    Session.url :fftest, "http://localhost:8888/page_2.html"
+    option = Session.element :fftest, :tag, "label"
+    assert false == Element.selected? option
+  end
 
    test "selected? returns boolean if an element is enabled" do
     Session.url :fftest, "http://localhost:8888/page_2.html"
@@ -430,6 +423,7 @@ defmodule WebDriverFirefoxSessionTest do
     element = Element.Reference[id: ":wdc:12345678899", session: :fftest]
     assert {:stale_element_reference, _ } = Element.size element
   end
+
 ############################################################################
 
   # Check that a request returns {ok, response} and the response status is 0
@@ -446,7 +440,7 @@ defmodule WebDriverFirefoxSessionTest do
   end
 
   defp uuid_regexp do
-    # Firefox wraps uuids in {}!! Not sure if we use them in paths as yet.
+    # Firefox wraps uuids in {}.
     %r/^\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}$/
   end
 
