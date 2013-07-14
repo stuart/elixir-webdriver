@@ -1,6 +1,6 @@
 # Web Driver for Elixir
 
-Current Version 0.0.2
+Current Version 0.0.5
 
 This is an implementation of the WebDriver protocol client.
 It currently supports PhantomJS for headless browser goodness or
