@@ -14,7 +14,7 @@ ready as yet. Both Firefox and PhantomJS support is a bit patchy.
 This library has been set up as a Mix application, so just
 add this to mix.exs dep block:
 
-```Elixir {:webdriver, github: "stuart/elixir-webdriver"} ```
+```{:webdriver, github: "stuart/elixir-webdriver"} ```
 
 and make sure the application block of mix.exs includes: 
 ``` applications: [ :webdriver ] ```
