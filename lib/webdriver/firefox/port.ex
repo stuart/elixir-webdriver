@@ -83,10 +83,10 @@ defmodule WebDriver.Firefox.Port do
   end
 
   def normal_termination state do
+    Port.close(state.port)
     :os.cmd(state.kill_command)
-     Port.close state.port
-     File.rm_rf state.firefox_temp_dir
-     :ok
+    File.rm_rf state.firefox_temp_dir
+    :ok
   end
 
   def browser_terminated state do

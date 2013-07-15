@@ -36,7 +36,7 @@ defmodule WebDriver.Browser do
 
       def handle_info {:start_session_supervisor, sup}, state do
         config = WebDriver.Session.State.new(root_url: state.root_url, browser: self)
-        spec = Supervisor.Behaviour.worker(WebDriver.SessionSup,[config])
+        spec = Supervisor.Behaviour.worker(WebDriver.SessionSup,[config],[restart: :temporary])
         {:ok, pid} = :supervisor.start_child sup, spec
         {:noreply, state.session_supervisor(pid)}
       end

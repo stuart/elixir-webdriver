@@ -10,7 +10,7 @@ defmodule WebDriver.SessionSup do
   end
 
   def init state do
-    child_processes = [worker(WebDriver.Session, [state], [ restart: :temporary ])]
+    child_processes = [worker(WebDriver.Session, [state], [restart: :permanent])]
     supervise(child_processes,[ strategy: :simple_one_for_one ])
   end
 end
