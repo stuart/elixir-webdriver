@@ -5,11 +5,13 @@ defmodule WebDriver.Session do
   alias WebDriver.Response
   alias WebDriver.Protocol
   alias WebDriver.Element
+  alias WebDriver.Cookie
 
   defrecord State,  name: nil,
                     root_url: "",
                     session_id: :null,
                     desiredCapabilities: [],
+                    negotiatedCapabilities: [],
                     browser: nil
 
   @doc """
@@ -74,7 +76,7 @@ defmodule WebDriver.Session do
     Returns a capability record.
   """
   def session name do
-    get_value name, :session
+    WebDriver.Capabilities.from_response(get_value name, :session)
   end
 
   @doc """
@@ -304,7 +306,8 @@ defmodule WebDriver.Session do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/cookie
   """
   def cookies name do
-    get_value name, :cookies
+    Enum.map get_value(name, :cookies), 
+     fn(cookie) -> WebDriver.Cookie.from_response(cookie) end
   end
 
   defp in_one_hour do
@@ -318,6 +321,14 @@ defmodule WebDriver.Session do
 
     Parameters: [cookie: object]
   """
+  def set_cookie name, Cookie[name: cookie_name, value: value, path: path, domain: domain, expiry: 0] do
+    set_cookie name, cookie_name, value, path, domain
+  end
+
+  def set_cookie name, Cookie[name: cookie_name, value: value, path: path, domain: domain, expiry: expiry] do
+    set_cookie name, cookie_name, value, path, domain
+  end
+
   def set_cookie name, cookie_name, value, path, domain, expiry // in_one_hour do
     cmd name, {:set_cookie,
         [cookie: [name: cookie_name, value: value, path: path, domain: domain, expiry: expiry]]}
@@ -518,7 +529,10 @@ defmodule WebDriver.Session do
   def init state do
     {:ok, response} = WebDriver.Protocol.start_session state.root_url, 
                [desiredCapabilities: state.desiredCapabilities]
-    { :ok, state.session_id(response.session_id) }
+     state = response.value 
+             |> WebDriver.Capabilities.from_response
+             |> state.negotiatedCapabilities
+    {:ok, state.session_id(response.session_id) }
   end
 
   def handle_cast(:stop, state) do

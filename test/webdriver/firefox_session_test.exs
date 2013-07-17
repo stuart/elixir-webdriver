@@ -52,17 +52,10 @@ defmodule WebDriverFirefoxSessionTest do
 
   test "session returns the current session data" do
     { :ok, _ } = Session.start_session(:fftest)
-    _response = Session.session(:fftest)
-    # FIXME: Parse into a Capabilities Record.
-    # assert [{"browserName",_},{"version",_},{"driverName",_},
-    #         {"driverVersion",_},{"platform",_},{"javascriptEnabled",_},
-    #         {"takesScreenshot",_},{"handlesAlerts",_},{"databaseEnabled",_},
-    #         {"locationContextEnabled",_},{"applicationCacheEnabled",_},
-    #         {"browserConnectionEnabled",_},{"cssSelectorsEnabled",_},
-    #         {"webStorageEnabled",_},{"rotatable",_},{"acceptSslCerts",_},
-    #         {"nativeEvents",_},{"proxy",_}] = response
+    response = Session.session(:fftest)
+    assert response.browserName == "firefox"
+    assert response.javascriptEnabled
   end
-
 
   test "set_timeout" do
     check :set_timeout, ["script", 5000]
@@ -148,10 +141,12 @@ defmodule WebDriverFirefoxSessionTest do
     assert {:no_such_window, _} = Session.window :fftest, "xyz"
   end
 
-  #JAVASCRIPT ERROR This test really buggers everything up
-  #test "close window" do
-  #  check :close_window
-  #end
+  # JAVASCRIPT ERROR This test really buggers everything up
+  # test "close window" do
+  #   WebDriver.start_session :ftest_browser, :window_close
+  #   assert {:ok, _} = Session.close_window :window_close
+  #   WebDriver.stop_session :window_close
+  # end
 
   # test "window size" do
   #   size = Session.window_size :fftest
@@ -169,16 +164,16 @@ defmodule WebDriverFirefoxSessionTest do
   #   check :maximize_window, ["current"]
   # end
 
-  # FIXME: [[{"name","name"},{"value","value"},{"path","/"},{"domain","localhost"},{"secure",false},{"expiry",1373610137}]]
-  # Cookie record.
-  # test "set and retreive cookie" do
-  #   Session.url :fftest, "http://localhost:8888/index.html"
-  #   check :set_cookie, ["name", "value", "/", "localhost"]
+  test "set cookie from a cookie record" do
+    cookie = WebDriver.Cookie.new(name: "cookie", value: "value", path: "/", domain: "localhost")
+    Session.set_cookie :fftest, cookie
+    [ cookie ] = Session.cookies :fftest
 
-  #   assert [[{"domain",".localhost"},{"expires",_},
-  #   {"expiry",_},{"httponly",false},{"name","name"},{"path","/"},
-  #   {"secure",false},{"value","value"}]] = Session.cookies :fftest
-  # end
+    assert cookie.domain == "localhost"
+    assert cookie.name == "cookie"
+    assert cookie.value == "value"
+    assert cookie.path == "/"
+  end
 
   test "delete cookies" do
     Session.set_cookie :fftest, "name", "value", "/", ".localhost"
