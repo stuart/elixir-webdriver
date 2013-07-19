@@ -1,6 +1,6 @@
 # Web Driver for Elixir
 
-Current Version 0.0.5
+Current Version 0.1.0
 
 This is an implementation of the WebDriver protocol client.
 It currently supports PhantomJS for headless browser goodness or
@@ -52,10 +52,12 @@ An example session is shown here:
   {:ok,#PID<0.138.0>}
   ex(3)> WebDriver.start_session :browser, :session
   {:ok,#PID<0.141.0>}
+
   iex(4)> WebDriver.Session.url :session
   "about:blank"
   iex(5)> WebDriver.Session.url :session, "http://elixir-lang.org"
   {:ok,WebDriver.Protocol.Response[session_id: "d39b91d0-eabe-11e2-9e84-9dbe69660f4a", status: 0, value: [{}], request: WebDriver.Protocol.Request[method: :POST, url: "http://localhost:57202/wd/hub/session/d39b91d0-eabe-11e2-9e84-9dbe69660f4a/url", headers: ["Content-Type": "application/json;charset=UTF-8", "Content-Length": 32], body: "{\"url\":\"http://elixir-lang.org\"}"]]}
+
   iex(6)> element =  WebDriver.Session.element :session, :css, ".news"
   WebDriver.Element.Reference[id: ":wdc:1373611746692", session: :session]
   iex(8)> WebDriver.Element.text element
@@ -68,6 +70,11 @@ An example session is shown here:
 ## Requirements
 
 You will need to have PhantomJS and/or FireFox installed for this to work.
-Currently I have only tested extensively on OSX, though it should work on
-other UNIX based operating systems. Testing on these will be done as I have time.
+Currently I have only tested extensively on OSX, and Ubuntu Linux.
+It should work on most UNIX like platforms. There is some rudimentary 
+windows support code in here but I'm pretty sure that Firfox won't work.
+
+
+
+
 
