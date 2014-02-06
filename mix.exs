@@ -3,7 +3,7 @@ defmodule WebDriver.Mixfile do
 
   def project do
     [ app: :webdriver,
-      version: "0.0.5",
+      version: "0.0.6",
       source_url: "https://github.com/stuart/elixir-webdriver",
       homepage_url: "http://stuart.github.io/elixir-webdriver",
       env: [
@@ -27,8 +27,8 @@ defmodule WebDriver.Mixfile do
   # Returns the list of dependencies in the format:
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
-    [{:httpotion, "0.1.0", github: "myfreeweb/httpotion"},
-     {:jsonex,    "2.0",   github: "marcelog/jsonex", tag: 2.0},
+    [{:httpotion, "0.2.3", github: "myfreeweb/httpotion"},
+     {:jsonex,    "2.0.0",   github: "marcelog/jsonex"},
      {:ex_doc,             github: "elixir-lang/ex_doc"},
      ]
   end

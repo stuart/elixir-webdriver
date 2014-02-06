@@ -92,7 +92,7 @@ defmodule WebDriver.Firefox.Profile do
     source = Path.join __DIR__, 'webdriver.xpi'
     destination = Path.join [directory,"extensions","fxdriver@googlecode.com"]
     File.mkdir_p destination
-    { :ok, _ } = :zip.unzip binary_to_list(source), [{:cwd, binary_to_list(destination)}]
+    { :ok, _ } = :zip.unzip String.char_to_list!(source), [{:cwd, String.char_to_list!(destination)}]
   end
 
   def make_temp_directory do
