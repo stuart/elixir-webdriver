@@ -1,10 +1,10 @@
 # Web Driver for Elixir
 
-Current Version 0.1.0
+Current Version 0.2.0
 
 This is an implementation of the WebDriver protocol client.
 It currently supports PhantomJS for headless browser goodness or
-FireFox. 
+FireFox.
 
 This is a very new project and is not considered to be production
 ready as yet. Both Firefox and PhantomJS support is a bit patchy.
@@ -16,7 +16,7 @@ add this to mix.exs dep block:
 
 ```{:webdriver, github: "stuart/elixir-webdriver"} ```
 
-and make sure the application block of mix.exs includes: 
+and make sure the application block of mix.exs includes:
 ``` applications: [ :webdriver ] ```
 
 generate documentation with ```mix docs```.
@@ -27,7 +27,7 @@ PhantomJS and Firefox installed in the usual locations. It does use
 ## Usage
 
 When the application starts it will fire up a supervision tree for
-the browsers to be run under. 
+the browsers to be run under.
 
 You can start a browser instance with ```WebDriver.start_browser config```
 where ```config``` is a WebDriver.Config record.
@@ -36,7 +36,7 @@ Currently the config is very simple it just consists of two fields:
  * :browser - the type of browser to open, either :phantomjs or :firefox
  * :name - an atom to refer to the browser in later calls.
 
-You can then start up a session on the browser with 
+You can then start up a session on the browser with
 ```WebDriver.start_session browser_name, session_name```
 
 Once the session is started you can do commands on it, see the edoc documentation
@@ -71,8 +71,13 @@ An example session is shown here:
 
 You will need to have PhantomJS and/or FireFox installed for this to work.
 Currently I have only tested extensively on OSX, and Ubuntu Linux.
-It should work on most UNIX like platforms. There is some rudimentary 
+It should work on most UNIX like platforms. There is some rudimentary
 windows support code in here but I'm pretty sure that Firfox won't work.
+
+## Changelog
+
+* 2014-02-08 Update to version 0.2.0 Supports Elixir 0.12.3
+             Latest ibrowse, which fixes a phantomjs issue.
 
 
 
