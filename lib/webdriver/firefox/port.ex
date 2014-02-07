@@ -68,9 +68,9 @@ defmodule WebDriver.Firefox.Port do
   def wait_for_start state do
     receive do
       {_port, {:data, info}} ->
-      case list_to_binary(info) do
+      case String.to_char_list!(info) do
         <<"kill -9 ", pid::binary>> ->
-          { :ok, state.kill_command(binary_to_list("kill -9 #{pid}"))}
+          { :ok, state.kill_command(String.to_char_list!("kill -9 #{pid}"))}
         info ->
           :error_logger.info_msg "#{__MODULE__}: #{info}"
           { :ok, state }

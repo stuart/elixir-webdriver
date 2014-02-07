@@ -776,7 +776,7 @@ defmodule WebDriver.Protocol do
 ###########################################################################
 
   defp url_for root_url, path_elements do
-    path = Enum.join(path_elements, '/')
+    path = Enum.join(path_elements, "/")
     "#{root_url}/#{path}"
   end
 
