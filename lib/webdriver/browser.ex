@@ -21,7 +21,7 @@ defmodule WebDriver.Browser do
                           [{ :args, arguments(state) }, :exit_status]
 
         {:ok, state} = wait_for_start state
-          send self, { :start_session_supervisor, state.supervisor }
+        send self(), { :start_session_supervisor, state.supervisor }
         { :ok, state.port(port), :hibernate }
       end
 
