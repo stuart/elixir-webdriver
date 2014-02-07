@@ -28,7 +28,7 @@ defmodule WebDriver.Mixfile do
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
     [{:httpotion, "0.2.3", github: "myfreeweb/httpotion"},
-     {:jsonex,    "2.0.0",   github: "marcelog/jsonex"},
+     {:jsonex,    "2.0.0", github: "marcelog/jsonex"},
      {:ex_doc,             github: "elixir-lang/ex_doc"},
      ]
   end
