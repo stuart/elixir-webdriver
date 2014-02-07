@@ -313,7 +313,7 @@ defmodule WebDriverFirefoxSessionTest do
     {:ok, _} = Element.submit field
     assert "http://localhost:8888/page_3.html?some_text=TextVal" == Session.url :fftest
   end
-  
+
   # Firefox does not clear the element before sending keys. PhantomJS does.
   test "send keystrokes to the current element" do
     Session.url :fftest, "http://localhost:8888/page_2.html"

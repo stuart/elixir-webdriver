@@ -1,6 +1,6 @@
 defmodule WebDriver.Firefox.Profile do
 
-  @default_profile [ 
+  @default_profile [
     {"app.update.auto", false},
     {"app.update.enabled", false},
     {"browser.dom.window.dump.enabled", true},
@@ -92,7 +92,7 @@ defmodule WebDriver.Firefox.Profile do
     source = Path.join __DIR__, 'webdriver.xpi'
     destination = Path.join [directory,"extensions","fxdriver@googlecode.com"]
     File.mkdir_p destination
-    { :ok, _ } = :zip.unzip binary_to_list(source), [{:cwd, binary_to_list(destination)}]
+    { :ok, _ } = :zip.unzip String.to_char_list!(source), [{:cwd, String.to_char_list!(destination)}]
   end
 
   def make_temp_directory do

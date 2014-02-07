@@ -1,0 +1,11 @@
+{application,httpotion,
+             [{registered,[]},
+              {description,"httpotion"},
+              {applications,[ssl,ibrowse]},
+              {vsn,"0.2.3"},
+              {modules,['Elixir.HTTPotion','Elixir.HTTPotion.AsyncChunk',
+                        'Elixir.HTTPotion.AsyncEnd',
+                        'Elixir.HTTPotion.AsyncHeaders',
+                        'Elixir.HTTPotion.AsyncResponse',
+                        'Elixir.HTTPotion.Base','Elixir.HTTPotion.HTTPError',
+                        'Elixir.HTTPotion.Response']}]}.

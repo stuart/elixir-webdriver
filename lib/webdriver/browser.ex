@@ -7,7 +7,7 @@ defmodule WebDriver.Browser do
   defmacro __using__(_opts) do
     quote do
       def start_link config, sup do
-        { :ok, _pid } = :gen_server.start_link {:local, config.name}, __MODULE__, 
+        { :ok, _pid } = :gen_server.start_link {:local, config.name}, __MODULE__,
                                                 __MODULE__.State.new(supervisor: sup), [timeout: 30000]
       end
 
@@ -17,11 +17,11 @@ defmodule WebDriver.Browser do
         state = do_init state
 
         Process.flag :trap_exit, true
-        port = Port.open { :spawn_executable, program_name(state) }, 
+        port = Port.open { :spawn_executable, program_name(state) },
                           [{ :args, arguments(state) }, :exit_status]
-        
+
         {:ok, state} = wait_for_start state
-        self <- { :start_session_supervisor, state.supervisor }
+          send self, { :start_session_supervisor, state.supervisor }
         { :ok, state.port(port), :hibernate }
       end
 
@@ -29,7 +29,7 @@ defmodule WebDriver.Browser do
         {:ok, pid} = :supervisor.start_child state.session_supervisor, [session_name]
         {:reply, {:ok, pid}, state}
       end
-      
+
       def handle_cast(:stop, state) do
         {:stop, :normal, state}
       end
@@ -40,16 +40,16 @@ defmodule WebDriver.Browser do
         {:ok, pid} = :supervisor.start_child sup, spec
         {:noreply, state.session_supervisor(pid)}
       end
-      
+
       def handle_info {:EXIT, _port, reason}, state do
         { :stop, { :browser_terminated, reason }, state }
       end
 
       def handle_info({_port, {:data, info}}, state) do
         case :application.get_env(:debug_browser) do
-          {:ok, true} -> 
+          {:ok, true} ->
              :error_logger.info_msg "#{__MODULE__}: #{info}"
-          _ -> 
+          _ ->
         end
         { :noreply, state }
       end

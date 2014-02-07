@@ -170,11 +170,11 @@ defmodule WebDriverSessionTest do
 
   test "set and retreive cookie" do
     Session.url :test, "http://localhost:8888/index.html"
-    check :set_cookie, ["name", "value", "/", "localhost"]
+    check :set_cookie, ["cookie", "value", "/", ".localhost"]
 
     [ cookie ] = Session.cookies :test
     assert cookie.domain == ".localhost"
-    assert cookie.name == "name"
+    assert cookie.name == "cookie"
     assert cookie.value == "value"
     assert cookie.path == "/"
     Session.delete_cookies :test

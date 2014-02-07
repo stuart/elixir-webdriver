@@ -27,8 +27,8 @@ defmodule WebDriver.Firefox.Port do
         :osx ->     :os.find_executable('firefox-bin') or @osx_path
         # Windows is not actually supported yet, the startup shim wont work.
         :windows -> :os.find_executable('firefox') or @win_path
-        :unix ->    :os.find_executable('firefox3') or 
-                    :os.find_executable('firefox2') or 
+        :unix ->    :os.find_executable('firefox3') or
+                    :os.find_executable('firefox2') or
                     :os.find_executable('firefox')
      end ]
   end
@@ -68,14 +68,14 @@ defmodule WebDriver.Firefox.Port do
   def wait_for_start state do
     receive do
       {_port, {:data, info}} ->
-      case list_to_binary(info) do
+      case String.from_char_list!(info) do
         <<"kill -9 ", pid::binary>> ->
-          { :ok, state.kill_command(binary_to_list("kill -9 #{pid}"))}
+          { :ok, state.kill_command(String.to_char_list!("kill -9 #{pid}"))}
         info ->
           :error_logger.info_msg "#{__MODULE__}: #{info}"
           { :ok, state }
       end
-    after @start_wait_timeout ->        
+    after @start_wait_timeout ->
         :error_logger.error_msg "FireFox has not started.\n\
             Check that you can start it with: #{arguments(state)}"
         { :error, state }

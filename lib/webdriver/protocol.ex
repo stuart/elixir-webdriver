@@ -23,7 +23,7 @@ defmodule WebDriver.Protocol do
 
     The value varies according to the call made.
 
-    The Response record defined here also appends the request details to 
+    The Response record defined here also appends the request details to
     that response.
   """
   defrecord Response, session_id: :null, status: 0, value: :null, request: :null
@@ -776,7 +776,7 @@ defmodule WebDriver.Protocol do
 ###########################################################################
 
   defp url_for root_url, path_elements do
-    path = Enum.join(path_elements, '/')
+    path = Enum.join(path_elements, "/")
     "#{root_url}/#{path}"
   end
 
@@ -827,14 +827,14 @@ defmodule WebDriver.Protocol do
   defp send_request root_url, request do
     send_request root_url, request, 0
   end
-  
+
   defp send_request root_url, _request, 5 do
     raise "We seem to have lost the connection to the browser at #{root_url}"
   end
 
   # Send the request to the underlying HTTP protocol.
   defp send_request root_url, request, attempts do
-    try do 
+    try do
       case request.method do
         :GET ->
           HTTPotion.get(request.url, request.headers)
@@ -843,8 +843,8 @@ defmodule WebDriver.Protocol do
         :DELETE ->
           HTTPotion.delete(request.url, request.headers)
       end |> handle_response(root_url) |> add_request(request)
-    rescue 
-      [HTTPotion.HTTPError, :econnrefused] -> 
+    rescue
+      [HTTPotion.HTTPError, :econnrefused] ->
         # Try again a bit later cause Firefox is a sluggard.
         :timer.sleep(:random.uniform(1000) + 200)
         send_request root_url, request, (attempts + 1)
