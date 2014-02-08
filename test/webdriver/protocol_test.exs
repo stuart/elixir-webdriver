@@ -10,7 +10,6 @@ defmodule WebDriverProtocolTest do
   @session_id ":session_id"
 
   test "status" do
-    path = "/status"
     test_get &Protocol.status/1, "/status"
   end
 

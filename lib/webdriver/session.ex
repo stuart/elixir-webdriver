@@ -1,10 +1,6 @@
 defmodule WebDriver.Session do
   use GenServer.Behaviour
 
-  alias WebDriver.Config
-  alias WebDriver.Response
-  alias WebDriver.Protocol
-  alias WebDriver.Element
   alias WebDriver.Cookie
 
   defrecord State,  name: nil,
@@ -326,7 +322,7 @@ defmodule WebDriver.Session do
   end
 
   def set_cookie name, Cookie[name: cookie_name, value: value, path: path, domain: domain, expiry: expiry] do
-    set_cookie name, cookie_name, value, path, domain
+    set_cookie name, cookie_name, value, path, domain, expiry
   end
 
   def set_cookie name, cookie_name, value, path, domain, expiry // in_one_hour do

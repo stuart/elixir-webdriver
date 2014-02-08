@@ -5,7 +5,7 @@ defmodule WebDriverFirefoxSessionTest do
 
   alias WebDriver.Session
   alias WebDriver.Element
-  alias WebDriver.Mouse
+  # alias WebDriver.Mouse
 
 # Testing Callbacks
   setup_all do
@@ -420,7 +420,7 @@ defmodule WebDriverFirefoxSessionTest do
     assert {:stale_element_reference, _ } = Element.size element
   end
 
-  # MOUSE EVENTS ARE BROKEN IN FIREFOX.
+  # FIXME: MOUSE EVENTS ARE BROKEN IN FIREFOX.
   # test "moving mouse to an element" do
   #   Session.url :fftest, "http://localhost:8888/page_1.html"
   #   element = Session.element :fftest, :id, "1234"
