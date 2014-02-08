@@ -3,4 +3,8 @@ notifications:
   email: false
 otp_release:
   - R16B01
+before_install:
+   - git clone https://github.com/elixir-lang/elixir
+   - make -C elixir
+before_script: "export PATH=`pwd`/elixir/bin:$PATH"
 script: "MIX_ENV=test mix do deps.get, deps.compile, test"
