@@ -47,7 +47,7 @@ defmodule WebDriver.Session do
       desired_capabilities: Capability
   """
   def start_session name, desired_capabilities // [] do
-    :gen_server.call name, { :start_session, 
+    :gen_server.call name, { :start_session,
                              [desiredCapabilities: desired_capabilities] }
   end
 
@@ -112,7 +112,7 @@ defmodule WebDriver.Session do
 
   @doc """
     Get the handle of the current window. A window handle is an opaque reference
-    used for various window related functions.    
+    used for various window related functions.
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window_handle
 
     Returns: window_handle :: String
@@ -165,7 +165,7 @@ defmodule WebDriver.Session do
   end
 
   @doc """
-    Navigate forward in the browser history. 
+    Navigate forward in the browser history.
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/forward
   """
   def forward name do
@@ -193,7 +193,7 @@ defmodule WebDriver.Session do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute
 
     Example:
-     
+
     ```
       iex> WebDriver.Session.execute :test, "return 2+2;"
       4
@@ -202,7 +202,7 @@ defmodule WebDriver.Session do
     ```
 
     Parameters: [script :: String, args :: List]
-    Returns: The Javascript return value, which may be a number, 
+    Returns: The Javascript return value, which may be a number,
              string, list or object (tuple).
   """
   def execute name, script, args // [] do
@@ -214,7 +214,7 @@ defmodule WebDriver.Session do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute_async
 
     Parameters: [script :: String, args :: List]
-    Returns: The Javascript return value, which may be a number, 
+    Returns: The Javascript return value, which may be a number,
              string, list or object (tuple).
   """
   def execute_async name, script, args // [] do
@@ -265,7 +265,7 @@ defmodule WebDriver.Session do
     Maximise the specified window. Use "current" or simply do not specify a handle to
     maximise the current window.
 
-    NOTE: Firefox seems to have bug here where even passing "current" throws an error. 
+    NOTE: Firefox seems to have bug here where even passing "current" throws an error.
   """
   def maximize_window name, window_handle // "current" do
     cmd name, {:maximize_window, [window_handle]}
@@ -289,9 +289,9 @@ defmodule WebDriver.Session do
   @doc """
     Set the window size.
 
-    NOTE: Firefox can only do manipulation on the currently focussed window. 
+    NOTE: Firefox can only do manipulation on the currently focussed window.
     You MUST pass the window_handle parameter as "current" for Firefox or you
-    will get an error response. 
+    will get an error response.
 
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window/:windowHandle/size
 
@@ -306,7 +306,7 @@ defmodule WebDriver.Session do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/cookie
   """
   def cookies name do
-    Enum.map get_value(name, :cookies), 
+    Enum.map get_value(name, :cookies),
      fn(cookie) -> WebDriver.Cookie.from_response(cookie) end
   end
 
@@ -389,7 +389,7 @@ defmodule WebDriver.Session do
     Retreive an element from the page using the specified search strategy.
     Returns the first element found that fits the search criteria.
 
-    The return value is an element reference that can be used by functions in 
+    The return value is an element reference that can be used by functions in
     the WebDriver.Element module for further queries.
 
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element
@@ -402,9 +402,9 @@ defmodule WebDriver.Session do
     * :id - Find an element with the given id attribute.
     * :name - Find an element with the given name attribute.
     * :link - Find an link element containing the given text.
-    * :partial_link - Find a link element containing a superset of the given text. 
+    * :partial_link - Find a link element containing a superset of the given text.
     * :tag - Find a HTML tag of the given type.
-    * :xpath - Use [XPath](http://www.w3.org/TR/xpath/) to search for an element. 
+    * :xpath - Use [XPath](http://www.w3.org/TR/xpath/) to search for an element.
 
 
     Parameters [using :: atom, value :: String]
@@ -413,9 +413,9 @@ defmodule WebDriver.Session do
 
     ## Examples
 
-      iex(12)> WebDriver.Session.element :test, :css, "img.logo"    
+      iex(12)> WebDriver.Session.element :test, :css, "img.logo"
       WebDriver.Element.Reference[id: ":wdc:1373691496542", session: :test]
-      iex(13)> WebDriver.Session.element :test, :id, "branding" 
+      iex(13)> WebDriver.Session.element :test, :id, "branding"
       WebDriver.Element.Reference[id: ":wdc:1373691496543", session: :test]
 
   """
@@ -428,14 +428,14 @@ defmodule WebDriver.Session do
     Retreive an element from the page starting from the specified
     element using the specified search strategy.
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/element
-    
+
     See element/3 for details on search strategies.
 
     Parameters: [using :: atom, value :: String, start_element :: WebDriver.Element.Reference]
 
   """
   def element name, using, value, start_element do
-    get_value(name, {:element, start_element.id, 
+    get_value(name, {:element, start_element.id,
                     [ using: Keyword.get(@selectors,using), value: value ]})
     |> element_value(name)
   end
@@ -450,12 +450,12 @@ defmodule WebDriver.Session do
   @doc """
     Retreive all elements from the page using the specified search strategy.
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element
-  
+
     See element/3 for details on the parameters used.
     Returns a list of Element.Reference records.
   """
   def elements name, using, value do
-    get_value(name, {:elements, 
+    get_value(name, {:elements,
                      [ using: Keyword.get(@selectors,using), value: value ]})
     |> elements_value name
   end
@@ -469,7 +469,7 @@ defmodule WebDriver.Session do
     Returns a list of Element.Reference records.
   """
   def elements name, using, value, start_element do
-    get_value(name, {:elements, start_element.id, 
+    get_value(name, {:elements, start_element.id,
                      [ using: Keyword.get(@selectors,using), value: value ]})
       0
     |> elements_value name
@@ -487,7 +487,7 @@ defmodule WebDriver.Session do
   #   get_value(name, {:element_by_id, element}) |> element_value name
   # end
 
-  @doc """ 
+  @doc """
     Send a list of keystrokes to the currently active element.
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/keys
 
@@ -510,7 +510,7 @@ defmodule WebDriver.Session do
     Set the current browser screen orientation
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/orientation
 
-    Parameters: [screen_orientation :: atom] 
+    Parameters: [screen_orientation :: atom]
     Screen orientaton can be either :portrait or :landscape.
   """
   def orientation name, screen_orientation do
@@ -527,9 +527,9 @@ defmodule WebDriver.Session do
 ###############################################################
 
   def init state do
-    {:ok, response} = WebDriver.Protocol.start_session state.root_url, 
+    {:ok, response} = WebDriver.Protocol.start_session state.root_url,
                [desiredCapabilities: state.desiredCapabilities]
-     state = response.value 
+     state = response.value
              |> WebDriver.Capabilities.from_response
              |> state.negotiatedCapabilities
     {:ok, state.session_id(response.session_id) }
@@ -546,7 +546,7 @@ defmodule WebDriver.Session do
 
   # Calls when no session is running.
   def handle_call({function, params}, _sender, state = State[session_id: :null]) do
-    response = :erlang.apply(WebDriver.Protocol, function, 
+    response = :erlang.apply(WebDriver.Protocol, function,
                                   [state.root_url, params])
     {:reply, response, state}
   end
@@ -558,19 +558,19 @@ defmodule WebDriver.Session do
 
   # Calls when there is a session.
   def handle_call({function, arg1, params}, _sender, state) do
-    response = :erlang.apply(WebDriver.Protocol, function, 
+    response = :erlang.apply(WebDriver.Protocol, function,
                              [state.root_url, state.session_id, arg1, params])
     {:reply, response, state}
   end
 
   def handle_call({function, params}, _sender, state) do
-    response = :erlang.apply(WebDriver.Protocol, function, 
+    response = :erlang.apply(WebDriver.Protocol, function,
                              [state.root_url, state.session_id, params])
     {:reply, response, state}
   end
 
   def handle_call(function, _sender, state) do
-    response = :erlang.apply(WebDriver.Protocol, function, 
+    response = :erlang.apply(WebDriver.Protocol, function,
                              [state.root_url, state.session_id])
     {:reply, response, state}
   end

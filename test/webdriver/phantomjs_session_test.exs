@@ -5,7 +5,7 @@ defmodule WebDriverSessionTest do
 
   alias WebDriver.Session
   alias WebDriver.Element
-
+  alias WebDriver.Mouse
 
 # Testing Callbacks
 
@@ -433,6 +433,32 @@ defmodule WebDriverSessionTest do
     Session.url :test, "http://localhost:8888/page_1.html"
     element = Element.Reference[id: ":wdc:12345678899", session: :test]
     assert {:stale_element_reference, _ } = Element.size element
+  end
+
+  test "moving mouse to an element" do
+    Session.url :test, "http://localhost:8888/page_1.html"
+    element = Element.Reference[id: ":wdc:12345678899", session: :test]
+    assert {:ok, _resp} = Mouse.move_to element
+  end
+
+  test "click mouse in a session" do
+    assert {:ok, resp} = Mouse.click :test, :middle
+    assert resp.status == 0
+  end
+
+  test "button_down" do
+    assert {:ok, resp} = Mouse.button_down :test, :right
+    assert resp.status == 0
+  end
+
+  test "button_up" do
+    assert {:ok, resp} = Mouse.button_up :test, :right
+    assert resp.status == 0
+  end
+
+  test "double click" do
+    assert {:ok, resp} = Mouse.double_click :test
+    assert resp.status == 0
   end
 ############################################################################
 
