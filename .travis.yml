@@ -1,0 +1,6 @@
+language: erlang
+  notifications:
+    email: false
+  otp_release:
+    - R16B01
+script: "MIX_ENV=test mix do deps.get, deps.compile, test"
