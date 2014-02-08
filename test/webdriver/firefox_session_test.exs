@@ -42,13 +42,13 @@ defmodule WebDriverFirefoxSessionTest do
     assert :ok = WebDriver.stop_session :test2
   end
 
-  # test "sessions lists the sessions on the Session" do
-  #   # GET Sessions does not work on firefox!
-  #   # response = Session.sessions(:fftest)
-  #   # Enum.each response, fn(session) ->
-  #   #   assert [{"id",_},{"capabilities",_}] = session
-  #   # end
-  # end
+  test "sessions lists the sessions on the Session" do
+    # GET Sessions does not work on firefox!
+    # response = Session.sessions(:fftest)
+    # Enum.each response, fn(session) ->
+    #   assert [{"id",_},{"capabilities",_}] = session
+    # end
+  end
 
   test "session returns the current session data" do
     { :ok, _ } = Session.start_session(:fftest)
@@ -141,28 +141,29 @@ defmodule WebDriverFirefoxSessionTest do
     assert {:no_such_window, _} = Session.window :fftest, "xyz"
   end
 
-  # JAVASCRIPT ERROR This test really buggers everything up
-  # test "close window" do
-  #   WebDriver.start_session :ftest_browser, :window_close
-  #   assert {:ok, _} = Session.close_window :window_close
-  #   WebDriver.stop_session :window_close
-  # end
+  test "close window" do
+    config = WebDriver.Config.new(browser: :firefox, name: :window_close_browser)
+    WebDriver.start_browser config
+    WebDriver.start_session :window_close_browser, :window_close
+    assert {:ok, _} = Session.close_window :window_close
+    WebDriver.stop_session :window_close
+    WebDriver.stop_browser :window_close_browser
+  end
 
-  # test "window size" do
-  #   size = Session.window_size :fftest
-  #   assert is_number(Keyword.get(size, :height))
-  #   assert is_number(Keyword.get(size, :width))
-  # end
+  test "window size" do
+    size = Session.window_size :fftest
+    assert is_number(Keyword.get(size, :height))
+    assert is_number(Keyword.get(size, :width))
+  end
 
   # Window operations only supported for currently focussed window
-  # test "set the window size" do
-  #   check :window_size, ["current", 240, 480]
-  # end
+  test "set the window size" do
+    check :window_size, ["current", 240, 480]
+  end
 
-  # test "maximize window" do
-  #   # FIXME: Does not work on Firefox.
-  #   check :maximize_window, ["current"]
-  # end
+  test "maximize window" do
+    check :maximize_window, ["current"]
+  end
 
   test "set cookie from a cookie record" do
     cookie = WebDriver.Cookie.new(name: "cookie", value: "value", path: "/", domain: "localhost")
@@ -422,8 +423,9 @@ defmodule WebDriverFirefoxSessionTest do
   # MOUSE EVENTS ARE BROKEN IN FIREFOX.
   # test "moving mouse to an element" do
   #   Session.url :fftest, "http://localhost:8888/page_1.html"
-  #   element = Session.element :fftest, :id, "fixed"
+  #   element = Session.element :fftest, :id, "1234"
   #   assert is_element? element
+  #   {:ok, _} = Element.click element
   #   assert {:ok, _resp} = Mouse.move_to element
   # end
 
@@ -450,7 +452,6 @@ defmodule WebDriverFirefoxSessionTest do
   #   assert {:ok, resp} = Mouse.double_click :fftest
   #   assert resp.status == 0
   # end
-
 
 ############################################################################
 

@@ -401,16 +401,12 @@ defmodule WebDriverSessionTest do
   end
 
   test "location" do
-    # Test fails due to bug in Python Selenium that PhantomJS uses.
-    # http://code.google.com/p/selenium/source/detail?r=bbcfab457b13
     Session.url :test, "http://localhost:8888/page_1.html"
     element = Session.element :test, :id, "fixed"
     assert [x: 100,y: 100] = Element.location element
   end
 
   test "location_in_view" do
-    # Test fails due to bug in Python Selenium that PhantomJS uses.
-    # http://code.google.com/p/selenium/source/detail?r=bbcfab457b13
     Session.url :test, "http://localhost:8888/page_1.html"
     element = Session.element :test, :id, "fixed"
     assert [x: 100,y: 100] = Element.location_in_view element
