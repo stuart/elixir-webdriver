@@ -1,6 +1,7 @@
 # Web Driver for Elixir
+[![Build Status](https://travis-ci.org/stuart/elixir-webdriver.png?branch=master)](https://travis-ci.org/stuart/elixir-webdriver)
 
-Current Version 0.2.0
+Current Version 0.2.2
 
 This is an implementation of the WebDriver protocol client.
 It currently supports PhantomJS for headless browser goodness or
