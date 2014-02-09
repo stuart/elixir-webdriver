@@ -6,5 +6,8 @@ otp_release:
 before_install:
    - git clone https://github.com/elixir-lang/elixir
    - make -C elixir
+   - "export DISPLAY=:99.0"
+   - "sh -e /etc/init.d/xvfb start"
+
 before_script: "export PATH=`pwd`/elixir/bin:$PATH"
 script: "MIX_ENV=test mix do deps.get, deps.compile, test"
