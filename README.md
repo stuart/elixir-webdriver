@@ -20,8 +20,8 @@ add this to mix.exs dep block:
 and make sure the application block of mix.exs includes:
 ``` applications: [ :webdriver ] ```
 
-generate documentation with ```mix docs```.
-run the tests with ```mix test```. The tests currently assume that you have
+Generate documentation with ```mix docs```.
+Run the tests with ```mix test```. The tests currently assume that you have
 PhantomJS and Firefox installed in the usual locations. It does use
 ```:os.find_executable``` to find the appropriate paths.
 
@@ -70,17 +70,22 @@ An example session is shown here:
 
 ## Requirements
 
-You will need to have PhantomJS and/or FireFox installed for this to work.
+You will need to have PhantomJS(1.9.7) and/or a recent version of FireFox installed for this to work.
+
 Currently I have only tested extensively on OSX, and Ubuntu Linux.
 It should work on most UNIX like platforms. There is some rudimentary
 windows support code in here but I'm pretty sure that Firfox won't work.
 
 ## Changelog
 
+* 2014-02-09 Update to version 0.2.2.
+             Fixes Firefox issues with window sizing.
+             Added mouse support for PhantomJS.
+
 * 2014-02-08 Update to version 0.2.0 Supports Elixir 0.12.3
              Latest ibrowse, which fixes a phantomjs issue.
 
 
-
+http://chromedriver.storage.googleapis.com/index.html
 
 

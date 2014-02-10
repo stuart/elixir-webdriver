@@ -2,6 +2,14 @@ defmodule WebDriver.Firefox.Port do
   use GenServer.Behaviour
   use WebDriver.Browser
 
+  @moduledoc """
+    This module is a server that controls the running of the Firefox browser.
+    It uses an Erlang port to communicate with the browser.
+
+    None of the functions here are user facing and are controlled by the
+    BrowserSup.
+  """
+
   @osx_path "/Applications/Firefox.app/Contents/MacOS/firefox-bin"
   @win_path "%PROGRAMFILES%\\Mozilla Firefox\\firefox.exe"
   @start_wait_timeout 5000

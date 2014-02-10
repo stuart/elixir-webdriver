@@ -4,5 +4,5 @@ defrecord WebDriver.Cookie, name: "", value: "", path: nil, domain: nil, secure:
   """
   def from_response cookie do
     new(Enum.reduce cookie, [], fn({k,v}, c) -> c ++ [{binary_to_atom(k), v}] end)
-  end 
+  end
 end
