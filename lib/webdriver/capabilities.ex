@@ -16,7 +16,7 @@ defrecord WebDriver.Capabilities,
           rotatable: false,
           acceptSslCerts: false,
           nativeEvents: false,
-          proxy: [] do 
+          proxy: [] do
 
   @moduledoc """
     The capabilities record is defined in the WebDriver specification.
@@ -24,12 +24,12 @@ defrecord WebDriver.Capabilities,
 
     The current version of this code does not actually use the capabilities object.
     Support for various capabilities will be forthcoming.
-    
+
     * `browserName` - The name of the browser being used.
     * `version` - The browser version or an empty string if unknown.
     * `driverName` - The name of the driver used
     * `driverVersion` - The driver version or an empty string if unknown.
-    * `platform` - A key specifying which platform (OS) the browser is running on. 
+    * `platform` - A key specifying which platform (OS) the browser is running on.
     * `javascriptEnabled` - specifies wether Javascript is enabled on the browser or not.
     * `takesScreenshot` - specifies wether the browser can take a screenshot or not.
     * `handlesAlerts` - wether the session can interact with popups or not.

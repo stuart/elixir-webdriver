@@ -6,7 +6,7 @@ defmodule WebDriver.Session do
   defrecord State,  name: nil,
                     root_url: "",
                     session_id: :null,
-                    desiredCapabilities: [],
+                    desiredCapabilities: [{}],
                     negotiatedCapabilities: [],
                     browser: nil
 
@@ -75,7 +75,7 @@ defmodule WebDriver.Session do
       name : The session server process to start the session on.
       desired_capabilities: Capability
   """
-  def start_session name, desired_capabilities // [] do
+  def start_session name, desired_capabilities // [{}] do
     :gen_server.call name, { :start_session,
                              [desiredCapabilities: desired_capabilities] }
   end

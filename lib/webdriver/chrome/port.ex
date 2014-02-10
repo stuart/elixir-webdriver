@@ -42,7 +42,6 @@ defmodule WebDriver.Chrome.Port do
   end
 
   def wait_for_start state do
-    IO.puts "#{program_name(state)} #{arguments(state)}"
     start_string = String.to_char_list("Starting ChromeDriver")
     receive do
       {_,{:data, [start_string | _]}} -> { :ok, state }

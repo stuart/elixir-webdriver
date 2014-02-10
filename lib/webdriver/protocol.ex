@@ -834,6 +834,11 @@ defmodule WebDriver.Protocol do
 
   # Send the request to the underlying HTTP protocol.
   defp send_request root_url, request, attempts do
+    IO.puts "SENDING REQUEST: #{request.method}"
+    IO.puts "URL: #{request.url}"
+    #IO.puts "HEADERS: #{request.headers}"
+    IO.puts "BODY: #{request.body}"
+
     try do
       case request.method do
         :GET ->
@@ -853,6 +858,7 @@ defmodule WebDriver.Protocol do
 
   defp handle_response(HTTPotion.Response[body: body, status_code: status, headers: _headers], _root_url)
       when status in 200..299 do
+        IO.puts "RESP: #{body}"
         {:ok, parse_response_body(body)}
   end
 
