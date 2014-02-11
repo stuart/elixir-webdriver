@@ -137,7 +137,6 @@ defmodule WebDriverChromeSessionTest do
     assert <<137,80,78,71,13,10,26,10,_ :: binary >> = :base64.decode(Session.screenshot :test)
   end
 
-  #FIXME
   test "no such frame error" do
     assert {:no_such_frame, _ } = Session.frame :test, 123
   end
@@ -147,12 +146,11 @@ defmodule WebDriverChromeSessionTest do
     check :window, [handle]
   end
 
-  #FIXME
-  # test "error when there is no such window" do
-  #   assert {:no_such_window, _} = Session.window :test, "xyz"
-  # end
+  test "error when there is no such window" do
+    assert {:no_such_window, _} = Session.window :test, "xyz"
+  end
 
-  #FIXME
+  # Close window destroys the session on chrome
   # test "close window" do
   #   WebDriver.start_session :test_browser, :window_close
   #   assert {:ok, _} = Session.close_window :window_close
@@ -173,39 +171,43 @@ defmodule WebDriverChromeSessionTest do
     check :maximize_window
   end
 
-  # FIXME
-  # test "set and retreive cookie" do
-  #   Session.url :test, "http://localhost:8888/index.html"
-  #   check :set_cookie, ["cookie", "value", "/", "localhost"]
+  # Chrome does not allow setting cookies with the domain localhost
+  # It also automatically sets a cookie for the domain. WTF?
+  test "set and retreive cookie" do
+    Session.url :test, "http://example.com/index.html"
+    check :set_cookie, ["cookie", "value", "/", "example.com"]
 
-  #   [ cookie ] = Session.cookies :test
-  #   assert cookie.domain == "localhost"
-  #   assert cookie.name == "cookie"
-  #   assert cookie.value == "value"
-  #   assert cookie.path == "/"
-  #   Session.delete_cookies :test
-  # end
+    [ _, cookie ] = Session.cookies :test
+    assert cookie.domain == ".example.com"
+    assert cookie.name == "cookie"
+    assert cookie.value == "value"
+    assert cookie.path == "/"
+    Session.delete_cookies :test
+  end
 
-  # test "set cookie from a cookie record" do
-  #   cookie = WebDriver.Cookie.new(name: "cookie", value: "value", path: "/", domain: "localhost")
-  #   Session.set_cookie :test, cookie
-  #   [ cookie ] = Session.cookies :test
-  #   assert cookie.domain == ".localhost"
-  #   assert cookie.name == "cookie"
-  #   assert cookie.value == "value"
-  #   assert cookie.path == "/"
-  # end
+  test "set cookie from a cookie record" do
+    Session.url :test, "http://example.com/index.html"
+    cookie = WebDriver.Cookie.new(name: "cookie", value: "value", path: "/", domain: "example.com")
+    Session.set_cookie :test, cookie
+    [ _, cookie ] = Session.cookies :test
+    assert cookie.domain == ".example.com"
+    assert cookie.name == "cookie"
+    assert cookie.value == "value"
+    assert cookie.path == "/"
+  end
 
   test "delete cookies" do
-    Session.set_cookie :test, "name", "value", "/", "localhost"
+    Session.url :test, "http://example.com/index.html"
+    Session.set_cookie :test, "name", "value", "/", "example.com"
     Session.delete_cookies :test
     assert [] == Session.cookies :test
   end
 
   test "delete cookie" do
-    Session.set_cookie :test, "name", "value", "/", "localhost"
+    Session.url :test, "http://example.com/index.html"
+    Session.set_cookie :test, "name", "value", "/", "example.com"
     Session.delete_cookie :test, "name"
-    assert [] == Session.cookies :test
+    assert [ _ ] = Session.cookies :test
   end
 
 
@@ -259,11 +261,10 @@ defmodule WebDriverChromeSessionTest do
     assert is_element? Session.element :test, :xpath, "//div/a[@class='link']"
   end
 
-  # FIXME
-  # test "a non existing element" do
-  #   Session.url :test, "http://localhost:8888/page_1.html"
-  #   assert nil = Session.element :test, :tag, "nothing"
-  # end
+  test "a non existing element" do
+    Session.url :test, "http://localhost:8888/page_1.html"
+    assert nil = Session.element :test, :tag, "nothing"
+  end
 
   test "find an element starting from a specified element" do
     Session.url :test, "http://localhost:8888/page_1.html"
@@ -338,14 +339,14 @@ defmodule WebDriverChromeSessionTest do
   end
 
   # FXIME: Does not clear the element (see FF)
-  # test "send keystrokes to the current element" do
-  #   Session.url :test, "http://localhost:8888/page_2.html"
-  #   field = Session.element :test, :id, "123"
-  #   Element.click field
-  #   Session.keys :test, "New Text"
-  #   Element.submit field
-  #   assert "http://localhost:8888/page_3.html?some_text=New+Text" == Session.url :test
-  # end
+  test "send keystrokes to the current element" do
+    Session.url :test, "http://localhost:8888/page_2.html"
+    field = Session.element :test, :id, "123"
+    Element.click field
+    Session.keys :test, "New Text"
+    Element.submit field
+    assert "http://localhost:8888/page_3.html?some_text=TextNew+Text" == Session.url :test
+  end
 
   test "name" do
     Session.url :test, "http://localhost:8888/page_1.html"
@@ -423,17 +424,11 @@ defmodule WebDriverChromeSessionTest do
     assert [x: 100,y: 100] = Element.location_in_view element
   end
 
-  # FIXME
-  # test size (WebDriverChromeSessionTest)
-  #      ** (ExUnit.ExpectationError)
-  #                    expected: [{"height", 50}, {"toString", [{}]}, {"width", 100}]
-  #        to match pattern (=): [width: 100, height: 50]
-  #      at test/webdriver/chrome_session_test.exs:423
-  # test "size" do
-  #   Session.url :test, "http://localhost:8888/page_1.html"
-  #   element = Session.element :test, :id, "fixed"
-  #   assert [width: 100,height: 50] = Element.size element
-  # end
+  test "size" do
+    Session.url :test, "http://localhost:8888/page_1.html"
+    element = Session.element :test, :id, "fixed"
+    assert [width: 100,height: 50] = Element.size element
+  end
 
   test "css gives the value of an elements css" do
     Session.url :test, "http://localhost:8888/page_1.html"
@@ -443,11 +438,6 @@ defmodule WebDriverChromeSessionTest do
   end
 
   # FIXME
-  # 1) test accessing a non existing element (WebDriverChromeSessionTest)
-  #     ** (ExUnit.ExpectationError)
-  #                   expected: [{"message", "stale element reference: element is not attached to the page document\n  (Session info: chrome=32.0.1700.107)\n  (Driver info: chromedriver=2.9.248307,platform=Mac OS X 10.9.1 x86_64)"}]
-  #       to match pattern (=): {:stale_element_reference, _}
-  #     at test/webdriver/chrome_session_test.exs:436
   # test "accessing a non existing element" do
   #   Session.url :test, "http://localhost:8888/page_1.html"
   #   element = Element.Reference[id: ":wdc:12345678899", session: :test]
@@ -456,7 +446,7 @@ defmodule WebDriverChromeSessionTest do
 
   test "moving mouse to an element" do
     Session.url :test, "http://localhost:8888/page_1.html"
-    element = Element.Reference[id: ":wdc:12345678899", session: :test]
+    element = Session.element :test, :id, "fixed"
     assert {:ok, _resp} = Mouse.move_to element
   end
 
@@ -479,9 +469,6 @@ defmodule WebDriverChromeSessionTest do
     assert {:ok, resp} = Mouse.double_click :test
     assert resp.status == 0
   end
-
-
-
 
 
 

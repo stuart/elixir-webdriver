@@ -3,17 +3,17 @@ defmodule WebDriver.Element do
     This module handles WebDriver calls directed at specific DOM elements.
 
     They all take an WebDriver.Element.Reference record as the first argument.
-    The WebDriver.Element.Reference is supposed to be an opaque data type and 
+    The WebDriver.Element.Reference is supposed to be an opaque data type and
     is not meant to be manipulated.
 
-    Elements are associated with a particular session and have no meaning 
+    Elements are associated with a particular session and have no meaning
     outside that WedDriver session.
 
     Accessing an element that does not exist on the page will return a response
     of ```{ :stale_element_reference, response }```
 
-    All the command functions will return ```{:ok, response}``` or 
-    ```{error, response}``` where ```error``` is one of those listed in 
+    All the command functions will return ```{:ok, response}``` or
+    ```{error, response}``` where ```error``` is one of those listed in
     WebDriver.Error.
   """
 
@@ -154,16 +154,12 @@ defmodule WebDriver.Element do
     Returns [x: x, y: y]
   """
   def location_in_view element do
-    case get_value element, :location do
     # Bugfix
     # http://code.google.com/p/selenium/source/detail?r=bbcfab457b13
-    [{"toString",_},{"x",x},{"y",y}] ->
-        [x: x, y: y]
-    [{"x",x},{"y",y}] ->
-        [x: x, y: y]
-    response ->
-        response
-    end
+    resp = HashDict.new(get_value element, :location)
+    {:ok, x} = HashDict.fetch(resp,"x")
+    {:ok, y} = HashDict.fetch(resp,"y")
+    [x: x, y: y]
   end
 
   @doc """
@@ -174,14 +170,10 @@ defmodule WebDriver.Element do
     Returns [width: w, height: h]
   """
   def size element do
-    case get_value element, :size do
-      # Bugfix
-      # http://code.google.com/p/selenium/source/detail?r=bbcfab457b13
-      [{"width",w},{"height",h} | _] ->
-        [width: w, height: h]
-      response ->
-        response
-    end
+    resp = HashDict.new(get_value element, :size)
+    {:ok, h} = HashDict.fetch(resp,"height")
+    {:ok, w} = HashDict.fetch(resp,"width")
+    [width: w, height: h]
   end
 
   @doc """
@@ -194,7 +186,7 @@ defmodule WebDriver.Element do
     get_value element, :css, property_name
   end
 
-# Private Functions 
+# Private Functions
   # Get a value from the server
   defp get_value element, command do
     case :gen_server.call element.session, {command, element.id} do

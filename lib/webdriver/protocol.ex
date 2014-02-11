@@ -860,8 +860,14 @@ defmodule WebDriver.Protocol do
 
   defp handle_response(HTTPotion.Response[body: body, status_code: status, headers: _headers], _root_url)
       when status in 200..299 do
-        # IO.puts "RESP: #{body}"
-        {:ok, parse_response_body(body)}
+        if :application.get_env(:debug_browser) do
+          IO.puts "RESP: #{body}"
+        end
+        response = parse_response_body(body)
+        case response.status do
+          0 -> {:ok, response}
+          _ -> {:failed_command, response.status, response}
+        end
   end
 
   defp handle_response(HTTPotion.Response[body: _body, status_code: status, headers: headers], root_url)
@@ -879,7 +885,7 @@ defmodule WebDriver.Protocol do
   end
 
   defp handle_response(HTTPotion.Response[body: body, status_code: status, headers: _headers], _root_url)
-    when status == 500 do
+    when status in 500..599 do
      response = parse_response_body(body)
      {:failed_command, status, response}
   end
@@ -888,12 +894,7 @@ defmodule WebDriver.Protocol do
     build_response Jsonex.decode(body)
   end
 
-  defp build_response([{"sessionId", session_id}, {"status", 0}, {"value", value }])do
-    Response[ session_id: session_id, status: 0, value: value ]
-  end
-
   defp build_response([{"sessionId", session_id}, {"status", status}, {"value", value }])do
-    IO.puts "ERROR: #{status}"
     Response[ session_id: session_id, status: status, value: value ]
   end
 
