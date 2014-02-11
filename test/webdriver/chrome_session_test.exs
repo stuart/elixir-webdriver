@@ -7,6 +7,7 @@ defmodule WebDriverChromeSessionTest do
   alias WebDriver.Element
   alias WebDriver.Mouse
 
+  @moduletag :chrome
 # Testing Callbacks
 
   setup_all do
@@ -137,9 +138,9 @@ defmodule WebDriverChromeSessionTest do
   end
 
   #FIXME
-  # test "no such frame error" do
-  #   assert {:no_such_frame, _ } = Session.frame :test, 123
-  # end
+  test "no such frame error" do
+    assert {:no_such_frame, _ } = Session.frame :test, 123
+  end
 
   test "window" do
     handle = Session.window_handle :test

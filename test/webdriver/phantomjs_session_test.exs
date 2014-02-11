@@ -7,6 +7,7 @@ defmodule WebDriverSessionTest do
   alias WebDriver.Element
   alias WebDriver.Mouse
 
+  @moduletag :phantomjs
 # Testing Callbacks
 
   setup_all do
