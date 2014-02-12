@@ -27,10 +27,11 @@ div.docstring, p.docstring { margin-right: 6em; }
 .docstring h1 { font-size: 1.2em; }
 .docstring h2 { font-size: 1.1em; }
 .docstring h3, .docstring h4 { font-size: 1em; padding-top: 10px; }
-.docstring pre {
+.docstring pre, .codeblock, .elixir {
   padding: 0.5em;
   border: #ffe0bb dotted 1px;
   background: #fffde8;
+  display: block;
 }
 
 p.signature {
@@ -39,11 +40,44 @@ p.signature {
   background: #e5e8ff; border: 1px solid #d8d8e5; -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
 
+ul.spec {
+  font-size: 1.0em; font-weight: bold; font-family: Courier, monospace;
+  padding: 6px 10px; padding-left: 25px; list-style-type: none;
+}
+
 a:link, a:visited { text-decoration: none; color: #05a; }
 a:hover { color: #27c; }
 
 .detail { border-top: 1px dotted #aaa; margin-top: 15px; padding-top: 0; }
 .detail:nth-child(2) { border: 0; }
+
+.type_detail {
+  margin-top: 15px; padding-top: 0;
+}
+.type_detail > p.typespec {
+  font-size: 1.0em; font-weight: bold; font-family: Courier, monospace;
+}
+.type_detail > div.typespec_doc {
+  margin-left: 3em;
+}
+
+table {
+  border: 1px solid #aaaaaa;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+
+table tr:nth-child(odd) { background: #f0f0f0; }
+table tr:nth-child(even) { background: #fafafa; }
+
+table th {
+  background: #fafafa;
+}
+
+table th, table td {
+  border: 1px solid #dddddd;
+  padding: 0.4em 1em 0.4em 0.4em;
+}
 
 /* Summary */
 ul.summary {
@@ -64,6 +98,15 @@ ul.summary .summary_signature {
   -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
 ul.summary .summary_signature:hover { background: #eeeeff; cursor: pointer; }
+
+table.summary { border: 0; border-collapse: separate; }
+table.summary tr:nth-child(odd) { background: #f0f0f0; }
+table.summary tr:nth-child(even) { background: #fafafa; }
+table.summary tr td { border: 0; padding-top: 0.5em; padding-bottom: 0.5em; }
+
+td.summary_signature { padding-right: 0.5em; }
+td.summary_synopsis { padding-left: 0.5em; }
+td.summary_synopsis p { margin: 0em 0em; }
 
 /* File contents */
 #filecontents li > p, .docstring li > p { margin: 0px; }

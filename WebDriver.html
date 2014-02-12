@@ -35,47 +35,70 @@
         </div>
       
 
-      <a href="" target="_blank" class="view_source">Source</a>
-
+      
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L1" target="_blank" class="view_source">Source</a>
       
 
       
 
       
         <h2 id="functions_summary">Functions summary</h2>
-        <ul class="summary">
-          <li>
-  <span class="summary_signature">
-    <a href="#start/2">start/2</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#start_browser/1">start_browser/1</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#start_session/2">start_session/2</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#stop/1">stop/1</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#stop_browser/1">stop_browser/1</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#stop_session/1">stop_session/1</a>
-  </span>
-</li>
+        <table class="summary">
+          <tr>
+  <td class="summary_signature"><a href="#start/2">start(atom1, config)</a></td>
+  
+    <td class="summary_synopsis"><p>Start the application. This is a callback called by
+  :application.start :webdriver
+  and should probably not be called directly.</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#start_browser/1">start_browser(config)</a></td>
+  
+    <td class="summary_synopsis"><p>Start a browser with the given configuration. 
+  The <em>config</em> parameter is a WebDriver.Config record defined as</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#start_session/2">start_session(browser, session_name)</a></td>
+  
+    <td class="summary_synopsis"><p>Start a session on the specified browser.
+  You must specify a name for the session in order to refer to it
+  for further calls to the Session module.</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#stop/1">stop(arg1)</a></td>
+  
+    <td class="summary_synopsis"><p>Callback to clean up on exit. Currently does nothing much.</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#stop_browser/1">stop_browser(name)</a></td>
+  
+    <td class="summary_synopsis"><p>Stop the web browser referred to by name. You can also use the pid of the 
+  process if you wish. 
+  This causes the browser and all associated sessions to be terminated.</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#stop_session/1">stop_session(session_name)</a></td>
+  
+    <td class="summary_synopsis"><p>Stop session. Kill a session on the current browser.
+  This will attempt to terminate the session in the browser then it will 
+  stop the process running the session in the VM.</p>
+</td>
+  
+</tr>
 
-        </ul>
+        </table>
+      
+
       
 
       
@@ -89,15 +112,20 @@
   <p class="signature" id="start/2">
     <strong>start(atom1, config)</strong>
   </p>
+  
   <div class="docstring"><p>Start the application. This is a callback called by
   :application.start :webdriver
   and should probably not be called directly.</p>
 </div>
   
-</div><div class="detail">
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L28" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="start_browser/1">
     <strong>start_browser(config)</strong>
   </p>
+  
   <div class="docstring"><p>Start a browser with the given configuration. 
   The <em>config</em> parameter is a WebDriver.Config record defined as</p>
 
@@ -123,10 +151,14 @@ Phantom js started
 </code></pre>
 </div>
   
-</div><div class="detail">
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L64" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="start_session/2">
     <strong>start_session(browser, session_name)</strong>
   </p>
+  
   <div class="docstring"><p>Start a session on the specified browser.
   You must specify a name for the session in order to refer to it
   for further calls to the Session module.</p>
@@ -134,32 +166,47 @@ Phantom js started
 <p>Returns <code>{:ok, pid}</code> or <code>{:error, reason}</code></p>
 </div>
   
-</div><div class="detail">
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L84" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="stop/1">
     <strong>stop(arg1)</strong>
   </p>
+  
   <div class="docstring"><p>Callback to clean up on exit. Currently does nothing much.</p>
 </div>
   
-</div><div class="detail">
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L2" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="stop_browser/1">
     <strong>stop_browser(name)</strong>
   </p>
+  
   <div class="docstring"><p>Stop the web browser referred to by name. You can also use the pid of the 
   process if you wish. 
   This causes the browser and all associated sessions to be terminated.</p>
 </div>
   
-</div><div class="detail">
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L73" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="stop_session/1">
     <strong>stop_session(session_name)</strong>
   </p>
+  
   <div class="docstring"><p>Stop session. Kill a session on the current browser.
   This will attempt to terminate the session in the browser then it will 
   stop the process running the session in the VM.</p>
 </div>
   
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L93" target="_blank" class="view_source">Source</a>
+  
 </div>
+
         </div>
       
 

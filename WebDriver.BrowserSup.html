@@ -30,30 +30,41 @@
           <p>The WebDriver.BrowserSup is a supervisor responsible for overseeing
   the running of browser instances and their associated session supervisors.</p>
 
+<p>If a browser crashes for any reason this will restart the browser and the
+  sessions that connect to it.</p>
+
         </div>
       
 
-      <a href="" target="_blank" class="view_source">Source</a>
-
+      
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/browser_sup.ex#L1" target="_blank" class="view_source">Source</a>
       
 
       
 
       
         <h2 id="functions_summary">Functions summary</h2>
-        <ul class="summary">
-          <li>
-  <span class="summary_signature">
-    <a href="#init/1">init/1</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#start_link/1">start_link/1</a>
-  </span>
-</li>
+        <table class="summary">
+          <tr>
+  <td class="summary_signature"><a href="#init/1">init(config)</a></td>
+  
+    <td class="summary_synopsis"><p>Callback implementation of <a href="http://www.erlang.org/doc/man/supervisor.html#init-1"><code>:supervisor.init/1</code></a>.</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#start_link/1">start_link(config)</a></td>
+  
+    <td class="summary_synopsis"><p>Starts up a browser. The browser is then
+  responsible for starting a session supervisor attached to this
+  supervisor.</p>
+</td>
+  
+</tr>
 
-        </ul>
+        </table>
+      
+
       
 
       
@@ -67,18 +78,27 @@
   <p class="signature" id="init/1">
     <strong>init(config)</strong>
   </p>
-  <div class="docstring"></div>
   
-</div><div class="detail">
+  <div class="docstring"><p>Callback implementation of <a href="http://www.erlang.org/doc/man/supervisor.html#init-1"><code>:supervisor.init/1</code></a>.</p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/browser_sup.ex#L24" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="start_link/1">
     <strong>start_link(config)</strong>
   </p>
+  
   <div class="docstring"><p>Starts up a browser. The browser is then
   responsible for starting a session supervisor attached to this
   supervisor.</p>
 </div>
   
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/browser_sup.ex#L20" target="_blank" class="view_source">Source</a>
+  
 </div>
+
         </div>
       
 

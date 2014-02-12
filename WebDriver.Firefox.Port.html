@@ -26,58 +26,61 @@
       </h1>
 
       
+        <div id="moduledoc" class="docstring">
+          <p>This module is a server that controls the running of the Firefox browser.
+  It uses an Erlang port to communicate with the browser.</p>
 
-      <a href="" target="_blank" class="view_source">Source</a>
+<p>None of the functions here are user facing and are controlled by the
+  BrowserSup.</p>
 
+        </div>
+      
+
+      
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L1" target="_blank" class="view_source">Source</a>
       
 
       
 
       
         <h2 id="functions_summary">Functions summary</h2>
-        <ul class="summary">
-          <li>
-  <span class="summary_signature">
-    <a href="#arguments/1">arguments/1</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#browser_terminated/1">browser_terminated/1</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#do_init/1">do_init/1</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#normal_termination/1">normal_termination/1</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#program_name/1">program_name/1</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#set_root_url/1">set_root_url/1</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#start_link/2">start_link/2</a>
-  </span>
-</li>
-<li>
-  <span class="summary_signature">
-    <a href="#wait_for_start/1">wait_for_start/1</a>
-  </span>
-</li>
+        <table class="summary">
+          <tr>
+  <td class="summary_signature"><a href="#arguments/1">arguments(_state)</a></td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#browser_terminated/1">browser_terminated(state)</a></td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#do_init/1">do_init(state)</a></td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#normal_termination/1">normal_termination(state)</a></td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#program_name/1">program_name(_state)</a></td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#set_root_url/1">set_root_url(state)</a></td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#start_link/2">start_link(config, sup)</a></td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#wait_for_start/1">wait_for_start(state)</a></td>
+  
+</tr>
 
-        </ul>
+        </table>
+      
+
       
 
       
@@ -91,51 +94,83 @@
   <p class="signature" id="arguments/1">
     <strong>arguments(_state)</strong>
   </p>
+  
   <div class="docstring"></div>
   
-</div><div class="detail">
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L33" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="browser_terminated/1">
     <strong>browser_terminated(state)</strong>
   </p>
+  
   <div class="docstring"></div>
   
-</div><div class="detail">
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L99" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="do_init/1">
     <strong>do_init(state)</strong>
   </p>
+  
   <div class="docstring"></div>
   
-</div><div class="detail">
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L66" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="normal_termination/1">
     <strong>normal_termination(state)</strong>
   </p>
+  
   <div class="docstring"></div>
   
-</div><div class="detail">
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L92" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="program_name/1">
     <strong>program_name(_state)</strong>
   </p>
+  
   <div class="docstring"></div>
   
-</div><div class="detail">
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L28" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="set_root_url/1">
     <strong>set_root_url(state)</strong>
   </p>
+  
   <div class="docstring"></div>
   
-</div><div class="detail">
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L60" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="start_link/2">
     <strong>start_link(config, sup)</strong>
   </p>
+  
   <div class="docstring"></div>
   
-</div><div class="detail">
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L3" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="wait_for_start/1">
     <strong>wait_for_start(state)</strong>
   </p>
+  
   <div class="docstring"></div>
   
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L76" target="_blank" class="view_source">Source</a>
+  
 </div>
+
         </div>
       
 
