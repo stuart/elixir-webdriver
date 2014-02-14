@@ -11,7 +11,7 @@ defmodule WebDriver.PhantomJS.Port do
   """
 
   @program_name :phantomjs
-  @start_wait_timeout 5000
+  @start_wait_timeout 10000
 
   # port refers to the Erlang Port, not the HTTP port number!
   defrecord State, port: nil,

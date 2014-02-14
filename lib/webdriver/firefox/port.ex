@@ -12,7 +12,7 @@ defmodule WebDriver.Firefox.Port do
 
   @osx_path "/Applications/Firefox.app/Contents/MacOS/firefox-bin"
   @win_path "%PROGRAMFILES%\\Mozilla Firefox\\firefox.exe"
-  @start_wait_timeout 5000
+  @start_wait_timeout 10000
 
   alias WebDriver.Firefox.Profile
 
