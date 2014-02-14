@@ -312,7 +312,7 @@ defmodule WebDriverPhantomJSSessionTest do
     Session.url :test, "http://localhost:8888/page_2.html"
     form = Session.element :test, :tag, "form"
     Element.submit form
-    assert "http://localhost:8888/page_3.html?some_text=Text" == Session.url :test
+    assert "http://localhost:8888/page_3.html?some_text=Text&other_text=TextArea" == Session.url :test
   end
 
   test "text value of an element" do
@@ -326,7 +326,7 @@ defmodule WebDriverPhantomJSSessionTest do
     field = Session.element :test, :id, "123"
     Element.value field, "Val"
     Element.submit field
-    assert "http://localhost:8888/page_3.html?some_text=TextVal" == Session.url :test
+    assert "http://localhost:8888/page_3.html?some_text=TextVal&other_text=TextArea" == Session.url :test
   end
 
   test "send keystrokes to the current element" do
@@ -335,7 +335,17 @@ defmodule WebDriverPhantomJSSessionTest do
     Element.click field
     Session.keys :test, "New Text"
     Element.submit field
-    assert "http://localhost:8888/page_3.html?some_text=New+Text" == Session.url :test
+    assert "http://localhost:8888/page_3.html?some_text=New+Text&other_text=TextArea" == Session.url :test
+  end
+
+  test "send special keystrokes to the current element" do
+    Session.url :test, "http://localhost:8888/page_2.html"
+    text_area = Session.element :test, :id, "textarea1"
+    Element.click text_area
+    key = WebDriver.Keys.key(:key_back_space)
+    Session.keys :test, "TESTME#{key}#{key}IT"
+    Element.submit text_area
+    assert "http://localhost:8888/page_3.html?some_text=Text&other_text=TESTITTextArea" == Session.url :test
   end
 
   test "name" do
@@ -349,7 +359,7 @@ defmodule WebDriverPhantomJSSessionTest do
     field = Session.element :test, :id, "123"
     Element.clear field
     Element.submit field
-    assert "http://localhost:8888/page_3.html?some_text=" == Session.url :test
+    assert "http://localhost:8888/page_3.html?some_text=&other_text=TextArea" == Session.url :test
   end
 
   test "selected? returns boolean if an element is selected" do

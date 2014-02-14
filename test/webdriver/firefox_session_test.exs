@@ -298,7 +298,7 @@ defmodule WebDriverFirefoxSessionTest do
     Session.url :fftest, "http://localhost:8888/page_2.html"
     form = Session.element :fftest, :tag, "form"
     Element.submit form
-    assert "http://localhost:8888/page_3.html?some_text=Text" == Session.url :fftest
+    assert "http://localhost:8888/page_3.html?some_text=Text&other_text=TextArea" == Session.url :fftest
   end
 
   test "text value of an element" do
@@ -312,7 +312,7 @@ defmodule WebDriverFirefoxSessionTest do
     field = Session.element :fftest, :id, "123"
     Element.value field, "Val"
     {:ok, _} = Element.submit field
-    assert "http://localhost:8888/page_3.html?some_text=TextVal" == Session.url :fftest
+    assert "http://localhost:8888/page_3.html?some_text=TextVal&other_text=TextArea" == Session.url :fftest
   end
 
   # Firefox does not clear the element before sending keys. PhantomJS does.
@@ -322,7 +322,17 @@ defmodule WebDriverFirefoxSessionTest do
     Element.click field
     Session.keys :fftest, "New Text"
     Element.submit field
-    assert "http://localhost:8888/page_3.html?some_text=TextNew+Text" == Session.url :fftest
+    assert "http://localhost:8888/page_3.html?some_text=TextNew+Text&other_text=TextArea" == Session.url :fftest
+  end
+
+  test "send special keystrokes to the current element" do
+    Session.url :fftest, "http://localhost:8888/page_2.html"
+    text_area = Session.element :fftest, :id, "textarea1"
+    Element.click text_area
+    key = WebDriver.Keys.key(:key_back_space)
+    Session.keys :fftest, "TESTME#{key}#{key}IT"
+    Element.submit text_area
+    assert "http://localhost:8888/page_3.html?some_text=Text&other_text=TextAreaTESTIT" == Session.url :fftest
   end
 
   test "name" do
@@ -336,7 +346,7 @@ defmodule WebDriverFirefoxSessionTest do
     field = Session.element :fftest, :id, "123"
     Element.clear field
     Element.submit field
-    assert "http://localhost:8888/page_3.html?some_text=" == Session.url :fftest
+    assert "http://localhost:8888/page_3.html?some_text=&other_text=TextArea" == Session.url :fftest
   end
 
   test "selected? returns boolean if an element is selected" do
