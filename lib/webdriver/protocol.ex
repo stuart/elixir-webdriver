@@ -807,7 +807,7 @@ defmodule WebDriver.Protocol do
     url = url_for root_url, path_elements
     json =  Jsonex.encode params
     request = Request[method: :POST, url: url,
-         headers: ["Content-Type": "application/json;charset=UTF-8","Content-Length": String.length(json)],
+         headers: ["Content-Type": "application/json;charset=UTF-8","Content-Length": byte_size(json)],
          body: json]
 
     send_request root_url, request
@@ -834,6 +834,7 @@ defmodule WebDriver.Protocol do
 
   # Send the request to the underlying HTTP protocol.
   defp send_request root_url, request, attempts do
+    IO.puts "BODY: #{request.body}"
     try do
       case request.method do
         :GET ->
