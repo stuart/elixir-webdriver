@@ -6,7 +6,7 @@ defmodule WebDriverFirefoxSessionTest do
   alias WebDriver.Session
   alias WebDriver.Element
   # alias WebDriver.Mouse
-
+  @moduletag :firefox
 # Testing Callbacks
   setup_all do
     http_server_pid = WebDriver.TestServer.start

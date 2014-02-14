@@ -6,9 +6,39 @@ defmodule WebDriver.Session do
   defrecord State,  name: nil,
                     root_url: "",
                     session_id: :null,
-                    desiredCapabilities: [],
+                    desiredCapabilities: [{}],
                     negotiatedCapabilities: [],
                     browser: nil
+
+  @moduledoc """
+    This module runs a browser session. Use these functions to drive the browser.
+    The 'name' parameter is always the session name atom that is set when you
+    start the session.
+
+   Example Session:
+      iex> config = WebDriver.Config.new(browser: :phantomjs, name: :test_browser)
+      WebDriver.Config[browser: :phantomjs, name: :test_browser]
+      iex> WebDriver.start_browser config
+      Starting phantomjs
+      Phantom js started
+      {:ok,#PID<0.235.0>}
+      iex> WebDriver.start_session :test_browser, :session_name
+      {:ok, #PID<0.183.0>}
+      iex> WebDriver.Session.url :session_name, "http://www.google.com"
+      {:ok,
+       WebDriver.Protocol.Response[session_id: "8af42080-9146-11e3-b1a3-65dd0c301725",
+        status: 0, value: [{}],
+        request: WebDriver.Protocol.Request[method: :POST,
+         url: "http://localhost:59848/wd/hub/session/8af42080-9146-11e3-b1a3-65dd0c301725/url",
+         headers: ["Content-Type": "application/json;charset=UTF-8",
+          "Content-Length": 31], body: "{\"url\":\"http://www.google.com\"}"]]}
+      iex>WebDriver.Session.url :session_name
+      "http://www.google.com.au/?gfe_rd=cr&ei=rgr3UteUF8mN8Qenpf54"
+      iex>WebDriver.stop_session :session_name
+      :ok
+      iex>WebDriver.stop_browser :test_browser
+      :ok
+  """
 
   @doc """
     Starts the session.
@@ -18,6 +48,9 @@ defmodule WebDriver.Session do
     :gen_server.start_link({:local, name},__MODULE__, state, [])
   end
 
+  @doc """
+    Stop the session.
+  """
   def stop name do
     :gen_server.cast name, :stop
   end
@@ -42,7 +75,7 @@ defmodule WebDriver.Session do
       name : The session server process to start the session on.
       desired_capabilities: Capability
   """
-  def start_session name, desired_capabilities // [] do
+  def start_session name, desired_capabilities // [{}] do
     :gen_server.call name, { :start_session,
                              [desiredCapabilities: desired_capabilities] }
   end
@@ -276,7 +309,15 @@ defmodule WebDriver.Session do
     Returns: [height: number, width: number]
   """
   def window_size name do
-    resp = HashDict.new(get_value name, :window_size)
+    do_window_size(get_value(name, :window_size))
+  end
+
+  defp do_window_size {error, response} do
+    {error, response}
+  end
+
+  defp do_window_size response do
+    resp = HashDict.new(response)
     {:ok, h} = HashDict.fetch(resp,"height")
     {:ok, w} = HashDict.fetch(resp,"width")
     [height: h,  width: w]
@@ -439,6 +480,7 @@ defmodule WebDriver.Session do
   defp elements_value value, name do
     case value do
       {:no_such_element, _resp} -> []
+      {:unknown_error, resp} -> {:unknown_error, resp}
       element_list -> Enum.map(element_list, fn(e) -> element_value(e,name) end)
     end
   end

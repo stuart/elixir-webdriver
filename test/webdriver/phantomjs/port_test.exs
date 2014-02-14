@@ -4,6 +4,7 @@ Code.require_file "../../test_helper.exs", __DIR__
 defmodule WebDriver.PhantomJS.PortTest do
   use ExUnit.Case
   alias WebDriver.PhantomJS
+  @moduletag :phantomjs
 
   teardown_all do
     # Make sure we get rid of any stray processes.

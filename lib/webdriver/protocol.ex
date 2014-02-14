@@ -834,7 +834,13 @@ defmodule WebDriver.Protocol do
 
   # Send the request to the underlying HTTP protocol.
   defp send_request root_url, request, attempts do
-    IO.puts "BODY: #{request.body}"
+    if :application.get_env(:debug_browser) == {:ok, true} do
+      IO.puts "SENDING REQUEST: #{request.method}"
+      IO.puts "URL: #{request.url}"
+      #IO.puts "HEADERS: #{request.headers}"
+      IO.puts "BODY: #{request.body}"
+    end
+
     try do
       case request.method do
         :GET ->
@@ -854,7 +860,15 @@ defmodule WebDriver.Protocol do
 
   defp handle_response(HTTPotion.Response[body: body, status_code: status, headers: _headers], _root_url)
       when status in 200..299 do
-        {:ok, parse_response_body(body)}
+        if :application.get_env(:debug_browser) == {:ok, true} do
+          IO.puts "RESP: #{body}"
+        end
+        # Chromedriver sends failed commands with a 200 status.
+        response = parse_response_body(body)
+        case response.status do
+          0 -> {:ok, response}
+          _ -> {:failed_command, response.status, response}
+        end
   end
 
   defp handle_response(HTTPotion.Response[body: _body, status_code: status, headers: headers], root_url)
@@ -872,7 +886,7 @@ defmodule WebDriver.Protocol do
   end
 
   defp handle_response(HTTPotion.Response[body: body, status_code: status, headers: _headers], _root_url)
-    when status == 500 do
+    when status in 500..599 do
      response = parse_response_body(body)
      {:failed_command, status, response}
   end

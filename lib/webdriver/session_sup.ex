@@ -2,7 +2,8 @@ defmodule WebDriver.SessionSup do
   use Supervisor.Behaviour
 
   @moduledoc """
-    This supervisor maintians sessions for a browser instance.  
+    This supervisor maintians sessions for a browser instance.
+    Will restart sessions that have died for some reason.
   """
 
   def start_link state do

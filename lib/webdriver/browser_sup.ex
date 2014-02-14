@@ -1,13 +1,17 @@
 defmodule WebDriver.BrowserSup do
   use Supervisor.Behaviour
-  
+
   @moduledoc """
     The WebDriver.BrowserSup is a supervisor responsible for overseeing
     the running of browser instances and their associated session supervisors.
+
+    If a browser crashes for any reason this will restart the browser and the
+    sessions that connect to it.
   """
 
-  @browsers [ firefox: WebDriver.Firefox.Port, 
-              phantomjs: WebDriver.PhantomJS.Port ]
+  @browsers [ firefox: WebDriver.Firefox.Port,
+              phantomjs: WebDriver.PhantomJS.Port,
+              chrome: WebDriver.Chrome.Port ]
 
   @doc """
     Starts up a browser. The browser is then
@@ -19,7 +23,7 @@ defmodule WebDriver.BrowserSup do
   end
 
   def init config do
-    child_processes = [ worker(Keyword.get(@browsers, config.browser), 
+    child_processes = [ worker(Keyword.get(@browsers, config.browser),
                         [config, self])]
     supervise child_processes, strategy: :rest_for_one
   end

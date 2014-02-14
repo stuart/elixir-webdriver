@@ -2,6 +2,14 @@ defmodule WebDriver.Firefox.Port do
   use GenServer.Behaviour
   use WebDriver.Browser
 
+  @moduledoc """
+    This module is a server that controls the running of the Firefox browser.
+    It uses an Erlang port to communicate with the browser.
+
+    None of the functions here are user facing and are controlled by the
+    BrowserSup.
+  """
+
   @osx_path "/Applications/Firefox.app/Contents/MacOS/firefox-bin"
   @win_path "%PROGRAMFILES%\\Mozilla Firefox\\firefox.exe"
   @start_wait_timeout 5000
@@ -21,8 +29,14 @@ defmodule WebDriver.Firefox.Port do
     Path.join [ __DIR__, "shim.sh"]
   end
 
+  def installed? do
+    [f|_] = arguments("")
+    IO.puts(f)
+    File.exists?(f)
+  end
+
   # Because we are using a shim the Firefox program name becomes the argument.
-  def arguments _state do
+  defp arguments _state do
     [ case platform do
         :osx ->     :os.find_executable('firefox-bin') or @osx_path
         # Windows is not actually supported yet, the startup shim wont work.

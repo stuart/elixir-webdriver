@@ -11,3 +11,4 @@ before_install:
 
 before_script: "export PATH=`pwd`/elixir/bin:$PATH"
 script: "MIX_ENV=test mix do deps.get, deps.compile, test"
+
