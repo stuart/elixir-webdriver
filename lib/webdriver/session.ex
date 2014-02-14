@@ -480,6 +480,7 @@ defmodule WebDriver.Session do
   defp elements_value value, name do
     case value do
       {:no_such_element, _resp} -> []
+      {:unknown_error, resp} -> {:unknown_error, resp}
       element_list -> Enum.map(element_list, fn(e) -> element_value(e,name) end)
     end
   end
