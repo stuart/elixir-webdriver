@@ -154,9 +154,17 @@ defmodule WebDriver.Element do
     Returns [x: x, y: y]
   """
   def location_in_view element do
+    do_location_in_view(get_value(element, :location))
+  end
+
+  defp do_location_in_view {error, response} do
+    {error, response}
+  end
+
+  defp do_location_in_view response do
     # Bugfix
     # http://code.google.com/p/selenium/source/detail?r=bbcfab457b13
-    resp = HashDict.new(get_value element, :location)
+    resp = HashDict.new(response)
     {:ok, x} = HashDict.fetch(resp,"x")
     {:ok, y} = HashDict.fetch(resp,"y")
     [x: x, y: y]
@@ -170,7 +178,15 @@ defmodule WebDriver.Element do
     Returns [width: w, height: h]
   """
   def size element do
-    resp = HashDict.new(get_value element, :size)
+    do_size(get_value(element, :size))
+  end
+
+  defp do_size {error, response} do
+    {error, response}
+  end
+
+  defp do_size response do
+    resp = HashDict.new(response)
     {:ok, h} = HashDict.fetch(resp,"height")
     {:ok, w} = HashDict.fetch(resp,"width")
     [width: w, height: h]

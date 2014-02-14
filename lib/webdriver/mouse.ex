@@ -75,15 +75,7 @@ defmodule WebDriver.Mouse do
     :gen_server.call session, {command, params}, 20000
   end
 
-  defp button_number :left do
-    0
-  end
-
-  defp button_number :middle do
-    1
-  end
-
-  defp button_number :right do
-    2
-  end
+  defp button_number :left   do 0 end
+  defp button_number :middle do 1 end
+  defp button_number :right  do 2 end
 end

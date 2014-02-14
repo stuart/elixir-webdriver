@@ -309,7 +309,15 @@ defmodule WebDriver.Session do
     Returns: [height: number, width: number]
   """
   def window_size name do
-    resp = HashDict.new(get_value name, :window_size)
+    do_window_size(get_value(name, :window_size))
+  end
+
+  defp do_window_size {error, response} do
+    {error, response}
+  end
+
+  defp do_window_size response do
+    resp = HashDict.new(response)
     {:ok, h} = HashDict.fetch(resp,"height")
     {:ok, w} = HashDict.fetch(resp,"width")
     [height: h,  width: w]

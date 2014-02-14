@@ -29,8 +29,14 @@ defmodule WebDriver.Firefox.Port do
     Path.join [ __DIR__, "shim.sh"]
   end
 
+  def installed? do
+    [f|_] = arguments("")
+    IO.puts(f)
+    File.exists?(f)
+  end
+
   # Because we are using a shim the Firefox program name becomes the argument.
-  def arguments _state do
+  defp arguments _state do
     [ case platform do
         :osx ->     :os.find_executable('firefox-bin') or @osx_path
         # Windows is not actually supported yet, the startup shim wont work.
