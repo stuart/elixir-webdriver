@@ -437,12 +437,11 @@ defmodule WebDriverChromeSessionTest do
     assert "100px" == Element.css element, "top"
   end
 
-  # FIXME
-  # test "accessing a non existing element" do
-  #   Session.url :test, "http://localhost:8888/page_1.html"
-  #   element = Element.Reference[id: ":wdc:12345678899", session: :test]
-  #   assert {:stale_element_reference, _ } = Element.size element
-  # end
+  test "accessing a non existing element" do
+    Session.url :test, "http://localhost:8888/page_1.html"
+    element = Element.Reference[id: ":wdc:12345678899", session: :test]
+    assert {:stale_element_reference, _ } = Element.size element
+  end
 
   test "moving mouse to an element" do
     Session.url :test, "http://localhost:8888/page_1.html"
