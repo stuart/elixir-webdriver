@@ -34,7 +34,6 @@ defmodule WebDriverPhantomJSSessionTest do
   end
 
 # Tests
-
   test "status should show that the Session is up" do
     resp = WebDriver.Session.status(:test)
     assert [{"build", _},{"os",_}] = resp
@@ -42,6 +41,12 @@ defmodule WebDriverPhantomJSSessionTest do
 
   test "start_session should start a WebDriver session", meta do
     assert meta[:session_id] != :null
+  end
+
+  test "negotiated_capabilities returns a capabilities record" do
+    cap = Session.negotiated_capabilities(:test)
+    assert cap.browserName == "phantomjs"
+    assert cap.javascriptEnabled
   end
 
   test "sessions lists the sessions on the Session" do

@@ -7,7 +7,7 @@ defmodule WebDriver.Session do
                     root_url: "",
                     session_id: :null,
                     desiredCapabilities: [{}],
-                    negotiatedCapabilities: [],
+                    negotiatedCapabilities: [{}],
                     browser: nil
 
   @moduledoc """
@@ -58,11 +58,24 @@ defmodule WebDriver.Session do
   @doc """
     Returns the status of the WebDriver server.
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status
-
-    This returns a capability record.
   """
   def status name do
     get_value name, :status
+  end
+
+  @doc """
+    Returns the negotiated capabilities of the current session.
+  """
+  def negotiated_capabilities name do
+    {:ok, capabilities} = :gen_server.call name, :capabilities
+    capabilities
+  end
+
+  @doc """
+    True if javascript is enabled for this session
+  """
+  def javascript_enabled? name do
+    negotiated_capabilities(name).javascriptEnabled
   end
 
   @doc """
@@ -235,7 +248,10 @@ defmodule WebDriver.Session do
              string, list or object (tuple).
   """
   def execute name, script, args // [] do
-    get_value name, {:execute, [script: script, args: args]}
+    case javascript_enabled?(name) do
+      true -> get_value name, {:execute, [script: script, args: args]}
+      false -> {:error, "Javascript not enabled for this session."}
+    end
   end
 
    @doc """
@@ -247,7 +263,10 @@ defmodule WebDriver.Session do
              string, list or object (tuple).
   """
   def execute_async name, script, args // [] do
-    get_value name, {:execute, [script: script, args: args]}
+    case javascript_enabled?(name) do
+      true -> get_value name, {:execute, [script: script, args: args]}
+      false -> {:error, "Javascript not enabled for this session."}
+    end
   end
 
   @doc """
@@ -575,6 +594,10 @@ defmodule WebDriver.Session do
 
   def handle_cast(:stop, state) do
     {:stop, :normal, state}
+  end
+
+  def handle_call :capabilities, _sender, state do
+    {:reply, {:ok, state.negotiatedCapabilities}, state }
   end
 
   def handle_call({:start_session, params}, _sender, state) do
