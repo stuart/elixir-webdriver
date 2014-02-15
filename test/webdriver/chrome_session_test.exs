@@ -14,12 +14,12 @@ defmodule WebDriverChromeSessionTest do
     http_server_pid = WebDriver.TestServer.start
     config = WebDriver.Config.new(browser: :chrome, name: :chrome_test_browser)
     WebDriver.start_browser config
-    WebDriver.start_session :chrome_test_browser, :test
+    WebDriver.start_session :chrome_test_browser, :cdtest
     {:ok, [http_server_pid: http_server_pid]}
   end
 
   teardown_all meta do
-    WebDriver.stop_session :test
+    WebDriver.stop_session :cdtest
     WebDriver.stop_browser :chrome_test_browser
     WebDriver.TestServer.stop(meta[:http_server_pid])
     :ok
@@ -36,7 +36,7 @@ defmodule WebDriverChromeSessionTest do
 # Tests
 
   test "status should show that the Session is up" do
-    resp = WebDriver.Session.status(:test)
+    resp = WebDriver.Session.status(:cdtest)
     assert [{"build", _},{"os",_}] = resp
   end
 
@@ -46,24 +46,24 @@ defmodule WebDriverChromeSessionTest do
 
   # FIXME: does not work on Chrome
   # test "sessions lists the sessions on the Session" do
-  #   response = Session.sessions(:test)
+  #   response = Session.sessions(:cdtest)
   #   Enum.each response, fn(session) ->
   #     assert [{"id",_},{"capabilities",_}] = session
   #   end
   # end
 
   test "session returns the current session data" do
-    { :ok, _ } = Session.start_session(:test)
-    response = Session.session(:test)
+    { :ok, _ } = Session.start_session(:cdtest)
+    response = Session.session(:cdtest)
     assert response.browserName == "chrome"
     assert response.javascriptEnabled
   end
 
   test "stop session" do
     # Use a separate session so we dont break everything else.
-    WebDriver.start_session :chrome_test_browser, :test2
-    assert {:ok, _} = Session.stop_session :test2
-    WebDriver.stop_session :test2
+    WebDriver.start_session :chrome_test_browser, :cdtest2
+    assert {:ok, _} = Session.stop_session :cdtest2
+    WebDriver.stop_session :cdtest2
   end
 
   test "set_timeout" do
@@ -79,24 +79,24 @@ defmodule WebDriverChromeSessionTest do
   end
 
   test "window_handle" do
-    assert Regex.match? uuid_regexp, Session.window_handle :test
+    assert Regex.match? uuid_regexp, Session.window_handle :cdtest
   end
 
   test "window_handles" do
-    handles = Session.window_handles :test
+    handles = Session.window_handles :cdtest
     Enum.each handles, fn(handle) ->
       assert Regex.match? uuid_regexp, handle
     end
   end
 
   test "url/1" do
-    Session.url :test, "about:blank"
-    assert "about:blank" == Session.url :test
+    Session.url :cdtest, "about:blank"
+    assert "about:blank" == Session.url :cdtest
   end
 
   test "url/2" do
     check :url, ["http://localhost:8888/index.html"]
-    assert Session.url(:test) == "http://localhost:8888/index.html"
+    assert Session.url(:cdtest) == "http://localhost:8888/index.html"
   end
 
   test "forward" do
@@ -112,59 +112,59 @@ defmodule WebDriverChromeSessionTest do
   end
 
   test "navigation back and forth" do
-    Session.url :test, "http://localhost:8888/index.html"
-    Session.url :test, "http://localhost:8888/page_1.html"
-    Session.back :test
-    assert "http://localhost:8888/index.html" == Session.url :test
-    Session.forward :test
-    assert "http://localhost:8888/page_1.html" == Session.url :test
+    Session.url :cdtest, "http://localhost:8888/index.html"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    Session.back :cdtest
+    assert "http://localhost:8888/index.html" == Session.url :cdtest
+    Session.forward :cdtest
+    assert "http://localhost:8888/page_1.html" == Session.url :cdtest
   end
 
   test "execute returns the value of the Javascript." do
-    assert Session.execute(:test, "return 23 * 2") == 46
+    assert Session.execute(:cdtest, "return 23 * 2") == 46
   end
 
   test "execute with arguments returns the correct value" do
-    assert Session.execute(:test, "return arguments[0] + \" \" + arguments[1]", ["hello", "world"])
+    assert Session.execute(:cdtest, "return arguments[0] + \" \" + arguments[1]", ["hello", "world"])
        == "hello world"
   end
 
   test "execute_async returns the correct result" do
-    assert Session.execute_async(:test, "return 123 + 2") == 125
+    assert Session.execute_async(:cdtest, "return 123 + 2") == 125
   end
 
   test "screenshot returns a PNG image" do
-    assert <<137,80,78,71,13,10,26,10,_ :: binary >> = :base64.decode(Session.screenshot :test)
+    assert <<137,80,78,71,13,10,26,10,_ :: binary >> = :base64.decode(Session.screenshot :cdtest)
   end
 
   test "no such frame error" do
-    assert {:no_such_frame, _ } = Session.frame :test, 123
+    assert {:no_such_frame, _ } = Session.frame :cdtest, 123
   end
 
   test "window" do
-    handle = Session.window_handle :test
+    handle = Session.window_handle :cdtest
     check :window, [handle]
   end
 
   test "error when there is no such window" do
-    assert {:no_such_window, _} = Session.window :test, "xyz"
+    assert {:no_such_window, _} = Session.window :cdtest, "xyz"
   end
 
   # Close window destroys the session on chrome
   # test "close window" do
-  #   WebDriver.start_session :test_browser, :window_close
+  #   WebDriver.start_session :cdtest_browser, :window_close
   #   assert {:ok, _} = Session.close_window :window_close
   #   WebDriver.stop_session :window_close
   # end
 
   test "window size" do
-    size = Session.window_size :test
+    size = Session.window_size :cdtest
     assert is_number(Keyword.get(size, :height))
     assert is_number(Keyword.get(size, :width))
   end
 
   test "set the window size" do
-    check :window_size, [Session.window_handle(:test), 240, 480]
+    check :window_size, [Session.window_handle(:cdtest), 240, 480]
   end
 
   test "maximize window" do
@@ -174,22 +174,22 @@ defmodule WebDriverChromeSessionTest do
   # Chrome does not allow setting cookies with the domain localhost
   # It also automatically sets a cookie for the domain. WTF?
   test "set and retreive cookie" do
-    Session.url :test, "http://example.com/index.html"
+    Session.url :cdtest, "http://example.com/index.html"
     check :set_cookie, ["cookie", "value", "/", "example.com"]
 
-    [ _, cookie ] = Session.cookies :test
+    [ _, cookie ] = Session.cookies :cdtest
     assert cookie.domain == ".example.com"
     assert cookie.name == "cookie"
     assert cookie.value == "value"
     assert cookie.path == "/"
-    Session.delete_cookies :test
+    Session.delete_cookies :cdtest
   end
 
   test "set cookie from a cookie record" do
-    Session.url :test, "http://example.com/index.html"
+    Session.url :cdtest, "http://example.com/index.html"
     cookie = WebDriver.Cookie.new(name: "cookie", value: "value", path: "/", domain: "example.com")
-    Session.set_cookie :test, cookie
-    [ _, cookie ] = Session.cookies :test
+    Session.set_cookie :cdtest, cookie
+    [ _, cookie ] = Session.cookies :cdtest
     assert cookie.domain == ".example.com"
     assert cookie.name == "cookie"
     assert cookie.value == "value"
@@ -197,84 +197,84 @@ defmodule WebDriverChromeSessionTest do
   end
 
   test "delete cookies" do
-    Session.url :test, "http://example.com/index.html"
-    Session.set_cookie :test, "name", "value", "/", "example.com"
-    Session.delete_cookies :test
-    assert [] == Session.cookies :test
+    Session.url :cdtest, "http://example.com/index.html"
+    Session.set_cookie :cdtest, "name", "value", "/", "example.com"
+    Session.delete_cookies :cdtest
+    assert [] == Session.cookies :cdtest
   end
 
   test "delete cookie" do
-    Session.url :test, "http://example.com/index.html"
-    Session.set_cookie :test, "name", "value", "/", "example.com"
-    Session.delete_cookie :test, "name"
-    assert [ _ ] = Session.cookies :test
+    Session.url :cdtest, "http://example.com/index.html"
+    Session.set_cookie :cdtest, "name", "value", "/", "example.com"
+    Session.delete_cookie :cdtest, "name"
+    assert [ _ ] = Session.cookies :cdtest
   end
 
 
   test "page source" do
-    Session.url :test, "http://localhost:8888"
-    assert <<"<!DOCTYPE html>", _ :: binary >> = Session.source :test
+    Session.url :cdtest, "http://localhost:8888"
+    assert <<"<!DOCTYPE html>", _ :: binary >> = Session.source :cdtest
   end
 
   test "page title" do
-    Session.url :test, "http://localhost:8888"
-    assert "Test Index" == Session.title :test
+    Session.url :cdtest, "http://localhost:8888"
+    assert "Test Index" == Session.title :cdtest
   end
 
   test "find element by class name" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    assert is_element? Session.element :test, :class_name, "blue"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    assert is_element? Session.element :cdtest, :class_name, "blue"
   end
 
   test "find element by css" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    assert is_element? Session.element :test, :css, "div.blue"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    assert is_element? Session.element :cdtest, :css, "div.blue"
   end
 
   test "find element by id" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    assert is_element? Session.element :test, :id, "1234"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    assert is_element? Session.element :cdtest, :id, "1234"
   end
 
   test "find element by name" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    assert is_element? Session.element :test, :name, "foo"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    assert is_element? Session.element :cdtest, :name, "foo"
   end
 
   test "find element by link text" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    assert is_element? Session.element :test, :link, "Back to Index"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    assert is_element? Session.element :cdtest, :link, "Back to Index"
   end
 
   test "find element by partial link text" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    assert is_element? Session.element :test, :partial_link, "Back"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    assert is_element? Session.element :cdtest, :partial_link, "Back"
   end
 
   test "find element by tag name" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    assert is_element?  Session.element :test, :tag, "div"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    assert is_element?  Session.element :cdtest, :tag, "div"
   end
 
   test "find element by xpath" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    assert is_element? Session.element :test, :xpath, "//div/a[@class='link']"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    assert is_element? Session.element :cdtest, :xpath, "//div/a[@class='link']"
   end
 
   test "a non existing element" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    assert nil = Session.element :test, :tag, "nothing"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    assert nil = Session.element :cdtest, :tag, "nothing"
   end
 
   test "find an element starting from a specified element" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    start = Session.element :test, :class_name, "blue"
-    assert is_element? Session.element(:test, :tag, "ul", start)
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    start = Session.element :cdtest, :class_name, "blue"
+    assert is_element? Session.element(:cdtest, :tag, "ul", start)
   end
 
   test "find multiple elements" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    [a,b,c,d] = Session.elements :test, :tag, "li"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    [a,b,c,d] = Session.elements :cdtest, :tag, "li"
 
     assert is_element? a
     assert is_element? b
@@ -283,89 +283,89 @@ defmodule WebDriverChromeSessionTest do
   end
 
   test "a non existing element when finding multiple" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    assert [] = Session.elements :test, :tag, "none"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    assert [] = Session.elements :cdtest, :tag, "none"
   end
 
   # FIXME Not implemented on chrome?
   # test "active element" do
-  #   Session.url :test, "http://localhost:8888/page_1.html"
-  #   assert is_element? Session.active_element :test
+  #   Session.url :cdtest, "http://localhost:8888/page_1.html"
+  #   assert is_element? Session.active_element :cdtest
   # end
 
-  # Not working on phantomjs
-  # test "get orientation" do
-  #   check :orientation
-  # end
+  test "get orientation" do
+    assert {:error, "Session does not support device rotation."} == Session.orientation(:cdtest)
+  end
 
-  # test "set orientation" do
-  #   check :orientation, [:landscape]
-  # end
+  test "set orientation" do
+    assert {:error, "Session does not support device rotation."} == Session.orientation(:cdtest, [:landscape])
+  end
+
 
   # test "element by id" do
   #   # This behaviour is currently undefined in the specification.
   #   # Phantomjs returns a url encoded version of the internal element id.
-  #   Session.url :test, "http://localhost:8888/page_1.html"
-  #   element = Session.element :test, :class_name, "blue"
-  #   assert Session.element_by_id :test, element
+  #   Session.url :cdtest, "http://localhost:8888/page_1.html"
+  #   element = Session.element :cdtest, :class_name, "blue"
+  #   assert Session.element_by_id :cdtest, element
   # end
 
   test "click on an element" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    element = Session.element :test, :link, "Back to Index"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    element = Session.element :cdtest, :link, "Back to Index"
     assert {:ok, _} = Element.click element
-    assert "http://localhost:8888/index.html" = Session.url :test
+    assert "http://localhost:8888/index.html" = Session.url :cdtest
   end
 
   test "submit a form" do
-    Session.url :test, "http://localhost:8888/page_2.html"
-    form = Session.element :test, :tag, "form"
+    Session.url :cdtest, "http://localhost:8888/page_2.html"
+    form = Session.element :cdtest, :tag, "form"
     Element.submit form
-    assert "http://localhost:8888/page_3.html?some_text=Text" == Session.url :test
+    assert "http://localhost:8888/page_3.html?some_text=Text&other_text=TextArea" == Session.url :cdtest
   end
 
   test "text value of an element" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    element = Session.element :test, :xpath, "//div/p"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    element = Session.element :cdtest, :xpath, "//div/p"
     assert "Test Div" == Element.text element
   end
 
   test "send keystrokes to an element" do
-    Session.url :test, "http://localhost:8888/page_2.html"
-    field = Session.element :test, :id, "123"
+    Session.url :cdtest, "http://localhost:8888/page_2.html"
+    field = Session.element :cdtest, :id, "123"
     Element.value field, "Val"
     Element.submit field
-    assert "http://localhost:8888/page_3.html?some_text=TextVal" == Session.url :test
+    assert "http://localhost:8888/page_3.html?some_text=TextVal&other_text=TextArea" == Session.url :cdtest
   end
 
   # FXIME: Does not clear the element (see FF)
   test "send keystrokes to the current element" do
-    Session.url :test, "http://localhost:8888/page_2.html"
-    field = Session.element :test, :id, "123"
+    Session.url :cdtest, "http://localhost:8888/page_2.html"
+    field = Session.element :cdtest, :id, "123"
     Element.click field
-    Session.keys :test, "New Text"
+    Session.keys :cdtest, "New Text"
     Element.submit field
-    assert "http://localhost:8888/page_3.html?some_text=TextNew+Text" == Session.url :test
+    assert "http://localhost:8888/page_3.html?some_text=TextNew+Text&other_text=TextArea" == Session.url :cdtest
   end
 
   test "name" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    element = Session.element :test, :class_name, "blue"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    element = Session.element :cdtest, :class_name, "blue"
     assert "div" == Element.name element
   end
 
   test "clear an element" do
-    Session.url :test, "http://localhost:8888/page_2.html"
-    field = Session.element :test, :id, "123"
+    Session.url :cdtest, "http://localhost:8888/page_2.html"
+    field = Session.element :cdtest, :id, "123"
     Element.clear field
     Element.submit field
-    assert "http://localhost:8888/page_3.html?some_text=" == Session.url :test
+    assert "http://localhost:8888/page_3.html?some_text=&other_text=TextArea" == Session.url :cdtest
   end
 
   test "selected? returns boolean if an element is selected" do
-    Session.url :test, "http://localhost:8888/page_2.html"
-    selected_option = Session.element :test, :xpath, "//option[@value='dave']"
-    other_option = Session.element :test, :xpath, "//option[@value='stu']"
+    Session.url :cdtest, "http://localhost:8888/page_2.html"
+    selected_option = Session.element :cdtest, :xpath, "//option[@value='dave']"
+    other_option = Session.element :cdtest, :xpath, "//option[@value='stu']"
 
     assert true  === Element.selected? selected_option
     assert false === Element.selected? other_option
@@ -373,99 +373,99 @@ defmodule WebDriverChromeSessionTest do
 
   # Same as FF here (false rather than nil)
   test "selected? returns nil if element is unselectable" do
-    Session.url :test, "http://localhost:8888/page_2.html"
-    option = Session.element :test, :tag, "label"
+    Session.url :cdtest, "http://localhost:8888/page_2.html"
+    option = Session.element :cdtest, :tag, "label"
     assert false == Element.selected? option
   end
 
    test "selected? returns boolean if an element is enabled" do
-    Session.url :test, "http://localhost:8888/page_2.html"
-    submit = Session.element :test, :id, "s1"
-    disabled_submit = Session.element :test, :id, "s2"
+    Session.url :cdtest, "http://localhost:8888/page_2.html"
+    submit = Session.element :cdtest, :id, "s1"
+    disabled_submit = Session.element :cdtest, :id, "s2"
 
     assert true === Element.enabled?  submit
     assert false === Element.enabled? disabled_submit
   end
 
   test "attribute gives the value of an attribute" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    element = Session.element :test, :id, "1234"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    element = Session.element :cdtest, :id, "1234"
     assert "blue" = Element.attribute element, "class"
   end
 
   test "equals returns a boolean" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    element = Session.element :test, :id, "1234"
-    other_element = Session.element :test, :class_name, "blue"
-    another_element = Session.element :test, :tag, "ul"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    element = Session.element :cdtest, :id, "1234"
+    other_element = Session.element :cdtest, :class_name, "blue"
+    another_element = Session.element :cdtest, :tag, "ul"
 
     assert Element.equals? element, other_element
     refute Element.equals? element, another_element
   end
 
   test "displayed?" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    visible = Session.element :test, :id, "visible"
-    invisible = Session.element :test, :id, "invisible"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    visible = Session.element :cdtest, :id, "visible"
+    invisible = Session.element :cdtest, :id, "invisible"
 
     assert Element.displayed? visible
     refute Element.displayed? invisible
   end
 
   test "location" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    element = Session.element :test, :id, "fixed"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    element = Session.element :cdtest, :id, "fixed"
     assert [x: 100,y: 100] = Element.location element
   end
 
   test "location_in_view" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    element = Session.element :test, :id, "fixed"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    element = Session.element :cdtest, :id, "fixed"
     assert [x: 100,y: 100] = Element.location_in_view element
   end
 
   test "size" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    element = Session.element :test, :id, "fixed"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    element = Session.element :cdtest, :id, "fixed"
     assert [width: 100,height: 50] = Element.size element
   end
 
   test "css gives the value of an elements css" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    element = Session.element :test, :id, "fixed"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    element = Session.element :cdtest, :id, "fixed"
     assert "fixed" == Element.css element, "position"
     assert "100px" == Element.css element, "top"
   end
 
   test "accessing a non existing element" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    element = Element.Reference[id: ":wdc:12345678899", session: :test]
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    element = Element.Reference[id: ":wdc:12345678899", session: :cdtest]
     assert {:stale_element_reference, _ } = Element.size element
   end
 
   test "moving mouse to an element" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    element = Session.element :test, :id, "fixed"
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    element = Session.element :cdtest, :id, "fixed"
     assert {:ok, _resp} = Mouse.move_to element
   end
 
   test "click mouse in a session" do
-    assert {:ok, resp} = Mouse.click :test, :middle
+    assert {:ok, resp} = Mouse.click :cdtest, :middle
     assert resp.status == 0
   end
 
   test "button_down" do
-    assert {:ok, resp} = Mouse.button_down :test, :right
+    assert {:ok, resp} = Mouse.button_down :cdtest, :right
     assert resp.status == 0
   end
 
   test "button_up" do
-    assert {:ok, resp} = Mouse.button_up :test, :right
+    assert {:ok, resp} = Mouse.button_up :cdtest, :right
     assert resp.status == 0
   end
 
   test "double click" do
-    assert {:ok, resp} = Mouse.double_click :test
+    assert {:ok, resp} = Mouse.double_click :cdtest
     assert resp.status == 0
   end
 
@@ -473,7 +473,7 @@ defmodule WebDriverChromeSessionTest do
 
   # Check that a request returns {ok, response} and the response status is 0
   defp check func, params // [] do
-    assert_response :erlang.apply Session, func, [:test | params]
+    assert_response :erlang.apply Session, func, [:cdtest | params]
   end
 
   defp assert_response {:ok, response} do

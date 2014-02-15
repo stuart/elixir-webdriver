@@ -82,16 +82,21 @@ It should work on most UNIX like platforms. There is some rudimentary
 Windows support code in here, but I'm pretty sure that it won't work.
 
 ## Changelog
-* 2014-02-14 Update to version 0.3.0
-             Added non-text key support
-             Added ChromeDriver support
 
-* 2014-02-09 Update to version 0.2.2.
-             Fixes Firefox issues with window sizing.
-             Added mouse support for PhantomJS.
+* 2014-02-14
+    - Update to version 0.3.0
+    - Added non-text key support
+    - Added ChromeDriver support
 
-* 2014-02-08 Update to version 0.2.0 Supports Elixir 0.12.3
-             Latest ibrowse, which fixes a phantomjs issue.
+* 2014-02-09
+    - Update to version 0.2.2.
+    - Fixes Firefox issues with window sizing.
+    - Added mouse support for PhantomJS.
+
+* 2014-02-08
+    - Update to version 0.2.0
+    - Supports Elixir 0.12.3
+    - Latest ibrowse, which fixes a phantomjs issue.
 
 
 

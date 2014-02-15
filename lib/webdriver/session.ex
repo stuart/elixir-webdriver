@@ -7,7 +7,7 @@ defmodule WebDriver.Session do
                     root_url: "",
                     session_id: :null,
                     desiredCapabilities: [{}],
-                    negotiatedCapabilities: [],
+                    negotiatedCapabilities: [{}],
                     browser: nil
 
   @moduledoc """
@@ -58,11 +58,38 @@ defmodule WebDriver.Session do
   @doc """
     Returns the status of the WebDriver server.
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status
-
-    This returns a capability record.
   """
   def status name do
     get_value name, :status
+  end
+
+  @doc """
+    Returns the negotiated capabilities of the current session.
+  """
+  def negotiated_capabilities name do
+    {:ok, capabilities} = :gen_server.call name, :capabilities
+    capabilities
+  end
+
+  @doc """
+    True if javascript is enabled for this session
+  """
+  def javascript_enabled? name do
+    negotiated_capabilities(name).javascriptEnabled
+  end
+
+  @doc """
+    True if this session can take screenshots.
+  """
+  def takes_screenshot? name do
+    negotiated_capabilities(name).takesScreenshot
+  end
+
+  @doc """
+    True if this session supports device rotation.
+  """
+  def rotatable? name do
+    negotiated_capabilities(name).rotatable
   end
 
   @doc """
@@ -235,10 +262,13 @@ defmodule WebDriver.Session do
              string, list or object (tuple).
   """
   def execute name, script, args // [] do
-    get_value name, {:execute, [script: script, args: args]}
+    case javascript_enabled?(name) do
+      true -> get_value name, {:execute, [script: script, args: args]}
+      false -> {:error, "Javascript not enabled for this session."}
+    end
   end
 
-   @doc """
+  @doc """
     Execute Javascript asynchronously in the browser and return the result.
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute_async
 
@@ -247,7 +277,10 @@ defmodule WebDriver.Session do
              string, list or object (tuple).
   """
   def execute_async name, script, args // [] do
-    get_value name, {:execute, [script: script, args: args]}
+    case javascript_enabled?(name) do
+      true -> get_value name, {:execute, [script: script, args: args]}
+      false -> {:error, "Javascript not enabled for this session."}
+    end
   end
 
   @doc """
@@ -257,7 +290,10 @@ defmodule WebDriver.Session do
     Returns: PngImage :: Binary
   """
   def screenshot name do
-    get_value name, :screenshot
+    case takes_screenshot?(name) do
+      true -> get_value name, :screenshot
+      false -> {:error, "Screenshot not enabled for this session."}
+    end
   end
 
   @doc """
@@ -541,7 +577,10 @@ defmodule WebDriver.Session do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/orientation
   """
   def orientation name do
-    get_value name, :orientation
+    case rotatable? name do
+      true -> get_value name, :orientation
+      false -> {:error, "Session does not support device rotation."}
+    end
   end
 
   @doc """
@@ -552,6 +591,13 @@ defmodule WebDriver.Session do
     Screen orientaton can be either :portrait or :landscape.
   """
   def orientation name, screen_orientation do
+    case rotatable? name do
+      true -> do_orientation name, screen_orientation
+      false -> {:error, "Session does not support device rotation."}
+    end
+  end
+
+  defp do_orientation name, screen_orientation do
     case screen_orientation do
       :landscape -> cmd name, {:orientation, [ orientation: "LANDSCAPE"]}
       :portrait  -> cmd name, {:orientation, [ orientation: "PORTRAIT"]}
@@ -575,6 +621,10 @@ defmodule WebDriver.Session do
 
   def handle_cast(:stop, state) do
     {:stop, :normal, state}
+  end
+
+  def handle_call :capabilities, _sender, state do
+    {:reply, {:ok, state.negotiatedCapabilities}, state }
   end
 
   def handle_call({:start_session, params}, _sender, state) do
