@@ -79,6 +79,20 @@ defmodule WebDriver.Session do
   end
 
   @doc """
+    True if this session can take screenshots.
+  """
+  def takes_screenshot? name do
+    negotiated_capabilities(name).takesScreenshot
+  end
+
+  @doc """
+    True if this session supports device rotation.
+  """
+  def rotatable? name do
+    negotiated_capabilities(name).rotatable
+  end
+
+  @doc """
     Start a session with the desired capabilities on the browser.
     This is automatically called when the Session server starts, but in
     some cases you may want to stop and restart sessions without stopping
@@ -254,7 +268,7 @@ defmodule WebDriver.Session do
     end
   end
 
-   @doc """
+  @doc """
     Execute Javascript asynchronously in the browser and return the result.
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute_async
 
@@ -276,7 +290,10 @@ defmodule WebDriver.Session do
     Returns: PngImage :: Binary
   """
   def screenshot name do
-    get_value name, :screenshot
+    case takes_screenshot?(name) do
+      true -> get_value name, :screenshot
+      false -> {:error, "Screenshot not enabled for this session."}
+    end
   end
 
   @doc """
@@ -560,7 +577,10 @@ defmodule WebDriver.Session do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/orientation
   """
   def orientation name do
-    get_value name, :orientation
+    case rotatable? name do
+      true -> get_value name, :orientation
+      false -> {:error, "Session does not support device rotation."}
+    end
   end
 
   @doc """
@@ -571,6 +591,13 @@ defmodule WebDriver.Session do
     Screen orientaton can be either :portrait or :landscape.
   """
   def orientation name, screen_orientation do
+    case rotatable? name do
+      true -> do_orientation name, screen_orientation
+      false -> {:error, "Session does not support device rotation."}
+    end
+  end
+
+  defp do_orientation name, screen_orientation do
     case screen_orientation do
       :landscape -> cmd name, {:orientation, [ orientation: "LANDSCAPE"]}
       :portrait  -> cmd name, {:orientation, [ orientation: "PORTRAIT"]}

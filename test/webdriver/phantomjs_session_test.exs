@@ -289,14 +289,13 @@ defmodule WebDriverPhantomJSSessionTest do
     assert is_element? Session.active_element :test
   end
 
-  # Not working on phantomjs
-  # test "get orientation" do
-  #   check :orientation
-  # end
+  test "get orientation" do
+    assert {:error, "Session does not support device rotation."} == Session.orientation(:test)
+  end
 
-  # test "set orientation" do
-  #   check :orientation, [:landscape]
-  # end
+  test "set orientation" do
+    assert {:error, "Session does not support device rotation."} == Session.orientation(:test, [:landscape])
+  end
 
   # test "element by id" do
   #   # This behaviour is currently undefined in the specification.
@@ -473,6 +472,7 @@ defmodule WebDriverPhantomJSSessionTest do
     assert {:ok, resp} = Mouse.double_click :test
     assert resp.status == 0
   end
+
 ############################################################################
 
   # Check that a request returns {ok, response} and the response status is 0
