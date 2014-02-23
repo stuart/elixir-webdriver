@@ -27,7 +27,11 @@ defmodule WebDriver.Browser do
 
       def handle_call {:start_session, session_name}, _sender, state do
         {:ok, pid} = :supervisor.start_child state.session_supervisor, [session_name]
-        {:reply, {:ok, pid}, state}
+        {:reply, {:ok, pid}, state.sessions([session_name | state.sessions])}
+      end
+
+      def handle_call :sessions, _sender, state do
+        {:reply, {:ok, state.sessions}, state}
       end
 
       def handle_cast(:stop, state) do
