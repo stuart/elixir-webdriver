@@ -13,7 +13,8 @@ defmodule WebDriverRemoteSessionTest do
   end
 
   teardown do
-    WebDriver.stop_all_browsers
+    WebDriver.stop_browser :remote_test_browser
+    WebDriver.stop_session :remote_session
   end
 
   teardown_all do
