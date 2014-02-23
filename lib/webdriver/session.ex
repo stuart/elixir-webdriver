@@ -45,7 +45,7 @@ defmodule WebDriver.Session do
   """
   def start_link state, name do
     state = state.name name
-    :gen_server.start_link({:local, name},__MODULE__, state, [])
+    :gen_server.start_link({:local, name}, __MODULE__ , state, [])
   end
 
   @doc """

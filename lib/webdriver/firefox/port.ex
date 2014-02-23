@@ -23,6 +23,7 @@ defmodule WebDriver.Firefox.Port do
                    session_supervisor: nil,
                    firefox_temp_dir: "",
                    kill_command: "",
+                   sessions: [],
                    http_port: nil
 
   def program_name _state do
