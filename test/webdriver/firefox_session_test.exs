@@ -465,7 +465,7 @@ defmodule WebDriverFirefoxSessionTest do
 ############################################################################
 
   # Check that a request returns {ok, response} and the response status is 0
-  defp check func, params // [] do
+  defp check func, params \\ [] do
     assert_response :erlang.apply Session, func, [:fftest | params]
   end
 
@@ -479,7 +479,7 @@ defmodule WebDriverFirefoxSessionTest do
 
   defp uuid_regexp do
     # Firefox wraps uuids in {}.
-    %r/^\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}$/
+    ~r/^\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}$/
   end
 
   defp is_element? elem do

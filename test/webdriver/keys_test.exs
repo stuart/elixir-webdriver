@@ -2,7 +2,6 @@ Code.require_file "../test_helper.exs", __DIR__
 
 defmodule WebDriverKeysTest do
   use ExUnit.Case, async: true
-  import Mock
 
   alias WebDriver.Keys
 

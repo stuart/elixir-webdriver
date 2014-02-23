@@ -59,7 +59,7 @@ defmodule WebDriver.Chrome.Port do
     :ok
   end
 
-  def browser_terminated state do
+  def browser_terminated _state do
     :ok
   end
 end

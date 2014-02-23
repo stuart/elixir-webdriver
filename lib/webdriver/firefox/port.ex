@@ -32,7 +32,6 @@ defmodule WebDriver.Firefox.Port do
 
   def installed? do
     [f|_] = arguments("")
-    IO.puts(f)
     File.exists?(f)
   end
 

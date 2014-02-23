@@ -73,7 +73,7 @@ defmodule WebDriver.Keys do
 
   Key codes that are available:
 
-#{Enum.sort(HashDict.to_list(@non_text_keys), fn({a,_},{b,_}) -> a > b end) |> Enum.reverse |>Enum.map(fn({c,msg}) -> "* `#{c}`\n" end)}
+#{Enum.sort(HashDict.to_list(@non_text_keys), fn({a,_},{b,_}) -> a > b end) |> Enum.reverse |>Enum.map(fn({c,_msg}) -> "* `#{c}`\n" end)}
 
   """
   def key key_code do

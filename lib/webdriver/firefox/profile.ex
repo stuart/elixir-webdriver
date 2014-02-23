@@ -103,7 +103,7 @@ defmodule WebDriver.Firefox.Profile do
 
   # Generate a filename safe random string.
   defp random_extension do
-    Regex.replace(%r/[=\/+]/, :base64.encode(:crypto.rand_bytes(8)), "")
+    Regex.replace(~r/[=\/+]/, :base64.encode(:crypto.rand_bytes(8)), "")
     |> String.downcase
   end
 

@@ -3,10 +3,6 @@ Code.require_file "test_server.exs", __DIR__
 defmodule WebDriverRemoteSessionTest do
   use ExUnit.Case
 
-  alias WebDriver.Session
-  alias WebDriver.Element
-  alias WebDriver.Mouse
-
   setup_all do
     :os.cmd 'phantomjs --webdriver=localhost:5555 &'
     {:ok, []}

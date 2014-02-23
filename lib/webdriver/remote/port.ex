@@ -49,7 +49,7 @@ defmodule WebDriver.Remote.Port do
     {:noreply, state.session_supervisor(pid)}
   end
 
-  def terminate _reason, state do
+  def terminate _reason, _state do
     :ok
   end
 end

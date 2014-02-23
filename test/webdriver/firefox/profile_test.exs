@@ -26,7 +26,7 @@ defmodule FirefoxProfileTest do
   end
 
   test "to_user_js is the correct format" do
-    assert Regex.match? %r/^(user_pref\("[^"]+",[^)]+\);\n?)+$/, Profile.to_user_js Profile.default_profile
+    assert Regex.match? ~r/^(user_pref\("[^"]+",[^)]+\);\n?)+$/, Profile.to_user_js Profile.default_profile
   end
 
   test "write_profile writes the profile to a tempfile", meta do

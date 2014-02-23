@@ -102,7 +102,7 @@ defmodule WebDriver.Session do
       name : The session server process to start the session on.
       desired_capabilities: Capability
   """
-  def start_session name, desired_capabilities // [{}] do
+  def start_session name, desired_capabilities \\ [{}] do
     :gen_server.call name, { :start_session,
                              [desiredCapabilities: desired_capabilities] }
   end
@@ -261,7 +261,7 @@ defmodule WebDriver.Session do
     Returns: The Javascript return value, which may be a number,
              string, list or object (tuple).
   """
-  def execute name, script, args // [] do
+  def execute name, script, args \\ [] do
     case javascript_enabled?(name) do
       true -> get_value name, {:execute, [script: script, args: args]}
       false -> {:error, "Javascript not enabled for this session."}
@@ -276,7 +276,7 @@ defmodule WebDriver.Session do
     Returns: The Javascript return value, which may be a number,
              string, list or object (tuple).
   """
-  def execute_async name, script, args // [] do
+  def execute_async name, script, args \\ [] do
     case javascript_enabled?(name) do
       true -> get_value name, {:execute, [script: script, args: args]}
       false -> {:error, "Javascript not enabled for this session."}
@@ -332,7 +332,7 @@ defmodule WebDriver.Session do
 
     NOTE: Firefox seems to have bug here where even passing "current" throws an error.
   """
-  def maximize_window name, window_handle // "current" do
+  def maximize_window name, window_handle \\ "current" do
     cmd name, {:maximize_window, [window_handle]}
   end
 
@@ -402,7 +402,7 @@ defmodule WebDriver.Session do
     set_cookie name, cookie_name, value, path, domain, expiry
   end
 
-  def set_cookie name, cookie_name, value, path, domain, expiry // in_one_hour do
+  def set_cookie name, cookie_name, value, path, domain, expiry \\ in_one_hour do
     cmd name, {:set_cookie,
         [cookie: [name: cookie_name, value: value, path: path, domain: domain, expiry: expiry]]}
   end

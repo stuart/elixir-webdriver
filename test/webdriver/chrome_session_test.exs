@@ -472,7 +472,7 @@ defmodule WebDriverChromeSessionTest do
 
 
   # Check that a request returns {ok, response} and the response status is 0
-  defp check func, params // [] do
+  defp check func, params \\ [] do
     assert_response :erlang.apply Session, func, [:cdtest | params]
   end
 
@@ -485,7 +485,7 @@ defmodule WebDriverChromeSessionTest do
   end
 
   defp uuid_regexp do
-    %r/^CDwindow-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+    ~r/^CDwindow-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
   end
 
   defp is_element? elem do

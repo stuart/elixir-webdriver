@@ -48,7 +48,7 @@ defmodule WebDriver.Protocol do
       iex> resp.value
       [{"build",[{"version","1.0.3"}]},{"os",[{"name","mac"},{"version","10.8 (Mountain Lion)"},{"arch","32bit"}]}]
   """
-  def status(root_url, _session_id // :null) do
+  def status(root_url, _session_id \\ :null) do
     get root_url, ["status"]
   end
 
@@ -72,7 +72,7 @@ defmodule WebDriver.Protocol do
     Gets a list of all sessions on the server.
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/sessions
   """
-  def sessions(root_url, _session_id // :null) do
+  def sessions(root_url, _session_id \\ :null) do
     get root_url, ["sessions"]
   end
 
@@ -268,7 +268,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [height: number, width: number]
   """
-  def window_size(root_url, session_id, window_handle // "current", parameters // :null) do
+  def window_size(root_url, session_id, window_handle \\ "current", parameters \\ :null) do
     do_window_size(root_url, session_id, window_handle, parameters)
   end
 
@@ -289,7 +289,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [x: number, y: number]
   """
-  def window_position(root_url, session_id, window_handle // "current", parameters // :null) do
+  def window_position(root_url, session_id, window_handle \\ "current", parameters \\ :null) do
     do_window_position(root_url, session_id, window_handle, parameters)
   end
 
@@ -306,7 +306,7 @@ defmodule WebDriver.Protocol do
     maximise the current window.
 
   """
-  def maximize_window(root_url, session_id, window_handle // "current") do
+  def maximize_window(root_url, session_id, window_handle \\ "current") do
     session_post root_url, session_id, "window/#{window_handle}/maximize"
   end
 
@@ -622,7 +622,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [button: 1(left) | 2(middle) | 3(right)]
   """
-  def mouse_click(root_url, session_id, parameters // [{}]) do
+  def mouse_click(root_url, session_id, parameters \\ [{}]) do
     session_post root_url, session_id, "click", parameters
   end
 
@@ -634,7 +634,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [button: 1(left) | 2(middle) | 3(right)]
   """
-  def mouse_button_down(root_url, session_id, parameters // [{}]) do
+  def mouse_button_down(root_url, session_id, parameters \\ [{}]) do
     session_post root_url, session_id, "buttondown", parameters
   end
 
@@ -646,7 +646,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [button: 1(left) | 2(middle) | 3(right)]
   """
-  def mouse_button_up(root_url, session_id, parameters // [{}]) do
+  def mouse_button_up(root_url, session_id, parameters \\ [{}]) do
     session_post root_url, session_id, "buttonup", parameters
   end
 
@@ -658,7 +658,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [button: 1(left) | 2(middle) | 3(right)]
   """
-  def mouse_double_click(root_url, session_id, parameters // [{}]) do
+  def mouse_double_click(root_url, session_id, parameters \\ [{}]) do
     session_post root_url, session_id, "doubleclick", parameters
   end
 
@@ -795,11 +795,11 @@ defmodule WebDriver.Protocol do
     send_request root_url, request
   end
 
-  defp session_post root_url, session_id, command, params // [{}] do
+  defp session_post root_url, session_id, command, params \\ [{}] do
     post root_url, ["session", session_id, command], params
   end
 
-  defp element_post root_url, session_id, element_id, command, params // [{}] do
+  defp element_post root_url, session_id, element_id, command, params \\ [{}] do
     post root_url, ["session", session_id, "element", element_id, command], params
   end
 
