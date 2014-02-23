@@ -16,7 +16,9 @@ defmodule WebDriver do
 
       * `browser` - The type of browser, :phantomjs or :firefox
       * `name` - An atom to refer to the browser for later calls.
-
+      * `root_url` - Used only for the Remote driver. This is the base url
+      of the webdriver server. It must be a complete URL eg: "http://localhost:5555/wd/hub"
+      This value is ignored for the other drivers, which set up their own root_url.
     """
   end
 

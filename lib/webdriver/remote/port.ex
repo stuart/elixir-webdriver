@@ -1,6 +1,19 @@
 defmodule WebDriver.Remote.Port do
   use GenServer.Behaviour
 
+  @moduledoc """
+    This port connects to a remote Web Driver server. Unlike the other ports
+    it does not manage starting and stopping of the server/browser.
+
+    To start this port you must pass in the root_url in the config
+    as a full url when starting it.
+
+        iex> config = WebDriver.Config.new(browser: :remote, name: :remote_test_browser,
+                      root_url: "http://localhost:5555/wd/hub")
+        iex> {:ok, pid} = WebDriver.start_browser config
+
+  """
+
   defrecord State, root_url: "",
                    supervisor: nil,
                    session_supervisor: nil,

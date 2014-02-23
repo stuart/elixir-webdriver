@@ -1,10 +1,11 @@
 # Web Driver for Elixir
 [![Build Status](https://travis-ci.org/stuart/elixir-webdriver.png?branch=master)](https://travis-ci.org/stuart/elixir-webdriver)
 
-Current Version 0.3.0
+Current Version 0.4.0
 
 This is an implementation of the WebDriver protocol client.
-It currently supports PhantomJS, FireFox and ChromeDriver.
+It currently supports PhantomJS, FireFox, ChromeDriver and remote webdriver
+servers (e.g. Selenium).
 
 Most of the basic functionality of the WebDriver JSON wire protocol works with
 all three browsers. Notable missing elements are touch events, local storage and
@@ -76,12 +77,19 @@ for your OS:
 * PhantomJS version 1.9.7 or later: http://phantomjs.org/
 * FireFox: Get a recent version, please... https://www.mozilla.org/en-US/firefox/new/
 * ChromeDriver version 2.9 or later and Chrome (or Chromium): http://chromedriver.storage.googleapis.com/index.html
+* Remote Driver: This driver does not manage starting and stopping the browser for you. To
+use this you must have a webdriver server such as Selenium or PhantomJS running at a known url.
 
 Currently I have only tested extensively on OSX, and Ubuntu Linux.
 It should work on most UNIX like platforms. There is some rudimentary
 Windows support code in here, but I'm pretty sure that it won't work.
 
 ## Changelog
+* 2014-02-24
+    - Added Remote driver
+    - Added listing of browsers
+    - Added listing of sessions
+    - Added stop_all_browsers function
 
 * 2014-02-14
     - Update to version 0.3.0
