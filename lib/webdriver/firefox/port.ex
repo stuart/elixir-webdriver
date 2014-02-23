@@ -23,7 +23,8 @@ defmodule WebDriver.Firefox.Port do
                    session_supervisor: nil,
                    firefox_temp_dir: "",
                    kill_command: "",
-                   http_port: nil
+                   http_port: nil,
+                   sessions: []
 
   def program_name _state do
     Path.join [ __DIR__, "shim.sh"]

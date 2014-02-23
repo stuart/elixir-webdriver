@@ -8,7 +8,7 @@ defmodule WebDriver do
     The current version supports PhantomJS and FireFox.
   """
 
-  defrecord Config, browser: :phantomjs, name: nil do
+  defrecord Config, browser: :phantomjs, name: nil, root_url: "" do
     @moduledoc """
       Configuration for a WebDriver browser instance.
       Note that this record will have fields added as development of 

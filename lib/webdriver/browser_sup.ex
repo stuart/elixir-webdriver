@@ -11,7 +11,8 @@ defmodule WebDriver.BrowserSup do
 
   @browsers [ firefox: WebDriver.Firefox.Port,
               phantomjs: WebDriver.PhantomJS.Port,
-              chrome: WebDriver.Chrome.Port ]
+              chrome: WebDriver.Chrome.Port,
+              remote: WebDriver.Remote.Port ]
 
   @doc """
     Starts up a browser. The browser is then
