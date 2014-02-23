@@ -17,5 +17,4 @@ defmodule WebDriverKeysTest do
   test "A string containing key codes" do
     assert "Test#{Keys.key(:key_enter)}String" == "Test\x{e007}String"
   end
-
 end
