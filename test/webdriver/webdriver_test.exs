@@ -32,6 +32,4 @@ defmodule WebDriverTest do
     WebDriver.start_session :test_browser_2, :test_session_2
     assert WebDriver.sessions == [:test_session_2, :test_session_1]
   end
-
-
 end
