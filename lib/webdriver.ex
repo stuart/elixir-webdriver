@@ -3,9 +3,16 @@ defmodule WebDriver do
 
   @moduledoc """
     This is the Elixir WebDriver application. It can be used to drive a
-    WebDriver enabled webbrowser via Elixir code.
+    WebDriver enabled browser via Elixir code.
 
-    The current version supports PhantomJS and FireFox.
+    The current version supports PhantomJS, ChromeDriver, FireFox and remote
+    Web Driver servers (e.g. Selenium).
+
+    All drivers except 'remote' manage running the browser in the application
+    supervision tree.
+
+    This code is written to be very similar to the Selenium bindings for other
+    languages.
   """
 
   defrecord Config, browser: :phantomjs, name: nil, root_url: "" do
