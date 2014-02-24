@@ -1,0 +1,12 @@
+sh.dump
+*.ez
+erl_crash.dump
+.dialyzer_plt
+.dialyzer.base_plt
+.*.swp
+docs
+.DSStore
+deps
+docs
+ebin
+_build
