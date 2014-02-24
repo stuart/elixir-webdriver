@@ -20,11 +20,17 @@ add this to mix.exs dep block:
 
 and make sure the application block of mix.exs includes:
 ``` applications: [ :webdriver ] ```
+or call
+``` :application.start :webdriver ``` in your code.
 
 Generate documentation with ```mix docs```.
-Run the tests with ```mix test```. The tests currently assume that you have
-PhantomJS and Firefox installed in the usual locations. It does use
-```:os.find_executable``` to find the appropriate paths.
+Run the tests with ```mix test```.
+The tests will check if PhantomJS, ChromeDriver and Firefox are installed and
+only run the appropriate ones. It uses
+```:os.find_executable``` to find the appropriate paths so check that if a
+browser is not found.
+
+##[Documentation](http://stuart.github.io/elixir-webdriver/)
 
 ## Usage
 
@@ -34,9 +40,15 @@ the browsers to be run under.
 You can start a browser instance with ```WebDriver.start_browser config```
 where ```config``` is a WebDriver.Config record.
 
-Currently the config is very simple it just consists of two fields:
- * :browser - the type of browser to open, either :phantomjs or :firefox
+Currently the config is very simple it just consists of two or three fields:
+ * :browser - the type of browser to open, one of
+      - :phantomjs
+      - :firefox
+      - :chrome
+      - :remote
  * :name - an atom to refer to the browser in later calls.
+ * :root_url - Only used for with the :remote browser. This is the base url for
+ web driver calls.
 
 You can then start up a session on the browser with
 ```WebDriver.start_session browser_name, session_name```
