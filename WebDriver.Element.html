@@ -30,17 +30,17 @@
           <p>This module handles WebDriver calls directed at specific DOM elements.</p>
 
 <p>They all take an WebDriver.Element.Reference record as the first argument.
-  The WebDriver.Element.Reference is supposed to be an opaque data type and 
+  The WebDriver.Element.Reference is supposed to be an opaque data type and
   is not meant to be manipulated.</p>
 
-<p>Elements are associated with a particular session and have no meaning 
+<p>Elements are associated with a particular session and have no meaning
   outside that WedDriver session.</p>
 
 <p>Accessing an element that does not exist on the page will return a response
   of <code>{ :stale_element_reference, response }</code></p>
 
-<p>All the command functions will return <code>{:ok, response}</code> or 
-  <code>{error, response}</code> where <code>error</code> is one of those listed in 
+<p>All the command functions will return <code>{:ok, response}</code> or
+  <code>{error, response}</code> where <code>error</code> is one of those listed in
   WebDriver.Error.</p>
 
         </div>
@@ -226,7 +226,7 @@
 <p>Returns a string.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L193" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L201" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -338,7 +338,7 @@
 <p>Returns [width: w, height: h]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L176" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L180" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">

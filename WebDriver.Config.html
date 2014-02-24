@@ -30,12 +30,15 @@
       
         <div id="moduledoc" class="docstring">
           <p>Configuration for a WebDriver browser instance.
-  Note that this record will have fields added as development of 
+  Note that this record will have fields added as development of
   the library progresses.</p>
 
 <ul>
 <li><code>browser</code> - The type of browser, :phantomjs or :firefox</li>
 <li><code>name</code> - An atom to refer to the browser for later calls.</li>
+<li><code>root_url</code> - Used only for the Remote driver. This is the base url
+of the webdriver server. It must be a complete URL eg: &quot;http://localhost:5555/wd/hub&quot;
+This value is ignored for the other drivers, which set up their own root_url.</li>
 </ul>
 
         </div>
@@ -61,6 +64,12 @@
               </span>
             </li>
           
+            <li>
+              <span class="summary_signature">
+                <strong>root_url:</strong> ""
+              </span>
+            </li>
+          
         </ul>
       
 
@@ -75,13 +84,13 @@
           <h2>Types</h2>
           <div class="type_detail">
   <p class="typespec" id="t:t/0">
-    <a href="#t:t/0">t</a> :: {WebDriver.Config, term, term}
+    <a href="#t:t/0">t</a> :: {WebDriver.Config, term, term, term}
   </p>
   
 </div>
 <div class="type_detail">
   <p class="typespec" id="t:options/0">
-    <a href="#t:options/0">options</a> :: [browser: term, name: term] | [{<a href="http://elixir-lang.org/docs/master/String.html#t:t/0">String.t</a>, term}]
+    <a href="#t:options/0">options</a> :: [browser: term, name: term, root_url: term] | [{<a href="http://elixir-lang.org/docs/master/String.html#t:t/0">String.t</a>, term}]
   </p>
   
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WebDriver.Firefox.Port</title>
+    <title>WebDriver.Chrome.Port</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
 
@@ -21,14 +21,14 @@
 
     <div id="content">
       <h1>
-        WebDriver.Firefox.Port
+        WebDriver.Chrome.Port
         
       </h1>
 
       
         <div id="moduledoc" class="docstring">
-          <p>This module is a server that controls the running of the Firefox browser.
-  It uses an Erlang port to communicate with the browser.</p>
+          <p>This module is a server that controls the running of the Chrome browser.
+  It uses an Erlang port to communicate with chromedriver.</p>
 
 <p>None of the functions here are user facing and are controlled by the
   BrowserSup.</p>
@@ -37,7 +37,7 @@
       
 
       
-        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L1" target="_blank" class="view_source">Source</a>
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/chrome/port.ex#L1" target="_blank" class="view_source">Source</a>
       
 
       
@@ -46,6 +46,10 @@
         <h2 id="functions_summary">Functions summary</h2>
         <table class="summary">
           <tr>
+  <td class="summary_signature"><a href="#arguments/1">arguments(state)</a></td>
+  
+</tr>
+<tr>
   <td class="summary_signature"><a href="#browser_terminated/1">browser_terminated(state)</a></td>
   
 </tr>
@@ -54,15 +58,11 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#installed?/0">installed?()</a></td>
-  
-</tr>
-<tr>
   <td class="summary_signature"><a href="#normal_termination/1">normal_termination(state)</a></td>
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#program_name/1">program_name(_state)</a></td>
+  <td class="summary_signature"><a href="#program_name/1">program_name(state)</a></td>
   
 </tr>
 <tr>
@@ -91,13 +91,23 @@
         <div id="functions_details" class="details_list">
           <h2>Functions</h2>
           <div class="detail">
+  <p class="signature" id="arguments/1">
+    <strong>arguments(state)</strong>
+  </p>
+  
+  <div class="docstring"></div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/chrome/port.ex#L39" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
   <p class="signature" id="browser_terminated/1">
     <strong>browser_terminated(state)</strong>
   </p>
   
   <div class="docstring"></div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L106" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/chrome/port.ex#L61" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -107,17 +117,7 @@
   
   <div class="docstring"></div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L73" target="_blank" class="view_source">Source</a>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="installed?/0">
-    <strong>installed?()</strong>
-  </p>
-  
-  <div class="docstring"></div>
-  
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L33" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/chrome/port.ex#L31" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -127,17 +127,17 @@
   
   <div class="docstring"></div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L99" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/chrome/port.ex#L54" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
   <p class="signature" id="program_name/1">
-    <strong>program_name(_state)</strong>
+    <strong>program_name(state)</strong>
   </p>
   
   <div class="docstring"></div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L29" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/chrome/port.ex#L35" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -147,7 +147,7 @@
   
   <div class="docstring"></div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L67" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/chrome/port.ex#L25" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -157,7 +157,7 @@
   
   <div class="docstring"></div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L3" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/chrome/port.ex#L3" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -167,7 +167,7 @@
   
   <div class="docstring"></div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/firefox/port.ex#L83" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/chrome/port.ex#L44" target="_blank" class="view_source">Source</a>
   
 </div>
 

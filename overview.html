@@ -19,7 +19,7 @@
       if (window.top.frames.main) document.body.className = 'frames';
     </script>
 	
-    <h1>webdriver v0.2.0</h1>
+    <h1>webdriver v0.4.0</h1>
 
     <div id="content">
       
@@ -47,6 +47,14 @@
   
     <td class="summary_synopsis"><p>The WebDriver.BrowserSup is a supervisor responsible for overseeing
   the running of browser instances and their associated session supervisors.</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="WebDriver.Chrome.Port.html">WebDriver.Chrome.Port</a></td>
+  
+    <td class="summary_synopsis"><p>This module is a server that controls the running of the Chrome browser.
+  It uses an Erlang port to communicate with chromedriver.</p>
 </td>
   
 </tr>
@@ -81,6 +89,10 @@
   
 </tr>
 <tr>
+  <td class="summary_signature"><a href="WebDriver.Keys.html">WebDriver.Keys</a></td>
+  
+</tr>
+<tr>
   <td class="summary_signature"><a href="WebDriver.Mouse.html">WebDriver.Mouse</a></td>
   
     <td class="summary_synopsis"><p>MOUSE EVENTS CURRENTLY DO NOT WORK IN FIREFOX</p>
@@ -108,6 +120,14 @@
     <td class="summary_synopsis"><p>Implements the HTTP JSON wire protocol for WebDriver.
   This is the internal protocol and is supposed to be called via the
   WebDriver session server rather than directly.</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="WebDriver.Remote.Port.html">WebDriver.Remote.Port</a></td>
+  
+    <td class="summary_synopsis"><p>This port connects to a remote Web Driver server. Unlike the other ports
+  it does not manage starting and stopping of the server/browser.</p>
 </td>
   
 </tr>
@@ -155,7 +175,7 @@
   <td class="summary_signature"><a href="WebDriver.Config.html">WebDriver.Config</a></td>
   
     <td class="summary_synopsis"><p>Configuration for a WebDriver browser instance.
-  Note that this record will have fields added as development of 
+  Note that this record will have fields added as development of
   the library progresses.</p>
 </td>
   

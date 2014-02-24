@@ -181,6 +181,13 @@
   
 </tr>
 <tr>
+  <td class="summary_signature"><a href="#javascript_enabled?/1">javascript_enabled?(name)</a></td>
+  
+    <td class="summary_synopsis"><p>True if javascript is enabled for this session</p>
+</td>
+  
+</tr>
+<tr>
   <td class="summary_signature"><a href="#keys/2">keys(name, value)</a></td>
   
     <td class="summary_synopsis"><p>Send a list of keystrokes to the currently active element.
@@ -193,6 +200,13 @@
   
     <td class="summary_synopsis"><p>Maximise the specified window. Use &quot;current&quot; or simply do not specify a handle to
   maximise the current window.</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#negotiated_capabilities/1">negotiated_capabilities(name)</a></td>
+  
+    <td class="summary_synopsis"><p>Returns the negotiated capabilities of the current session.</p>
 </td>
   
 </tr>
@@ -218,6 +232,13 @@
   
     <td class="summary_synopsis"><p>Refresh the current page in the browser.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/refresh">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/refresh</a></p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#rotatable?/1">rotatable?(name)</a></td>
+  
+    <td class="summary_synopsis"><p>True if this session supports device rotation.</p>
 </td>
   
 </tr>
@@ -331,6 +352,13 @@
   
 </tr>
 <tr>
+  <td class="summary_signature"><a href="#takes_screenshot?/1">takes_screenshot?(name)</a></td>
+  
+    <td class="summary_synopsis"><p>True if this session can take screenshots.</p>
+</td>
+  
+</tr>
+<tr>
   <td class="summary_signature"><a href="#title/1">title(name)</a></td>
   
     <td class="summary_synopsis"><p>Retreive the current page title.
@@ -417,7 +445,7 @@
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/active">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/active</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L511" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L556" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -429,7 +457,7 @@
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/back">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/back</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L208" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L235" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -441,7 +469,7 @@
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/window">https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/window</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L289" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L325" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -453,7 +481,7 @@
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/cookie">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/cookie</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L337" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L381" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -465,7 +493,7 @@
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/cookie/:name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/cookie/:name</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L377" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L421" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -477,7 +505,7 @@
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/cookie">https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/cookie</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L370" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L414" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -519,7 +547,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 </ul>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L451" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L495" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -536,7 +564,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 <p>Parameters: [using :: atom, value :: String, start_element :: WebDriver.Element.Reference]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L466" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L510" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -551,7 +579,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
   Returns a list of Element.Reference records.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L486" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L531" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -567,7 +595,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
   Returns a list of Element.Reference records.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L500" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L545" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -591,7 +619,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
            string, list or object (tuple).</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L237" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L264" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -607,7 +635,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
            string, list or object (tuple).</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L249" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L279" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -619,7 +647,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/forward">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/forward</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L200" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L227" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -633,7 +661,18 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 <p>Parameters: [id: string | number | :null | WebElement]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L269" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L305" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <p class="signature" id="javascript_enabled?/1">
+    <strong>javascript_enabled?(name)</strong>
+  </p>
+  
+  <div class="docstring"><p>True if javascript is enabled for this session</p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L77" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -647,7 +686,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 <p>Parameters: [ value :: String ]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L525" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L570" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -661,7 +700,18 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 <p>NOTE: Firefox seems to have bug here where even passing &quot;current&quot; throws an error.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L299" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L335" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <p class="signature" id="negotiated_capabilities/1">
+    <strong>negotiated_capabilities(name)</strong>
+  </p>
+  
+  <div class="docstring"><p>Returns the negotiated capabilities of the current session.</p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L69" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -674,7 +724,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/orientation">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/orientation</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L534" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L579" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -689,7 +739,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
   Screen orientaton can be either :portrait or :landscape.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L545" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L593" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -701,7 +751,18 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/refresh">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/refresh</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L216" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L243" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <p class="signature" id="rotatable?/1">
+    <strong>rotatable?(name)</strong>
+  </p>
+  
+  <div class="docstring"><p>True if this session supports device rotation.</p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L91" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -715,7 +776,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 <p>Returns: PngImage :: Binary</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L259" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L292" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -729,7 +790,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 <p>Returns a capability record.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L107" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L134" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -743,7 +804,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 <p>Returns a list of session ids.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L97" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L124" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -757,7 +818,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 <p>Parameters: ms: number</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L128" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L155" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -771,7 +832,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 <p>Parameters: [cookie: object]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L353" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L397" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -781,7 +842,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
   
   <div class="docstring"></div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L361" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L405" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -795,7 +856,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 <p>Parameters: [ms: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L138" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L165" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -810,7 +871,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 <p>Parameters type: &quot;script&quot;|&quot;implicit&quot;, ms: number</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L118" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L145" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -822,7 +883,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/source">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/source</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L385" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L429" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -851,7 +912,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
     desired_capabilities: Capability</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L78" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L105" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -861,11 +922,9 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
   
   <div class="docstring"><p>Returns the status of the WebDriver server.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status</a></p>
-
-<p>This returns a capability record.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L64" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L62" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -888,7 +947,18 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
   a request to the WebDriver server to stop the session.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L87" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L114" target="_blank" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <p class="signature" id="takes_screenshot?/1">
+    <strong>takes_screenshot?(name)</strong>
+  </p>
+  
+  <div class="docstring"><p>True if this session can take screenshots.</p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L84" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -900,7 +970,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/title">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/title</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L393" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L437" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -914,7 +984,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 <p>Returns: url :: String</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L170" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L197" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -941,7 +1011,7 @@ iex&gt; WebDriver.Session.url :session
 <p>Parameters [url :: String]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L192" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L219" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -957,7 +1027,7 @@ iex&gt; WebDriver.Session.url :session
 <p>Parameters: [window_handle :: String]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L281" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L317" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -972,7 +1042,7 @@ iex&gt; WebDriver.Session.url :session
 <p>Returns: window_handle :: String</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L149" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L176" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -987,7 +1057,7 @@ iex&gt; WebDriver.Session.url :session
 <p>Returns: window_handles :: List[String]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L160" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L187" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -1003,7 +1073,7 @@ iex&gt; WebDriver.Session.url :session
 <p>Returns: [height: number, width: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L311" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L347" target="_blank" class="view_source">Source</a>
   
 </div>
 <div class="detail">
@@ -1022,7 +1092,7 @@ iex&gt; WebDriver.Session.url :session
 <p>Parameters: [height: number, width: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L329" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/session.ex#L373" target="_blank" class="view_source">Source</a>
   
 </div>
 
