@@ -42,35 +42,35 @@
         <h2 id="functions_summary">Functions summary</h2>
         <table class="summary">
           <tr>
-  <td class="summary_signature"><a href="#button_down/2">button_down(session, arg2)</a></td>
+  <td class="summary_signature"><a href="#button_down/2">button_down(session, button \\ :left)</a></td>
   
     <td class="summary_synopsis"><p>Send a Button Down event.</p>
 </td>
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#button_up/2">button_up(session, arg2)</a></td>
+  <td class="summary_signature"><a href="#button_up/2">button_up(session, button \\ :left)</a></td>
   
     <td class="summary_synopsis"><p>Send a Button Up event.</p>
 </td>
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#click/2">click(session, arg2)</a></td>
+  <td class="summary_signature"><a href="#click/2">click(session, button \\ :left)</a></td>
   
     <td class="summary_synopsis"><p>Click a mouse button.</p>
 </td>
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#double_click/2">double_click(session, arg2)</a></td>
+  <td class="summary_signature"><a href="#double_click/2">double_click(session, button \\ :left)</a></td>
   
     <td class="summary_synopsis"><p>Send a double click mouse event.</p>
 </td>
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#move_to/3">move_to(element, arg2, arg3)</a></td>
+  <td class="summary_signature"><a href="#move_to/3">move_to(element, offsetx \\ 0, offsety \\ 0)</a></td>
   
     <td class="summary_synopsis"><p>Move the mouse to the specified element.</p>
 </td>
@@ -91,7 +91,7 @@
           <h2>Functions</h2>
           <div class="detail">
   <p class="signature" id="button_down/2">
-    <strong>button_down(session, arg2)</strong>
+    <strong>button_down(session, button \\ :left)</strong>
   </p>
   
   <div class="docstring"><p>Send a Button Down event.</p>
@@ -108,7 +108,7 @@
 </div>
 <div class="detail">
   <p class="signature" id="button_up/2">
-    <strong>button_up(session, arg2)</strong>
+    <strong>button_up(session, button \\ :left)</strong>
   </p>
   
   <div class="docstring"><p>Send a Button Up event.</p>
@@ -125,7 +125,7 @@
 </div>
 <div class="detail">
   <p class="signature" id="click/2">
-    <strong>click(session, arg2)</strong>
+    <strong>click(session, button \\ :left)</strong>
   </p>
   
   <div class="docstring"><p>Click a mouse button.</p>
@@ -142,7 +142,7 @@
 </div>
 <div class="detail">
   <p class="signature" id="double_click/2">
-    <strong>double_click(session, arg2)</strong>
+    <strong>double_click(session, button \\ :left)</strong>
   </p>
   
   <div class="docstring"><p>Send a double click mouse event.</p>
@@ -159,7 +159,7 @@
 </div>
 <div class="detail">
   <p class="signature" id="move_to/3">
-    <strong>move_to(element, arg2, arg3)</strong>
+    <strong>move_to(element, offsetx \\ 0, offsety \\ 0)</strong>
   </p>
   
   <div class="docstring"><p>Move the mouse to the specified element.</p>

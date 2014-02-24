@@ -328,7 +328,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#maximize_window/3">maximize_window(root_url, session_id, arg3)</a></td>
+  <td class="summary_signature"><a href="#maximize_window/3">maximize_window(root_url, session_id, window_handle \\ &quot;current&quot;)</a></td>
   
     <td class="summary_synopsis"><p>Maximise the specified window. Use &quot;current&quot; or simply do not specify a handle to
   maximise the current window.</p>
@@ -336,7 +336,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#mouse_button_down/3">mouse_button_down(root_url, session_id, arg3)</a></td>
+  <td class="summary_signature"><a href="#mouse_button_down/3">mouse_button_down(root_url, session_id, parameters \\ [{}])</a></td>
   
     <td class="summary_synopsis"><p>Send a mouse button down event.
   The parameter is a number indicating which button is to be pressed.
@@ -346,7 +346,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#mouse_button_up/3">mouse_button_up(root_url, session_id, arg3)</a></td>
+  <td class="summary_signature"><a href="#mouse_button_up/3">mouse_button_up(root_url, session_id, parameters \\ [{}])</a></td>
   
     <td class="summary_synopsis"><p>Send a mouse button up event. Every button down event needs to be followed by this.
   The parameter is a number indicating which button is to be raised.
@@ -356,7 +356,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#mouse_click/3">mouse_click(root_url, session_id, arg3)</a></td>
+  <td class="summary_signature"><a href="#mouse_click/3">mouse_click(root_url, session_id, parameters \\ [{}])</a></td>
   
     <td class="summary_synopsis"><p>Send a mouse click at the position of the last move_to command.
   The parameter is a number indicating which button is to be clicked.
@@ -366,7 +366,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#mouse_double_click/3">mouse_double_click(root_url, session_id, arg3)</a></td>
+  <td class="summary_signature"><a href="#mouse_double_click/3">mouse_double_click(root_url, session_id, parameters \\ [{}])</a></td>
   
     <td class="summary_synopsis"><p>Send a double click at the position of the last move_to command.
   The parameter is a number indicating which button is to be double clicked.
@@ -440,7 +440,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#sessions/2">sessions(root_url, arg2)</a></td>
+  <td class="summary_signature"><a href="#sessions/2">sessions(root_url, _session_id \\ :null)</a></td>
   
     <td class="summary_synopsis"><p>Gets a list of all sessions on the server.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/sessions">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/sessions</a></p>
@@ -509,7 +509,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#status/2">status(root_url, arg2)</a></td>
+  <td class="summary_signature"><a href="#status/2">status(root_url, _session_id \\ :null)</a></td>
   
     <td class="summary_synopsis"><p>Returns the status of the WebDriver server.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status</a></p>
@@ -665,7 +665,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#window_position/4">window_position(root_url, session_id, arg3, arg4)</a></td>
+  <td class="summary_signature"><a href="#window_position/4">window_position(root_url, session_id, window_handle \\ &quot;current&quot;, parameters \\ :null)</a></td>
   
     <td class="summary_synopsis"><p>Retreive the window position for the specified window or if not specified, the current window.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/window/:windowHandle/position">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/window/:windowHandle/position</a></p>
@@ -673,7 +673,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#window_size/4">window_size(root_url, session_id, arg3, arg4)</a></td>
+  <td class="summary_signature"><a href="#window_size/4">window_size(root_url, session_id, window_handle \\ &quot;current&quot;, parameters \\ :null)</a></td>
   
     <td class="summary_synopsis"><p>Retreive the window size. If a window handle is not specified it retreives the
   current window.</p>
@@ -1124,7 +1124,7 @@ iex&gt; resp.value
 </div>
 <div class="detail">
   <p class="signature" id="maximize_window/3">
-    <strong>maximize_window(root_url, session_id, arg3)</strong>
+    <strong>maximize_window(root_url, session_id, window_handle \\ &quot;current&quot;)</strong>
   </p>
   
   <div class="docstring"><p>Maximise the specified window. Use &quot;current&quot; or simply do not specify a handle to
@@ -1136,7 +1136,7 @@ iex&gt; resp.value
 </div>
 <div class="detail">
   <p class="signature" id="mouse_button_down/3">
-    <strong>mouse_button_down(root_url, session_id, arg3)</strong>
+    <strong>mouse_button_down(root_url, session_id, parameters \\ [{}])</strong>
   </p>
   
   <div class="docstring"><p>Send a mouse button down event.
@@ -1152,7 +1152,7 @@ iex&gt; resp.value
 </div>
 <div class="detail">
   <p class="signature" id="mouse_button_up/3">
-    <strong>mouse_button_up(root_url, session_id, arg3)</strong>
+    <strong>mouse_button_up(root_url, session_id, parameters \\ [{}])</strong>
   </p>
   
   <div class="docstring"><p>Send a mouse button up event. Every button down event needs to be followed by this.
@@ -1168,7 +1168,7 @@ iex&gt; resp.value
 </div>
 <div class="detail">
   <p class="signature" id="mouse_click/3">
-    <strong>mouse_click(root_url, session_id, arg3)</strong>
+    <strong>mouse_click(root_url, session_id, parameters \\ [{}])</strong>
   </p>
   
   <div class="docstring"><p>Send a mouse click at the position of the last move_to command.
@@ -1184,7 +1184,7 @@ iex&gt; resp.value
 </div>
 <div class="detail">
   <p class="signature" id="mouse_double_click/3">
-    <strong>mouse_double_click(root_url, session_id, arg3)</strong>
+    <strong>mouse_double_click(root_url, session_id, parameters \\ [{}])</strong>
   </p>
   
   <div class="docstring"><p>Send a double click at the position of the last move_to command.
@@ -1300,7 +1300,7 @@ iex&gt; resp.value
 </div>
 <div class="detail">
   <p class="signature" id="sessions/2">
-    <strong>sessions(root_url, arg2)</strong>
+    <strong>sessions(root_url, _session_id \\ :null)</strong>
   </p>
   
   <div class="docstring"><p>Gets a list of all sessions on the server.
@@ -1424,7 +1424,7 @@ iex&gt; resp.session_id
 </div>
 <div class="detail">
   <p class="signature" id="status/2">
-    <strong>status(root_url, arg2)</strong>
+    <strong>status(root_url, _session_id \\ :null)</strong>
   </p>
   
   <div class="docstring"><p>Returns the status of the WebDriver server.
@@ -1692,7 +1692,7 @@ iex&gt; resp.value
 </div>
 <div class="detail">
   <p class="signature" id="window_position/4">
-    <strong>window_position(root_url, session_id, arg3, arg4)</strong>
+    <strong>window_position(root_url, session_id, window_handle \\ &quot;current&quot;, parameters \\ :null)</strong>
   </p>
   
   <div class="docstring"><p>Retreive the window position for the specified window or if not specified, the current window.
@@ -1709,7 +1709,7 @@ iex&gt; resp.value
 </div>
 <div class="detail">
   <p class="signature" id="window_size/4">
-    <strong>window_size(root_url, session_id, arg3, arg4)</strong>
+    <strong>window_size(root_url, session_id, window_handle \\ &quot;current&quot;, parameters \\ :null)</strong>
   </p>
   
   <div class="docstring"><p>Retreive the window size. If a window handle is not specified it retreives the

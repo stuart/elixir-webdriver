@@ -149,7 +149,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#execute/3">execute(name, script, arg3)</a></td>
+  <td class="summary_signature"><a href="#execute/3">execute(name, script, args \\ [])</a></td>
   
     <td class="summary_synopsis"><p>Execute Javascript in the browser and return the result.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute</a></p>
@@ -157,7 +157,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#execute_async/3">execute_async(name, script, arg3)</a></td>
+  <td class="summary_signature"><a href="#execute_async/3">execute_async(name, script, args \\ [])</a></td>
   
     <td class="summary_synopsis"><p>Execute Javascript asynchronously in the browser and return the result.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute_async">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute_async</a></p>
@@ -196,7 +196,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#maximize_window/2">maximize_window(name, arg2)</a></td>
+  <td class="summary_signature"><a href="#maximize_window/2">maximize_window(name, window_handle \\ &quot;current&quot;)</a></td>
   
     <td class="summary_synopsis"><p>Maximise the specified window. Use &quot;current&quot; or simply do not specify a handle to
   maximise the current window.</p>
@@ -283,7 +283,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#set_cookie/6">set_cookie(name, cookie_name, value, path, domain, arg6)</a></td>
+  <td class="summary_signature"><a href="#set_cookie/6">set_cookie(name, cookie_name, value, path, domain, expiry \\ in_one_hour)</a></td>
   
 </tr>
 <tr>
@@ -319,7 +319,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#start_session/2">start_session(name, arg2)</a></td>
+  <td class="summary_signature"><a href="#start_session/2">start_session(name, desired_capabilities \\ [{}])</a></td>
   
     <td class="summary_synopsis"><p>Start a session with the desired capabilities on the browser.
   This is automatically called when the Session server starts, but in
@@ -600,7 +600,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 </div>
 <div class="detail">
   <p class="signature" id="execute/3">
-    <strong>execute(name, script, arg3)</strong>
+    <strong>execute(name, script, args \\ [])</strong>
   </p>
   
   <div class="docstring"><p>Execute Javascript in the browser and return the result.
@@ -624,7 +624,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 </div>
 <div class="detail">
   <p class="signature" id="execute_async/3">
-    <strong>execute_async(name, script, arg3)</strong>
+    <strong>execute_async(name, script, args \\ [])</strong>
   </p>
   
   <div class="docstring"><p>Execute Javascript asynchronously in the browser and return the result.
@@ -691,7 +691,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 </div>
 <div class="detail">
   <p class="signature" id="maximize_window/2">
-    <strong>maximize_window(name, arg2)</strong>
+    <strong>maximize_window(name, window_handle \\ &quot;current&quot;)</strong>
   </p>
   
   <div class="docstring"><p>Maximise the specified window. Use &quot;current&quot; or simply do not specify a handle to
@@ -837,7 +837,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 </div>
 <div class="detail">
   <p class="signature" id="set_cookie/6">
-    <strong>set_cookie(name, cookie_name, value, path, domain, arg6)</strong>
+    <strong>set_cookie(name, cookie_name, value, path, domain, expiry \\ in_one_hour)</strong>
   </p>
   
   <div class="docstring"></div>
@@ -899,7 +899,7 @@ WebDriver.Element.Reference[id: &quot;:wdc:1373691496543&quot;, session: :test]<
 </div>
 <div class="detail">
   <p class="signature" id="start_session/2">
-    <strong>start_session(name, arg2)</strong>
+    <strong>start_session(name, desired_capabilities \\ [{}])</strong>
   </p>
   
   <div class="docstring"><p>Start a session with the desired capabilities on the browser.
