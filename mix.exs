@@ -18,7 +18,7 @@ defmodule WebDriver.Mixfile do
   def application do
     [
       mod: { WebDriver, []},
-      registered: [ :webdriver ],
+      registered:   [ :webdriver ],
       applications: [ :httpotion ],
       env: [ debug_browser: false ]
     ]
@@ -27,8 +27,8 @@ defmodule WebDriver.Mixfile do
   # Returns the list of dependencies in the format:
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
-    [{:httpotion, "0.2.3", github: "myfreeweb/httpotion"},
-     {:jsonex,    "2.0.0", github: "marcelog/jsonex"},
+    [{:httpotion, "~> 0.2.0", github: "myfreeweb/httpotion"},
+     {:jsonex,    "~> 2.0.0", github: "marcelog/jsonex"},
      {:ex_doc,             github: "elixir-lang/ex_doc"},
      ]
   end
