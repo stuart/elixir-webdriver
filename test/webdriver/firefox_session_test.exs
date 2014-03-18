@@ -66,7 +66,7 @@ defmodule WebDriverFirefoxSessionTest do
   end
 
   test "set_implicit_wait_timeout" do
-    check :set_implicit_wait_timeout, [5000]
+    check :set_implicit_wait_timeout, [1000]
   end
 
   test "window_handle" do
