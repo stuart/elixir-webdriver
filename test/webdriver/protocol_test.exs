@@ -435,19 +435,19 @@ defmodule WebDriverProtocolTest do
   end
 
   def post(_url, body, _headers) do
-    HTTPotion.Response[body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{Jsonex.encode body}}",
+    HTTPotion.Response[body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{:jsx.encode body}}",
                        status_code: 201, headers: []]
   end
 
   # Mocks a response to a GET request. Just returns an HTTPotion Response
   def get(_url, _headers) do
-    HTTPotion.Response[body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{Jsonex.encode(:null)}}",
+    HTTPotion.Response[body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{:jsx.encode(:null)}}",
                        status_code: 200, headers: []]
   end
 
   # Mocks a response to a DELETE request. Just returns an HTTPotion Response
   def delete(_url, _headers) do
-    HTTPotion.Response[body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{Jsonex.encode(:null)}}",
+    HTTPotion.Response[body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{:jsx.encode(:null)}}",
                        status_code: 204, headers: []]
   end
 

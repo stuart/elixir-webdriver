@@ -382,10 +382,8 @@ defmodule WebDriver.Session do
   end
 
   defp do_window_size response do
-    resp = HashDict.new(response)
-    {:ok, h} = HashDict.fetch(resp,"height")
-    {:ok, w} = HashDict.fetch(resp,"width")
-    [height: h,  width: w]
+    resp = Map.new(response)
+    [height: resp["height"],  width: response["width"]]
   end
 
   @doc """

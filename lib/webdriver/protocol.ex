@@ -805,7 +805,7 @@ defmodule WebDriver.Protocol do
 
   defp post root_url, path_elements, params do
     url = url_for root_url, path_elements
-    json =  Jsonex.encode params
+    json =  :jsx.encode params
     request = Request[method: :POST, url: url,
          headers: ["Content-Type": "application/json;charset=UTF-8","Content-Length": byte_size(json)],
          body: json]
@@ -892,7 +892,7 @@ defmodule WebDriver.Protocol do
   end
 
   defp parse_response_body body do
-    build_response Jsonex.decode(body)
+    build_response :jsx.decode(body)
   end
 
   defp build_response([{"sessionId", session_id}, {"status", status}, {"value", value }])do

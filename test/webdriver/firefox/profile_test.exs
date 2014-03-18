@@ -15,14 +15,14 @@ defmodule FirefoxProfileTest do
 
   test "set port sets the port key correctly" do
     profile = Profile.set_port Profile.default_profile, 6666
-    assert 6666 == HashDict.get(profile, "webdriver_firefox_port")
+    assert 6666 == profile["webdriver_firefox_port"]
   end
 
   test "cannot set the port to an invalid value" do
     profile = Profile.set_port Profile.default_profile, -2
-    assert HashDict.get(profile, "webdriver_firefox_port") == nil
+    assert profile["webdriver_firefox_port"] == nil
     profile = Profile.set_port Profile.default_profile, "6666"
-    assert HashDict.get(profile, "webdriver_firefox_port") == nil
+    assert profile["webdriver_firefox_port"] == nil
   end
 
   test "to_user_js is the correct format" do

@@ -66,7 +66,7 @@ defmodule WebDriver.Firefox.Profile do
 
 
   def default_profile do
-    HashDict.new @default_profile
+    Map.new @default_profile
   end
 
   def to_user_js profile do
@@ -75,7 +75,7 @@ defmodule WebDriver.Firefox.Profile do
   end
 
   def set_port(profile, port) when is_number(port) and port > 0 do
-    HashDict.put profile, Keyword.get(@webdriver_prefs, :port), port
+    Map.put profile, Keyword.get(@webdriver_prefs, :port), port
   end
 
   def set_port(profile, _port) do

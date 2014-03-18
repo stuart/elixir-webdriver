@@ -164,10 +164,9 @@ defmodule WebDriver.Element do
   defp do_location_in_view response do
     # Bugfix
     # http://code.google.com/p/selenium/source/detail?r=bbcfab457b13
-    resp = HashDict.new(response)
-    {:ok, x} = HashDict.fetch(resp,"x")
-    {:ok, y} = HashDict.fetch(resp,"y")
-    [x: x, y: y]
+
+    resp = Map.new(response)
+    [x: resp["x"], y: resp["y"]]
   end
 
   @doc """
@@ -186,10 +185,8 @@ defmodule WebDriver.Element do
   end
 
   defp do_size response do
-    resp = HashDict.new(response)
-    {:ok, h} = HashDict.fetch(resp,"height")
-    {:ok, w} = HashDict.fetch(resp,"width")
-    [width: w, height: h]
+    resp = Map.new(response)
+    [width: resp["width"], height: resp["height"]]
   end
 
   @doc """

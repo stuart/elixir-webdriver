@@ -14,15 +14,15 @@ defmodule WebDriver.PhantomJS.PortTest do
 
   test "init starts phantomjs on the port" do
    { :ok, state, :hibernate } = PhantomJS.Port.init PhantomJS.Port.State[program_name: :phantomjs]
-  	info = HashDict.new(Port.info(state.port))
-  	name = HashDict.get info, :name
+  	info = Map.new(Port.info(state.port))
+  	name = info[:name]
   	assert name == :os.find_executable(name)
   end
 
   test "init sets the trap_exit flag" do
-  	refute HashDict.get(process_info, :trap_exit)
+  	refute process_info[:trap_exit]
   	PhantomJS.Port.init PhantomJS.Port.State[program_name: :phantomjs]
-  	assert HashDict.get(process_info, :trap_exit)
+  	assert process_info[:trap_exit]
   end
 
   test "handle info with an Exit message" do
@@ -36,6 +36,6 @@ defmodule WebDriver.PhantomJS.PortTest do
   end
 
   def process_info do
-  	HashDict.new Process.info(self)
+  	Map.new Process.info(self)
   end
 end
