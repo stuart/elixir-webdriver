@@ -36,7 +36,7 @@ defmodule WebDriver.Error do
 
     The codes that can be returned are:
 
-  #{Enum.sort(HashDict.to_list(@status_codes), fn({a,_},{b,_}) -> a > b end) |> Enum.reverse |>Enum.map(fn({c,msg}) -> "* #{c} - ```:#{msg}```\n" end)}
+  #{Enum.sort(HashDict.to_list(@status_codes), fn({a,_},{b,_}) -> a > b end) |> Enum.reverse |> Enum.map(fn({c,msg}) -> "* #{c} - ```:#{msg}```\n" end)}
 
   """
 
@@ -45,7 +45,7 @@ defmodule WebDriver.Error do
   @doc """
     Create an ErrorMessage record from raw protocol error data.
   """
-  def build_message([{"message", message},{"screen", screen},{"class", class},{"stackTrace", stack_trace}])do
+  def build_message([{"message", message},{"screen", screen},{"class", class},{"stackTrace", stack_trace}]) do
     ErrorMessage[ message: message, screen: screen, class: class, stack_trace: stack_trace ]
   end
 

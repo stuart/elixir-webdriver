@@ -120,6 +120,10 @@ defmodule WebDriverFirefoxSessionTest do
        == "hello world"
   end
 
+  test "execute with a Javascript error returns an error" do
+    assert {:javascript_error, _ } = Session.execute(:fftest, "return foo;")
+  end
+
   test "execute_async returns the correct result" do
     assert Session.execute_async(:fftest, "return 123 + 2") == 125
   end

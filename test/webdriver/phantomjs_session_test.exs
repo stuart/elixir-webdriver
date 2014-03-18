@@ -133,6 +133,10 @@ defmodule WebDriverPhantomJSSessionTest do
        == "hello world"
   end
 
+  test "execute with a Javascript error returns an error" do
+    assert {:unknown_error, _} = Session.execute(:test, "return foo;")
+  end
+
   test "execute_async returns the correct result" do
     assert Session.execute_async(:test, "return 123 + 2") == 125
   end
