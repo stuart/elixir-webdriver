@@ -276,6 +276,14 @@ defmodule WebDriver.Session do
 
     Returns: The Javascript return value, which may be a number,
              string, list or object (tuple).
+
+    If there is an error in the Javascript it will return one of:
+
+    ```{:unknown_error, response}    # Chrome and PhantomJS
+       {:javascript_error, response} # Firefox```
+
+    Firefox appears to have implemented the protocol correctly and the others incorrectly.
+
   """
   def execute name, script, args \\ [] do
     case javascript_enabled?(name) do
