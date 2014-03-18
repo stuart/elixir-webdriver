@@ -1,8 +1,15 @@
 language: erlang
 notifications:
-  email: false
+notifications:
+  recipients:
+    - stuart.coyle@gmail.com
 otp_release:
+  - 17.0-rc1
+  - R16B03-1
+  - R16B03
+  - R16B02
   - R16B01
+  - R16B
 before_install:
    - git clone https://github.com/elixir-lang/elixir
    - make -C elixir
