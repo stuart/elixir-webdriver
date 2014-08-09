@@ -1,22 +1,22 @@
-defrecord WebDriver.Capabilities,
-          browserName: "",
-          version: "",
-          driverName: "",
-          driverVersion: "",
-          platform: "",
-          javascriptEnabled: true,
-          takesScreenshot: false,
-          handlesAlerts: false,
-          databaseEnabled: false,
-          locationContextEnabled: false,
-          applicationCacheEnabled: false,
-          browserConnectionEnabled: false,
-          cssSelectorsEnabled: false,
-          webStorageEnabled: false,
-          rotatable: false,
-          acceptSslCerts: false,
-          nativeEvents: false,
-          proxy: [] do
+defmodule WebDriver.Capabilities do
+  defstruct browserName: "",
+            version: "",
+            driverName: "",
+            driverVersion: "",
+            platform: "",
+            javascriptEnabled: true,
+            takesScreenshot: false,
+            handlesAlerts: false,
+            databaseEnabled: false,
+            locationContextEnabled: false,
+            applicationCacheEnabled: false,
+            browserConnectionEnabled: false,
+            cssSelectorsEnabled: false,
+            webStorageEnabled: false,
+            rotatable: false,
+            acceptSslCerts: false,
+            nativeEvents: false,
+            proxy: []
 
   @moduledoc """
     The capabilities record is defined in the WebDriver specification.
@@ -46,6 +46,6 @@ defrecord WebDriver.Capabilities,
   """
 
   def from_response response do
-    new(Enum.reduce response, [], fn({k,v}, c) -> c ++ [{binary_to_atom(k), v}] end)
+    Enum.reduce response, [], fn({k,v}, c) -> c ++ [{binary_to_atom(k), v}] end
   end
 end

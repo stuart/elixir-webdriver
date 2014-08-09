@@ -1,6 +1,5 @@
 defmodule WebDriver.Firefox.Port do
-  use GenServer.Behaviour
-  use WebDriver.Browser
+  use GenServer
 
   @moduledoc """
     This module is a server that controls the running of the Firefox browser.
@@ -16,15 +15,18 @@ defmodule WebDriver.Firefox.Port do
 
   alias WebDriver.Firefox.Profile
 
-  defrecord State, port: nil,
-                   root_url: "",
-                   program_name: "",
-                   supervisor: nil,
-                   session_supervisor: nil,
-                   firefox_temp_dir: "",
-                   kill_command: "",
-                   sessions: [],
-                   http_port: nil
+  defmodule State do
+    defstruct port: nil,
+             root_url: "",
+             program_name: "",
+             supervisor: nil,
+             session_supervisor: nil,
+             firefox_temp_dir: "",
+             kill_command: "",
+             sessions: [],
+             http_port: nil
+  end
+  use WebDriver.Browser
 
   def program_name _state do
     Path.join [ __DIR__, "shim.sh"]
@@ -84,7 +86,7 @@ defmodule WebDriver.Firefox.Port do
       {_port, {:data, info}} ->
       case String.from_char_list!(info) do
         <<"kill -9 ", pid::binary>> ->
-          { :ok, state.kill_command(String.to_char_list!("kill -9 #{pid}"))}
+          { :ok, state.kill_command(String.to_char_list("kill -9 #{pid}"))}
         info ->
           :error_logger.info_msg "#{__MODULE__}: #{info}"
           { :ok, state }

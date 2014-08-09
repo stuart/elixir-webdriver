@@ -1,5 +1,5 @@
 defmodule WebDriver.Keys do
-  @non_text_keys HashDict.new([
+  @non_text_keys {
     { :key_null,      "\x{e000}" },
     { :key_cancel,    "\x{e001}"},
     { :key_help,      "\x{e002}"},
@@ -55,7 +55,7 @@ defmodule WebDriver.Keys do
     { :key_f11,       "\x{e03b}"},
     { :key_f12,       "\x{e03c}"},
     { :key_meta,      "\x{e03d}"}
-  ])
+  }
 
   defp val {:ok, value} do
     value
@@ -72,8 +72,6 @@ defmodule WebDriver.Keys do
   See: https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/value
 
   Key codes that are available:
-
-#{Enum.sort(HashDict.to_list(@non_text_keys), fn({a,_},{b,_}) -> a > b end) |> Enum.reverse |>Enum.map(fn({c,_msg}) -> "* `#{c}`\n" end)}
 
   """
   def key key_code do

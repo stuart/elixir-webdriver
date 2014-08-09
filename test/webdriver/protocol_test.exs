@@ -414,41 +414,41 @@ defmodule WebDriverProtocolTest do
   #  Mocks a response to a POST request.
   #  The response just echoes the request body.
   def test_get command, path do
-    with_mock HTTPotion, [get: fn(url, headers) -> get(url, headers) end] do
+    with_mock HTTPotion, [], [get: fn(url, headers) -> get(url, headers) end] do
       {:ok, _response} = command.("http://127.0.0.1:8080")
       assert_get path
     end
   end
 
   def test_post command, path, body do
-    with_mock HTTPotion, [post: fn(url, params, headers) -> post(url, params, headers) end] do
+    with_mock HTTPotion, [], [post: fn(url, params, headers) -> post(url, params, headers) end] do
       {:ok, _response} = command.("http://127.0.0.1:8080")
       assert_post path, body
     end
   end
 
   def test_delete command, path do
-    with_mock HTTPotion, [delete: fn(url, headers) -> delete(url, headers) end] do
+    with_mock HTTPotion, [], [delete: fn(url, headers) -> delete(url, headers) end] do
       {:ok, _response} = command.("http://127.0.0.1:8080")
       assert_delete path
     end
   end
 
   def post(_url, body, _headers) do
-    HTTPotion.Response[body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{Jsonex.encode body}}",
-                       status_code: 201, headers: []]
+    %HTTPotion.Response{ body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{Jsonex.encode body}}",
+                       status_code: 201, headers: []}
   end
 
   # Mocks a response to a GET request. Just returns an HTTPotion Response
   def get(_url, _headers) do
-    HTTPotion.Response[body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{Jsonex.encode(:null)}}",
-                       status_code: 200, headers: []]
+    %HTTPotion.Response{ body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{Jsonex.encode(:null)}}",
+                       status_code: 200, headers: [] }
   end
 
   # Mocks a response to a DELETE request. Just returns an HTTPotion Response
   def delete(_url, _headers) do
-    HTTPotion.Response[body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{Jsonex.encode(:null)}}",
-                       status_code: 204, headers: []]
+    %HTTPotion.Response{ body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{Jsonex.encode(:null)}}",
+                       status_code: 204, headers: [] }
   end
 
   defp assert_get path do

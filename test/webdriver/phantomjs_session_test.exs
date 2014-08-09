@@ -12,7 +12,7 @@ defmodule WebDriverPhantomJSSessionTest do
 
   setup_all do
     http_server_pid = WebDriver.TestServer.start
-    config = WebDriver.Config.new(browser: :phantomjs, name: :test_browser)
+    config = %WebDriver.Config{browser: :phantomjs, name: :test_browser}
     WebDriver.start_browser config
     WebDriver.start_session :test_browser, :test
     {:ok, [http_server_pid: http_server_pid]}

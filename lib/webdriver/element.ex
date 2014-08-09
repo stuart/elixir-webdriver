@@ -17,7 +17,9 @@ defmodule WebDriver.Element do
     WebDriver.Error.
   """
 
-  defrecord Reference, id: "", session: :null
+  defmodule Reference do
+    defstruct id: "", session: :null
+  end
 
   @doc """
     Click on the specified element.

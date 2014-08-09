@@ -26,8 +26,13 @@ defmodule WebDriver.Protocol do
     The Response record defined here also appends the request details to
     that response.
   """
-  defrecord Response, session_id: :null, status: 0, value: :null, request: :null
-  defrecord Request, method: "GET", url: "", headers: :null, body: :null
+  defmodule Response do
+    defstruct  session_id: :null, status: 0, value: :null, request: :null
+  end
+
+  defmodule Request do
+    defstruct method: "GET", url: "", headers: :null, body: :null
+  end
 
   def shutdown(root_url) do
     get root_url, ["shutdown"]
@@ -790,7 +795,7 @@ defmodule WebDriver.Protocol do
 
   defp get root_url, path_elements do
     url = url_for root_url, path_elements
-    request = Request[method: :GET, url: url, headers: [{"Accept", "application/json;charset=UTF-8"}]]
+    request = %Request{method: :GET, url: url, headers: [{"Accept", "application/json;charset=UTF-8"}]}
 
     send_request root_url, request
   end
@@ -806,9 +811,9 @@ defmodule WebDriver.Protocol do
   defp post root_url, path_elements, params do
     url = url_for root_url, path_elements
     json =  Jsonex.encode params
-    request = Request[method: :POST, url: url,
+    request = %Request{method: :POST, url: url,
          headers: ["Content-Type": "application/json;charset=UTF-8","Content-Length": byte_size(json)],
-         body: json]
+         body: json}
 
     send_request root_url, request
   end
@@ -819,7 +824,7 @@ defmodule WebDriver.Protocol do
 
   defp delete root_url, path_elements do
     url = url_for root_url, path_elements
-    request = Request[method: :DELETE, url: url, headers: [{"Accept", "application/json;charset=UTF-8"}]]
+    request = %Request{method: :DELETE, url: url, headers: [{"Accept", "application/json;charset=UTF-8"}]}
 
     send_request root_url, request
   end
@@ -858,10 +863,10 @@ defmodule WebDriver.Protocol do
     end
   end
 
-  defp handle_response(HTTPotion.Response[body: body, status_code: status, headers: _headers], _root_url)
+  defp handle_response(%HTTPotion.Response{body: body, status_code: status, headers: _headers}, _root_url)
       when status in 200..299 do
         if :application.get_env(:debug_browser) == {:ok, true} do
-          IO.puts "RESP: #{body}"
+          IO.format body
         end
         # Chromedriver sends failed commands with a 200 status.
         response = parse_response_body(body)
@@ -871,7 +876,7 @@ defmodule WebDriver.Protocol do
         end
   end
 
-  defp handle_response(HTTPotion.Response[body: _body, status_code: status, headers: headers], root_url)
+  defp handle_response(%HTTPotion.Response{body: _body, status_code: status, headers: headers}, root_url)
       when status in 302..303 do
         # Cause some use upper case and some dont...
         url = Keyword.get(headers, :Location, Keyword.get(headers, :location))
@@ -880,12 +885,12 @@ defmodule WebDriver.Protocol do
         send_request root_url, request
   end
 
-  defp handle_response(HTTPotion.Response[body: body, status_code: status, headers: _headers], _root_url)
+  defp handle_response(%HTTPotion.Response{body: body, status_code: status, headers: _headers}, _root_url)
      when status in 400..499 do
       {:invalid_request, status, body}
   end
 
-  defp handle_response(HTTPotion.Response[body: body, status_code: status, headers: _headers], _root_url)
+  defp handle_response(%HTTPotion.Response{body: body, status_code: status, headers: _headers}, _root_url)
     when status in 500..599 do
      response = parse_response_body(body)
      {:failed_command, status, response}
@@ -896,20 +901,20 @@ defmodule WebDriver.Protocol do
   end
 
   defp build_response([{"sessionId", session_id}, {"status", status}, {"value", value }])do
-    Response[ session_id: session_id, status: status, value: value ]
+    %Response{ session_id: session_id, status: status, value: value }
   end
 
   defp build_response([{"name", _name}, {"sessionId", session_id}, {"status", status}, {"value", value }])do
-    Response[ session_id: session_id, status: status, value: value ]
+    %Response{ session_id: session_id, status: status, value: value }
   end
 
   # Append the Request record to a response.
   defp add_request {:ok, response}, request do
-    {:ok, response.request(request)}
+    {:ok, %{response | request: request}}
   end
 
   defp add_request {:failed_command, _status, response}, request do
-    {WebDriver.Error.summary(response.status), response.request(request)}
+    {WebDriver.Error.summary(response.status), %{response | request: request}}
   end
 
   defp add_request {:invalid_request, status, response}, request do

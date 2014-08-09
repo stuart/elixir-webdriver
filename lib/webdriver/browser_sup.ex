@@ -1,5 +1,5 @@
 defmodule WebDriver.BrowserSup do
-  use Supervisor.Behaviour
+  use Supervisor
 
   @moduledoc """
     The WebDriver.BrowserSup is a supervisor responsible for overseeing

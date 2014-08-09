@@ -10,7 +10,7 @@ defmodule WebDriverFirefoxSessionTest do
 # Testing Callbacks
   setup_all do
     http_server_pid = WebDriver.TestServer.start
-    config = WebDriver.Config.new(browser: :firefox, name: :ftest_browser)
+    config = %WebDriver.Config{browser: :firefox, name: :ftest_browser}
     WebDriver.start_browser config
     WebDriver.start_session :ftest_browser, :fftest
     {:ok, [http_server_pid: http_server_pid]}

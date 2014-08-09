@@ -1,8 +1,8 @@
 # HTTP Server for testing WebDriver
 defmodule WebDriver.TestServer do
   @config [ port: 8888,
-            server_root:   String.to_char_list!(Path.absname("../", __DIR__)),
-            document_root: String.to_char_list!(Path.absname("../pages", __DIR__)),
+            server_root:   String.to_char_list(Path.absname("../", __DIR__)),
+            document_root: String.to_char_list(Path.absname("../pages", __DIR__)),
             server_name:   'webdriver_test',
             directory_index: ['index.html']]
 

@@ -1,6 +1,6 @@
 defmodule WebDriver.Error do
 
-  @status_codes HashDict.new([
+  @status_codes {
     { 0, :success },
     { 6, :no_such_driver },
     { 7, :no_such_element },
@@ -26,7 +26,7 @@ defmodule WebDriver.Error do
     { 32, :invalid_selector },
     { 33, :session_not_created_exception },
     { 34, :move_target_out_of_bounds }
-  ])
+  }
 
   @moduledoc """
     Error handling for WebDriver.
@@ -36,11 +36,12 @@ defmodule WebDriver.Error do
 
     The codes that can be returned are:
 
-  #{Enum.sort(HashDict.to_list(@status_codes), fn({a,_},{b,_}) -> a > b end) |> Enum.reverse |>Enum.map(fn({c,msg}) -> "* #{c} - ```:#{msg}```\n" end)}
 
   """
 
-  defrecord ErrorMessage, message: "", screen: "", class: "", stack_trace: []
+  defmodule ErrorMessage do
+    defstruct message: "", screen: "", class: "", stack_trace: []
+  end
 
   @doc """
     Create an ErrorMessage record from raw protocol error data.

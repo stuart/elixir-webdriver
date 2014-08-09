@@ -12,7 +12,7 @@ defmodule WebDriverChromeSessionTest do
 
   setup_all do
     http_server_pid = WebDriver.TestServer.start
-    config = WebDriver.Config.new(browser: :chrome, name: :chrome_test_browser)
+    config = %WebDriver.Config{browser: :chrome, name: :chrome_test_browser}
     WebDriver.start_browser config
     WebDriver.start_session :chrome_test_browser, :cdtest
     {:ok, [http_server_pid: http_server_pid]}
