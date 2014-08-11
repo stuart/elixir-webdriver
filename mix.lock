@@ -1,5 +1,5 @@
-%{"ex_doc": {:git, "git://github.com/elixir-lang/ex_doc.git", "ddf1cae6bf331d8cfd5ded61b3b120293b80642d", []},
-  "httpotion": {:git, "git://github.com/myfreeweb/httpotion.git", "37e180343ed21c733a1a0b740d9d8d7081b7f721", []},
+%{"ex_doc": {:git, "git://github.com/elixir-lang/ex_doc.git", "512dcabef778f9af675dbdfc44fa2bef2b8924f0", []},
+  "httpotion": {:git, "git://github.com/myfreeweb/httpotion.git", "1419c64468483d192cc017f18de3412f9dca7fb4", []},
   "ibrowse": {:git, "git://github.com/cmullaparthi/ibrowse.git", "7871e2ebe8811efb64e1917e2de455fa87e8dfe3", [tag: "v4.1.0"]},
   "jsonex": {:git, "git://github.com/marcelog/jsonex.git", "82e6c416eed5e791073427bf3079d7ab7b85a1e1", []},
   "jsx": {:git, "git://github.com/talentdeficit/jsx.git", "507fa4c41db33c81e925ab53f4d789d234aaff2f", []},

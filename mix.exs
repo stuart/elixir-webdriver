@@ -23,7 +23,7 @@ defmodule WebDriver.Mixfile do
   # Returns the list of dependencies in the format:
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
-    [{:httpotion, "~> 0.2.3", github: "myfreeweb/httpotion"},
+    [{:httpotion, "~> 0.2.4", github: "myfreeweb/httpotion"},
      {:jsonex,    "~> 2.0.0", github: "marcelog/jsonex"}
      ]
   end
@@ -34,7 +34,7 @@ defmodule WebDriver.Mixfile do
 
   defp deps :dev do
     deps ++ [{:mock,          github: "jjh42/mock"},
-             {:ex_doc,             github: "elixir-lang/ex_doc"}]
+             {:ex_doc,        github: "elixir-lang/ex_doc"}]
   end
 
   defp deps _ do
