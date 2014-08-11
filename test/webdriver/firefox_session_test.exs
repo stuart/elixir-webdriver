@@ -58,17 +58,17 @@ defmodule WebDriverFirefoxSessionTest do
     assert response.javascriptEnabled
   end
 
-  # test "set_timeout" do
-  #   check :set_timeout, ["script", 20000]
-  # end
-  #
-  # test "set_async_script_timeout" do
-  #   check :set_async_script_timeout, [20000]
-  # end
-  #
-  # test "set_implicit_wait_timeout" do
-  #   check :set_implicit_wait_timeout, [20000]
-  # end
+  test "set_timeout" do
+    check :set_timeout, ["script", 2000]
+  end
+
+  test "set_async_script_timeout" do
+    check :set_async_script_timeout, [2000]
+  end
+  
+  test "set_implicit_wait_timeout" do
+    check :set_implicit_wait_timeout, [2000]
+  end
 
   test "window_handle" do
     assert Regex.match? uuid_regexp, Session.window_handle :fftest
