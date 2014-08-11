@@ -4,10 +4,10 @@ notifications:
   recipients:
     - stuart.coyle@gmail.com
 otp_release:
-  - 17.1
+  - 17.0
 env:
   - ELIXIR="v0.14.2"
-  
+
 before_install:
    - mkdir -p vendor/elixir
    - wget -q https://github.com/elixir-lang/elixir/releases/download/$ELIXIR/Precompiled.zip && unzip -qq Precompiled.zip -d vendor/elixir
