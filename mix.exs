@@ -24,8 +24,7 @@ defmodule WebDriver.Mixfile do
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
     [{:httpotion, "~> 0.2.3", github: "myfreeweb/httpotion"},
-     {:jsonex,    "~> 2.0.0", github: "marcelog/jsonex"},
-     {:ex_doc,             github: "elixir-lang/ex_doc"}
+     {:jsonex,    "~> 2.0.0", github: "marcelog/jsonex"}
      ]
   end
 
@@ -34,7 +33,8 @@ defmodule WebDriver.Mixfile do
   end
 
   defp deps :dev do
-    deps ++ [{:mock,          github: "jjh42/mock"}]
+    deps ++ [{:mock,          github: "jjh42/mock"},
+             {:ex_doc,             github: "elixir-lang/ex_doc"}]
   end
 
   defp deps _ do
