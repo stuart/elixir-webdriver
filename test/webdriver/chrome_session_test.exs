@@ -21,7 +21,7 @@ defmodule WebDriverChromeSessionTest do
   teardown_all meta do
     WebDriver.stop_session :cdtest
     WebDriver.stop_browser :chrome_test_browser
-    WebDriver.TestServer.stop(meta[:http_server_pid])
+    WebDriver.TestServer.stop(meta.http_server_pid)
     :ok
   end
 
@@ -187,7 +187,7 @@ defmodule WebDriverChromeSessionTest do
 
   test "set cookie from a cookie record" do
     Session.url :cdtest, "http://example.com/index.html"
-    cookie = WebDriver.Cookie.new(name: "cookie", value: "value", path: "/", domain: "example.com")
+    cookie = %WebDriver.Cookie{name: "cookie", value: "value", path: "/", domain: "example.com"}
     Session.set_cookie :cdtest, cookie
     [ _, cookie ] = Session.cookies :cdtest
     assert cookie.domain == ".example.com"
@@ -439,7 +439,7 @@ defmodule WebDriverChromeSessionTest do
 
   test "accessing a non existing element" do
     Session.url :cdtest, "http://localhost:8888/page_1.html"
-    element = Element.Reference[id: ":wdc:12345678899", session: :cdtest]
+    element = %Element.Reference{id: ":wdc:12345678899", session: :cdtest}
     assert {:stale_element_reference, _ } = Element.size element
   end
 
@@ -489,6 +489,6 @@ defmodule WebDriverChromeSessionTest do
   end
 
   defp is_element? elem do
-    assert WebDriver.Element.Reference == elem.__record__(:name)
+    assert WebDriver.Element.Reference == elem.__struct__
   end
 end

@@ -21,7 +21,7 @@ defmodule WebDriverPhantomJSSessionTest do
   teardown_all meta do
     WebDriver.stop_browser :test_browser
     WebDriver.stop_session :test
-    WebDriver.TestServer.stop(meta[:http_server_pid])
+    WebDriver.TestServer.stop(meta.http_server_pid)
     :ok
   end
 
@@ -43,7 +43,7 @@ defmodule WebDriverPhantomJSSessionTest do
     assert meta[:session_id] != :null
   end
 
-  test "negotiated_capabilities returns a capabilities record" do
+  test "negotiated_capabilities returns a capabilities struct" do
     cap = Session.negotiated_capabilities(:test)
     assert cap.browserName == "phantomjs"
     assert cap.javascriptEnabled
@@ -141,19 +141,19 @@ defmodule WebDriverPhantomJSSessionTest do
     assert <<137,80,78,71,13,10,26,10,_ :: binary >> = :base64.decode(Session.screenshot :test)
   end
 
-  test "no such frame error" do
-    assert {:no_such_frame, _ } = Session.frame :test, 123
-  end
-
+  # test "no such frame error" do
+  #   assert {:no_such_frame, _ } = Session.frame :test, 123
+  # end
+  #
   test "window" do
     handle = Session.window_handle :test
     check :window, [handle]
   end
 
-  test "error when there is no such window" do
-    assert {:no_such_window, _} = Session.window :test, "xyz"
-  end
-
+  # test "error when there is no such window" do
+  #   assert {:no_such_window, _} = Session.window :test, "xyz"
+  # end
+  #
   test "close window" do
     WebDriver.start_session :test_browser, :window_close
     assert {:ok, _} = Session.close_window :window_close
@@ -187,7 +187,7 @@ defmodule WebDriverPhantomJSSessionTest do
   end
 
   test "set cookie from a cookie record" do
-    cookie = WebDriver.Cookie.new(name: "cookie", value: "value", path: "/", domain: "localhost")
+    cookie = %WebDriver.Cookie{name: "cookie", value: "value", path: "/", domain: "localhost"}
     Session.set_cookie :test, cookie
     [ cookie ] = Session.cookies :test
     assert cookie.domain == ".localhost"
@@ -440,12 +440,11 @@ defmodule WebDriverPhantomJSSessionTest do
     assert "100px" == Element.css element, "top"
   end
 
-  # FIXME
-  # test "accessing a non existing element" do
-  #   Session.url :test, "http://localhost:8888/page_1.html"
-  #   element = Element.Reference[id: ":wdc:12345678899", session: :test]
-  #   assert {:stale_element_reference, _ } = Element.size element
-  # end
+  test "accessing a non existing element" do
+    Session.url :test, "http://localhost:8888/page_1.html"
+    element = %Element.Reference{id: ":wdc:12345678899", session: :test}
+    assert {:stale_element_reference, _ } = Element.size element
+  end
 
   test "moving mouse to an element" do
     Session.url :test, "http://localhost:8888/page_1.html"
@@ -493,6 +492,6 @@ defmodule WebDriverPhantomJSSessionTest do
   end
 
   defp is_element? elem do
-    assert WebDriver.Element.Reference == elem.__record__(:name)
+    assert WebDriver.Element.Reference == elem.__struct__
   end
 end

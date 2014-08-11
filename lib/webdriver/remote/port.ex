@@ -33,7 +33,7 @@ defmodule WebDriver.Remote.Port do
 
   def handle_call {:start_session, session_name}, _sender, state do
     {:ok, pid} = :supervisor.start_child state.session_supervisor, [session_name]
-    {:reply, {:ok, pid}, state.sessions([session_name | state.sessions])}
+    {:reply, {:ok, pid}, %{state | sessions: [session_name | state.sessions]}}
   end
 
   def handle_call :sessions, _sender, state do
@@ -45,10 +45,10 @@ defmodule WebDriver.Remote.Port do
   end
 
   def handle_info {:start_session_supervisor, sup}, state do
-    config = WebDriver.Session.State.new(root_url: state.root_url, browser: self)
-    spec = Supervisor.worker(WebDriver.SessionSup,[config],[restart: :temporary])
+    config = %WebDriver.Session.State{root_url: state.root_url, browser: self}
+    spec = Supervisor.Spec.worker(WebDriver.SessionSup,[config],[restart: :temporary])
     {:ok, pid} = :supervisor.start_child sup, spec
-    {:noreply, state.session_supervisor(pid)}
+    {:noreply, %{state | session_supervisor: pid}}
   end
 
   def terminate _reason, _state do

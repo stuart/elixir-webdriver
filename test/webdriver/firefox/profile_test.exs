@@ -10,7 +10,8 @@ defmodule FirefoxProfileTest do
   end
 
   teardown meta do
-    File.rm_rf meta[:tempdir]
+    File.rm_rf meta.tempdir
+    {:ok, meta}
   end
 
   test "set port sets the port key correctly" do

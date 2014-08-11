@@ -64,7 +64,7 @@ defmodule WebDriver do
 
     Example:
 
-      iex> config = WebDriver.Config.new(browser: :phantomjs, name: :test_browser)
+      iex> config = %WebDriver.Config{browser: :phantomjs, name: :test_browser}
       iex> WebDriver.start_browser config
       Starting phantomjs
       Phantom js started

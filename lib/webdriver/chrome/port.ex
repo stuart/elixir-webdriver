@@ -25,8 +25,7 @@ defmodule WebDriver.Chrome.Port do
 
   def set_root_url state do
     {:ok, http_port} = WebDriver.PortFinder.select_port
-    state = state.http_port(http_port)
-    state.root_url("http://localhost:#{http_port}/wd/hub")
+    %{state | http_port: http_port, root_url: "http://localhost:#{http_port}/wd/hub"}
   end
 
   def do_init state do
@@ -38,7 +37,7 @@ defmodule WebDriver.Chrome.Port do
   end
 
   def arguments state do
-    {:ok, port_arg} = String.to_char_list("--port=#{state.http_port}")
+    port_arg = String.to_char_list("--port=#{state.http_port}")
     [port_arg,'--url-base=wd/hub']
   end
 

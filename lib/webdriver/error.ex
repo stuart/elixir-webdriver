@@ -1,6 +1,6 @@
 defmodule WebDriver.Error do
 
-  @status_codes {
+  @status_codes [
     { 0, :success },
     { 6, :no_such_driver },
     { 7, :no_such_element },
@@ -26,7 +26,7 @@ defmodule WebDriver.Error do
     { 32, :invalid_selector },
     { 33, :session_not_created_exception },
     { 34, :move_target_out_of_bounds }
-  }
+  ]
 
   @moduledoc """
     Error handling for WebDriver.
@@ -54,7 +54,8 @@ defmodule WebDriver.Error do
     Convert a code number to a status code summary atom.
   """
   def summary code do
-    {:ok, val} = HashDict.fetch @status_codes, code
+    status_codes = Enum.into @status_codes, HashDict.new
+    {:ok, val} = HashDict.fetch status_codes, code
     val
   end
 end

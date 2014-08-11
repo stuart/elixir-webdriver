@@ -46,6 +46,6 @@ defmodule WebDriver.Capabilities do
   """
 
   def from_response response do
-    Enum.reduce response, [], fn({k,v}, c) -> c ++ [{binary_to_atom(k), v}] end
+    struct(WebDriver.Capabilities, Enum.map(response, fn({k,v}) -> {binary_to_atom(k),v} end))
   end
 end

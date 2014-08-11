@@ -376,7 +376,7 @@ defmodule WebDriver.Session do
   end
 
   defp do_window_size response do
-    resp = HashDict.new(response)
+    resp = Enum.into response, HashDict.new()
     {:ok, h} = HashDict.fetch(resp,"height")
     {:ok, w} = HashDict.fetch(resp,"width")
     [height: h,  width: w]
@@ -483,7 +483,7 @@ defmodule WebDriver.Session do
     # Don't raise exceptions when we can't find an element. Just return nothing.
     case value do
       {:no_such_element, _resp} -> nil
-      [{"ELEMENT", id}] -> WebDriver.Element.Reference[id: URI.encode(id), session: name]
+      [{"ELEMENT", id}] -> %WebDriver.Element.Reference{id: URI.encode(id), session: name}
     end
   end
 
@@ -652,10 +652,8 @@ defmodule WebDriver.Session do
   def init state do
     {:ok, response} = WebDriver.Protocol.start_session state.root_url,
                [desiredCapabilities: state.desiredCapabilities]
-     state = response.value
-             |> WebDriver.Capabilities.from_response
-             |> state.negotiatedCapabilities
-    {:ok, state.session_id(response.session_id) }
+    state = %{state | negotiatedCapabilities: WebDriver.Capabilities.from_response(response.value)}
+    {:ok, %{state | session_id: response.session_id }}
   end
 
   def handle_cast(:stop, state) do
@@ -668,7 +666,7 @@ defmodule WebDriver.Session do
 
   def handle_call({:start_session, params}, _sender, state) do
     {:ok, response} = WebDriver.Protocol.start_session state.root_url, params
-    {:reply, {:ok, response}, state.session_id(response.session_id)}
+    {:reply, {:ok, response},  %{state | session_id: response.session_id }}
   end
 
   # Calls when no session is running.

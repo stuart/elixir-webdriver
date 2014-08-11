@@ -166,7 +166,7 @@ defmodule WebDriver.Element do
   defp do_location_in_view response do
     # Bugfix
     # http://code.google.com/p/selenium/source/detail?r=bbcfab457b13
-    resp = HashDict.new(response)
+    resp = Enum.into response, HashDict.new
     {:ok, x} = HashDict.fetch(resp,"x")
     {:ok, y} = HashDict.fetch(resp,"y")
     [x: x, y: y]
@@ -188,7 +188,7 @@ defmodule WebDriver.Element do
   end
 
   defp do_size response do
-    resp = HashDict.new(response)
+    resp = Enum.into response, HashDict.new
     {:ok, h} = HashDict.fetch(resp,"height")
     {:ok, w} = HashDict.fetch(resp,"width")
     [width: w, height: h]

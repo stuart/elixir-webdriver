@@ -60,7 +60,7 @@ An example session is shown here:
 
 ```Elixir
 
-  iex(1)> config = WebDriver.Config.new(name: :browser)
+  iex(1)> config = %WebDriver.Config{name: :browser}
   WebDriver.Config[browser: :phantomjs, name: :browser]
   iex(2)> WebDriver.start_browser config
   {:ok,#PID<0.138.0>}
@@ -117,6 +117,3 @@ Windows support code in here, but I'm pretty sure that it won't work.
     - Update to version 0.2.0
     - Supports Elixir 0.12.3
     - Latest ibrowse, which fixes a phantomjs issue.
-
-
-

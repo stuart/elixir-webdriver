@@ -66,7 +66,7 @@ defmodule WebDriver.Firefox.Profile do
 
 
   def default_profile do
-    HashDict.new @default_profile
+    @default_profile |> Enum.into(HashDict.new)
   end
 
   def to_user_js profile do
