@@ -440,6 +440,7 @@ defmodule WebDriver.Session do
   def delete_cookies name do
     cmd name, :delete_cookies
   end
+
   @doc """
     Delete the cookie with the given name.
 

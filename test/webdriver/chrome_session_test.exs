@@ -1,7 +1,7 @@
 Code.require_file "../test_helper.exs", __DIR__
 Code.require_file "test_server.exs", __DIR__
 defmodule WebDriverChromeSessionTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
 
   alias WebDriver.Session
   alias WebDriver.Element
@@ -187,6 +187,7 @@ defmodule WebDriverChromeSessionTest do
 
   test "set cookie from a cookie record" do
     Session.url :cdtest, "http://example.com/index.html"
+    # Chrome does not do localhost cookies..
     cookie = %WebDriver.Cookie{name: "cookie", value: "value", path: "/", domain: "example.com"}
     Session.set_cookie :cdtest, cookie
     [ _, cookie ] = Session.cookies :cdtest
@@ -198,14 +199,16 @@ defmodule WebDriverChromeSessionTest do
 
   test "delete cookies" do
     Session.url :cdtest, "http://example.com/index.html"
-    Session.set_cookie :cdtest, "name", "value", "/", "example.com"
+    cookie = %WebDriver.Cookie{name: "cookie", value: "value", path: "/", domain: "example.com"}
+    Session.set_cookie :cdtest, cookie
     Session.delete_cookies :cdtest
     assert [] == Session.cookies :cdtest
   end
 
   test "delete cookie" do
     Session.url :cdtest, "http://example.com/index.html"
-    Session.set_cookie :cdtest, "name", "value", "/", "example.com"
+    cookie = %WebDriver.Cookie{name: "name", value: "value", path: "/", domain: "example.com"}
+    Session.set_cookie :cdtest, cookie
     Session.delete_cookie :cdtest, "name"
     assert [ _ ] = Session.cookies :cdtest
   end

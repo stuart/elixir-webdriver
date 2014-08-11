@@ -1,7 +1,7 @@
 Code.require_file "../test_helper.exs", __DIR__
 Code.require_file "test_server.exs", __DIR__
 defmodule WebDriverFirefoxSessionTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
 
   alias WebDriver.Session
   alias WebDriver.Element
@@ -24,7 +24,7 @@ defmodule WebDriverFirefoxSessionTest do
   end
 
   setup do
-   {:ok, []}
+    {:ok, []}
   end
 
   teardown do
@@ -58,17 +58,17 @@ defmodule WebDriverFirefoxSessionTest do
     assert response.javascriptEnabled
   end
 
-  test "set_timeout" do
-    check :set_timeout, ["script", 5000]
-  end
-
-  test "set_async_script_timeout" do
-    check :set_async_script_timeout, [5000]
-  end
-
-  test "set_implicit_wait_timeout" do
-    check :set_implicit_wait_timeout, [5000]
-  end
+  # test "set_timeout" do
+  #   check :set_timeout, ["script", 20000]
+  # end
+  #
+  # test "set_async_script_timeout" do
+  #   check :set_async_script_timeout, [20000]
+  # end
+  #
+  # test "set_implicit_wait_timeout" do
+  #   check :set_implicit_wait_timeout, [20000]
+  # end
 
   test "window_handle" do
     assert Regex.match? uuid_regexp, Session.window_handle :fftest
@@ -175,19 +175,22 @@ defmodule WebDriverFirefoxSessionTest do
     assert cookie.name == "cookie"
     assert cookie.value == "value"
     assert cookie.path == "/"
+    Session.delete_cookies :fftest
   end
 
   test "delete cookies" do
-    Session.set_cookie :fftest, "name", "value", "/", ".localhost"
+    cookie = %WebDriver.Cookie{name: "cookie", value: "value", path: "/", domain: "localhost"}
+    Session.set_cookie :fftest, cookie
     Session.delete_cookies :fftest
     assert [] == Session.cookies :fftest
   end
 
-  # test "delete cookie" do
-  #   Session.set_cookie :fftest, "name", "value", "/", ".localhost"
-  #   Session.delete_cookie :fftest, "name"
-  #   assert [] == Session.cookies :fftest
-  # end
+  test "delete cookie" do
+    cookie = %WebDriver.Cookie{name: "name", value: "value", path: "/", domain: "localhost"}
+    Session.set_cookie :fftest, cookie
+    Session.delete_cookie :fftest, "name"
+    assert [] == Session.cookies :fftest
+  end
 
   test "page source" do
     Session.url :fftest, "http://localhost:8888"

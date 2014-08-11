@@ -1,7 +1,7 @@
 Code.require_file "../test_helper.exs", __DIR__
 Code.require_file "test_server.exs", __DIR__
 defmodule WebDriverPhantomJSSessionTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
 
   alias WebDriver.Session
   alias WebDriver.Element
@@ -30,6 +30,7 @@ defmodule WebDriverPhantomJSSessionTest do
   end
 
   teardown do
+    Session.delete_cookies :test
     :ok
   end
 
