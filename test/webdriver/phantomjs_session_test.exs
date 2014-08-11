@@ -15,24 +15,24 @@ defmodule WebDriverPhantomJSSessionTest do
     config = %WebDriver.Config{browser: :phantomjs, name: :test_browser}
     WebDriver.start_browser config
     WebDriver.start_session :test_browser, :test
+
+    on_exit fn ->
+      WebDriver.stop_browser :test_browser
+      WebDriver.stop_session :test
+      WebDriver.TestServer.stop(http_server_pid)
+      :ok
+    end
+
     {:ok, [http_server_pid: http_server_pid]}
   end
 
-  teardown_all meta do
-    WebDriver.stop_browser :test_browser
-    WebDriver.stop_session :test
-    WebDriver.TestServer.stop(meta.http_server_pid)
-    :ok
-  end
-
   setup do
+    on_exit fn ->
+      Session.delete_cookies :test
+    end
     {:ok, []}
   end
 
-  teardown do
-    Session.delete_cookies :test
-    :ok
-  end
 
 # Tests
   test "status should show that the Session is up" do

@@ -14,21 +14,18 @@ defmodule WebDriverFirefoxSessionTest do
     config = %WebDriver.Config{browser: :firefox, name: :ftest_browser}
     WebDriver.start_browser config
     WebDriver.start_session :ftest_browser, :fftest
-    {:ok, [http_server_pid: http_server_pid]}
-  end
 
-  teardown_all meta do
-    WebDriver.stop_browser :ftest_browser
-    WebDriver.TestServer.stop(meta.http_server_pid)
-    :ok
+    on_exit fn ->
+      WebDriver.stop_browser :ftest_browser
+      WebDriver.TestServer.stop(http_server_pid)
+      :ok
+    end
+
+    {:ok, [http_server_pid: http_server_pid]}
   end
 
   setup do
     {:ok, []}
-  end
-
-  teardown do
-    :ok
   end
 
 # Tests
@@ -65,7 +62,7 @@ defmodule WebDriverFirefoxSessionTest do
   test "set_async_script_timeout" do
     check :set_async_script_timeout, [2000]
   end
-  
+
   test "set_implicit_wait_timeout" do
     check :set_implicit_wait_timeout, [2000]
   end

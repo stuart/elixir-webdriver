@@ -1,8 +1,8 @@
 defmodule WebDriverTest do
   use ExUnit.Case
 
-  teardown do
-    WebDriver.stop_all_browsers
+  setup do
+    on_exit fn -> WebDriver.stop_all_browsers end
   end
 
   test "browsers returns all current browsers that are running" do

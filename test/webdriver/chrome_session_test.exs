@@ -15,22 +15,17 @@ defmodule WebDriverChromeSessionTest do
     config = %WebDriver.Config{browser: :chrome, name: :chrome_test_browser}
     WebDriver.start_browser config
     WebDriver.start_session :chrome_test_browser, :cdtest
+    on_exit fn ->
+      WebDriver.stop_session :cdtest
+      WebDriver.stop_browser :chrome_test_browser
+      WebDriver.TestServer.stop(http_server_pid)
+      :ok
+    end
     {:ok, [http_server_pid: http_server_pid]}
-  end
-
-  teardown_all meta do
-    WebDriver.stop_session :cdtest
-    WebDriver.stop_browser :chrome_test_browser
-    WebDriver.TestServer.stop(meta.http_server_pid)
-    :ok
   end
 
   setup do
     {:ok, []}
-  end
-
-  teardown do
-    :ok
   end
 
 # Tests

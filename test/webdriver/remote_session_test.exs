@@ -5,17 +5,17 @@ defmodule WebDriverRemoteSessionTest do
 
   setup_all do
     :os.cmd 'phantomjs --webdriver=localhost:5555 &'
+    on_exit fn ->
+      :os.cmd 'killall phantomjs'
+    end
     {:ok, []}
   end
 
-  teardown do
-    WebDriver.stop_browser :remote_test_browser
-    WebDriver.stop_session :remote_session
-  end
-
-  teardown_all do
-    :os.cmd 'killall phantomjs'
-    {:ok, []}
+  setup do
+    on_exit fn ->
+      WebDriver.stop_browser :remote_test_browser
+      WebDriver.stop_session :remote_session
+    end
   end
 
   test "can start a remote 'browser'" do

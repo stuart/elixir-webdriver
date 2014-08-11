@@ -6,10 +6,12 @@ defmodule WebDriver.PhantomJS.PortTest do
   alias WebDriver.PhantomJS
   @moduletag :phantomjs
 
-  teardown_all do
-    # Make sure we get rid of any stray processes.
-    System.cmd "killall phantomjs"
-    :ok
+  setup_all do
+    on_exit fn ->
+      # Make sure we get rid of any stray processes.
+      System.cmd "killall", ["phantomjs"]
+      :ok
+    end
   end
 
   test "init starts phantomjs on the port" do

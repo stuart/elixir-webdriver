@@ -6,12 +6,11 @@ defmodule FirefoxProfileTest do
   alias WebDriver.Firefox.Profile
 
   setup do
-    {:ok, [tempdir: Profile.make_temp_directory]}
-  end
-
-  teardown meta do
-    File.rm_rf meta.tempdir
-    {:ok, meta}
+    tempdir = Profile.make_temp_directory
+    on_exit fn ->
+      File.rm_rf tempdir
+    end
+    {:ok, [tempdir: tempdir]}
   end
 
   test "set port sets the port key correctly" do
