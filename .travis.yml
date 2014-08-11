@@ -4,12 +4,8 @@ notifications:
   recipients:
     - stuart.coyle@gmail.com
 otp_release:
-  - 17.0-rc1
-  - R16B03-1
-  - R16B03
-  - R16B02
-  - R16B01
-  - R16B
+  - 17.1
+
 before_install:
    - git clone https://github.com/elixir-lang/elixir
    - make -C elixir
@@ -18,4 +14,3 @@ before_install:
 
 before_script: "export PATH=`pwd`/elixir/bin:$PATH"
 script: "MIX_ENV=test mix do deps.get, deps.compile, test"
-
