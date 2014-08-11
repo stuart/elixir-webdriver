@@ -1,7 +1,7 @@
 # Web Driver for Elixir
 [![Build Status](https://travis-ci.org/stuart/elixir-webdriver.png?branch=master)](https://travis-ci.org/stuart/elixir-webdriver)
 
-[Current Version 0.4.1](https://github.com/stuart/elixir-webdriver/tree/0.4.1)
+[Current Version 0.5.0](https://github.com/stuart/elixir-webdriver/tree/0.5.0)
 
 This is an implementation of the WebDriver protocol client.
 It currently supports PhantomJS, FireFox, ChromeDriver and remote webdriver
@@ -59,26 +59,27 @@ for more on specific commands.
 An example session is shown here:
 
 ```Elixir
-
-  iex(1)> config = %WebDriver.Config{name: :browser}
-  WebDriver.Config[browser: :phantomjs, name: :browser]
-  iex(2)> WebDriver.start_browser config
-  {:ok,#PID<0.138.0>}
-  ex(3)> WebDriver.start_session :browser, :session
-  {:ok,#PID<0.141.0>}
-
-  iex(4)> WebDriver.Session.url :session
-  "about:blank"
-  iex(5)> WebDriver.Session.url :session, "http://elixir-lang.org"
-  {:ok,WebDriver.Protocol.Response[session_id: "d39b91d0-eabe-11e2-9e84-9dbe69660f4a", status: 0, value: [{}], request: WebDriver.Protocol.Request[method: :POST, url: "http://localhost:57202/wd/hub/session/d39b91d0-eabe-11e2-9e84-9dbe69660f4a/url", headers: ["Content-Type": "application/json;charset=UTF-8", "Content-Length": 32], body: "{\"url\":\"http://elixir-lang.org\"}"]]}
-
-  iex(6)> element =  WebDriver.Session.element :session, :css, ".news"
-  WebDriver.Element.Reference[id: ":wdc:1373611746692", session: :session]
-  iex(8)> WebDriver.Element.text element
-  "News: Elixir v0.9.0 released"
-  iex(9)> WebDriver.stop_browser :browser
-  :ok
-
+    iex(1)> config = %WebDriver.Config{name: :browser}
+    %WebDriver.Config{browser: :phantomjs, name: :browser, root_url: ""}
+    iex(2)> WebDriver.start_browser config
+    {:ok, #PID<0.302.0>}
+    iex(3)> WebDriver.start_session :browser, :session
+    {:ok, #PID<0.306.0>}
+    iex(4)> WebDriver.Session.url :session
+    "about:blank"
+    iex(5)> WebDriver.Session.url :session, "http://elixir-lang.org"
+    {:ok,
+     %WebDriver.Protocol.Response{request: %WebDriver.Protocol.Request{body: "{\"url\":\"http://elixir-lang.org\"}",
+       headers: ["Content-Type": "application/json;charset=UTF-8",
+        "Content-Length": 32], method: :POST,
+       url: "http://localhost:56946/wd/hub/session/4dc12b20-2121-11e4-ace2-119365bfea27/url"},
+      session_id: "4dc12b20-2121-11e4-ace2-119365bfea27", status: 0, value: [{}]}}
+    iex(6)> element =  WebDriver.Session.element :session, :css, ".news"
+    %WebDriver.Element.Reference{id: ":wdc:1407738793120", session: :session}
+    iex(7)> WebDriver.Element.text element
+    "News: Elixir v0.15.0 released"
+    iex(8)> WebDriver.stop_browser :browser
+    :ok
 ```
 
 ## Requirements
@@ -97,6 +98,10 @@ It should work on most UNIX like platforms. There is some rudimentary
 Windows support code in here, but I'm pretty sure that it won't work.
 
 ## Changelog
+* 2014-08-11
+    - version 0.5.0
+    - Updated to support Elixir v0.15.0
+
 * 2014-02-24
     - Added Remote driver
     - Added listing of browsers

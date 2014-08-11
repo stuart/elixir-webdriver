@@ -23,7 +23,7 @@ defmodule WebDriver.Protocol do
 
     The value varies according to the call made.
 
-    The Response record defined here also appends the request details to
+    The Response struct defined here also appends the request details to
     that response.
   """
   defmodule Response do

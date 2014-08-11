@@ -2,8 +2,8 @@ defmodule WebDriver.Element do
   @moduledoc """
     This module handles WebDriver calls directed at specific DOM elements.
 
-    They all take an WebDriver.Element.Reference record as the first argument.
-    The WebDriver.Element.Reference is supposed to be an opaque data type and
+    They all take an WebDriver.Element.Reference struct as the first argument.
+    The WebDriver.Element.Reference struct is supposed to be an opaque data type and
     is not meant to be manipulated.
 
     Elements are associated with a particular session and have no meaning

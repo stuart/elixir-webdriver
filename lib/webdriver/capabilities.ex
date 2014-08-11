@@ -19,7 +19,7 @@ defmodule WebDriver.Capabilities do
             proxy: []
 
   @moduledoc """
-    The capabilities record is defined in the WebDriver specification.
+    The capabilities struct is defined in the WebDriver specification.
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#Capabilities_JSON_Object
 
     The current version of this code does not actually use the capabilities object.

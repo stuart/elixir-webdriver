@@ -48,9 +48,9 @@ defmodule WebDriver do
 
   @doc """
     Start a browser with the given configuration.
-    The _config_ parameter is a WebDriver.Config record defined as
+    The _config_ parameter is a WebDriver.Config struct defined as
 
-    ``` defrecord Config, browser: :phantomjs, name: nil ```
+    ``` defstruct  browser: :phantomjs, name: nil, root_url: "" ```
 
     Currently Config is very minimal, future versions will add to this.
     Browser can be eithes :phantomjs or :firefox.

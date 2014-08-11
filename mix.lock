@@ -1,7 +1,9 @@
 %{"ex_doc": {:git, "git://github.com/elixir-lang/ex_doc.git", "512dcabef778f9af675dbdfc44fa2bef2b8924f0", []},
+  "hoedown": {:git, "git://github.com/hoedown/hoedown.git", "34d28b5f1af41a8879985f2550ddcaa54c4e432b", []},
   "httpotion": {:git, "git://github.com/myfreeweb/httpotion.git", "1419c64468483d192cc017f18de3412f9dca7fb4", []},
   "ibrowse": {:git, "git://github.com/cmullaparthi/ibrowse.git", "7871e2ebe8811efb64e1917e2de455fa87e8dfe3", [tag: "v4.1.0"]},
   "jsonex": {:git, "git://github.com/marcelog/jsonex.git", "82e6c416eed5e791073427bf3079d7ab7b85a1e1", []},
   "jsx": {:git, "git://github.com/talentdeficit/jsx.git", "507fa4c41db33c81e925ab53f4d789d234aaff2f", []},
+  "markdown": {:git, "git://github.com/devinus/markdown.git", "a428908a6dd88f351775d1d3da530a1a2aa0d6cb", []},
   "meck": {:git, "git://github.com/eproxus/meck.git", "dde759050eff19a1a80fd854d7375174b191665d", [tag: "0.8.2"]},
   "mock": {:git, "git://github.com/jjh42/mock.git", "275109db347caf3449b6d123bd4da720fb08b28e", []}}

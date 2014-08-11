@@ -34,6 +34,7 @@ defmodule WebDriver.Mixfile do
 
   defp deps :dev do
     deps ++ [{:mock,          github: "jjh42/mock"},
+             {:markdown,      github: "devinus/markdown"},
              {:ex_doc,        github: "elixir-lang/ex_doc"}]
   end
 

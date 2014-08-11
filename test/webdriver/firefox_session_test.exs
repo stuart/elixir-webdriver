@@ -5,7 +5,7 @@ defmodule WebDriverFirefoxSessionTest do
 
   alias WebDriver.Session
   alias WebDriver.Element
-  # alias WebDriver.Mouse
+  alias WebDriver.Mouse
   @moduletag :firefox
 # Testing Callbacks
 
@@ -430,33 +430,34 @@ defmodule WebDriverFirefoxSessionTest do
     assert {:stale_element_reference, _ } = Element.size element
   end
 
-  # FIXME: MOUSE EVENTS ARE BROKEN IN FIREFOX.
+  # FIXME: MOUSE EVENTS ARE BROKEN IN FIREFOX.  
   # test "moving mouse to an element" do
   #   Session.url :fftest, "http://localhost:8888/page_1.html"
   #   element = Session.element :fftest, :id, "1234"
-  #   assert is_element? element
-  #   {:ok, _} = Element.click element
   #   assert {:ok, _resp} = Mouse.move_to element
   # end
-
+  #
   # test "click mouse in a session" do
+  #   Session.maximize_window :fftest
   #   Session.url :fftest, "http://localhost:8888/page_1.html"
   #   assert {:ok, resp} = Mouse.click :fftest, :middle
   #   assert resp.status == 0
   # end
-
+  #
   # test "button_down" do
   #   Session.url :fftest, "http://localhost:8888/page_1.html"
-  #   assert {:ok, resp} = Mouse.button_down :fftest, :right
+  #   assert {:ok, resp} = Mouse.button_down :fftest, :left
   #   assert resp.status == 0
+  #   Mouse.button_up :fftest, :left
   # end
-
+  #
   # test "button_up" do
   #   Session.url :fftest, "http://localhost:8888/page_1.html"
+  #   Mouse.button_down :fftest, :right
   #   assert {:ok, resp} = Mouse.button_up :fftest, :right
   #   assert resp.status == 0
   # end
-
+  #
   # test "double click" do
   #   Session.url :fftest, "http://localhost:8888/page_1.html"
   #   assert {:ok, resp} = Mouse.double_click :fftest
