@@ -46,7 +46,7 @@ defmodule WebDriver.Firefox.Port do
         :unix ->    :os.find_executable('firefox3') or
                     :os.find_executable('firefox2') or
                     :os.find_executable('firefox')
-     end ]
+     end, '-foreground' ]
   end
 
   defp platform do

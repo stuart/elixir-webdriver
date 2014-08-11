@@ -57,7 +57,7 @@ defmodule WebDriver.Firefox.Profile do
     {"toolkit.telemetry.rejected", true},
     {"webdriver_accept_untrusted_certs", true},
     {"webdriver_assume_untrusted_issuer", true},
-    {"webdriver_enable_native_events", false},
+    {"webdriver_enable_native_events", true},
     {"webdriver.log.file", "/tmp/log/webdriver.log"}
   ]
 

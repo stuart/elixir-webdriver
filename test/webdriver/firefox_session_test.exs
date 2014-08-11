@@ -430,16 +430,15 @@ defmodule WebDriverFirefoxSessionTest do
     assert {:stale_element_reference, _ } = Element.size element
   end
 
-  # FIXME: MOUSE EVENTS ARE BROKEN IN FIREFOX.  
+  # FIXME: MOUSE EVENTS ARE BROKEN IN FIREFOX.
   # test "moving mouse to an element" do
   #   Session.url :fftest, "http://localhost:8888/page_1.html"
   #   element = Session.element :fftest, :id, "1234"
   #   assert {:ok, _resp} = Mouse.move_to element
   # end
-  #
   # test "click mouse in a session" do
-  #   Session.maximize_window :fftest
   #   Session.url :fftest, "http://localhost:8888/page_1.html"
+  #   Session.element(:fftest, :id, "1234") |> Mouse.move_to
   #   assert {:ok, resp} = Mouse.click :fftest, :middle
   #   assert resp.status == 0
   # end
