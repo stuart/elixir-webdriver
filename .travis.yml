@@ -8,6 +8,7 @@ otp_release:
 
 before_install:
    - git clone https://github.com/elixir-lang/elixir
+   - git checkout v0.14.0
    - make -C elixir
    - "export DISPLAY=:99.0"
    - "sh -e /etc/init.d/xvfb start"
