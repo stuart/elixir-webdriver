@@ -6,11 +6,7 @@ defmodule WebDriver.Mixfile do
       version: "0.4.1",
       source_url: "https://github.com/stuart/elixir-webdriver",
       homepage_url: "http://stuart.github.io/elixir-webdriver",
-      env: [
-          dev:  [ deps: deps ++ dev_deps  ],
-          test: [ deps: deps ++ test_deps ],
-          prod: [ deps: deps ]
-        ]
+      deps: deps(Mix.env)
     ]
   end
 
@@ -27,17 +23,21 @@ defmodule WebDriver.Mixfile do
   # Returns the list of dependencies in the format:
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
-    [{:httpotion, "~> 0.2.0", github: "myfreeweb/httpotion"},
-     {:jsonex,    "~> 2.0.0", github: "marcelog/jsonex"},
-     {:ex_doc,             github: "elixir-lang/ex_doc"},
+    [{:httpotion, "~> 0.2.4", github: "myfreeweb/httpotion"},
+     {:jsonex,    "~> 2.0.0", github: "marcelog/jsonex"}
      ]
   end
 
-  defp test_deps do
-    [{:mock,               github: "jjh42/mock"}]
+  defp deps :test do
+    deps ++ [{:mock,          github: "jjh42/mock"}]
   end
 
-  defp dev_deps do
-    [{:mock,               github: "jjh42/mock"}]
+  defp deps :dev do
+    deps ++ [{:mock,          github: "jjh42/mock"},
+             {:ex_doc,        github: "elixir-lang/ex_doc"}]
+  end
+
+  defp deps _ do
+    deps
   end
 end

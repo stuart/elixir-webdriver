@@ -1,6 +1,5 @@
 defmodule WebDriver.PhantomJS.Port do
-  use GenServer.Behaviour
-  use WebDriver.Browser
+  use GenServer
 
   @moduledoc """
     This module is a server that controls the running of the PhantomJS browser.
@@ -10,23 +9,26 @@ defmodule WebDriver.PhantomJS.Port do
     BrowserSup.
   """
 
-  @program_name :phantomjs
   @start_wait_timeout 10000
 
   # port refers to the Erlang Port, not the HTTP port number!
-  defrecord State, port: nil,
-                   root_url: "",
-                   program_name: @program_name,
-                   supervisor: nil,
-                   session_supervisor: nil,
-                   sessions: [],
-                   http_port: nil
+  defmodule State do
+    @program_name :phantomjs
+    defstruct port: nil,
+             root_url: "",
+             program_name: @program_name,
+             supervisor: nil,
+             session_supervisor: nil,
+             sessions: [],
+             http_port: nil
+  end
+  use WebDriver.Browser
 
 
   def set_root_url state do
     {:ok, http_port} = WebDriver.PortFinder.select_port
-    state = state.http_port(http_port)
-    state.root_url("http://localhost:#{http_port}/wd/hub")
+    state = %{state | http_port: http_port}
+    %{state | root_url: "http://localhost:#{http_port}/wd/hub"}
   end
 
   def do_init state do
@@ -53,7 +55,7 @@ defmodule WebDriver.PhantomJS.Port do
 
   def normal_termination state do
     # Send a shutdown signal to the PhantomJS process.
-    HTTPotion.get "#{state.root_url}/shutdown"
+    #HTTPotion.get "#{state.root_url}/shutdown"
     Port.close state.port
     :ok
   end

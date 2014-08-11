@@ -1,6 +1,5 @@
 defmodule WebDriver.SessionSup do
-  use Supervisor.Behaviour
-
+  use Supervisor
   @moduledoc """
     This supervisor maintians sessions for a browser instance.
     Will restart sessions that have died for some reason.

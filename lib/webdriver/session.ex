@@ -1,14 +1,16 @@
 defmodule WebDriver.Session do
-  use GenServer.Behaviour
+  use GenServer
 
   alias WebDriver.Cookie
 
-  defrecord State,  name: nil,
-                    root_url: "",
-                    session_id: :null,
-                    desiredCapabilities: [{}],
-                    negotiatedCapabilities: [{}],
-                    browser: nil
+  defmodule State do
+    defstruct name: nil,
+              root_url: "",
+              session_id: :null,
+              desiredCapabilities: [{}],
+              negotiatedCapabilities: [{}],
+              browser: nil
+  end
 
   @moduledoc """
     This module runs a browser session. Use these functions to drive the browser.
@@ -46,7 +48,7 @@ defmodule WebDriver.Session do
     Starts the session.
   """
   def start_link state, name do
-    state = state.name name
+    state = %{state | name: name}
     :gen_server.start_link({:local, name}, __MODULE__ , state, [])
   end
 
@@ -374,7 +376,7 @@ defmodule WebDriver.Session do
   end
 
   defp do_window_size response do
-    resp = HashDict.new(response)
+    resp = Enum.into response, HashDict.new()
     {:ok, h} = HashDict.fetch(resp,"height")
     {:ok, w} = HashDict.fetch(resp,"width")
     [height: h,  width: w]
@@ -417,11 +419,11 @@ defmodule WebDriver.Session do
 
     Parameters: [cookie :: object]
   """
-  def set_cookie name, Cookie[name: cookie_name, value: value, path: path, domain: domain, expiry: 0] do
+  def set_cookie name, %Cookie{name: cookie_name, value: value, path: path, domain: domain, expiry: 0} do
     set_cookie name, cookie_name, value, path, domain
   end
 
-  def set_cookie name, Cookie[name: cookie_name, value: value, path: path, domain: domain, expiry: expiry] do
+  def set_cookie name, %Cookie{name: cookie_name, value: value, path: path, domain: domain, expiry: expiry} do
     set_cookie name, cookie_name, value, path, domain, expiry
   end
 
@@ -438,6 +440,7 @@ defmodule WebDriver.Session do
   def delete_cookies name do
     cmd name, :delete_cookies
   end
+
   @doc """
     Delete the cookie with the given name.
 
@@ -481,7 +484,7 @@ defmodule WebDriver.Session do
     # Don't raise exceptions when we can't find an element. Just return nothing.
     case value do
       {:no_such_element, _resp} -> nil
-      [{"ELEMENT", id}] -> WebDriver.Element.Reference[id: URI.encode(id), session: name]
+      [{"ELEMENT", id}] -> %WebDriver.Element.Reference{id: URI.encode(id), session: name}
     end
   end
 
@@ -650,10 +653,8 @@ defmodule WebDriver.Session do
   def init state do
     {:ok, response} = WebDriver.Protocol.start_session state.root_url,
                [desiredCapabilities: state.desiredCapabilities]
-     state = response.value
-             |> WebDriver.Capabilities.from_response
-             |> state.negotiatedCapabilities
-    {:ok, state.session_id(response.session_id) }
+    state = %{state | negotiatedCapabilities: WebDriver.Capabilities.from_response(response.value)}
+    {:ok, %{state | session_id: response.session_id }}
   end
 
   def handle_cast(:stop, state) do
@@ -666,17 +667,17 @@ defmodule WebDriver.Session do
 
   def handle_call({:start_session, params}, _sender, state) do
     {:ok, response} = WebDriver.Protocol.start_session state.root_url, params
-    {:reply, {:ok, response}, state.session_id(response.session_id)}
+    {:reply, {:ok, response},  %{state | session_id: response.session_id }}
   end
 
   # Calls when no session is running.
-  def handle_call({function, params}, _sender, state = State[session_id: :null]) do
+  def handle_call({function, params}, _sender, state = %State{session_id: :null}) do
     response = :erlang.apply(WebDriver.Protocol, function,
                                   [state.root_url, params])
     {:reply, response, state}
   end
 
-  def handle_call(function, _sender, state = State[session_id: :null]) do
+  def handle_call(function, _sender, state = %State{session_id: :null}) do
     response = :erlang.apply(WebDriver.Protocol, function, [state.root_url])
     {:reply, response, state}
   end

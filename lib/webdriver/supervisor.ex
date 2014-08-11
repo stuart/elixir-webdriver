@@ -1,11 +1,11 @@
 defmodule WebDriver.Supervisor do
-  use Supervisor.Behaviour
+  use Supervisor
 
   @moduledoc """
     The root supervisor for the WebDriver application supervision tree.
     This is responsible for keeping the BrowserSup's alive.
 
-    Each child of this supervisor runs an instance of a Browser and it's 
+    Each child of this supervisor runs an instance of a Browser and it's
     associated sessions.
 
     The functions here should not be called directly by client applications,

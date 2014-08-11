@@ -1,33 +1,31 @@
 Code.require_file "../test_helper.exs", __DIR__
 Code.require_file "test_server.exs", __DIR__
 defmodule WebDriverFirefoxSessionTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
 
   alias WebDriver.Session
   alias WebDriver.Element
   # alias WebDriver.Mouse
   @moduletag :firefox
 # Testing Callbacks
+
   setup_all do
     http_server_pid = WebDriver.TestServer.start
-    config = WebDriver.Config.new(browser: :firefox, name: :ftest_browser)
+    config = %WebDriver.Config{browser: :firefox, name: :ftest_browser}
     WebDriver.start_browser config
     WebDriver.start_session :ftest_browser, :fftest
+
+    on_exit fn ->
+      WebDriver.stop_browser :ftest_browser
+      WebDriver.TestServer.stop(http_server_pid)
+      :ok
+    end
+
     {:ok, [http_server_pid: http_server_pid]}
   end
 
-  teardown_all meta do
-    WebDriver.stop_browser :ftest_browser
-    WebDriver.TestServer.stop(meta[:http_server_pid])
-    :ok
-  end
-
   setup do
-   {:ok, []}
-  end
-
-  teardown do
-    :ok
+    {:ok, []}
   end
 
 # Tests
@@ -58,15 +56,15 @@ defmodule WebDriverFirefoxSessionTest do
   end
 
   test "set_timeout" do
-    check :set_timeout, ["script", 5000]
+    check :set_timeout, ["script", 2000]
   end
 
   test "set_async_script_timeout" do
-    check :set_async_script_timeout, [5000]
+    check :set_async_script_timeout, [2000]
   end
 
   test "set_implicit_wait_timeout" do
-    check :set_implicit_wait_timeout, [5000]
+    check :set_implicit_wait_timeout, [2000]
   end
 
   test "window_handle" do
@@ -142,7 +140,7 @@ defmodule WebDriverFirefoxSessionTest do
   end
 
   test "close window" do
-    config = WebDriver.Config.new(browser: :firefox, name: :window_close_browser)
+    config = %WebDriver.Config{browser: :firefox, name: :window_close_browser}
     WebDriver.start_browser config
     WebDriver.start_session :window_close_browser, :window_close
     assert {:ok, _} = Session.close_window :window_close
@@ -166,7 +164,7 @@ defmodule WebDriverFirefoxSessionTest do
   end
 
   test "set cookie from a cookie record" do
-    cookie = WebDriver.Cookie.new(name: "cookie", value: "value", path: "/", domain: "localhost")
+    cookie = %WebDriver.Cookie{name: "cookie", value: "value", path: "/", domain: "localhost"}
     Session.set_cookie :fftest, cookie
     [ cookie ] = Session.cookies :fftest
 
@@ -174,16 +172,19 @@ defmodule WebDriverFirefoxSessionTest do
     assert cookie.name == "cookie"
     assert cookie.value == "value"
     assert cookie.path == "/"
+    Session.delete_cookies :fftest
   end
 
   test "delete cookies" do
-    Session.set_cookie :fftest, "name", "value", "/", ".localhost"
+    cookie = %WebDriver.Cookie{name: "cookie", value: "value", path: "/", domain: "localhost"}
+    Session.set_cookie :fftest, cookie
     Session.delete_cookies :fftest
     assert [] == Session.cookies :fftest
   end
 
   test "delete cookie" do
-    Session.set_cookie :fftest, "name", "value", "/", ".localhost"
+    cookie = %WebDriver.Cookie{name: "name", value: "value", path: "/", domain: "localhost"}
+    Session.set_cookie :fftest, cookie
     Session.delete_cookie :fftest, "name"
     assert [] == Session.cookies :fftest
   end
@@ -425,7 +426,7 @@ defmodule WebDriverFirefoxSessionTest do
 
   test "accessing a non existing element" do
     Session.url :fftest, "http://localhost:8888/page_1.html"
-    element = Element.Reference[id: ":wdc:12345678899", session: :fftest]
+    element = %Element.Reference{id: ":wdc:12345678899", session: :fftest}
     assert {:stale_element_reference, _ } = Element.size element
   end
 
@@ -483,6 +484,6 @@ defmodule WebDriverFirefoxSessionTest do
   end
 
   defp is_element? elem do
-    assert WebDriver.Element.Reference == elem.__record__(:name)
+    assert WebDriver.Element.Reference == elem.__struct__
   end
 end

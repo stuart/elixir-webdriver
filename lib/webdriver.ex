@@ -1,5 +1,5 @@
 defmodule WebDriver do
-  use Application.Behaviour
+  use Application
 
   @moduledoc """
     This is the Elixir WebDriver application. It can be used to drive a
@@ -15,7 +15,8 @@ defmodule WebDriver do
     languages.
   """
 
-  defrecord Config, browser: :phantomjs, name: nil, root_url: "" do
+  defmodule Config do
+    defstruct  browser: :phantomjs, name: nil, root_url: ""
     @moduledoc """
       Configuration for a WebDriver browser instance.
       Note that this record will have fields added as development of
@@ -63,7 +64,7 @@ defmodule WebDriver do
 
     Example:
 
-      iex> config = WebDriver.Config.new(browser: :phantomjs, name: :test_browser)
+      iex> config = %WebDriver.Config{browser: :phantomjs, name: :test_browser}
       iex> WebDriver.start_browser config
       Starting phantomjs
       Phantom js started
@@ -133,7 +134,7 @@ defmodule WebDriver do
     s
   end
 
-  defp get_browser_name {name, _pid, :worker, mods} do
+  defp get_browser_name {name, _pid, :worker, _mods} do
     name
   end
 

@@ -1,6 +1,5 @@
 defmodule WebDriver.Chrome.Port do
-  use GenServer.Behaviour
-  use WebDriver.Browser
+  use GenServer
 
   @moduledoc """
     This module is a server that controls the running of the Chrome browser.
@@ -9,23 +8,24 @@ defmodule WebDriver.Chrome.Port do
     None of the functions here are user facing and are controlled by the
     BrowserSup.
   """
-  @program_name :chromedriver
   @start_wait_timeout 10000
 
   # port refers to the Erlang Port, not the HTTP port number!
-  defrecord State, port: nil,
-                   root_url: "",
-                   program_name: @program_name,
-                   supervisor: nil,
-                   session_supervisor: nil,
-                   sessions: [],
-                   http_port: nil
-
+  defmodule State do
+    @program_name :chromedriver
+    defstruct port: nil,
+               root_url: "",
+               program_name: @program_name,
+               supervisor: nil,
+               session_supervisor: nil,
+               sessions: [],
+               http_port: nil
+  end
+  use WebDriver.Browser
 
   def set_root_url state do
     {:ok, http_port} = WebDriver.PortFinder.select_port
-    state = state.http_port(http_port)
-    state.root_url("http://localhost:#{http_port}/wd/hub")
+    %{state | http_port: http_port, root_url: "http://localhost:#{http_port}/wd/hub"}
   end
 
   def do_init state do
@@ -37,7 +37,7 @@ defmodule WebDriver.Chrome.Port do
   end
 
   def arguments state do
-    {:ok, port_arg} = String.to_char_list("--port=#{state.http_port}")
+    port_arg = String.to_char_list("--port=#{state.http_port}")
     [port_arg,'--url-base=wd/hub']
   end
 

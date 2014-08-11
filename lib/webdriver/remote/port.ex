@@ -1,5 +1,5 @@
 defmodule WebDriver.Remote.Port do
-  use GenServer.Behaviour
+  use GenServer
 
   @moduledoc """
     This port connects to a remote Web Driver server. Unlike the other ports
@@ -14,14 +14,16 @@ defmodule WebDriver.Remote.Port do
 
   """
 
-  defrecord State, root_url: "",
+  defmodule State do
+    defstruct root_url: "",
                    supervisor: nil,
                    session_supervisor: nil,
                    sessions: []
+  end
 
   def start_link config, sup do
     { :ok, _pid } = :gen_server.start_link {:local, config.name}, __MODULE__,
-                        __MODULE__.State.new(supervisor: sup, root_url: config.root_url), [timeout: 30000]
+                        %__MODULE__.State{supervisor: sup, root_url: config.root_url}, [timeout: 30000]
   end
 
   def init state do
@@ -31,7 +33,7 @@ defmodule WebDriver.Remote.Port do
 
   def handle_call {:start_session, session_name}, _sender, state do
     {:ok, pid} = :supervisor.start_child state.session_supervisor, [session_name]
-    {:reply, {:ok, pid}, state.sessions([session_name | state.sessions])}
+    {:reply, {:ok, pid}, %{state | sessions: [session_name | state.sessions]}}
   end
 
   def handle_call :sessions, _sender, state do
@@ -43,10 +45,10 @@ defmodule WebDriver.Remote.Port do
   end
 
   def handle_info {:start_session_supervisor, sup}, state do
-    config = WebDriver.Session.State.new(root_url: state.root_url, browser: self)
-    spec = Supervisor.Behaviour.worker(WebDriver.SessionSup,[config],[restart: :temporary])
+    config = %WebDriver.Session.State{root_url: state.root_url, browser: self}
+    spec = Supervisor.Spec.worker(WebDriver.SessionSup,[config],[restart: :temporary])
     {:ok, pid} = :supervisor.start_child sup, spec
-    {:noreply, state.session_supervisor(pid)}
+    {:noreply, %{state | session_supervisor: pid}}
   end
 
   def terminate _reason, _state do

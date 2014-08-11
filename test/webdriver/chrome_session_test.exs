@@ -1,7 +1,7 @@
 Code.require_file "../test_helper.exs", __DIR__
 Code.require_file "test_server.exs", __DIR__
 defmodule WebDriverChromeSessionTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
 
   alias WebDriver.Session
   alias WebDriver.Element
@@ -12,25 +12,20 @@ defmodule WebDriverChromeSessionTest do
 
   setup_all do
     http_server_pid = WebDriver.TestServer.start
-    config = WebDriver.Config.new(browser: :chrome, name: :chrome_test_browser)
+    config = %WebDriver.Config{browser: :chrome, name: :chrome_test_browser}
     WebDriver.start_browser config
     WebDriver.start_session :chrome_test_browser, :cdtest
+    on_exit fn ->
+      WebDriver.stop_session :cdtest
+      WebDriver.stop_browser :chrome_test_browser
+      WebDriver.TestServer.stop(http_server_pid)
+      :ok
+    end
     {:ok, [http_server_pid: http_server_pid]}
-  end
-
-  teardown_all meta do
-    WebDriver.stop_session :cdtest
-    WebDriver.stop_browser :chrome_test_browser
-    WebDriver.TestServer.stop(meta[:http_server_pid])
-    :ok
   end
 
   setup do
     {:ok, []}
-  end
-
-  teardown do
-    :ok
   end
 
 # Tests
@@ -187,7 +182,8 @@ defmodule WebDriverChromeSessionTest do
 
   test "set cookie from a cookie record" do
     Session.url :cdtest, "http://example.com/index.html"
-    cookie = WebDriver.Cookie.new(name: "cookie", value: "value", path: "/", domain: "example.com")
+    # Chrome does not do localhost cookies..
+    cookie = %WebDriver.Cookie{name: "cookie", value: "value", path: "/", domain: "example.com"}
     Session.set_cookie :cdtest, cookie
     [ _, cookie ] = Session.cookies :cdtest
     assert cookie.domain == ".example.com"
@@ -198,14 +194,16 @@ defmodule WebDriverChromeSessionTest do
 
   test "delete cookies" do
     Session.url :cdtest, "http://example.com/index.html"
-    Session.set_cookie :cdtest, "name", "value", "/", "example.com"
+    cookie = %WebDriver.Cookie{name: "cookie", value: "value", path: "/", domain: "example.com"}
+    Session.set_cookie :cdtest, cookie
     Session.delete_cookies :cdtest
     assert [] == Session.cookies :cdtest
   end
 
   test "delete cookie" do
     Session.url :cdtest, "http://example.com/index.html"
-    Session.set_cookie :cdtest, "name", "value", "/", "example.com"
+    cookie = %WebDriver.Cookie{name: "name", value: "value", path: "/", domain: "example.com"}
+    Session.set_cookie :cdtest, cookie
     Session.delete_cookie :cdtest, "name"
     assert [ _ ] = Session.cookies :cdtest
   end
@@ -439,7 +437,7 @@ defmodule WebDriverChromeSessionTest do
 
   test "accessing a non existing element" do
     Session.url :cdtest, "http://localhost:8888/page_1.html"
-    element = Element.Reference[id: ":wdc:12345678899", session: :cdtest]
+    element = %Element.Reference{id: ":wdc:12345678899", session: :cdtest}
     assert {:stale_element_reference, _ } = Element.size element
   end
 
@@ -489,6 +487,6 @@ defmodule WebDriverChromeSessionTest do
   end
 
   defp is_element? elem do
-    assert WebDriver.Element.Reference == elem.__record__(:name)
+    assert WebDriver.Element.Reference == elem.__struct__
   end
 end
