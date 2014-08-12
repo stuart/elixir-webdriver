@@ -1,6 +1,6 @@
 defmodule WebDriver.Mouse do
   @moduledoc """
-    MOUSE EVENTS CURRENTLY DO NOT WORK IN FIREFOX
+    Mouse driver event.
   """
 
   @doc """
@@ -14,7 +14,8 @@ defmodule WebDriver.Mouse do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/moveto
   """
   def move_to element, offsetx \\ 0, offsety \\ 0 do
-    cmd element.session, :move_to, [element: element.id, xoffset: offsetx, yoffset: offsety]
+    id = URI.decode element.id
+    cmd element.session, :move_to, [element: id, xoffset: offsetx, yoffset: offsety]
   end
 
   @doc """

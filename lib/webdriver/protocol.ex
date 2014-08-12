@@ -866,7 +866,7 @@ defmodule WebDriver.Protocol do
   defp handle_response(%HTTPotion.Response{body: body, status_code: status, headers: _headers}, _root_url)
       when status in 200..299 do
         if :application.get_env(:debug_browser) == {:ok, true} do
-          IO.format body
+          IO.inspect body
         end
         # Chromedriver sends failed commands with a 200 status.
         response = parse_response_body(body)
