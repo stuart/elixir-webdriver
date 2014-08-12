@@ -75,7 +75,7 @@ An example session is shown here:
        url: "http://localhost:56946/wd/hub/session/4dc12b20-2121-11e4-ace2-119365bfea27/url"},
       session_id: "4dc12b20-2121-11e4-ace2-119365bfea27", status: 0, value: [{}]}}
     iex(6)> element =  WebDriver.Session.element :session, :css, ".news"
-    %WebDriver.Element.Reference{id: ":wdc:1407738793120", session: :session}
+    %WebDriver.Element{id: ":wdc:1407738793120", session: :session}
     iex(7)> WebDriver.Element.text element
     "News: Elixir v0.15.0 released"
     iex(8)> WebDriver.stop_browser :browser

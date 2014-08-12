@@ -484,7 +484,7 @@ defmodule WebDriver.Session do
     # Don't raise exceptions when we can't find an element. Just return nothing.
     case value do
       {:no_such_element, _resp} -> nil
-      [{"ELEMENT", id}] -> %WebDriver.Element.Reference{id: URI.encode(id), session: name}
+      [{"ELEMENT", id}] -> %WebDriver.Element{id: URI.encode(id), session: name}
     end
   end
 
@@ -514,14 +514,14 @@ defmodule WebDriver.Session do
 
     Parameters [using :: atom, value :: String]
 
-    Returns: A (WebDriver.Element.Reference)[/WebDriver.Element.html] record.
+    Returns: A (WebDriver.Element)[/WebDriver.Element.html] struct.
 
     ## Examples
 
       iex(12)> WebDriver.Session.element :test, :css, "img.logo"
-      WebDriver.Element.Reference[id: ":wdc:1373691496542", session: :test]
+      %WebDriver.Element{id: ":wdc:1373691496542", session: :test}
       iex(13)> WebDriver.Session.element :test, :id, "branding"
-      WebDriver.Element.Reference[id: ":wdc:1373691496543", session: :test]
+      %WebDriver.Element{id: ":wdc:1373691496543", session: :test}
 
   """
   def element name, using, value do
@@ -560,7 +560,7 @@ defmodule WebDriver.Session do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element
 
     See element/3 for details on the parameters used.
-    Returns a list of Element.Reference records.
+    Returns a list of Element structs.
   """
   def elements name, using, value do
     get_value(name, {:elements,
@@ -575,8 +575,8 @@ defmodule WebDriver.Session do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/elements
 
     See element/3 for details on the parameters used.
-    The start_element parameter must be a WebDriver.Element.Reference record.
-    Returns a list of Element.Reference records.
+    The start_element parameter must be a WebDriver.Element struct.
+    Returns a list of Element structs.
   """
   def elements name, using, value, start_element do
     get_value(name, {:elements, start_element.id,

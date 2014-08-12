@@ -443,7 +443,7 @@ defmodule WebDriverPhantomJSSessionTest do
 
   test "accessing a non existing element" do
     Session.url :test, "http://localhost:8888/page_1.html"
-    element = %Element.Reference{id: ":wdc:12345678899", session: :test}
+    element = %Element{id: ":wdc:12345678899", session: :test}
     assert {:stale_element_reference, _ } = Element.size element
   end
 
@@ -493,6 +493,6 @@ defmodule WebDriverPhantomJSSessionTest do
   end
 
   defp is_element? elem do
-    assert WebDriver.Element.Reference == elem.__struct__
+    assert WebDriver.Element == elem.__struct__
   end
 end

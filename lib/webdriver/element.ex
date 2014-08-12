@@ -2,8 +2,8 @@ defmodule WebDriver.Element do
   @moduledoc """
     This module handles WebDriver calls directed at specific DOM elements.
 
-    They all take an WebDriver.Element.Reference struct as the first argument.
-    The WebDriver.Element.Reference struct is supposed to be an opaque data type and
+    They all take an WebDriver.Element struct as the first argument.
+    The WebDriver.Element struct is supposed to be an opaque data type and
     is not meant to be manipulated.
 
     Elements are associated with a particular session and have no meaning
@@ -17,9 +17,7 @@ defmodule WebDriver.Element do
     WebDriver.Error.
   """
 
-  defmodule Reference do
-    defstruct id: "", session: :null
-  end
+  defstruct id: "", session: :null
 
   @doc """
     Click on the specified element.
