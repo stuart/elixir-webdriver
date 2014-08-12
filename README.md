@@ -98,8 +98,10 @@ It should work on most UNIX like platforms. There is some rudimentary
 Windows support code in here, but I'm pretty sure that it won't work.
 
 ## Changelog
+
 * 2014-08-11
-    - version 0.5.0
+    - Version 0.5.0
+    - Fixed Firefox Mouse
     - Updated to support Elixir v0.15.0
 
 * 2014-02-24
