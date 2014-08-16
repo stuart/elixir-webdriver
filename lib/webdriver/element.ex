@@ -204,26 +204,42 @@ defmodule WebDriver.Element do
 
 # Private Functions
   # Get a value from the server
-  defp get_value element, command do
-    case :gen_server.call element.session, {command, element.id} do
+  defp get_value %WebDriver.Element{session: session, id: id}, command do
+    case :gen_server.call session, {command, id} do
       {:ok, response} -> response.value
       response -> response
     end
   end
 
-  defp get_value element, command, params do
-    case :gen_server.call element.session, {command, element.id, params} do
+  defp get_value e, _ do
+    raise ArgumentError, "Expected argument to be %WebDriver.Element{} but got #{e}"
+  end
+
+  defp get_value %WebDriver.Element{session: session, id: id}, command, params do
+    case :gen_server.call session, {command, id, params} do
       {:ok, response} -> response.value
       response -> response
     end
+  end
+
+  defp get_value e, command, _ do
+    get_value e, command
   end
 
   # Send a command to the server
-  defp cmd element, command do
-    :gen_server.call element.session, {command, element.id}, 20000
+  defp cmd %WebDriver.Element{session: session, id: id}, command do
+    :gen_server.call session, {command, id}, 20000
   end
 
-  defp cmd element, command, params do
-    :gen_server.call element.session, {command, element.id, params}, 20000
+  defp cmd e, _ do
+    raise ArgumentError, "Expected argument to be %WebDriver.Element{} but got #{e}"
+  end
+
+  defp cmd %WebDriver.Element{session: session, id: id}, command, params do
+    :gen_server.call session, {command, id, params}, 20000
+  end
+
+  defp cmd e, command, _ do
+    cmd e, command
   end
 end
