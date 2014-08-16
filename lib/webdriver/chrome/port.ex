@@ -42,9 +42,8 @@ defmodule WebDriver.Chrome.Port do
   end
 
   def wait_for_start state do
-    start_string = String.to_char_list("Starting ChromeDriver")
     receive do
-      {_,{:data, [start_string | _]}} -> { :ok, state }
+      {_,{:data, 'Starting ChromeDriver' ++ _}} -> { :ok, state }
       after @start_wait_timeout ->
         :error_logger.error_msg "Chromedriver has not started.\n\
                          Check that you can start it with: #{program_name(state)} #{arguments(state)}"
