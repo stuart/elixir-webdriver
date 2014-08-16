@@ -264,6 +264,12 @@ defmodule WebDriverPhantomJSSessionTest do
     assert nil = Session.element :test, :tag, "nothing"
   end
 
+  test "running a command on an non-existent element" do
+    Session.url :test, "http://localhost:8888/page_1.html"
+    nil_element = Session.element :test, :tag, "nothing"
+    assert_raise ArgumentError, fn -> Element.click(nil_element) end
+  end
+
   test "find an element starting from a specified element" do
     Session.url :test, "http://localhost:8888/page_1.html"
     start = Session.element :test, :class_name, "blue"
