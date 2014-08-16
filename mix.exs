@@ -6,6 +6,7 @@ defmodule WebDriver.Mixfile do
       version: "0.5.0",
       source_url: "https://github.com/stuart/elixir-webdriver",
       homepage_url: "http://stuart.github.io/elixir-webdriver",
+      package: package,
       deps: deps(Mix.env)
     ]
   end
@@ -40,5 +41,14 @@ defmodule WebDriver.Mixfile do
 
   defp deps _ do
     deps
+  end
+
+  defp package do
+    [
+      contributors: ["Stuart Coyle", "Carl Woodward"],
+      licenses: ["MIT License"],
+      links: %{"GitHub" => "https://github.com/stuart/elixir-webdriver",
+              "Docs" => "http://stuart.github.io/elixir-webdriver/"}
+    ]
   end
 end
