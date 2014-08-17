@@ -13,7 +13,7 @@ defmodule Mix.Tasks.Webdriver do
       :ok
     end
 
-    defp plugin_path
+    defp plugin_path do
       Path.join [__DIR__, "..", "..", "..", "plugins", "firefox","webdriver.xpi"]
     end
   end
