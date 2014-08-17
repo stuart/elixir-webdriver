@@ -265,9 +265,9 @@ defmodule WebDriverChromeSessionTest do
   end
 
   test "running a command on an non-existent element" do
-    Session.url :test, "http://localhost:8888/page_1.html"
-    nil_element = Session.element :test, :tag, "nothing"
-    assert_raise ArgumentError, fn -> Element.click(nil_element) end
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    nil_element = Session.element :cdtest, :tag, "nothing"
+    assert {:error, "Expected argument to be %WebDriver.Element{} but got nil"} = Element.click(nil_element)
   end
 
   test "find an element starting from a specified element" do

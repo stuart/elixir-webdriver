@@ -231,8 +231,8 @@ defmodule WebDriver.Element do
     :gen_server.call session, {command, id}, 20000
   end
 
-  defp cmd e, _ do
-    raise ArgumentError, "Expected argument to be %WebDriver.Element{} but got #{e}"
+  defp cmd nil, _ do
+    {:error, "Expected argument to be %WebDriver.Element{} but got nil"}
   end
 
   defp cmd %WebDriver.Element{session: session, id: id}, command, params do
