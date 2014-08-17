@@ -98,7 +98,7 @@ defmodule WebDriver.Firefox.Profile do
   end
 
   def install_extension destination, source do
-    if !File.exists?(source) or File.dir?(source) do
+    if !File.regular?(source) do
       raise RuntimeError, "Webdriver plugin for firefox not found at:\n#{source}.\nRun `mix webdriver.firefox.install` to install it."
     end
     destination = Path.join [destination,"extensions","fxdriver@googlecode.com"]
