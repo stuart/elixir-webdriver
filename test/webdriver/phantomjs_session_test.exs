@@ -142,19 +142,19 @@ defmodule WebDriverPhantomJSSessionTest do
     assert <<137,80,78,71,13,10,26,10,_ :: binary >> = :base64.decode(Session.screenshot :test)
   end
 
-  # test "no such frame error" do
-  #   assert {:no_such_frame, _ } = Session.frame :test, 123
-  # end
-  #
+  test "no such frame error" do
+    assert {:no_such_frame, _ } = Session.frame :test, 123
+  end
+
   test "window" do
     handle = Session.window_handle :test
     check :window, [handle]
   end
 
-  # test "error when there is no such window" do
-  #   assert {:no_such_window, _} = Session.window :test, "xyz"
-  # end
-  #
+  test "error when there is no such window" do
+    assert {:no_such_window, _} = Session.window :test, "xyz"
+  end
+  
   test "close window" do
     WebDriver.start_session :test_browser, :window_close
     assert {:ok, _} = Session.close_window :window_close

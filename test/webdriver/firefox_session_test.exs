@@ -266,10 +266,10 @@ defmodule WebDriverFirefoxSessionTest do
   end
 
   #FIXME: firefox does not support this
-  #test "active element" do
+  # test "active element" do
   #  Session.url :fftest, "http://localhost:8888/page_1.html"
   #  assert is_element? Session.active_element :fftest
-  #end
+  # end
 
   test "get orientation" do
     assert {:error, "Session does not support device rotation."} == Session.orientation(:fftest)
