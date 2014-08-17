@@ -102,7 +102,7 @@ Windows support code in here, but I'm pretty sure that it won't work.
 
 ## Changelog
 * 2014-08-17
-    - Version 0.5.1
+    - Version 0.5.2
     - Moved webdriver.xpi out of hex accessed path
     - Added mix task to get the FireFox plugin.
 
