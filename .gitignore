@@ -8,4 +8,4 @@ erl_crash.dump
 .dialyzer.base_plt
 .*.swp
 docs
-.DSStore
+.DS_Store
