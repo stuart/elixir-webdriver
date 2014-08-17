@@ -1,4 +1,5 @@
-%{"ex_doc": {:git, "git://github.com/elixir-lang/ex_doc.git", "512dcabef778f9af675dbdfc44fa2bef2b8924f0", []},
+%{"earmark": {:package, "0.1.10"},
+  "ex_doc": {:package, "0.5.2"},
   "hoedown": {:git, "git://github.com/hoedown/hoedown.git", "34d28b5f1af41a8879985f2550ddcaa54c4e432b", []},
   "httpotion": {:package, "0.2.4"},
   "ibrowse": {:git, "git://github.com/cmullaparthi/ibrowse.git", "7871e2ebe8811efb64e1917e2de455fa87e8dfe3", [tag: "v4.1.0"]},

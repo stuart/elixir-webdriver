@@ -38,8 +38,8 @@ defmodule WebDriver.Mixfile do
 
   defp deps :dev do
     deps ++ [{:mock,          github: "jjh42/mock"},
-             {:markdown,      github: "devinus/markdown"},
-             {:ex_doc,        github: "elixir-lang/ex_doc"}]
+             {:earmark,       "~>0.1.10"},
+             {:ex_doc,        "~>0.5.2"}]
   end
 
   defp deps _ do
@@ -51,7 +51,7 @@ defmodule WebDriver.Mixfile do
       contributors: ["Stuart Coyle", "Carl Woodward"],
       licenses: ["MIT License"],
       links: %{"GitHub" => "https://github.com/stuart/elixir-webdriver",
-              "Docs" => "http://stuart.github.io/elixir-webdriver/"}
+               "Docs" => "http://stuart.github.io/elixir-webdriver/"}
     ]
   end
 end
