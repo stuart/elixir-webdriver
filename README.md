@@ -14,7 +14,7 @@ session storage.
 ## Installation
 
 This library has been set up as a Mix application, so just
-add this to mix.exs dep block:
+add this to mix.exs deps:
 
 ```{:webdriver, github: "stuart/elixir-webdriver"} ```
 
@@ -89,6 +89,9 @@ for your OS:
 
 * PhantomJS version 1.9.7 or later: http://phantomjs.org/
 * FireFox: Get a recent version, please... https://www.mozilla.org/en-US/firefox/new/
+          If you installed webdriver with hex you will not have the firefox plugin.
+          Run `mix webdriver.firefox.install` to get the plugin.
+
 * ChromeDriver version 2.9 or later and Chrome (or Chromium): http://chromedriver.storage.googleapis.com/index.html
 * Remote Driver: This driver does not manage starting and stopping the browser for you. To
 use this you must have a webdriver server such as Selenium or PhantomJS running at a known url.
@@ -98,6 +101,10 @@ It should work on most UNIX like platforms. There is some rudimentary
 Windows support code in here, but I'm pretty sure that it won't work.
 
 ## Changelog
+* 2014-08-17
+    - Version 0.5.1
+    - Moved webdriver.xpi out of hex accessed path
+    - Added mix task to get the FireFox plugin.
 
 * 2014-08-11
     - Version 0.5.0
