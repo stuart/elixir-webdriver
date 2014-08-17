@@ -2,6 +2,7 @@ Code.require_file "../test_helper.exs", __DIR__
 
 defmodule WebDriverProtocolTest do
   use ExUnit.Case, async: true
+  use Jazz
   import Mock
 
   alias WebDriver.Protocol
@@ -14,7 +15,7 @@ defmodule WebDriverProtocolTest do
   end
 
   test "start_session" do
-    test_post &Protocol.start_session(&1,[desiredCapabilities: []]), "/session", "{\"desiredCapabilities\":[]}"
+    test_post &Protocol.start_session(&1,%{desiredCapabilities: []}), "/session", "{\"desiredCapabilities\":[]}"
   end
 
   test "sessions" do
@@ -30,18 +31,18 @@ defmodule WebDriverProtocolTest do
   end
 
   test "set_timeout" do
-    test_post &Protocol.set_timeout(&1, @session_id, [type: "script", ms: 1000]),
+    test_post &Protocol.set_timeout(&1, @session_id, %{type: "script", ms: 1000}),
               "/session/:session_id/timeouts", "{\"type\":\"script\",\"ms\":1000}"
   end
 
   test "set_async_script_timeout" do
-    test_post &Protocol.set_async_script_timeout(&1, @session_id, [ms: 1000]),
+    test_post &Protocol.set_async_script_timeout(&1, @session_id, %{ms: 1000}),
               "/session/:session_id/timeouts/async_script",
               "{\"ms\":1000}"
   end
 
   test "set_implicit_wait_timeout" do
-    test_post &Protocol.set_implicit_wait_timeout(&1, @session_id, [ms: 1000]),
+    test_post &Protocol.set_implicit_wait_timeout(&1, @session_id, %{ms: 1000}),
               "/session/:session_id/timeouts/implicit_wait","{\"ms\":1000}"
   end
 
@@ -54,7 +55,7 @@ defmodule WebDriverProtocolTest do
   end
 
   test "url/3" do
-    test_post &Protocol.url(&1, @session_id, [url: "http://google.com"]),
+    test_post &Protocol.url(&1, @session_id, %{url: "http://google.com"}),
               "/session/:session_id/url", "{\"url\":\"http://google.com\"}"
   end
 
@@ -75,12 +76,12 @@ defmodule WebDriverProtocolTest do
   end
 
   test "execute" do
-    test_post &Protocol.execute(&1, @session_id, [script: "alert('Hello world!')", args: []]),
+    test_post &Protocol.execute(&1, @session_id, %{script: "alert('Hello world!')", args: []}),
          "/session/:session_id/execute", "{\"script\":\"alert('Hello world!')\",\"args\":[]}"
   end
 
   test "execute_async" do
-    test_post &Protocol.execute_async(&1, @session_id, [script: "alert('Hello world!')", args: []]),
+    test_post &Protocol.execute_async(&1, @session_id, %{script: "alert('Hello world!')", args: []}),
      "/session/:session_id/execute_async","{\"script\":\"alert('Hello world!')\",\"args\":[]}"
   end
 
@@ -89,12 +90,12 @@ defmodule WebDriverProtocolTest do
   end
 
   test "frame" do
-    test_post &Protocol.frame(&1, @session_id, [id: "frame"]),
+    test_post &Protocol.frame(&1, @session_id, %{id: "frame"}),
     "/session/:session_id/frame","{\"id\":\"frame\"}"
   end
 
   test "window" do
-    test_post &Protocol.window(&1, @session_id, [name: "window"]),
+    test_post &Protocol.window(&1, @session_id, %{name: "window"}),
               "/session/:session_id/window", "{\"name\":\"window\"}"
   end
 
@@ -112,7 +113,7 @@ defmodule WebDriverProtocolTest do
   end
 
   test "window_size/4" do
-    test_post &Protocol.window_size(&1, @session_id, "window_handle", [height: 240, width: 320]),
+    test_post &Protocol.window_size(&1, @session_id, "window_handle", %{height: 240, width: 320}),
      "/session/:session_id/window/window_handle/size", "{\"height\":240,\"width\":320}"
   end
 
@@ -127,7 +128,7 @@ defmodule WebDriverProtocolTest do
   end
 
   test "window_position/4" do
-    test_post &Protocol.window_position(&1, @session_id, "window_handle", [x: 100, y: 200]),
+    test_post &Protocol.window_position(&1, @session_id, "window_handle", %{x: 100, y: 200}),
     "/session/:session_id/window/window_handle/position", "{\"x\":100,\"y\":200}"
   end
 
@@ -141,7 +142,7 @@ defmodule WebDriverProtocolTest do
   end
 
   test "set_cookie" do
-    test_post &Protocol.set_cookie(&1, @session_id, [cookie: [key: "value"]]),
+    test_post &Protocol.set_cookie(&1, @session_id, %{cookie: %{key: "value"}}),
      "/session/:session_id/cookie", "{\"cookie\":{\"key\":\"value\"}}"
   end
 
@@ -163,24 +164,24 @@ defmodule WebDriverProtocolTest do
   end
 
   test "element/3" do
-    test_post &Protocol.element(&1, @session_id, [using: "css selector", value: "special"]),
+    test_post &Protocol.element(&1, @session_id, %{using: "css selector", value: "special"}),
               "/session/:session_id/element", "{\"using\":\"css selector\",\"value\":\"special\"}"
   end
 
   test "element/4" do
-    test_post &Protocol.element(&1, @session_id, ":element_id", [using: "css selector", value: "special"]),
+    test_post &Protocol.element(&1, @session_id, ":element_id", %{using: "css selector", value: "special"}),
       "/session/:session_id/element/:element_id/element",
       "{\"using\":\"css selector\",\"value\":\"special\"}"
   end
 
   test "elements/3" do
-    test_post &Protocol.elements(&1, @session_id, [using: "css selector", value: "special"]),
+    test_post &Protocol.elements(&1, @session_id, %{using: "css selector", value: "special"}),
       "/session/:session_id/elements",
       "{\"using\":\"css selector\",\"value\":\"special\"}"
   end
 
   test "elements/4" do
-    test_post &Protocol.elements(&1, @session_id, ":element_id", [using: "css selector", value: "special"]),
+    test_post &Protocol.elements(&1, @session_id, ":element_id", %{using: "css selector", value: "special"}),
       "/session/:session_id/element/:element_id/elements",
       "{\"using\":\"css selector\",\"value\":\"special\"}"
   end
@@ -210,13 +211,13 @@ defmodule WebDriverProtocolTest do
   end
 
   test "value" do
-    test_post &Protocol.value(&1, @session_id, ":element_id", [value: ["a","b","c"]]),
+    test_post &Protocol.value(&1, @session_id, ":element_id", %{value: ["a","b","c"]}),
       "/session/:session_id/element/:element_id/value",
       "{\"value\":[\"a\",\"b\",\"c\"]}"
   end
 
   test "keys" do
-    test_post &Protocol.keys(&1, @session_id, [value: ["a","b","c"]]),
+    test_post &Protocol.keys(&1, @session_id, %{value: ["a","b","c"]}),
       "/session/:session_id/keys",
       "{\"value\":[\"a\",\"b\",\"c\"]}"
   end
@@ -282,7 +283,7 @@ defmodule WebDriverProtocolTest do
   end
 
   test "orientation/3" do
-    test_post &Protocol.orientation(&1, @session_id, [orientation: "LANDSCAPE"]),
+    test_post &Protocol.orientation(&1, @session_id, %{orientation: "LANDSCAPE"}),
        "/session/:session_id/orientation",
                   "{\"orientation\":\"LANDSCAPE\"}"
   end
@@ -293,7 +294,7 @@ defmodule WebDriverProtocolTest do
   end
 
   test "alert_text/3" do
-    test_post &Protocol.alert_text(&1, @session_id, [text: "Help!"]),
+    test_post &Protocol.alert_text(&1, @session_id, %{text: "Help!"}),
        "/session/:session_id/alert_text",
                 "{\"text\":\"Help!\"}"
   end
@@ -311,7 +312,7 @@ defmodule WebDriverProtocolTest do
   end
 
   test "move_to" do
-    test_post &Protocol.move_to(&1, @session_id, [element: "element_id", offsetx: 10, offsety: 20]),
+    test_post &Protocol.move_to(&1, @session_id, %{element: "element_id", offsetx: 10, offsety: 20}),
        "/session/:session_id/moveto",
           "{\"element\":\"element_id\",\"offsetx\":10,\"offsety\":20}"
   end
@@ -322,7 +323,7 @@ defmodule WebDriverProtocolTest do
   end
 
   test "mouse_click/3" do
-    test_post &Protocol.mouse_click(&1, @session_id, [button: 2]),
+    test_post &Protocol.mouse_click(&1, @session_id, %{button: 2}),
        "/session/:session_id/click", "{\"button\":2}"
   end
 
@@ -332,17 +333,17 @@ defmodule WebDriverProtocolTest do
   end
 
   test "mouse_button_down/3" do
-    test_post &Protocol.mouse_button_down(&1, @session_id, [button: 1]),
+    test_post &Protocol.mouse_button_down(&1, @session_id, %{button: 1}),
        "/session/:session_id/buttondown", "{\"button\":1}"
   end
 
   test "mouse_button_up/2" do
     test_post &Protocol.mouse_button_up(&1, @session_id),
-       "/session/:session_id/buttonup", "{}"
+       "/session/:session_id/buttonup",  "{}"
   end
 
   test "mouse_button_up/3" do
-    test_post &Protocol.mouse_button_up(&1, @session_id, [button: 1]),
+    test_post &Protocol.mouse_button_up(&1, @session_id, %{button: 1}),
        "/session/:session_id/buttonup", "{\"button\":1}"
   end
 
@@ -352,51 +353,51 @@ defmodule WebDriverProtocolTest do
   end
 
   test "mouse_double_click/3" do
-    test_post &Protocol.mouse_double_click(&1, @session_id, [button: 2]),
+    test_post &Protocol.mouse_double_click(&1, @session_id, %{button: 2}),
        "/session/:session_id/doubleclick", "{\"button\":2}"
   end
 
   test "touch_click" do
-    test_post &Protocol.touch_click(&1, @session_id, [element: "element_id"]),
+    test_post &Protocol.touch_click(&1, @session_id, %{element: "element_id"}),
        "/session/:session_id/touch/click", "{\"element\":\"element_id\"}"
   end
 
   test "touch_down" do
-    test_post &Protocol.touch_down(&1, @session_id, [x: 100, y: 200]),
+    test_post &Protocol.touch_down(&1, @session_id, %{x: 100, y: 200}),
        "/session/:session_id/touch/down",
                    "{\"x\":100,\"y\":200}"
   end
 
   test "touch_up" do
-    test_post &Protocol.touch_up(&1, @session_id, [x: 100, y: 200]),
+    test_post &Protocol.touch_up(&1, @session_id, %{x: 100, y: 200}),
        "/session/:session_id/touch/up", "{\"x\":100,\"y\":200}"
   end
 
   test "touch_move" do
-    test_post &Protocol.touch_move(&1, @session_id, [x: 100, y: 200]),
+    test_post &Protocol.touch_move(&1, @session_id, %{x: 100, y: 200}),
        "/session/:session_id/touch/move", "{\"x\":100,\"y\":200}"
   end
 
   test "touch_scroll" do
-    test_post &Protocol.touch_scroll(&1, @session_id, [element: "element_id", x: 100, y: 200]),
+    test_post &Protocol.touch_scroll(&1, @session_id, %{element: "element_id", x: 100, y: 200}),
        "/session/:session_id/touch/scroll",
                    "{\"element\":\"element_id\",\"x\":100,\"y\":200}"
   end
 
   test "touch_double_click" do
-    test_post &Protocol.touch_double_click(&1, @session_id, [element: "element_id"]),
+    test_post &Protocol.touch_double_click(&1, @session_id, %{element: "element_id"}),
        "/session/:session_id/touch/doubleclick",
                    "{\"element\":\"element_id\"}"
   end
 
   test "touch_long_click" do
-    test_post &Protocol.touch_long_click(&1, @session_id, [element: "element_id"]),
+    test_post &Protocol.touch_long_click(&1, @session_id, %{element: "element_id"}),
        "/session/:session_id/touch/longclick",
                    "{\"element\":\"element_id\"}"
   end
 
   test "touch_flick" do
-    test_post &Protocol.touch_flick(&1, @session_id, [xSpeed: 10, ySpeed: 0]),
+    test_post &Protocol.touch_flick(&1, @session_id, %{xSpeed: 10, ySpeed: 0}),
        "/session/:session_id/touch/flick", "{\"xSpeed\":10,\"ySpeed\":0}"
   end
 
@@ -406,7 +407,7 @@ defmodule WebDriverProtocolTest do
   end
 
   test "geo_location/3" do
-    test_post &Protocol.geo_location(&1, @session_id, [longitude: 23.34, lattitude: 40.3, altitude: 10.3]),
+    test_post &Protocol.geo_location(&1, @session_id, %{longitude: 23.34, lattitude: 40.3, altitude: 10.3}),
        "/session/:session_id/location", "{\"longitude\":23.34,\"lattitude\":40.3,\"altitude\":10.3}"
   end
 
@@ -435,19 +436,19 @@ defmodule WebDriverProtocolTest do
   end
 
   def post(_url, body, _headers) do
-    %HTTPotion.Response{ body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{Jsonex.encode body}}",
+    %HTTPotion.Response{ body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{JSON.encode! body}}",
                        status_code: 201, headers: []}
   end
 
   # Mocks a response to a GET request. Just returns an HTTPotion Response
   def get(_url, _headers) do
-    %HTTPotion.Response{ body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{Jsonex.encode(:null)}}",
+    %HTTPotion.Response{ body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{JSON.encode!(%{})}}",
                        status_code: 200, headers: [] }
   end
 
   # Mocks a response to a DELETE request. Just returns an HTTPotion Response
   def delete(_url, _headers) do
-    %HTTPotion.Response{ body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{Jsonex.encode(:null)}}",
+    %HTTPotion.Response{ body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{JSON.encode!(%{})}}",
                        status_code: 204, headers: [] }
   end
 
@@ -456,7 +457,9 @@ defmodule WebDriverProtocolTest do
   end
 
   defp assert_post path, body do
-    assert called HTTPotion.post("http://127.0.0.1:8080#{path}", body, :_)
+    # Jazz shuffles map keys around.
+    b = JSON.decode!(body) |> JSON.encode!
+    assert called HTTPotion.post("http://127.0.0.1:8080#{path}", b, :_)
   end
 
   defp assert_delete path do
