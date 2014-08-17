@@ -55,7 +55,7 @@ defmodule WebDriver.PhantomJS.Port do
 
   def normal_termination state do
     # Send a shutdown signal to the PhantomJS process.
-    #HTTPotion.get "#{state.root_url}/shutdown"
+    HTTPotion.get "#{state.root_url}/shutdown"
     Port.close state.port
     :ok
   end

@@ -7,8 +7,8 @@ defmodule WebDriver.Session do
     defstruct name: nil,
               root_url: "",
               session_id: :null,
-              desiredCapabilities: [{}],
-              negotiatedCapabilities: [{}],
+              desiredCapabilities: %{},
+              negotiatedCapabilities: %{},
               browser: nil
   end
 
@@ -107,9 +107,9 @@ defmodule WebDriver.Session do
       name : The session server process to start the session on.
       desired_capabilities: Capability
   """
-  def start_session name, desired_capabilities \\ [{}] do
+  def start_session name, desired_capabilities \\ %{} do
     :gen_server.call name, { :start_session,
-                             [desiredCapabilities: desired_capabilities] }
+                             %{desiredCapabilities: desired_capabilities}}
   end
 
   @doc """
@@ -150,7 +150,7 @@ defmodule WebDriver.Session do
     Parameters type: "script"|"implicit", ms: number
   """
   def set_timeout name, type, ms do
-    cmd name, {:set_timeout, [type: type, ms: ms]}
+    cmd name, {:set_timeout, %{type: type, ms: ms}}
   end
 
   @doc """
@@ -161,7 +161,7 @@ defmodule WebDriver.Session do
     Parameters: [ms :: number]
   """
   def set_async_script_timeout name, ms do
-    cmd name, {:set_async_script_timeout, [ms: ms]}
+    cmd name, {:set_async_script_timeout, %{ms: ms}}
   end
 
   @doc """
@@ -172,7 +172,7 @@ defmodule WebDriver.Session do
     Parameters: [ms :: number]
   """
   def set_implicit_wait_timeout name, ms do
-    cmd name, {:set_implicit_wait_timeout, [ms: ms]}
+    cmd name, {:set_implicit_wait_timeout, %{ms: ms}}
   end
 
   @doc """
@@ -230,7 +230,7 @@ defmodule WebDriver.Session do
     Parameters [url :: String]
   """
   def url name, url do
-    cmd name, {:url, [url: url]}
+    cmd name, {:url, %{url: url}}
   end
 
   @doc """
@@ -281,7 +281,7 @@ defmodule WebDriver.Session do
   """
   def execute name, script, args \\ [] do
     case javascript_enabled?(name) do
-      true -> get_value name, {:execute, [script: script, args: args]}
+      true -> get_value name, {:execute, %{script: script, args: args}}
       false -> {:error, "Javascript not enabled for this session."}
     end
   end
@@ -298,7 +298,7 @@ defmodule WebDriver.Session do
   """
   def execute_async name, script, args \\ [] do
     case javascript_enabled?(name) do
-      true -> get_value name, {:execute, [script: script, args: args]}
+      true -> get_value name, {:execute, %{script: script, args: args}}
       false -> {:error, "Javascript not enabled for this session."}
     end
   end
@@ -324,7 +324,7 @@ defmodule WebDriver.Session do
     Parameters: [id: string | number | :null | WebElement]
   """
   def frame name, id do
-    cmd name, {:frame, [id: id]}
+    cmd name, {:frame, %{id: id}}
   end
 
   @doc """
@@ -337,7 +337,7 @@ defmodule WebDriver.Session do
     Parameters: [window_handle :: String]
   """
   def window name, window_handle do
-    cmd name, {:window, [name: window_handle]}
+    cmd name, {:window, %{name: window_handle}}
   end
 
   @doc """
@@ -356,7 +356,7 @@ defmodule WebDriver.Session do
     http://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window/:windowHandle/maximize
   """
   def maximize_window name, window_handle \\ "current" do
-    cmd name, {:maximize_window, [window_handle]}
+    cmd name, {:maximize_window, window_handle}
   end
 
  @doc """
@@ -394,7 +394,7 @@ defmodule WebDriver.Session do
     Parameters: [height :: number, width :: number]
   """
   def window_size name, window_handle, width, height do
-    cmd name, {:window_size, window_handle, [width: width, height: height]}
+    cmd name, {:window_size, window_handle, %{width: width, height: height}}
   end
 
   @doc """
@@ -429,7 +429,7 @@ defmodule WebDriver.Session do
 
   def set_cookie name, cookie_name, value, path, domain, expiry \\ in_one_hour do
     cmd name, {:set_cookie,
-        [cookie: [name: cookie_name, value: value, path: path, domain: domain, expiry: expiry]]}
+        %{cookie: %{name: cookie_name, value: value, path: path, domain: domain, expiry: expiry}}}
   end
 
   @doc """
@@ -447,7 +447,7 @@ defmodule WebDriver.Session do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/cookie/:name
   """
   def delete_cookie name, cookie_name do
-    cmd name, {:delete_cookie, [cookie_name]}
+    cmd name, {:delete_cookie, cookie_name}
   end
 
   @doc """
@@ -484,7 +484,7 @@ defmodule WebDriver.Session do
     # Don't raise exceptions when we can't find an element. Just return nothing.
     case value do
       {:no_such_element, _resp} -> nil
-      [{"ELEMENT", id}] -> %WebDriver.Element{id: URI.encode(id), session: name}
+      %{"ELEMENT" => id} -> %WebDriver.Element{id: URI.encode(id), session: name}
     end
   end
 
@@ -525,7 +525,7 @@ defmodule WebDriver.Session do
 
   """
   def element name, using, value do
-    get_value(name, {:element, [ using: Keyword.get(@selectors,using), value: value ]})
+    get_value(name, {:element, %{ using: Keyword.get(@selectors,using), value: value }})
     |> element_value(name)
   end
 
@@ -542,7 +542,7 @@ defmodule WebDriver.Session do
   """
   def element name, using, value, start_element do
     get_value(name, {:element, start_element.id,
-                    [ using: Keyword.get(@selectors,using), value: value ]})
+                    %{ using: Keyword.get(@selectors,using), value: value }})
     |> element_value(name)
   end
 
@@ -564,7 +564,7 @@ defmodule WebDriver.Session do
   """
   def elements name, using, value do
     get_value(name, {:elements,
-                     [ using: Keyword.get(@selectors,using), value: value ]})
+                     %{ using: Keyword.get(@selectors,using), value: value }})
     |> elements_value name
   end
 
@@ -580,7 +580,7 @@ defmodule WebDriver.Session do
   """
   def elements name, using, value, start_element do
     get_value(name, {:elements, start_element.id,
-                     [ using: Keyword.get(@selectors,using), value: value ]})
+                     %{ using: Keyword.get(@selectors,using), value: value }})
       0
     |> elements_value name
   end
@@ -606,7 +606,7 @@ defmodule WebDriver.Session do
     Parameters: [ value :: String ]
   """
   def keys name, value do
-    cmd name, {:keys, [value: String.codepoints value]}
+    cmd name, {:keys, %{value: String.codepoints value}}
   end
 
   @doc """
@@ -639,8 +639,8 @@ defmodule WebDriver.Session do
 
   defp do_orientation name, screen_orientation do
     case screen_orientation do
-      :landscape -> cmd name, {:orientation, [ orientation: "LANDSCAPE"]}
-      :portrait  -> cmd name, {:orientation, [ orientation: "PORTRAIT"]}
+      :landscape -> cmd name, {:orientation, %{ orientation: "LANDSCAPE"}}
+      :portrait  -> cmd name, {:orientation, %{ orientation: "PORTRAIT"}}
     end
   end
 
@@ -652,7 +652,7 @@ defmodule WebDriver.Session do
 
   def init state do
     {:ok, response} = WebDriver.Protocol.start_session state.root_url,
-               [desiredCapabilities: state.desiredCapabilities]
+               %{desiredCapabilities: state.desiredCapabilities}
     state = %{state | negotiatedCapabilities: WebDriver.Capabilities.from_response(response.value)}
     {:ok, %{state | session_id: response.session_id }}
   end

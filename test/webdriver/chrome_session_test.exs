@@ -32,7 +32,7 @@ defmodule WebDriverChromeSessionTest do
 
   test "status should show that the Session is up" do
     resp = WebDriver.Session.status(:cdtest)
-    assert [{"build", _},{"os",_}] = resp
+    assert %{"build" => _, "os" => _} = resp
   end
 
   test "start_session should start a WebDriver session", meta do
@@ -413,19 +413,19 @@ defmodule WebDriverChromeSessionTest do
   test "location" do
     Session.url :cdtest, "http://localhost:8888/page_1.html"
     element = Session.element :cdtest, :id, "fixed"
-    assert [x: 100,y: 100] = Element.location element
+    assert %{x: 100,y: 100} = Element.location element
   end
 
   test "location_in_view" do
     Session.url :cdtest, "http://localhost:8888/page_1.html"
     element = Session.element :cdtest, :id, "fixed"
-    assert [x: 100,y: 100] = Element.location_in_view element
+    assert %{x: 100,y: 100} = Element.location_in_view element
   end
 
   test "size" do
     Session.url :cdtest, "http://localhost:8888/page_1.html"
     element = Session.element :cdtest, :id, "fixed"
-    assert [width: 100,height: 50] = Element.size element
+    assert %{width: 100,height: 50} = Element.size element
   end
 
   test "css gives the value of an elements css" do

@@ -402,19 +402,19 @@ defmodule WebDriverFirefoxSessionTest do
   test "location" do
     Session.url :fftest, "http://localhost:8888/page_1.html"
     element = Session.element :fftest, :id, "fixed"
-    assert [x: 100,y: 100] = Element.location element
+    assert %{x: 100,y: 100} = Element.location element
   end
 
   test "location_in_view" do
     Session.url :fftest, "http://localhost:8888/page_1.html"
     element = Session.element :fftest, :id, "fixed"
-    assert [x: 100,y: 100] = Element.location_in_view element
+    assert %{x: 100,y: 100} = Element.location_in_view element
   end
 
   test "size" do
     Session.url :fftest, "http://localhost:8888/page_1.html"
     element = Session.element :fftest, :id, "fixed"
-    assert [width: 100,height: 50] = Element.size element
+    assert %{width: 100,height: 50} = Element.size element
   end
 
   test "css gives the value of an elements css" do

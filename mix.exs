@@ -18,7 +18,7 @@ defmodule WebDriver.Mixfile do
       mod: { WebDriver, []},
       registered:   [ :webdriver ],
       applications: [ :httpotion ],
-      env: [ debug_browser: true ]
+      env: [ debug_browser: false ]
     ]
   end
 

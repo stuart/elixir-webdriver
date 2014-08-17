@@ -54,7 +54,7 @@ defmodule WebDriver.Element do
     Parameters: [value: String]
   """
   def value element, value do
-    cmd element, :value, [value: String.codepoints value]
+    cmd element, :value, %{value: String.codepoints value}
   end
 
   @doc """
@@ -137,10 +137,10 @@ defmodule WebDriver.Element do
     case get_value element, :location do
     # Bug with Python Selenium
     # http://code.google.com/p/selenium/source/detail?r=bbcfab457b13
-    [{"toString",_},{"x",x},{"y",y}] ->
-        [x: x, y: y]
-    [{"x",x},{"y",y}] ->
-        [x: x, y: y]
+    %{"toString" => _,"x" => x,"y" => y} ->
+        %{x: x, y: y}
+    %{"x" => x, "y" => y} ->
+        %{x: x, y: y}
     response -> # Pass error responses through.
         response
     end
@@ -164,10 +164,7 @@ defmodule WebDriver.Element do
   defp do_location_in_view response do
     # Bugfix
     # http://code.google.com/p/selenium/source/detail?r=bbcfab457b13
-    resp = Enum.into response, HashDict.new
-    {:ok, x} = HashDict.fetch(resp,"x")
-    {:ok, y} = HashDict.fetch(resp,"y")
-    [x: x, y: y]
+    %{x: response["x"], y: response["y"]}
   end
 
   @doc """
@@ -186,10 +183,7 @@ defmodule WebDriver.Element do
   end
 
   defp do_size response do
-    resp = Enum.into response, HashDict.new
-    {:ok, h} = HashDict.fetch(resp,"height")
-    {:ok, w} = HashDict.fetch(resp,"width")
-    [width: w, height: h]
+    %{width: response["width"], height: response["height"]}
   end
 
   @doc """

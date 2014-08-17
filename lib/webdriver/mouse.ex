@@ -15,7 +15,7 @@ defmodule WebDriver.Mouse do
   """
   def move_to element, offsetx \\ 0, offsety \\ 0 do
     id = URI.decode element.id
-    cmd element.session, :move_to, [element: id, xoffset: offsetx, yoffset: offsety]
+    cmd element.session, :move_to, %{element: id, xoffset: offsetx, yoffset: offsety}
   end
 
   @doc """
@@ -28,7 +28,7 @@ defmodule WebDriver.Mouse do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click
   """
   def click session, button \\ :left do
-    cmd session, :mouse_click, [button: button_number(button)]
+    cmd session, :mouse_click, %{button: button_number(button)}
   end
 
 
@@ -42,7 +42,7 @@ defmodule WebDriver.Mouse do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown
   """
   def button_down session, button \\ :left do
-    cmd session, :mouse_button_down, [button: button_number(button)]
+    cmd session, :mouse_button_down, %{button: button_number(button)}
   end
 
   @doc """
@@ -55,7 +55,7 @@ defmodule WebDriver.Mouse do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttonup
   """
   def button_up session, button \\ :left do
-    cmd session, :mouse_button_up, [button: button_number(button)]
+    cmd session, :mouse_button_up, %{button: button_number(button)}
   end
 
   @doc """
@@ -68,7 +68,7 @@ defmodule WebDriver.Mouse do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/doubleclick
   """
   def double_click session, button \\ :left do
-    cmd session, :mouse_double_click, [button: button_number(button)]
+    cmd session, :mouse_double_click, %{button: button_number(button)}
   end
 
   # Send a command to the server
