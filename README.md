@@ -98,6 +98,13 @@ It should work on most UNIX like platforms. There is some rudimentary
 Windows support code in here, but I'm pretty sure that it won't work.
 
 ## Changelog
+* 2014-08-18
+    - Version 0.6.0
+    - Changed JSON library to Jazz
+    - Converted responses to be maps rather than Keywords
+    - Use hex.pm dependencies as much as possible
+    - Stability fixes to tests
+    - Documentation updates and cleanup.
 
 * 2014-08-11
     - Version 0.5.0
