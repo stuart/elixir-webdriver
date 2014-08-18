@@ -3,7 +3,7 @@ defmodule WebDriver.Mixfile do
 
   def project do
     [ app: :webdriver,
-      version: "0.5.2",
+      version: "0.6.0",
       description: "Webdriver protocol for driving web browsers.",
       source_url: "https://github.com/stuart/elixir-webdriver",
       homepage_url: "http://stuart.github.io/elixir-webdriver",
@@ -25,8 +25,10 @@ defmodule WebDriver.Mixfile do
   # Returns the list of dependencies in the format:
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
-    [{:httpotion, "~> 0.2.4", github: "myfreeweb/httpotion"},
-     {:jsonex,    "~> 2.0.0", github: "marcelog/jsonex"}
+    [
+     {:ibrowse,   github: "cmullaparthi/ibrowse", tag: "v4.1.0"},
+     {:httpotion, "~> 0.2.4"},
+     {:jazz,      "~> 0.2.0"}
      ]
   end
 
@@ -36,8 +38,8 @@ defmodule WebDriver.Mixfile do
 
   defp deps :dev do
     deps ++ [{:mock,          github: "jjh42/mock"},
-             {:markdown,      github: "devinus/markdown"},
-             {:ex_doc,        github: "elixir-lang/ex_doc"}]
+             {:earmark,       "~>0.1.10"},
+             {:ex_doc,        "~>0.5.2"}]
   end
 
   defp deps _ do
@@ -49,7 +51,7 @@ defmodule WebDriver.Mixfile do
       contributors: ["Stuart Coyle", "Carl Woodward"],
       licenses: ["MIT License"],
       links: %{"GitHub" => "https://github.com/stuart/elixir-webdriver",
-              "Docs" => "http://stuart.github.io/elixir-webdriver/"}
+               "Docs" => "http://stuart.github.io/elixir-webdriver/"}
     ]
   end
 end

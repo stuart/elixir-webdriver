@@ -1,8 +1,8 @@
 defmodule WebDriver.Browser do
   @moduledoc """
     This is the basic skeleton for a Browser port to control a browser.
-    Implementations will need to use this and then implement the other required
-    functions.
+    Implementations for specific browsers will need to use this
+    and then implement the other required functionality.
   """
   defmacro __using__(_opts) do
     quote do

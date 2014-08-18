@@ -1,4 +1,6 @@
 defmodule WebDriver.Protocol do
+  use Jazz
+
   @moduledoc """
     Implements the HTTP JSON wire protocol for WebDriver.
     This is the internal protocol and is supposed to be called via the
@@ -627,7 +629,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [button: 1(left) | 2(middle) | 3(right)]
   """
-  def mouse_click(root_url, session_id, parameters \\ [{}]) do
+  def mouse_click(root_url, session_id, parameters \\ %{}) do
     session_post root_url, session_id, "click", parameters
   end
 
@@ -639,7 +641,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [button: 1(left) | 2(middle) | 3(right)]
   """
-  def mouse_button_down(root_url, session_id, parameters \\ [{}]) do
+  def mouse_button_down(root_url, session_id, parameters \\ %{}) do
     session_post root_url, session_id, "buttondown", parameters
   end
 
@@ -651,7 +653,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [button: 1(left) | 2(middle) | 3(right)]
   """
-  def mouse_button_up(root_url, session_id, parameters \\ [{}]) do
+  def mouse_button_up(root_url, session_id, parameters \\ %{}) do
     session_post root_url, session_id, "buttonup", parameters
   end
 
@@ -663,7 +665,7 @@ defmodule WebDriver.Protocol do
 
     Parameters: [button: 1(left) | 2(middle) | 3(right)]
   """
-  def mouse_double_click(root_url, session_id, parameters \\ [{}]) do
+  def mouse_double_click(root_url, session_id, parameters \\ %{}) do
     session_post root_url, session_id, "doubleclick", parameters
   end
 
@@ -800,17 +802,17 @@ defmodule WebDriver.Protocol do
     send_request root_url, request
   end
 
-  defp session_post root_url, session_id, command, params \\ [{}] do
+  defp session_post root_url, session_id, command, params \\ %{} do
     post root_url, ["session", session_id, command], params
   end
 
-  defp element_post root_url, session_id, element_id, command, params \\ [{}] do
+  defp element_post root_url, session_id, element_id, command, params \\ %{} do
     post root_url, ["session", session_id, "element", element_id, command], params
   end
 
   defp post root_url, path_elements, params do
     url = url_for root_url, path_elements
-    json =  Jsonex.encode params
+    json =  JSON.encode! params
     request = %Request{method: :POST, url: url,
          headers: ["Content-Type": "application/json;charset=UTF-8","Content-Length": byte_size(json)],
          body: json}
@@ -897,14 +899,14 @@ defmodule WebDriver.Protocol do
   end
 
   defp parse_response_body body do
-    build_response Jsonex.decode(body)
+    build_response JSON.decode!(body)
   end
 
-  defp build_response([{"sessionId", session_id}, {"status", status}, {"value", value }])do
+  defp build_response(%{"sessionId" => session_id, "status" => status, "value" => value })do
     %Response{ session_id: session_id, status: status, value: value }
   end
 
-  defp build_response([{"name", _name}, {"sessionId", session_id}, {"status", status}, {"value", value }])do
+  defp build_response(%{"name" => _name, "sessionId" => session_id, "status" => status, "value" => value })do
     %Response{ session_id: session_id, status: status, value: value }
   end
 
