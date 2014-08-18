@@ -33,7 +33,11 @@ defmodule FirefoxProfileTest do
     assert File.exists?(Profile.write_profile(Profile.default_profile, meta[:tempdir]))
   end
 
-  test "install extension unzips the webdrive.xpi to the directory", meta do
+  test "tells me that I need to fetch webdriver.xpi", meta  do
+    assert_raise RuntimeError, fn -> Profile.install_extension meta[:tempdir], __DIR__ end
+  end
+
+  test "install extension unzips the webdriver.xpi to the directory", meta do
     Profile.install_extension meta[:tempdir]
     assert File.exists?(Path.join([meta[:tempdir],
        "extensions","fxdriver@googlecode.com","install.rdf"]))

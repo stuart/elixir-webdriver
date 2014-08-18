@@ -92,9 +92,16 @@ defmodule WebDriver.Firefox.Profile do
     file_path
   end
 
-  def install_extension directory do
-    source = Path.join __DIR__, 'webdriver.xpi'
-    destination = Path.join [directory,"extensions","fxdriver@googlecode.com"]
+  def install_extension destination do
+    source = Path.join [__DIR__,"..","..","..","plugins","firefox","webdriver.xpi"]
+    install_extension destination, source
+  end
+
+  def install_extension destination, source do
+    if !File.regular?(source) do
+      raise RuntimeError, "Webdriver plugin for firefox not found at:\n#{source}.\nRun `mix webdriver.firefox.install` to install it."
+    end
+    destination = Path.join [destination,"extensions","fxdriver@googlecode.com"]
     File.mkdir_p destination
     { :ok, _ } = :zip.unzip String.to_char_list(source), [{:cwd, String.to_char_list(destination)}]
   end

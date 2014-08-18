@@ -145,12 +145,11 @@ defmodule WebDriverChromeSessionTest do
     assert {:no_such_window, _} = Session.window :cdtest, "xyz"
   end
 
-  # Close window destroys the session on chrome
-  # test "close window" do
-  #   WebDriver.start_session :cdtest_browser, :window_close
-  #   assert {:ok, _} = Session.close_window :window_close
-  #   WebDriver.stop_session :window_close
-  # end
+  test "close window" do
+    WebDriver.start_session :chrome_test_browser, :window_close
+    assert {:ok, _} = Session.close_window :window_close
+    WebDriver.stop_session :window_close
+  end
 
   test "window size" do
     size = Session.window_size :cdtest
@@ -204,7 +203,8 @@ defmodule WebDriverChromeSessionTest do
     Session.url :cdtest, "http://example.com/index.html"
     cookie = %WebDriver.Cookie{name: "name", value: "value", path: "/", domain: "example.com"}
     Session.set_cookie :cdtest, cookie
-    Session.delete_cookie :cdtest, "name"
+    # This is a bit flakey. It seems Chrome takes a bit of time to delete the cookie but returns immediately.
+    {:ok, _} = Session.delete_cookie :cdtest, "name"
     assert [ _ ] = Session.cookies :cdtest
   end
 
@@ -285,10 +285,10 @@ defmodule WebDriverChromeSessionTest do
     assert [] = Session.elements :cdtest, :tag, "none"
   end
 
-  # FIXME Not implemented on chrome?
+  # Not implemented on chrome
   # test "active element" do
   #   Session.url :cdtest, "http://localhost:8888/page_1.html"
-  #   assert is_element? Session.active_element :cdtest
+  #   assert is_element? = Session.active_element :cdtest
   # end
 
   test "get orientation" do
@@ -466,7 +466,6 @@ defmodule WebDriverChromeSessionTest do
     assert {:ok, resp} = Mouse.double_click :cdtest
     assert resp.status == 0
   end
-
 
 
   # Check that a request returns {ok, response} and the response status is 0

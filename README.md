@@ -1,7 +1,7 @@
 # Web Driver for Elixir
 [![Build Status](https://travis-ci.org/stuart/elixir-webdriver.png?branch=master)](https://travis-ci.org/stuart/elixir-webdriver)
 
-[Current Version 0.5.0](https://github.com/stuart/elixir-webdriver/tree/0.5.0)
+[Current Version 0.6.0](https://github.com/stuart/elixir-webdriver/tree/0.6.0)
 
 This is an implementation of the WebDriver protocol client.
 It currently supports PhantomJS, FireFox, ChromeDriver and remote webdriver
@@ -14,7 +14,7 @@ session storage.
 ## Installation
 
 This library has been set up as a Mix application, so just
-add this to mix.exs dep block:
+add this to mix.exs deps:
 
 ```{:webdriver, github: "stuart/elixir-webdriver"} ```
 
@@ -89,6 +89,9 @@ for your OS:
 
 * PhantomJS version 1.9.7 or later: http://phantomjs.org/
 * FireFox: Get a recent version, please... https://www.mozilla.org/en-US/firefox/new/
+          If you installed webdriver with hex you will not have the firefox plugin.
+          Run `mix webdriver.firefox.install` to get the plugin.
+
 * ChromeDriver version 2.9 or later and Chrome (or Chromium): http://chromedriver.storage.googleapis.com/index.html
 * Remote Driver: This driver does not manage starting and stopping the browser for you. To
 use this you must have a webdriver server such as Selenium or PhantomJS running at a known url.
@@ -101,9 +104,10 @@ Windows support code in here, but I'm pretty sure that it won't work.
 Please report any issues you have with using this library in the Github
 issues for the project:
   https://github.com/stuart/elixir-webdriver/issues
-  
+
 
 ## Changelog
+
 * 2014-08-18
     - Version 0.6.0
     - Changed JSON library to Jazz
@@ -111,6 +115,11 @@ issues for the project:
     - Use hex.pm dependencies as much as possible
     - Stability fixes to tests
     - Documentation updates and cleanup.
+
+* 2014-08-17
+    - Version 0.5.2
+    - Moved webdriver.xpi out of hex accessed path
+    - Added mix task to get the FireFox plugin.
 
 * 2014-08-11
     - Version 0.5.0
