@@ -20,71 +20,78 @@
     </script>
 
     <div id="content">
+      <div class="breadcrumbs">webdriver v0.6.0 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="WebDriver.html">WebDriver</a> &rarr; <a href="WebDriver.Error.html">Error</a></div>
+
       <h1>
         WebDriver.Error
         
       </h1>
 
+      <ul class="summary_links">
+        
+          <li><a href="#summary">Summary</a></li>
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+        
+      </ul>
+
       
         <div id="moduledoc" class="docstring">
-          <p>Error handling for WebDriver.</p>
-
-<p>The error codes that are returned from the server are managed by this
+          <p>  Error handling for WebDriver.</p>
+<p>  The error codes that are returned from the server are managed by this
   module.</p>
-
-<p>The codes that can be returned are:</p>
-
-<ul>
-<li>0 - <code>:success</code></li>
-<li>6 - <code>:no_such_driver</code></li>
-<li>7 - <code>:no_such_element</code></li>
-<li>8 - <code>:no_such_frame</code></li>
-<li>9 - <code>:unknown_command</code></li>
-<li>10 - <code>:stale_element_reference</code></li>
-<li>11 - <code>:element_not_visible</code></li>
-<li>12 - <code>:invalid_element_state</code></li>
-<li>13 - <code>:unknown_error</code></li>
-<li>15 - <code>:element_not_selectable</code></li>
-<li>17 - <code>:javascript_error</code></li>
-<li>19 - <code>:x_path_lookup_error</code></li>
-<li>21 - <code>:timeout</code></li>
-<li>23 - <code>:no_such_window</code></li>
-<li>24 - <code>:invalid_cookie_domain</code></li>
-<li>25 - <code>:unable_to_set_cookie</code></li>
-<li>26 - <code>:unexpected_alert_open</code></li>
-<li>27 - <code>:no_alert_open_error</code></li>
-<li>28 - <code>:script_timeout</code></li>
-<li>29 - <code>:invalid_element_coordinates</code></li>
-<li>30 - <code>:ime_not_available</code></li>
-<li>31 - <code>:ime_engine_activation_failed</code></li>
-<li>32 - <code>:invalid_selector</code></li>
-<li>33 - <code>:session_not_created_exception</code></li>
-<li>34 - <code>:move_target_out_of_bounds</code></li>
-</ul>
+<p>  The codes that can be returned are:</p>
+<pre><code>* :success
+ * :no_such_driver
+ * :no_such_element
+ * :no_such_frame
+ * :unknown_command
+ * :stale_element_reference
+ * :element_not_visible
+ * :invalid_element_state
+ * :unknown_error
+ * :element_not_selectable
+ * :javascript_error
+ * :x_path_lookup_error
+ * :timeout
+ * :no_such_window
+ * :invalid_cookie_domain
+ * :unable_to_set_cookie
+ * :unexpected_alert_open
+ * :no_alert_open_error
+ * :script_timeout
+ * :invalid_element_coordinates
+ * :ime_not_available
+ * :ime_engine_activation_failed
+ * :invalid_selector
+ * :session_not_created_exception
+ * :move_target_out_of_bounds</code></pre>
 
         </div>
       
 
       
-        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/error.ex#L1" target="_blank" class="view_source">Source</a>
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/error.ex#L1" class="view_source">Source</a>
       
 
       
-
-      
-        <h2 id="functions_summary">Functions summary</h2>
+        <h2 id="summary">Summary<div class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></div></h2>
         <table class="summary">
           <tr>
   <td class="summary_signature"><a href="#build_message/1">build_message(list1)</a></td>
   
-    <td class="summary_synopsis"><p>Create an ErrorMessage record from raw protocol error data.</p>
+    <td class="summary_synopsis"><p>Create an ErrorMessage record from raw protocol error data</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#summary/1">summary(code)</a></td>
   
-    <td class="summary_synopsis"><p>Convert a code number to a status code summary atom.</p>
+    <td class="summary_synopsis"><p>Convert a code number to a status code summary atom</p>
 </td>
   
 </tr>
@@ -95,32 +102,38 @@
       
 
       
-
-      
-
-      
         <div id="functions_details" class="details_list">
           <h2>Functions</h2>
           <div class="detail">
-  <p class="signature" id="build_message/1">
-    <strong>build_message(list1)</strong>
-  </p>
+  <div class="detail_header" id="build_message/1">
+    <span class="signature"><strong>build_message(list1)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#build_message/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Create an ErrorMessage record from raw protocol error data.</p>
+  <div class="docstring"><p>  Create an ErrorMessage record from raw protocol error data.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/error.ex#L48" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/error.ex#L74" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="summary/1">
-    <strong>summary(code)</strong>
-  </p>
+  <div class="detail_header" id="summary/1">
+    <span class="signature"><strong>summary(code)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#summary/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Convert a code number to a status code summary atom.</p>
+  <div class="docstring"><p>  Convert a code number to a status code summary atom.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/error.ex#L55" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/error.ex#L81" class="view_source">Source</a>
   
 </div>
 

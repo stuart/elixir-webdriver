@@ -20,72 +20,59 @@
     </script>
 
     <div id="content">
+      <div class="breadcrumbs">webdriver v0.6.0 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="WebDriver.html">WebDriver</a> &rarr; <a href="WebDriver.Cookie.html">Cookie</a></div>
+
       <h1>
         WebDriver.Cookie
         
-          <small>record</small>
-        
       </h1>
+
+      <ul class="summary_links">
+        
+          <li><a href="#summary">Summary</a></li>
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+        
+      </ul>
 
       
         <div id="moduledoc" class="docstring">
-          <p>A record for querying and manipulation of cookies.</p>
+          <p>  A module for querying and manipulation of cookies.
+  Cookies are defined in a struct with the following fields:</p>
+<ul>
+<li><code class="inline">name</code>
+</li>
+<li><code class="inline">value</code>
+</li>
+<li><code class="inline">path</code>
+</li>
+<li><code class="inline">domain</code>
+</li>
+<li><code class="inline">secure</code>
+</li>
+<li><code class="inline">expiry</code>
+</li>
+</ul>
 
         </div>
       
 
       
-        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/cookie.ex#L1" target="_blank" class="view_source">Source</a>
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/cookie.ex#L1" class="view_source">Source</a>
       
 
       
-        <h2>Fields <small>(and defaults)</small></h2>
-        <ul class="summary">
-          
-            <li>
-              <span class="summary_signature">
-                <strong>name:</strong> ""
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>value:</strong> ""
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>path:</strong> nil
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>domain:</strong> nil
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>secure:</strong> false
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>expiry:</strong> 0
-              </span>
-            </li>
-          
-        </ul>
-      
-
-      
-        <h2 id="functions_summary">Functions summary</h2>
+        <h2 id="summary">Summary<div class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></div></h2>
         <table class="summary">
           <tr>
   <td class="summary_signature"><a href="#from_response/1">from_response(cookie)</a></td>
+  
+    <td class="summary_synopsis"><p>Creates a cookie struct from a webdriver response</p>
+</td>
   
 </tr>
 
@@ -95,37 +82,22 @@
       
 
       
-
-      
-        <div id="types_details" class="details_list">
-          <h2>Types</h2>
-          <div class="type_detail">
-  <p class="typespec" id="t:t/0">
-    <a href="#t:t/0">t</a> :: {WebDriver.Cookie, term, term, term, term, term, term}
-  </p>
-  
-</div>
-<div class="type_detail">
-  <p class="typespec" id="t:options/0">
-    <a href="#t:options/0">options</a> :: [name: term, value: term, path: term, domain: term, secure: term, expiry: term] | [{<a href="http://elixir-lang.org/docs/master/String.html#t:t/0">String.t</a>, term}]
-  </p>
-  
-</div>
-
-        </div>
-      
-
-      
         <div id="functions_details" class="details_list">
           <h2>Functions</h2>
           <div class="detail">
-  <p class="signature" id="from_response/1">
-    <strong>from_response(cookie)</strong>
-  </p>
+  <div class="detail_header" id="from_response/1">
+    <span class="signature"><strong>from_response(cookie)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#from_response/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"></div>
+  <div class="docstring"><p>  Creates a cookie struct from a webdriver response.</p>
+</div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/cookie.ex#L5" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/cookie.ex#L19" class="view_source">Source</a>
   
 </div>
 

@@ -20,66 +20,75 @@
     </script>
 
     <div id="content">
+      <div class="breadcrumbs">webdriver v0.6.0 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="WebDriver.html">WebDriver</a> &rarr; <a href="WebDriver.Element.html">Element</a></div>
+
       <h1>
         WebDriver.Element
         
       </h1>
 
+      <ul class="summary_links">
+        
+          <li><a href="#summary">Summary</a></li>
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+        
+      </ul>
+
       
         <div id="moduledoc" class="docstring">
-          <p>This module handles WebDriver calls directed at specific DOM elements.</p>
-
-<p>They all take an WebDriver.Element.Reference record as the first argument.
-  The WebDriver.Element.Reference is supposed to be an opaque data type and
-  is not meant to be manipulated.</p>
-
-<p>Elements are associated with a particular session and have no meaning
+          <p>  This module handles WebDriver calls directed at specific DOM elements.</p>
+<p>  They all take an WebDriver.Element struct as the first argument.
+  The WebDriver.Element struct is supposed to be an opaque data type and
+  is not meant to be manipulated. It contains the internal id of the element
+  used by the webdriver client and a the session name.</p>
+<p>  Elements are associated with a particular session and have no meaning
   outside that WedDriver session.</p>
-
-<p>Accessing an element that does not exist on the page will return a response
-  of <code>{ :stale_element_reference, response }</code></p>
-
-<p>All the command functions will return <code>{:ok, response}</code> or
-  <code>{error, response}</code> where <code>error</code> is one of those listed in
+<p>  Accessing an element that does not exist on the page will return a response
+  of <code class="inline">{ :stale_element_reference, response }</code></p>
+<p>  All the command functions will return <code class="inline">{:ok, response}</code> or
+  <code class="inline">{error, response}</code> where <code class="inline">error</code> is one of those listed in
   WebDriver.Error.</p>
 
         </div>
       
 
       
-        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L1" target="_blank" class="view_source">Source</a>
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L1" class="view_source">Source</a>
       
 
       
-
-      
-        <h2 id="functions_summary">Functions summary</h2>
+        <h2 id="summary">Summary<div class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></div></h2>
         <table class="summary">
           <tr>
   <td class="summary_signature"><a href="#attribute/2">attribute(element, attribute_name)</a></td>
   
-    <td class="summary_synopsis"><p>Returns the value of the given element&#39;s attribute.</p>
+    <td class="summary_synopsis"><p>Returns the value of the given element’s attribute</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#clear/1">clear(element)</a></td>
   
-    <td class="summary_synopsis"><p>Clears the specified form field or textarea element.</p>
+    <td class="summary_synopsis"><p>Clears the specified form field or textarea element</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#click/1">click(element)</a></td>
   
-    <td class="summary_synopsis"><p>Click on the specified element.</p>
+    <td class="summary_synopsis"><p>Click on the specified element</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#css/2">css(element, property_name)</a></td>
   
-    <td class="summary_synopsis"><p>Get the computed value of an element&#39;s CSS property.
+    <td class="summary_synopsis"><p>Get the computed value of an element’s CSS property.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/css/:propertyName">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/css/:propertyName</a></p>
 </td>
   
@@ -87,21 +96,21 @@
 <tr>
   <td class="summary_signature"><a href="#displayed?/1">displayed?(element)</a></td>
   
-    <td class="summary_synopsis"><p>Returns a boolean denoting if the element is currently visible.</p>
+    <td class="summary_synopsis"><p>Returns a boolean denoting if the element is currently visible</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#enabled?/1">enabled?(element)</a></td>
   
-    <td class="summary_synopsis"><p>Returns a boolean denoting if the element is enabled or not.</p>
+    <td class="summary_synopsis"><p>Returns a boolean denoting if the element is enabled or not</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#equals?/2">equals?(element, other_element)</a></td>
   
-    <td class="summary_synopsis"><p>Determine if two element ids refer to the same DOM element.</p>
+    <td class="summary_synopsis"><p>Determine if two element ids refer to the same DOM element</p>
 </td>
   
 </tr>
@@ -109,21 +118,21 @@
   <td class="summary_signature"><a href="#location/1">location(element)</a></td>
   
     <td class="summary_synopsis"><p>Returns the current location of the specified element in pixels
-  from the top left corner.</p>
+  from the top left corner</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#location_in_view/1">location_in_view(element)</a></td>
   
-    <td class="summary_synopsis"><p>Determine an element&#39;s location once it has been scrolled into view.</p>
+    <td class="summary_synopsis"><p>Determine an element’s location once it has been scrolled into view</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#name/1">name(element)</a></td>
   
-    <td class="summary_synopsis"><p>Get the name of the specified element.</p>
+    <td class="summary_synopsis"><p>Get the name of the specified element</p>
 </td>
   
 </tr>
@@ -131,35 +140,35 @@
   <td class="summary_signature"><a href="#selected?/1">selected?(element)</a></td>
   
     <td class="summary_synopsis"><p>Returns a boolean denoting if the element is selected or not.
-  Returns :element<em>not</em>selectable if it is not able to be selected.</p>
+  Returns {:element_not_selectable, response} if it is not able to be selected</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#size/1">size(element)</a></td>
   
-    <td class="summary_synopsis"><p>Returns size in pixels of the specified element.</p>
+    <td class="summary_synopsis"><p>Returns size in pixels of the specified element</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#submit/1">submit(element)</a></td>
   
-    <td class="summary_synopsis"><p>Submit a FORM element. May be applied to any descendent of a FORM element.</p>
+    <td class="summary_synopsis"><p>Submit a FORM element. May be applied to any descendent of a FORM element</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#text/1">text(element)</a></td>
   
-    <td class="summary_synopsis"><p>Retreives the visible text of the element. Returns a string.</p>
+    <td class="summary_synopsis"><p>Retreives the visible text of the element. Returns a string</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#value/2">value(element, value)</a></td>
   
-    <td class="summary_synopsis"><p>Send a list of keystrokes to the specified element.</p>
+    <td class="summary_synopsis"><p>Send a list of keystrokes to the specified element</p>
 </td>
   
 </tr>
@@ -170,216 +179,268 @@
       
 
       
-
-      
-
-      
         <div id="functions_details" class="details_list">
           <h2>Functions</h2>
           <div class="detail">
-  <p class="signature" id="attribute/2">
-    <strong>attribute(element, attribute_name)</strong>
-  </p>
+  <div class="detail_header" id="attribute/2">
+    <span class="signature"><strong>attribute(element, attribute_name)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#attribute/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Returns the value of the given element&#39;s attribute.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/attribute/:name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/attribute/:name</a></p>
+  <div class="docstring"><p>  Returns the value of the given element’s attribute.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/attribute/:name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/attribute/:name</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L106" target="_blank" class="view_source">Source</a>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="clear/1">
-    <strong>clear(element)</strong>
-  </p>
-  
-  <div class="docstring"><p>Clears the specified form field or textarea element.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/clear">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/clear</a></p>
-</div>
-  
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L74" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L107" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="click/1">
-    <strong>click(element)</strong>
-  </p>
+  <div class="detail_header" id="clear/1">
+    <span class="signature"><strong>clear(element)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#clear/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Click on the specified element.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/click</a></p>
+  <div class="docstring"><p>  Clears the specified form field or textarea element.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/clear">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/clear</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L27" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L75" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="css/2">
-    <strong>css(element, property_name)</strong>
-  </p>
+  <div class="detail_header" id="click/1">
+    <span class="signature"><strong>click(element)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#click/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Get the computed value of an element&#39;s CSS property.
+  <div class="docstring"><p>  Click on the specified element.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/click</a></p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L28" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <div class="detail_header" id="css/2">
+    <span class="signature"><strong>css(element, property_name)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#css/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <div class="docstring"><p>  Get the computed value of an element’s CSS property.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/css/:propertyName">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/css/:propertyName</a></p>
-
-<p>Returns a string.</p>
+<p>  Returns a string.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L201" target="_blank" class="view_source">Source</a>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="displayed?/1">
-    <strong>displayed?(element)</strong>
-  </p>
-  
-  <div class="docstring"><p>Returns a boolean denoting if the element is currently visible.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/displayed">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/displayed</a></p>
-</div>
-  
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L124" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L196" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="enabled?/1">
-    <strong>enabled?(element)</strong>
-  </p>
+  <div class="detail_header" id="displayed?/1">
+    <span class="signature"><strong>displayed?(element)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#displayed?/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Returns a boolean denoting if the element is enabled or not.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/enabled">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/enabled</a></p>
+  <div class="docstring"><p>  Returns a boolean denoting if the element is currently visible.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/displayed">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/displayed</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L97" target="_blank" class="view_source">Source</a>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="equals?/2">
-    <strong>equals?(element, other_element)</strong>
-  </p>
-  
-  <div class="docstring"><p>Determine if two element ids refer to the same DOM element.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/equals/:other">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/equals/:other</a></p>
-</div>
-  
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L115" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L125" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="location/1">
-    <strong>location(element)</strong>
-  </p>
+  <div class="detail_header" id="enabled?/1">
+    <span class="signature"><strong>enabled?(element)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#enabled?/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Returns the current location of the specified element in pixels
+  <div class="docstring"><p>  Returns a boolean denoting if the element is enabled or not.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/enabled">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/enabled</a></p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L98" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <div class="detail_header" id="equals?/2">
+    <span class="signature"><strong>equals?(element, other_element)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#equals?/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <div class="docstring"><p>  Determine if two element ids refer to the same DOM element.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/equals/:other">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/equals/:other</a></p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L116" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <div class="detail_header" id="location/1">
+    <span class="signature"><strong>location(element)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#location/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <div class="docstring"><p>  Returns the current location of the specified element in pixels
   from the top left corner.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location</a></p>
-
-<p>Returns [x: x, y: y]</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location</a></p>
+<p>  Returns %{x: x, y: y}</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L136" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L137" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="location_in_view/1">
-    <strong>location_in_view(element)</strong>
-  </p>
+  <div class="detail_header" id="location_in_view/1">
+    <span class="signature"><strong>location_in_view(element)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#location_in_view/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Determine an element&#39;s location once it has been scrolled into view.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location_in_view">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location_in_view</a></p>
-
-<p>Returns [x: x, y: y]</p>
+  <div class="docstring"><p>  Determine an element’s location once it has been scrolled into view.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location_in_view">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location_in_view</a></p>
+<p>  Returns %{x: x, y: y}</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L156" target="_blank" class="view_source">Source</a>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="name/1">
-    <strong>name(element)</strong>
-  </p>
-  
-  <div class="docstring"><p>Get the name of the specified element.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/name</a></p>
-</div>
-  
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L65" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L157" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="selected?/1">
-    <strong>selected?(element)</strong>
-  </p>
+  <div class="detail_header" id="name/1">
+    <span class="signature"><strong>name(element)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#name/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Returns a boolean denoting if the element is selected or not.
-  Returns :element<em>not</em>selectable if it is not able to be selected.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/selected">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/selected</a></p>
+  <div class="docstring"><p>  Get the name of the specified element.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/name</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L84" target="_blank" class="view_source">Source</a>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="size/1">
-    <strong>size(element)</strong>
-  </p>
-  
-  <div class="docstring"><p>Returns size in pixels of the specified element.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/size">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/size</a></p>
-
-<p>Returns [width: w, height: h]</p>
-</div>
-  
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L180" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L66" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="submit/1">
-    <strong>submit(element)</strong>
-  </p>
+  <div class="detail_header" id="selected?/1">
+    <span class="signature"><strong>selected?(element)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#selected?/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Submit a FORM element. May be applied to any descendent of a FORM element.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/submit">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/submit</a></p>
+  <div class="docstring"><p>  Returns a boolean denoting if the element is selected or not.
+  Returns {:element_not_selectable, response} if it is not able to be selected.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/selected">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/selected</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L36" target="_blank" class="view_source">Source</a>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="text/1">
-    <strong>text(element)</strong>
-  </p>
-  
-  <div class="docstring"><p>Retreives the visible text of the element. Returns a string.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/text">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/text</a></p>
-</div>
-  
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L45" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L85" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="value/2">
-    <strong>value(element, value)</strong>
-  </p>
+  <div class="detail_header" id="size/1">
+    <span class="signature"><strong>size(element)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#size/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Send a list of keystrokes to the specified element.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/element/:id/value">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/element/:id/value</a></p>
-
-<p>Parameters: [value: String]</p>
+  <div class="docstring"><p>  Returns size in pixels of the specified element.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/size">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/size</a></p>
+<p>  Returns %{width: w, height: h}</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L56" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L178" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <div class="detail_header" id="submit/1">
+    <span class="signature"><strong>submit(element)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#submit/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <div class="docstring"><p>  Submit a FORM element. May be applied to any descendent of a FORM element.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/submit">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/submit</a></p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L37" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <div class="detail_header" id="text/1">
+    <span class="signature"><strong>text(element)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#text/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <div class="docstring"><p>  Retreives the visible text of the element. Returns a string.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/text">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/text</a></p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L46" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <div class="detail_header" id="value/2">
+    <span class="signature"><strong>value(element, value)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#value/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <div class="docstring"><p>  Send a list of keystrokes to the specified element.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/element/:id/value">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/element/:id/value</a></p>
+<p>  Parameters: %{value: String}</p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/element.ex#L57" class="view_source">Source</a>
   
 </div>
 

@@ -20,27 +20,46 @@
     </script>
 
     <div id="content">
+      <div class="breadcrumbs">webdriver v0.6.0 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="WebDriver.html">WebDriver</a> &rarr; <a href="WebDriver.Keys.html">Keys</a></div>
+
       <h1>
         WebDriver.Keys
         
       </h1>
 
+      <ul class="summary_links">
+        
+          <li><a href="#summary">Summary</a></li>
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+        
+      </ul>
+
+      
+        <div id="moduledoc" class="docstring">
+          <p>  This provides symbols to represent various non-printable keystrokes that
+  can be sent to a web browser.</p>
+<p>  The codes are defined in: <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/value">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/value</a></p>
+
+        </div>
       
 
       
-        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/keys.ex#L1" target="_blank" class="view_source">Source</a>
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/keys.ex#L1" class="view_source">Source</a>
       
 
       
-
-      
-        <h2 id="functions_summary">Functions summary</h2>
+        <h2 id="summary">Summary<div class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></div></h2>
         <table class="summary">
           <tr>
   <td class="summary_signature"><a href="#key/1">key(key_code)</a></td>
   
     <td class="summary_synopsis"><p>This function is used to return the Unicode codes for simuluation non text key
-presses.</p>
+presses</p>
 </td>
   
 </tr>
@@ -51,84 +70,80 @@ presses.</p>
       
 
       
-
-      
-
-      
         <div id="functions_details" class="details_list">
           <h2>Functions</h2>
           <div class="detail">
-  <p class="signature" id="key/1">
-    <strong>key(key_code)</strong>
-  </p>
+  <div class="detail_header" id="key/1">
+    <span class="signature"><strong>key(key_code)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#key/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
   <div class="docstring"><p>This function is used to return the Unicode codes for simuluation non text key
 presses.</p>
-
 <p>See: <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/value">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/value</a></p>
-
 <p>Key codes that are available:</p>
-
-<ul>
-<li><code>key_add</code></li>
-<li><code>key_alt</code></li>
-<li><code>key_back_space</code></li>
-<li><code>key_cancel</code></li>
-<li><code>key_clear</code></li>
-<li><code>key_control</code></li>
-<li><code>key_decimal</code></li>
-<li><code>key_delete</code></li>
-<li><code>key_divide</code></li>
-<li><code>key_down</code></li>
-<li><code>key_end</code></li>
-<li><code>key_enter</code></li>
-<li><code>key_equals</code></li>
-<li><code>key_escape</code></li>
-<li><code>key_f1</code></li>
-<li><code>key_f10</code></li>
-<li><code>key_f11</code></li>
-<li><code>key_f12</code></li>
-<li><code>key_f2</code></li>
-<li><code>key_f3</code></li>
-<li><code>key_f4</code></li>
-<li><code>key_f5</code></li>
-<li><code>key_f6</code></li>
-<li><code>key_f7</code></li>
-<li><code>key_f8</code></li>
-<li><code>key_f9</code></li>
-<li><code>key_help</code></li>
-<li><code>key_home</code></li>
-<li><code>key_insert</code></li>
-<li><code>key_left</code></li>
-<li><code>key_meta</code></li>
-<li><code>key_multiply</code></li>
-<li><code>key_null</code></li>
-<li><code>key_numpad_0</code></li>
-<li><code>key_numpad_1</code></li>
-<li><code>key_numpad_2</code></li>
-<li><code>key_numpad_3</code></li>
-<li><code>key_numpad_4</code></li>
-<li><code>key_numpad_5</code></li>
-<li><code>key_numpad_6</code></li>
-<li><code>key_numpad_7</code></li>
-<li><code>key_numpad_8</code></li>
-<li><code>key_numpad_9</code></li>
-<li><code>key_page_down</code></li>
-<li><code>key_page_up</code></li>
-<li><code>key_pause</code></li>
-<li><code>key_return</code></li>
-<li><code>key_right</code></li>
-<li><code>key_semicolon</code></li>
-<li><code>key_separator</code></li>
-<li><code>key_shift</code></li>
-<li><code>key_space</code></li>
-<li><code>key_subtract</code></li>
-<li><code>key_tab</code></li>
-<li><code>key_up</code></li>
-</ul>
+<pre><code class="Elixir">{ :key_null,      &quot;&quot;},
+  { :key_cancel,    &quot;&quot;},
+  { :key_help,      &quot;&quot;},
+  { :key_back_space,&quot;&quot;},
+  { :key_tab,       &quot;&quot;},
+  { :key_clear,     &quot;&quot;},
+  { :key_return,    &quot;&quot;},
+  { :key_enter,     &quot;&quot;},
+  { :key_shift,     &quot;&quot;},
+  { :key_control,   &quot;&quot;},
+  { :key_alt,       &quot;&quot;},
+  { :key_pause,     &quot;&quot;},
+  { :key_escape,    &quot;&quot;},
+  { :key_space,     &quot;&quot;},
+  { :key_page_up,   &quot;&quot;},
+  { :key_page_down, &quot;&quot;},
+  { :key_end,       &quot;&quot;},
+  { :key_home,      &quot;&quot;},
+  { :key_left,      &quot;&quot;},
+  { :key_up,        &quot;&quot;},
+  { :key_right,     &quot;&quot;},
+  { :key_down,      &quot;&quot;},
+  { :key_insert,    &quot;&quot;},
+  { :key_delete,    &quot;&quot;},
+  { :key_semicolon, &quot;&quot;},
+  { :key_equals,    &quot;&quot;},
+  { :key_numpad_0,  &quot;&quot;},
+  { :key_numpad_1,  &quot;&quot;},
+  { :key_numpad_2,  &quot;&quot;},
+  { :key_numpad_3,  &quot;&quot;},
+  { :key_numpad_4,  &quot;&quot;},
+  { :key_numpad_5,  &quot;&quot;},
+  { :key_numpad_6,  &quot;&quot;},
+  { :key_numpad_7,  &quot;&quot;},
+  { :key_numpad_8,  &quot;&quot;},
+  { :key_numpad_9,  &quot;&quot;},
+  { :key_multiply,  &quot;&quot;},
+  { :key_add,       &quot;&quot;},
+  { :key_separator, &quot;&quot;},
+  { :key_subtract,  &quot;&quot;},
+  { :key_decimal,   &quot;&quot;},
+  { :key_divide,    &quot;&quot;},
+  { :key_f1,        &quot;&quot;},
+  { :key_f2,        &quot;&quot;},
+  { :key_f3,        &quot;&quot;},
+  { :key_f4,        &quot;&quot;},
+  { :key_f5,        &quot;&quot;},
+  { :key_f6,        &quot;&quot;},
+  { :key_f7,        &quot;&quot;},
+  { :key_f8,        &quot;&quot;},
+  { :key_f9,        &quot;&quot;},
+  { :key_f10,       &quot;&quot;},
+  { :key_f11,       &quot;&quot;},
+  { :key_f12,       &quot;&quot;},
+  { :key_meta,      &quot;&quot;}</code></pre>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/keys.ex#L79" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/keys.ex#L142" class="view_source">Source</a>
   
 </div>
 

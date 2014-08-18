@@ -20,35 +20,47 @@
     </script>
 
     <div id="content">
+      <div class="breadcrumbs">webdriver v0.6.0 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="WebDriver.html">WebDriver</a> &rarr; <a href="WebDriver.BrowserSup.html">BrowserSup</a></div>
+
       <h1>
         WebDriver.BrowserSup
         
       </h1>
 
+      <ul class="summary_links">
+        
+          <li><a href="#summary">Summary</a></li>
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+        
+      </ul>
+
       
         <div id="moduledoc" class="docstring">
-          <p>The WebDriver.BrowserSup is a supervisor responsible for overseeing
+          <p>  The WebDriver.BrowserSup is a supervisor responsible for overseeing
   the running of browser instances and their associated session supervisors.</p>
-
-<p>If a browser crashes for any reason this will restart the browser and the
-  sessions that connect to it.</p>
+<p>  If a browser crashes for any reason this will restart the browser and the
+  sessions that connect to it. Of course those sessions will have lost their
+  state.</p>
 
         </div>
       
 
       
-        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/browser_sup.ex#L1" target="_blank" class="view_source">Source</a>
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/browser_sup.ex#L1" class="view_source">Source</a>
       
 
       
-
-      
-        <h2 id="functions_summary">Functions summary</h2>
+        <h2 id="summary">Summary<div class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></div></h2>
         <table class="summary">
           <tr>
   <td class="summary_signature"><a href="#init/1">init(config)</a></td>
   
-    <td class="summary_synopsis"><p>Callback implementation of <a href="http://www.erlang.org/doc/man/supervisor.html#init-1"><code>:supervisor.init/1</code></a>.</p>
+    <td class="summary_synopsis"><p>Callback implementation of <a href="http://www.erlang.org/doc/man/supervisor.html#init-1"><code class="inline">:supervisor.init/1</code></a></p>
 </td>
   
 </tr>
@@ -57,7 +69,7 @@
   
     <td class="summary_synopsis"><p>Starts up a browser. The browser is then
   responsible for starting a session supervisor attached to this
-  supervisor.</p>
+  supervisor</p>
 </td>
   
 </tr>
@@ -68,34 +80,40 @@
       
 
       
-
-      
-
-      
         <div id="functions_details" class="details_list">
           <h2>Functions</h2>
           <div class="detail">
-  <p class="signature" id="init/1">
-    <strong>init(config)</strong>
-  </p>
+  <div class="detail_header" id="init/1">
+    <span class="signature"><strong>init(config)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#init/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Callback implementation of <a href="http://www.erlang.org/doc/man/supervisor.html#init-1"><code>:supervisor.init/1</code></a>.</p>
+  <div class="docstring"><p>Callback implementation of <a href="http://www.erlang.org/doc/man/supervisor.html#init-1"><code class="inline">:supervisor.init/1</code></a>.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/browser_sup.ex#L26" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/browser_sup.ex#L27" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="start_link/1">
-    <strong>start_link(config)</strong>
-  </p>
+  <div class="detail_header" id="start_link/1">
+    <span class="signature"><strong>start_link(config)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#start_link/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Starts up a browser. The browser is then
+  <div class="docstring"><p>  Starts up a browser. The browser is then
   responsible for starting a session supervisor attached to this
   supervisor.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/browser_sup.ex#L22" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/browser_sup.ex#L23" class="view_source">Source</a>
   
 </div>
 

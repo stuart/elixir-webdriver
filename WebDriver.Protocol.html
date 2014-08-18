@@ -20,50 +20,55 @@
     </script>
 
     <div id="content">
+      <div class="breadcrumbs">webdriver v0.6.0 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="WebDriver.html">WebDriver</a> &rarr; <a href="WebDriver.Protocol.html">Protocol</a></div>
+
       <h1>
         WebDriver.Protocol
         
       </h1>
 
+      <ul class="summary_links">
+        
+          <li><a href="#summary">Summary</a></li>
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+        
+      </ul>
+
       
         <div id="moduledoc" class="docstring">
-          <p>Implements the HTTP JSON wire protocol for WebDriver.
+          <p>  Implements the HTTP JSON wire protocol for WebDriver.
   This is the internal protocol and is supposed to be called via the
   WebDriver session server rather than directly.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol">https://code.google.com/p/selenium/wiki/JsonWireProtocol</a></p>
-
-<p>All these calls take a WebDriver.Config record as a first parameter.
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol">https://code.google.com/p/selenium/wiki/JsonWireProtocol</a></p>
+<p>  All these calls take a WebDriver.Config record as a first parameter.
   The other parameters depend on the specific protocol call.</p>
-
-<p>All successful calls return {:ok, response} where response is a
+<p>  All successful calls return {:ok, response} where response is a
   WebDriver.Protocol.Response record.</p>
-
-<p>Failed calls return {:error, status, body} where the status is the
+<p>  Failed calls return {:error, status, body} where the status is the
   HTTP status returned and the body is the raw body of the returned
   response.</p>
-
-<p>A WebDriver response consists of a session id, status and return value.
+<p>  A WebDriver response consists of a session id, status and return value.
   The session id is an opaque string provided by the server.
   The status can be one of the WebDriver status codes:
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status</a></p>
-
-<p>The value varies according to the call made.</p>
-
-<p>The Response record defined here also appends the request details to
+<p>  The value varies according to the call made.</p>
+<p>  The Response struct defined here also appends the request details to
   that response.</p>
 
         </div>
       
 
       
-        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L1" target="_blank" class="view_source">Source</a>
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L1" class="view_source">Source</a>
       
 
       
-
-      
-        <h2 id="functions_summary">Functions summary</h2>
+        <h2 id="summary">Summary<div class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></div></h2>
         <table class="summary">
           <tr>
   <td class="summary_signature"><a href="#accept_alert/2">accept_alert(root_url, session_id)</a></td>
@@ -92,14 +97,14 @@
 <tr>
   <td class="summary_signature"><a href="#alert_text/3">alert_text(root_url, session_id, parameters)</a></td>
   
-    <td class="summary_synopsis"><p>Sends keystrokes to a Javascript prompt() dialog.</p>
+    <td class="summary_synopsis"><p>Sends keystrokes to a Javascript prompt() dialog</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#attribute/4">attribute(root_url, session_id, element_id, name)</a></td>
   
-    <td class="summary_synopsis"><p>Returns the value of the given element&#39;s attribute.
+    <td class="summary_synopsis"><p>Returns the value of the given element’s attribute.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/attribute/:name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/attribute/:name</a></p>
 </td>
   
@@ -147,7 +152,7 @@
 <tr>
   <td class="summary_signature"><a href="#css/4">css(root_url, session_id, element_id, property_name)</a></td>
   
-    <td class="summary_synopsis"><p>Get the computed value of an element&#39;s CSS property.
+    <td class="summary_synopsis"><p>Get the computed value of an element’s CSS property.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/css/:propertyName">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/css/:propertyName</a></p>
 </td>
   
@@ -290,7 +295,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#ime/2">ime(_root_url, _session_id)</a></td>
+  <td class="summary_signature"><a href="#ime/2">ime(root_url, session_id)</a></td>
   
     <td class="summary_synopsis"><p>IME FUNCTIONS ARE NOT YET IMPLEMENTED</p>
 </td>
@@ -322,7 +327,7 @@
 <tr>
   <td class="summary_signature"><a href="#location_in_view/3">location_in_view(root_url, session_id, element_id)</a></td>
   
-    <td class="summary_synopsis"><p>Determine an element&#39;s location once it has been scrolled into view.
+    <td class="summary_synopsis"><p>Determine an element’s location once it has been scrolled into view.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location_in_view">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location_in_view</a></p>
 </td>
   
@@ -330,48 +335,48 @@
 <tr>
   <td class="summary_signature"><a href="#maximize_window/3">maximize_window(root_url, session_id, window_handle \\ &quot;current&quot;)</a></td>
   
-    <td class="summary_synopsis"><p>Maximise the specified window. Use &quot;current&quot; or simply do not specify a handle to
-  maximise the current window.</p>
+    <td class="summary_synopsis"><p>Maximise the specified window. Use “current” or simply do not specify a handle to
+  maximise the current window</p>
 </td>
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#mouse_button_down/3">mouse_button_down(root_url, session_id, parameters \\ [{}])</a></td>
+  <td class="summary_signature"><a href="#mouse_button_down/3">mouse_button_down(root_url, session_id, parameters \\ %{})</a></td>
   
     <td class="summary_synopsis"><p>Send a mouse button down event.
   The parameter is a number indicating which button is to be pressed.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown</a>
-  Defaults to the left button if not specified.</p>
+  Defaults to the left button if not specified</p>
 </td>
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#mouse_button_up/3">mouse_button_up(root_url, session_id, parameters \\ [{}])</a></td>
+  <td class="summary_signature"><a href="#mouse_button_up/3">mouse_button_up(root_url, session_id, parameters \\ %{})</a></td>
   
     <td class="summary_synopsis"><p>Send a mouse button up event. Every button down event needs to be followed by this.
   The parameter is a number indicating which button is to be raised.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown</a>
-  Defaults to the left button if not specified.</p>
+  Defaults to the left button if not specified</p>
 </td>
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#mouse_click/3">mouse_click(root_url, session_id, parameters \\ [{}])</a></td>
+  <td class="summary_signature"><a href="#mouse_click/3">mouse_click(root_url, session_id, parameters \\ %{})</a></td>
   
     <td class="summary_synopsis"><p>Send a mouse click at the position of the last move_to command.
   The parameter is a number indicating which button is to be clicked.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click</a>
-  Defaults to the left button if not specified.</p>
+  Defaults to the left button if not specified</p>
 </td>
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#mouse_double_click/3">mouse_double_click(root_url, session_id, parameters \\ [{}])</a></td>
+  <td class="summary_signature"><a href="#mouse_double_click/3">mouse_double_click(root_url, session_id, parameters \\ %{})</a></td>
   
     <td class="summary_synopsis"><p>Send a double click at the position of the last move_to command.
   The parameter is a number indicating which button is to be double clicked.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click</a>
-  Defaults to the left button if not specified.</p>
+  Defaults to the left button if not specified</p>
 </td>
   
 </tr>
@@ -440,7 +445,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#sessions/2">sessions(root_url, _session_id \\ :null)</a></td>
+  <td class="summary_signature"><a href="#sessions/2">sessions(root_url, session_id \\ :null)</a></td>
   
     <td class="summary_synopsis"><p>Gets a list of all sessions on the server.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/sessions">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/sessions</a></p>
@@ -476,7 +481,7 @@
   
     <td class="summary_synopsis"><p>Set timeouts on the server.
   Parameters must include the type of timeout and the length in milliseconds (ms).
-  Valid types are &quot;script&quot; and &quot;implicit&quot;</p>
+  Valid types are “script” and “implicit”</p>
 </td>
   
 </tr>
@@ -509,7 +514,7 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="#status/2">status(root_url, _session_id \\ :null)</a></td>
+  <td class="summary_signature"><a href="#status/2">status(root_url, session_id \\ :null)</a></td>
   
     <td class="summary_synopsis"><p>Returns the status of the WebDriver server.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status</a></p>
@@ -676,7 +681,7 @@
   <td class="summary_signature"><a href="#window_size/4">window_size(root_url, session_id, window_handle \\ &quot;current&quot;, parameters \\ :null)</a></td>
   
     <td class="summary_synopsis"><p>Retreive the window size. If a window handle is not specified it retreives the
-  current window.</p>
+  current window</p>
 </td>
   
 </tr>
@@ -687,751 +692,1000 @@
       
 
       
-
-      
-
-      
         <div id="functions_details" class="details_list">
           <h2>Functions</h2>
           <div class="detail">
-  <p class="signature" id="accept_alert/2">
-    <strong>accept_alert(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="accept_alert/2">
+    <span class="signature"><strong>accept_alert(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#accept_alert/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Accepts the currently displayed alert dialog
+  <div class="docstring"><p>  Accepts the currently displayed alert dialog
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/accept_alert">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/accept_alert</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L595" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L602" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="active_element/2">
-    <strong>active_element(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="active_element/2">
+    <span class="signature"><strong>active_element(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#active_element/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Get the element on the page that currently has focus.
+  <div class="docstring"><p>  Get the element on the page that currently has focus.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/active">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/active</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L416" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L423" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="alert_text/2">
-    <strong>alert_text(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="alert_text/2">
+    <span class="signature"><strong>alert_text(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#alert_text/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Gets the text of the currently displayed JavaScript alert(), confirm(), or prompt() dialog.
+  <div class="docstring"><p>  Gets the text of the currently displayed JavaScript alert(), confirm(), or prompt() dialog.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/alert_text">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/alert_text</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L580" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L587" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="alert_text/3">
-    <strong>alert_text(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="alert_text/3">
+    <span class="signature"><strong>alert_text(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#alert_text/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Sends keystrokes to a Javascript prompt() dialog.</p>
+  <div class="docstring"><p>  Sends keystrokes to a Javascript prompt() dialog.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L587" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L594" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="attribute/4">
-    <strong>attribute(root_url, session_id, element_id, name)</strong>
-  </p>
+  <div class="detail_header" id="attribute/4">
+    <span class="signature"><strong>attribute(root_url, session_id, element_id, name)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#attribute/4" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Returns the value of the given element&#39;s attribute.
+  <div class="docstring"><p>  Returns the value of the given element’s attribute.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/attribute/:name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/attribute/:name</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L508" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L515" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="back/2">
-    <strong>back(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="back/2">
+    <span class="signature"><strong>back(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#back/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Navigate back to the previous page.
+  <div class="docstring"><p>  Navigate back to the previous page.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/back">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/back</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L172" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L179" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="clear/3">
-    <strong>clear(root_url, session_id, element_id)</strong>
-  </p>
+  <div class="detail_header" id="clear/3">
+    <span class="signature"><strong>clear(root_url, session_id, element_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#clear/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Clears the specified form field or textarea element.
+  <div class="docstring"><p>  Clears the specified form field or textarea element.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/clear">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/clear</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L484" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L491" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="click/3">
-    <strong>click(root_url, session_id, element_id)</strong>
-  </p>
+  <div class="detail_header" id="click/3">
+    <span class="signature"><strong>click(root_url, session_id, element_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#click/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Click on the specified element.
+  <div class="docstring"><p>  Click on the specified element.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/click</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L432" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L439" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="close_window/2">
-    <strong>close_window(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="close_window/2">
+    <span class="signature"><strong>close_window(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#close_window/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Closes the current window.
+  <div class="docstring"><p>  Closes the current window.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/window">https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/window</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L256" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L263" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="cookies/2">
-    <strong>cookies(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="cookies/2">
+    <span class="signature"><strong>cookies(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#cookies/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive all the cookies associated with the current page.
+  <div class="docstring"><p>  Retreive all the cookies associated with the current page.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/cookie">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/cookie</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L317" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L324" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="css/4">
-    <strong>css(root_url, session_id, element_id, property_name)</strong>
-  </p>
+  <div class="detail_header" id="css/4">
+    <span class="signature"><strong>css(root_url, session_id, element_id, property_name)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#css/4" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Get the computed value of an element&#39;s CSS property.
+  <div class="docstring"><p>  Get the computed value of an element’s CSS property.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/css/:propertyName">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/css/:propertyName</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L556" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L563" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="delete_cookie/3">
-    <strong>delete_cookie(root_url, session_id, name)</strong>
-  </p>
+  <div class="detail_header" id="delete_cookie/3">
+    <span class="signature"><strong>delete_cookie(root_url, session_id, name)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#delete_cookie/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Delete the cookie with the given name.
+  <div class="docstring"><p>  Delete the cookie with the given name.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/cookie/:name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/cookie/:name</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L343" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L350" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="delete_cookies/2">
-    <strong>delete_cookies(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="delete_cookies/2">
+    <span class="signature"><strong>delete_cookies(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#delete_cookies/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Delete all cookies for the current page.
+  <div class="docstring"><p>  Delete all cookies for the current page.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/cookie">https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId/cookie</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L335" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L342" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="dismiss_alert/2">
-    <strong>dismiss_alert(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="dismiss_alert/2">
+    <span class="signature"><strong>dismiss_alert(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#dismiss_alert/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Dismisses the currently displayed alert dialog
+  <div class="docstring"><p>  Dismisses the currently displayed alert dialog
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/dismiss_alert">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/dismiss_alert</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L603" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L610" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="displayed/3">
-    <strong>displayed(root_url, session_id, element_id)</strong>
-  </p>
+  <div class="detail_header" id="displayed/3">
+    <span class="signature"><strong>displayed(root_url, session_id, element_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#displayed/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Returns a boolean denoting if the element is currently visible.
+  <div class="docstring"><p>  Returns a boolean denoting if the element is currently visible.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/displayed">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/displayed</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L524" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L531" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="element/3">
-    <strong>element(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="element/3">
+    <span class="signature"><strong>element(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#element/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive an element from the page using the specified search strategy.
+  <div class="docstring"><p>  Retreive an element from the page using the specified search strategy.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element</a></p>
-
-<p>Parameters [using: &quot;class name&quot; | &quot;css selector&quot; | &quot;id&quot; | &quot;name&quot; |
-   &quot;link text&quot; | &quot;partial link test&quot; | &quot;tag name&quot; | &quot;xpath&quot;,
+<p>  Parameters [using: "class name" | "css selector" | "id" | "name" |
+   "link text" | "partial link test" | "tag name" | "xpath",
    value: string]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L371" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L378" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="element/4">
-    <strong>element(root_url, session_id, element_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="element/4">
+    <span class="signature"><strong>element(root_url, session_id, element_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#element/4" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive an element from the page starting from the specified
+  <div class="docstring"><p>  Retreive an element from the page starting from the specified
   element using the specified search strategy.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/element">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/element</a></p>
-
-<p>Parameters [using: &quot;class name&quot; | &quot;css selector&quot; | &quot;id&quot; | &quot;name&quot; |
-   &quot;link text&quot; | &quot;partial link test&quot; | &quot;tag name&quot; | &quot;xpath&quot;,
+<p>  Parameters [using: "class name" | "css selector" | "id" | "name" |
+   "link text" | "partial link test" | "tag name" | "xpath",
    value: string]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L384" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L391" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="element_by_id/3">
-    <strong>element_by_id(root_url, session_id, element_id)</strong>
-  </p>
+  <div class="detail_header" id="element_by_id/3">
+    <span class="signature"><strong>element_by_id(root_url, session_id, element_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#element_by_id/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Get the element identified by the id.
+  <div class="docstring"><p>  Get the element identified by the id.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L424" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L431" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="elements/3">
-    <strong>elements(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="elements/3">
+    <span class="signature"><strong>elements(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#elements/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive all elements from the page using the specified search strategy.
+  <div class="docstring"><p>  Retreive all elements from the page using the specified search strategy.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element</a></p>
-
-<p>Parameters [using: &quot;class name&quot; | &quot;css selector&quot; | &quot;id&quot; | &quot;name&quot; |
-   &quot;link text&quot; | &quot;partial link test&quot; | &quot;tag name&quot; | &quot;xpath&quot;,
+<p>  Parameters [using: "class name" | "css selector" | "id" | "name" |
+   "link text" | "partial link test" | "tag name" | "xpath",
    value: string]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L396" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L403" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="elements/4">
-    <strong>elements(root_url, session_id, element_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="elements/4">
+    <span class="signature"><strong>elements(root_url, session_id, element_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#elements/4" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive all elements starting from the specified element using the specified search strategy.
+  <div class="docstring"><p>  Retreive all elements starting from the specified element using the specified search strategy.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/elements">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/elements</a></p>
-
-<p>Parameters [using: &quot;class name&quot; | &quot;css selector&quot; | &quot;id&quot; | &quot;name&quot; |
-   &quot;link text&quot; | &quot;partial link test&quot; | &quot;tag name&quot; | &quot;xpath&quot;,
+<p>  Parameters [using: "class name" | "css selector" | "id" | "name" |
+   "link text" | "partial link test" | "tag name" | "xpath",
    value: string]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L408" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L415" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="enabled/3">
-    <strong>enabled(root_url, session_id, element_id)</strong>
-  </p>
+  <div class="detail_header" id="enabled/3">
+    <span class="signature"><strong>enabled(root_url, session_id, element_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#enabled/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Returns a boolean denoting if the element is enabled or not.
+  <div class="docstring"><p>  Returns a boolean denoting if the element is enabled or not.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/enabled">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/enabled</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L500" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L507" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="equals/4">
-    <strong>equals(root_url, session_id, element_id, other_id)</strong>
-  </p>
+  <div class="detail_header" id="equals/4">
+    <span class="signature"><strong>equals(root_url, session_id, element_id, other_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#equals/4" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Determine if two element ids refer to the same DOM element.
+  <div class="docstring"><p>  Determine if two element ids refer to the same DOM element.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/equals/:other">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/equals/:other</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L516" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L523" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="execute/3">
-    <strong>execute(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="execute/3">
+    <span class="signature"><strong>execute(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#execute/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Execute Javascript on the page.
+  <div class="docstring"><p>  Execute Javascript on the page.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute</a></p>
-
-<p>Parameters: [script: string, args: list]</p>
-
-<p>## Example:</p>
-
+<p>  Parameters: [script: string, args: list]</p>
+<p>  ## Example:</p>
 <pre><code>iex&gt; config = WebDriver.Config[host: &quot;localhost&quot;, port: 8080]
 iex&gt; sid = WebDriver.Protocol.start_session(config, [desiredCapabilities: []]).session_id
 iex&gt; resp = WebDriver.Protocol.execute(config, sid, [script: &quot;return 1+1&quot;, args: []])
 iex&gt; resp.value
-2
-</code></pre>
+2</code></pre>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L199" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L206" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="execute_async/3">
-    <strong>execute_async(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="execute_async/3">
+    <span class="signature"><strong>execute_async(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#execute_async/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Execute asynchronous Javascript on the page.
+  <div class="docstring"><p>  Execute asynchronous Javascript on the page.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute_async">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/execute_async</a></p>
-
-<p>Parameters: [script: string, args: list]</p>
+<p>  Parameters: [script: string, args: list]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L209" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L216" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="forward/2">
-    <strong>forward(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="forward/2">
+    <span class="signature"><strong>forward(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#forward/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Navigate forward to the next page.
+  <div class="docstring"><p>  Navigate forward to the next page.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/forward">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/forward</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L164" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L171" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="frame/3">
-    <strong>frame(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="frame/3">
+    <span class="signature"><strong>frame(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#frame/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Change the frame that has focus in the current window.
+  <div class="docstring"><p>  Change the frame that has focus in the current window.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/frame">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/frame</a></p>
-
-<p>Parameters: [id: string | number | :null | WebElement]</p>
+<p>  Parameters: [id: string | number | :null | WebElement]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L236" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L243" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="geo_location/2">
-    <strong>geo_location(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="geo_location/2">
+    <span class="signature"><strong>geo_location(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#geo_location/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive the current geo location of the browser.
+  <div class="docstring"><p>  Retreive the current geo location of the browser.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/location">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/location</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L753" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L760" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="geo_location/3">
-    <strong>geo_location(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="geo_location/3">
+    <span class="signature"><strong>geo_location(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#geo_location/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Set the current geo location of the browser.
+  <div class="docstring"><p>  Set the current geo location of the browser.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/location">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/location</a></p>
-
-<p>Parameters: [lattitude: number, longitude: number, altitude: number]</p>
+<p>  Parameters: [lattitude: number, longitude: number, altitude: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L763" target="_blank" class="view_source">Source</a>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="ime/2">
-    <strong>ime(_root_url, _session_id)</strong>
-  </p>
-  
-  <div class="docstring"><p>IME FUNCTIONS ARE NOT YET IMPLEMENTED</p>
-</div>
-  
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L226" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L770" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="keys/3">
-    <strong>keys(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="ime/2">
+    <span class="signature"><strong>ime(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#ime/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Send a list of keystrokes to the currently active element.
+  <div class="docstring"><p>  IME FUNCTIONS ARE NOT YET IMPLEMENTED</p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L233" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <div class="detail_header" id="keys/3">
+    <span class="signature"><strong>keys(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#keys/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <div class="docstring"><p>  Send a list of keystrokes to the currently active element.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/keys">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/keys</a></p>
-
-<p>Parameters: [value: Array<string>]</p>
+<p>  Parameters: [value: Array<string>]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L468" target="_blank" class="view_source">Source</a>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="local_storage/0">
-    <strong>local_storage()</strong>
-  </p>
-  
-  <div class="docstring"><p>LOCAL STORAGE NOT YET IMPLEMENTED</p>
-</div>
-  
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L770" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L475" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="location/3">
-    <strong>location(root_url, session_id, element_id)</strong>
-  </p>
+  <div class="detail_header" id="local_storage/0">
+    <span class="signature"><strong>local_storage()</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#local_storage/0" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Returns the current location of the specified element
+  <div class="docstring"><p>  LOCAL STORAGE NOT YET IMPLEMENTED</p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L777" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <div class="detail_header" id="location/3">
+    <span class="signature"><strong>location(root_url, session_id, element_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#location/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <div class="docstring"><p>  Returns the current location of the specified element
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L532" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L539" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="location_in_view/3">
-    <strong>location_in_view(root_url, session_id, element_id)</strong>
-  </p>
+  <div class="detail_header" id="location_in_view/3">
+    <span class="signature"><strong>location_in_view(root_url, session_id, element_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#location_in_view/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Determine an element&#39;s location once it has been scrolled into view.
+  <div class="docstring"><p>  Determine an element’s location once it has been scrolled into view.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location_in_view">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location_in_view</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L540" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L547" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="maximize_window/3">
-    <strong>maximize_window(root_url, session_id, window_handle \\ &quot;current&quot;)</strong>
-  </p>
+  <div class="detail_header" id="maximize_window/3">
+    <span class="signature"><strong>maximize_window(root_url, session_id, window_handle \\ &quot;current&quot;)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#maximize_window/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Maximise the specified window. Use &quot;current&quot; or simply do not specify a handle to
+  <div class="docstring"><p>  Maximise the specified window. Use “current” or simply do not specify a handle to
   maximise the current window.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L309" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L316" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="mouse_button_down/3">
-    <strong>mouse_button_down(root_url, session_id, parameters \\ [{}])</strong>
-  </p>
+  <div class="detail_header" id="mouse_button_down/3">
+    <span class="signature"><strong>mouse_button_down(root_url, session_id, parameters \\ %{})</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#mouse_button_down/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Send a mouse button down event.
+  <div class="docstring"><p>  Send a mouse button down event.
   The parameter is a number indicating which button is to be pressed.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown</a>
   Defaults to the left button if not specified.</p>
-
-<p>Parameters: [button: 1(left) | 2(middle) | 3(right)]</p>
+<p>  Parameters: [button: 1(left) | 2(middle) | 3(right)]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L637" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L644" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="mouse_button_up/3">
-    <strong>mouse_button_up(root_url, session_id, parameters \\ [{}])</strong>
-  </p>
+  <div class="detail_header" id="mouse_button_up/3">
+    <span class="signature"><strong>mouse_button_up(root_url, session_id, parameters \\ %{})</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#mouse_button_up/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Send a mouse button up event. Every button down event needs to be followed by this.
+  <div class="docstring"><p>  Send a mouse button up event. Every button down event needs to be followed by this.
   The parameter is a number indicating which button is to be raised.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown</a>
   Defaults to the left button if not specified.</p>
-
-<p>Parameters: [button: 1(left) | 2(middle) | 3(right)]</p>
+<p>  Parameters: [button: 1(left) | 2(middle) | 3(right)]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L649" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L656" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="mouse_click/3">
-    <strong>mouse_click(root_url, session_id, parameters \\ [{}])</strong>
-  </p>
+  <div class="detail_header" id="mouse_click/3">
+    <span class="signature"><strong>mouse_click(root_url, session_id, parameters \\ %{})</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#mouse_click/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Send a mouse click at the position of the last move_to command.
+  <div class="docstring"><p>  Send a mouse click at the position of the last move_to command.
   The parameter is a number indicating which button is to be clicked.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click</a>
   Defaults to the left button if not specified.</p>
-
-<p>Parameters: [button: 1(left) | 2(middle) | 3(right)]</p>
+<p>  Parameters: [button: 1(left) | 2(middle) | 3(right)]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L625" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L632" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="mouse_double_click/3">
-    <strong>mouse_double_click(root_url, session_id, parameters \\ [{}])</strong>
-  </p>
+  <div class="detail_header" id="mouse_double_click/3">
+    <span class="signature"><strong>mouse_double_click(root_url, session_id, parameters \\ %{})</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#mouse_double_click/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Send a double click at the position of the last move_to command.
+  <div class="docstring"><p>  Send a double click at the position of the last move_to command.
   The parameter is a number indicating which button is to be double clicked.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click</a>
   Defaults to the left button if not specified.</p>
-
-<p>Parameters: [button: 1(left) | 2(middle) | 3(right)]</p>
+<p>  Parameters: [button: 1(left) | 2(middle) | 3(right)]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L661" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L668" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="move_to/3">
-    <strong>move_to(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="move_to/3">
+    <span class="signature"><strong>move_to(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#move_to/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Move the mouse by an offset to the specified element.
+  <div class="docstring"><p>  Move the mouse by an offset to the specified element.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/moveto">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/moveto</a></p>
-
-<p>Parameters: [element: element_id, offsetx: number, offsety: number]</p>
+<p>  Parameters: [element: element_id, offsetx: number, offsety: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L613" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L620" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="name/3">
-    <strong>name(root_url, session_id, element_id)</strong>
-  </p>
+  <div class="detail_header" id="name/3">
+    <span class="signature"><strong>name(root_url, session_id, element_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#name/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Get the name of the specified element.
+  <div class="docstring"><p>  Get the name of the specified element.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/name">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/name</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L476" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L483" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="orientation/2">
-    <strong>orientation(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="orientation/2">
+    <span class="signature"><strong>orientation(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#orientation/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Get the current browser screen orientation.
+  <div class="docstring"><p>  Get the current browser screen orientation.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/orientation">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/orientation</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L564" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L571" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="orientation/3">
-    <strong>orientation(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="orientation/3">
+    <span class="signature"><strong>orientation(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#orientation/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Set the current browser screen orientation
+  <div class="docstring"><p>  Set the current browser screen orientation
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/orientation">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/orientation</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L572" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L579" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="refresh/2">
-    <strong>refresh(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="refresh/2">
+    <span class="signature"><strong>refresh(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#refresh/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Refresh the current page.
+  <div class="docstring"><p>  Refresh the current page.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/refresh">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/refresh</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L180" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L187" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="screenshot/2">
-    <strong>screenshot(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="screenshot/2">
+    <span class="signature"><strong>screenshot(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#screenshot/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive a screenshot of the current page.
+  <div class="docstring"><p>  Retreive a screenshot of the current page.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/screenshot">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/screenshot</a></p>
-
-<p>Returns a base64 encoded PNG image.</p>
+<p>  Returns a base64 encoded PNG image.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L219" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L226" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="selected/3">
-    <strong>selected(root_url, session_id, element_id)</strong>
-  </p>
+  <div class="detail_header" id="selected/3">
+    <span class="signature"><strong>selected(root_url, session_id, element_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#selected/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Returns a boolean denoting if the element is selected or not.
+  <div class="docstring"><p>  Returns a boolean denoting if the element is selected or not.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/selected">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/selected</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L492" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L499" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="session/2">
-    <strong>session(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="session/2">
+    <span class="signature"><strong>session(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#session/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive information about a session.
+  <div class="docstring"><p>  Retreive information about a session.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L83" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L90" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="sessions/2">
-    <strong>sessions(root_url, _session_id \\ :null)</strong>
-  </p>
+  <div class="detail_header" id="sessions/2">
+    <span class="signature"><strong>sessions(root_url, session_id \\ :null)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#sessions/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Gets a list of all sessions on the server.
+  <div class="docstring"><p>  Gets a list of all sessions on the server.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/sessions">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/sessions</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L75" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L82" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="set_async_script_timeout/3">
-    <strong>set_async_script_timeout(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="set_async_script_timeout/3">
+    <span class="signature"><strong>set_async_script_timeout(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#set_async_script_timeout/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Set the script timeout for the session.
+  <div class="docstring"><p>  Set the script timeout for the session.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/timeouts/async_script">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/timeouts/async_script</a></p>
-
-<p>Parameters: [ms: number]</p>
+<p>  Parameters: [ms: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L112" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L119" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="set_cookie/3">
-    <strong>set_cookie(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="set_cookie/3">
+    <span class="signature"><strong>set_cookie(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#set_cookie/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Set a cookie for the current page.
+  <div class="docstring"><p>  Set a cookie for the current page.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/cookie">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/cookie</a></p>
-
-<p>Parameters: [cookie: object]</p>
+<p>  Parameters: [cookie: object]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L327" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L334" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="set_implicit_wait_timeout/3">
-    <strong>set_implicit_wait_timeout(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="set_implicit_wait_timeout/3">
+    <span class="signature"><strong>set_implicit_wait_timeout(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#set_implicit_wait_timeout/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Set the implicit wait timeout for the session.
+  <div class="docstring"><p>  Set the implicit wait timeout for the session.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/timeouts/implicit_wait">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/timeouts/implicit_wait</a></p>
-
-<p>Parameters: [ms: number]</p>
+<p>  Parameters: [ms: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L122" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L129" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="set_timeout/3">
-    <strong>set_timeout(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="set_timeout/3">
+    <span class="signature"><strong>set_timeout(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#set_timeout/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Set timeouts on the server.
+  <div class="docstring"><p>  Set timeouts on the server.
   Parameters must include the type of timeout and the length in milliseconds (ms).
-  Valid types are &quot;script&quot; and &quot;implicit&quot;</p>
-
-<p>Parameters [type: &quot;script&quot;|&quot;implicit&quot;, ms: number]</p>
+  Valid types are “script” and “implicit”</p>
+<p>  Parameters [type: "script"|"implicit", ms: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L102" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L109" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="shutdown/1">
-    <strong>shutdown(root_url)</strong>
-  </p>
+  <div class="detail_header" id="shutdown/1">
+    <span class="signature"><strong>shutdown(root_url)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#shutdown/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
   <div class="docstring"></div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L32" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L39" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="size/3">
-    <strong>size(root_url, session_id, element_id)</strong>
-  </p>
+  <div class="detail_header" id="size/3">
+    <span class="signature"><strong>size(root_url, session_id, element_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#size/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Get the size of an element in pixels.
+  <div class="docstring"><p>  Get the size of an element in pixels.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/size">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/size</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L548" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L555" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="source/2">
-    <strong>source(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="source/2">
+    <span class="signature"><strong>source(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#source/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive the curent page source.
+  <div class="docstring"><p>  Retreive the curent page source.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/source">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/source</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L351" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L358" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="start_session/2">
-    <strong>start_session(root_url, parameters)</strong>
-  </p>
+  <div class="detail_header" id="start_session/2">
+    <span class="signature"><strong>start_session(root_url, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#start_session/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Creates a new session on the server.
+  <div class="docstring"><p>  Creates a new session on the server.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session</a></p>
-
-<p>Parameters: [desiredCapabilities: WebDriver.Protocol.Capabilities]
+<p>  Parameters: [desiredCapabilities: WebDriver.Protocol.Capabilities]
   ## Examples:</p>
-
 <pre><code>iex&gt; config = WebDriver.Config[host: &quot;localhost&quot;, port: 8080]
 iex&gt; resp = WebDriver.Protocol.start_session(config, [desiredCapabilities: []])
 iex&gt; resp.session_id
-&quot;370f0750-e1dd-11e2-af7a-8562953caa56&quot;
-</code></pre>
+&quot;370f0750-e1dd-11e2-af7a-8562953caa56&quot;</code></pre>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L67" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L74" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="status/2">
-    <strong>status(root_url, _session_id \\ :null)</strong>
-  </p>
+  <div class="detail_header" id="status/2">
+    <span class="signature"><strong>status(root_url, session_id \\ :null)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#status/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Returns the status of the WebDriver server.
+  <div class="docstring"><p>  Returns the status of the WebDriver server.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/status</a></p>
-
-<p>## Examples:</p>
-
+<p>  ## Examples:</p>
 <pre><code>iex&gt; config = WebDriver.Config[host: &quot;localhost&quot;, port: 8080]
 iex&gt; resp = WebDriver.Protocol.status(config)
 iex&gt; resp.status
@@ -1439,291 +1693,373 @@ iex&gt; resp.status
 iex&gt; resp.session_id
 :null
 iex&gt; resp.value
-[{&quot;build&quot;,[{&quot;version&quot;,&quot;1.0.3&quot;}]},{&quot;os&quot;,[{&quot;name&quot;,&quot;mac&quot;},{&quot;version&quot;,&quot;10.8 (Mountain Lion)&quot;},{&quot;arch&quot;,&quot;32bit&quot;}]}]
-</code></pre>
+[{&quot;build&quot;,[{&quot;version&quot;,&quot;1.0.3&quot;}]},{&quot;os&quot;,[{&quot;name&quot;,&quot;mac&quot;},{&quot;version&quot;,&quot;10.8 (Mountain Lion)&quot;},{&quot;arch&quot;,&quot;32bit&quot;}]}]</code></pre>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L51" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L58" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="stop_session/2">
-    <strong>stop_session(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="stop_session/2">
+    <span class="signature"><strong>stop_session(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#stop_session/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Stop the current session on the server.
+  <div class="docstring"><p>  Stop the current session on the server.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId">https://code.google.com/p/selenium/wiki/JsonWireProtocol#DELETE_/session/:sessionId</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L91" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L98" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="submit/3">
-    <strong>submit(root_url, session_id, element_id)</strong>
-  </p>
+  <div class="detail_header" id="submit/3">
+    <span class="signature"><strong>submit(root_url, session_id, element_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#submit/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Submit a FORM element. May be applied to any descendent of a FORM element.
+  <div class="docstring"><p>  Submit a FORM element. May be applied to any descendent of a FORM element.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/submit">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/submit</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L440" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L447" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="text/3">
-    <strong>text(root_url, session_id, element_id)</strong>
-  </p>
+  <div class="detail_header" id="text/3">
+    <span class="signature"><strong>text(root_url, session_id, element_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#text/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreives the visible text of the element.
+  <div class="docstring"><p>  Retreives the visible text of the element.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/text">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/text</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L448" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L455" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="title/2">
-    <strong>title(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="title/2">
+    <span class="signature"><strong>title(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#title/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive the current page title.
+  <div class="docstring"><p>  Retreive the current page title.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/title">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/title</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L359" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L366" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="touch_click/3">
-    <strong>touch_click(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="touch_click/3">
+    <span class="signature"><strong>touch_click(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#touch_click/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Finger tap on an element on the screen.
+  <div class="docstring"><p>  Finger tap on an element on the screen.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/click</a></p>
-
-<p>Parameters: [element: element_id] The element to tap on.</p>
+<p>  Parameters: [element: element_id] The element to tap on.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L671" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L678" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="touch_double_click/3">
-    <strong>touch_double_click(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="touch_double_click/3">
+    <span class="signature"><strong>touch_double_click(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#touch_double_click/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Double finger tap on an element on the screen.
+  <div class="docstring"><p>  Double finger tap on an element on the screen.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/doubleclick">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/doubleclick</a></p>
-
-<p>Parameters: [element: element_id] The element to tap on.</p>
+<p>  Parameters: [element: element_id] The element to tap on.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L723" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L730" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="touch_down/3">
-    <strong>touch_down(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="touch_down/3">
+    <span class="signature"><strong>touch_down(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#touch_down/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Finger down on the screen.
+  <div class="docstring"><p>  Finger down on the screen.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/down">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/down</a></p>
-
-<p>Parameters: [x: number, y: number]</p>
+<p>  Parameters: [x: number, y: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L681" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L688" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="touch_flick/3">
-    <strong>touch_flick(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="touch_flick/3">
+    <span class="signature"><strong>touch_flick(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#touch_flick/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Flick on the touch screen using finger motion events.
+  <div class="docstring"><p>  Flick on the touch screen using finger motion events.
   The element, xoffset and yoffset parameters are optional if you do not care
   where the flick starts.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/flick">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/flick</a></p>
-
-<p>Parameters: [element: element_id, xoffset: number, yoffset: number, xSpeed: number, ySpeed: number]</p>
+<p>  Parameters: [element: element_id, xoffset: number, yoffset: number, xSpeed: number, ySpeed: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L745" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L752" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="touch_long_click/3">
-    <strong>touch_long_click(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="touch_long_click/3">
+    <span class="signature"><strong>touch_long_click(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#touch_long_click/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Long finger tap on an element on the screen.
+  <div class="docstring"><p>  Long finger tap on an element on the screen.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/longclick">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/longclick</a></p>
-
-<p>Parameters: [element: element_id] The element to tap on.</p>
+<p>  Parameters: [element: element_id] The element to tap on.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L733" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L740" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="touch_move/3">
-    <strong>touch_move(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="touch_move/3">
+    <span class="signature"><strong>touch_move(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#touch_move/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Move the finger on the screen to the specified position.
+  <div class="docstring"><p>  Move the finger on the screen to the specified position.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/move">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/move</a></p>
-
-<p>Parameters: [x: number, y: number]</p>
+<p>  Parameters: [x: number, y: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L701" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L708" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="touch_scroll/3">
-    <strong>touch_scroll(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="touch_scroll/3">
+    <span class="signature"><strong>touch_scroll(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#touch_scroll/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Scroll on the touch screen using finger based motion events.
+  <div class="docstring"><p>  Scroll on the touch screen using finger based motion events.
   The element parameter is optional and can be left out if you dont
   care where the scroll starts.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_session/:sessionId/touch/scroll">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_session/:sessionId/touch/scroll</a></p>
-
-<p>Parameters [element: element, x: number, y:number]</p>
+<p>  Parameters [element: element, x: number, y:number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L713" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L720" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="touch_up/3">
-    <strong>touch_up(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="touch_up/3">
+    <span class="signature"><strong>touch_up(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#touch_up/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Finger up on the screen
+  <div class="docstring"><p>  Finger up on the screen
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/up">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/touch/up</a></p>
-
-<p>Parameters: [x: number, y: number]</p>
+<p>  Parameters: [x: number, y: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L691" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L698" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="url/2">
-    <strong>url(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="url/2">
+    <span class="signature"><strong>url(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#url/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive the URL of the current page.
+  <div class="docstring"><p>  Retreive the URL of the current page.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/url">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/url</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L146" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L153" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="url/3">
-    <strong>url(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="url/3">
+    <span class="signature"><strong>url(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#url/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Navigate to a new URL.
+  <div class="docstring"><p>  Navigate to a new URL.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/url">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/url</a></p>
-
-<p>Parameters: [url: new_url]</p>
+<p>  Parameters: [url: new_url]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L156" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L163" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="value/4">
-    <strong>value(root_url, session_id, element_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="value/4">
+    <span class="signature"><strong>value(root_url, session_id, element_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#value/4" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Send a list of keystrokes to the specified element.
+  <div class="docstring"><p>  Send a list of keystrokes to the specified element.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/element/:id/value">https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/element/:id/value</a></p>
-
-<p>Parameters: [value: Array<string>]</p>
+<p>  Parameters: [value: Array<string>]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L458" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L465" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="window/3">
-    <strong>window(root_url, session_id, parameters)</strong>
-  </p>
+  <div class="detail_header" id="window/3">
+    <span class="signature"><strong>window(root_url, session_id, parameters)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#window/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Change the focus to another window.
+  <div class="docstring"><p>  Change the focus to another window.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window</a></p>
-
-<p>The window may be specified by the server assigned window handle or the value of it&#39;s name attribute.</p>
-
-<p>Parameters: [name: string]</p>
+<p>  The window may be specified by the server assigned window handle or the value of it’s name attribute.</p>
+<p>  Parameters: [name: string]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L248" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L255" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="window_handle/2">
-    <strong>window_handle(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="window_handle/2">
+    <span class="signature"><strong>window_handle(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#window_handle/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Get the current window handle for the session.
+  <div class="docstring"><p>  Get the current window handle for the session.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window_handle">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window_handle</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L130" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L137" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="window_handles/2">
-    <strong>window_handles(root_url, session_id)</strong>
-  </p>
+  <div class="detail_header" id="window_handles/2">
+    <span class="signature"><strong>window_handles(root_url, session_id)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#window_handles/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive a list of window handles available for the session.
+  <div class="docstring"><p>  Retreive a list of window handles available for the session.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window_handles">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window_handles</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L138" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L145" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="window_position/4">
-    <strong>window_position(root_url, session_id, window_handle \\ &quot;current&quot;, parameters \\ :null)</strong>
-  </p>
+  <div class="detail_header" id="window_position/4">
+    <span class="signature"><strong>window_position(root_url, session_id, window_handle \\ &quot;current&quot;, parameters \\ :null)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#window_position/4" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive the window position for the specified window or if not specified, the current window.
+  <div class="docstring"><p>  Retreive the window position for the specified window or if not specified, the current window.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/window/:windowHandle/position">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/window/:windowHandle/position</a></p>
-
-<p>Set the window position for the specified window if parameters are sent.
-  Set window handle to &quot;current&quot; to set the current window position.</p>
-
-<p>Parameters: [x: number, y: number]</p>
+<p>  Set the window position for the specified window if parameters are sent.
+  Set window handle to “current” to set the current window position.</p>
+<p>  Parameters: [x: number, y: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L292" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L299" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="window_size/4">
-    <strong>window_size(root_url, session_id, window_handle \\ &quot;current&quot;, parameters \\ :null)</strong>
-  </p>
+  <div class="detail_header" id="window_size/4">
+    <span class="signature"><strong>window_size(root_url, session_id, window_handle \\ &quot;current&quot;, parameters \\ :null)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#window_size/4" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Retreive the window size. If a window handle is not specified it retreives the
+  <div class="docstring"><p>  Retreive the window size. If a window handle is not specified it retreives the
   current window.</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/window/:windowHandle/size">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/window/:windowHandle/size</a></p>
-
-<p>When the parameters are specified this will change the window size.
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/window/:windowHandle/size">https://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId/window/:windowHandle/size</a></p>
+<p>  When the parameters are specified this will change the window size.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window/:windowHandle/size">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/window/:windowHandle/size</a></p>
-
-<p>Parameters: [height: number, width: number]</p>
+<p>  Parameters: [height: number, width: number]</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L271" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/protocol.ex#L278" class="view_source">Source</a>
   
 </div>
 

@@ -18,18 +18,36 @@
     <script type="text/javascript" charset="utf-8">
       if (window.top.frames.main) document.body.className = 'frames';
     </script>
-	
-    <h1>webdriver v0.4.0</h1>
 
     <div id="content">
+      <div class="breadcrumbs">webdriver v0.6.0 &rarr; <a href="overview.html">Overview</a></div>
+
+      <h1>webdriver v0.6.0</h1>
+
+      <ul class="summary_links">
+        
+          <li><a href="#modules_summary">Modules</a></li>
+        
+        
+        
+      </ul>
+
       
-        <h2 id="modules_summary">Modules summary</h2>
+        <h2 id="modules_summary">Modules summary <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></h2>
         <table class="summary">
           <tr>
+  <td class="summary_signature"><a href="Mix.Tasks.Webdriver.html">Mix.Tasks.Webdriver</a></td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="Mix.Tasks.Webdriver.Firefox.Install.html">Mix.Tasks.Webdriver.Firefox.Install</a></td>
+  
+</tr>
+<tr>
   <td class="summary_signature"><a href="WebDriver.html">WebDriver</a></td>
   
     <td class="summary_synopsis"><p>This is the Elixir WebDriver application. It can be used to drive a
-  WebDriver enabled browser via Elixir code.</p>
+  WebDriver enabled browser via Elixir code</p>
 </td>
   
 </tr>
@@ -37,8 +55,8 @@
   <td class="summary_signature"><a href="WebDriver.Browser.html">WebDriver.Browser</a></td>
   
     <td class="summary_synopsis"><p>This is the basic skeleton for a Browser port to control a browser.
-  Implementations will need to use this and then implement the other required
-  functions.</p>
+  Implementations for specific browsers will need to use this
+  and then implement the other required functionality</p>
 </td>
   
 </tr>
@@ -46,7 +64,15 @@
   <td class="summary_signature"><a href="WebDriver.BrowserSup.html">WebDriver.BrowserSup</a></td>
   
     <td class="summary_synopsis"><p>The WebDriver.BrowserSup is a supervisor responsible for overseeing
-  the running of browser instances and their associated session supervisors.</p>
+  the running of browser instances and their associated session supervisors</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="WebDriver.Capabilities.html">WebDriver.Capabilities</a></td>
+  
+    <td class="summary_synopsis"><p>The capabilities struct is defined in the WebDriver specification.
+  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#Capabilities_JSON_Object">https://code.google.com/p/selenium/wiki/JsonWireProtocol#Capabilities_JSON_Object</a></p>
 </td>
   
 </tr>
@@ -54,30 +80,59 @@
   <td class="summary_signature"><a href="WebDriver.Chrome.Port.html">WebDriver.Chrome.Port</a></td>
   
     <td class="summary_synopsis"><p>This module is a server that controls the running of the Chrome browser.
-  It uses an Erlang port to communicate with chromedriver.</p>
+  It uses an Erlang port to communicate with chromedriver</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="WebDriver.Chrome.Port.State.html">WebDriver.Chrome.Port.State</a></td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="WebDriver.Config.html">WebDriver.Config</a></td>
+  
+    <td class="summary_synopsis"><p>Configuration for a WebDriver browser instance.
+  Note that this record will have fields added as development of
+  the library progresses</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="WebDriver.Cookie.html">WebDriver.Cookie</a></td>
+  
+    <td class="summary_synopsis"><p>A module for querying and manipulation of cookies.
+  Cookies are defined in a struct with the following fields:</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="WebDriver.Element.html">WebDriver.Element</a></td>
   
-    <td class="summary_synopsis"><p>This module handles WebDriver calls directed at specific DOM elements.</p>
+    <td class="summary_synopsis"><p>This module handles WebDriver calls directed at specific DOM elements</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="WebDriver.Error.html">WebDriver.Error</a></td>
   
-    <td class="summary_synopsis"><p>Error handling for WebDriver.</p>
+    <td class="summary_synopsis"><p>Error handling for WebDriver</p>
 </td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="WebDriver.Error.ErrorMessage.html">WebDriver.Error.ErrorMessage</a></td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="WebDriver.Firefox.Port.html">WebDriver.Firefox.Port</a></td>
   
     <td class="summary_synopsis"><p>This module is a server that controls the running of the Firefox browser.
-  It uses an Erlang port to communicate with the browser.</p>
+  It uses an Erlang port to communicate with the browser</p>
 </td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="WebDriver.Firefox.Port.State.html">WebDriver.Firefox.Port.State</a></td>
   
 </tr>
 <tr>
@@ -85,17 +140,17 @@
   
 </tr>
 <tr>
-  <td class="summary_signature"><a href="WebDriver.HTTP.html">WebDriver.HTTP</a></td>
-  
-</tr>
-<tr>
   <td class="summary_signature"><a href="WebDriver.Keys.html">WebDriver.Keys</a></td>
+  
+    <td class="summary_synopsis"><p>This provides symbols to represent various non-printable keystrokes that
+  can be sent to a web browser</p>
+</td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="WebDriver.Mouse.html">WebDriver.Mouse</a></td>
   
-    <td class="summary_synopsis"><p>MOUSE EVENTS CURRENTLY DO NOT WORK IN FIREFOX</p>
+    <td class="summary_synopsis"><p>Mouse driver event</p>
 </td>
   
 </tr>
@@ -103,14 +158,18 @@
   <td class="summary_signature"><a href="WebDriver.PhantomJS.Port.html">WebDriver.PhantomJS.Port</a></td>
   
     <td class="summary_synopsis"><p>This module is a server that controls the running of the PhantomJS browser.
-  It uses an Erlang port to communicate with the browser.</p>
+  It uses an Erlang port to communicate with the browser</p>
 </td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="WebDriver.PhantomJS.Port.State.html">WebDriver.PhantomJS.Port.State</a></td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="WebDriver.PortFinder.html">WebDriver.PortFinder</a></td>
   
-    <td class="summary_synopsis"><p>A convenience module for finding a free port to connect to.</p>
+    <td class="summary_synopsis"><p>A convenience module for finding a free port to connect to</p>
 </td>
   
 </tr>
@@ -119,32 +178,48 @@
   
     <td class="summary_synopsis"><p>Implements the HTTP JSON wire protocol for WebDriver.
   This is the internal protocol and is supposed to be called via the
-  WebDriver session server rather than directly.</p>
+  WebDriver session server rather than directly</p>
 </td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="WebDriver.Protocol.Request.html">WebDriver.Protocol.Request</a></td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="WebDriver.Protocol.Response.html">WebDriver.Protocol.Response</a></td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="WebDriver.Remote.Port.html">WebDriver.Remote.Port</a></td>
   
     <td class="summary_synopsis"><p>This port connects to a remote Web Driver server. Unlike the other ports
-  it does not manage starting and stopping of the server/browser.</p>
+  it does not manage starting and stopping of the server/browser</p>
 </td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="WebDriver.Remote.Port.State.html">WebDriver.Remote.Port.State</a></td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="WebDriver.Session.html">WebDriver.Session</a></td>
   
     <td class="summary_synopsis"><p>This module runs a browser session. Use these functions to drive the browser.
-  The &#39;name&#39; parameter is always the session name atom that is set when you
-  start the session.</p>
+  The ‘name’ parameter is always the session name atom that is set when you
+  start the session</p>
 </td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="WebDriver.Session.State.html">WebDriver.Session.State</a></td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="WebDriver.SessionSup.html">WebDriver.SessionSup</a></td>
   
     <td class="summary_synopsis"><p>This supervisor maintians sessions for a browser instance.
-  Will restart sessions that have died for some reason.</p>
+  Will restart sessions that have died for some reason</p>
 </td>
   
 </tr>
@@ -152,7 +227,7 @@
   <td class="summary_signature"><a href="WebDriver.Supervisor.html">WebDriver.Supervisor</a></td>
   
     <td class="summary_synopsis"><p>The root supervisor for the WebDriver application supervision tree.
-  This is responsible for keeping the BrowserSup&#39;s alive.</p>
+  This is responsible for keeping the BrowserSup’s alive</p>
 </td>
   
 </tr>
@@ -160,35 +235,6 @@
         </table>
       
 
-      
-        <h2 id="records_summary">Records summary</h2>
-        <table class="summary">
-          <tr>
-  <td class="summary_signature"><a href="WebDriver.Capabilities.html">WebDriver.Capabilities</a></td>
-  
-    <td class="summary_synopsis"><p>The capabilities record is defined in the WebDriver specification.
-  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#Capabilities_JSON_Object">https://code.google.com/p/selenium/wiki/JsonWireProtocol#Capabilities_JSON_Object</a></p>
-</td>
-  
-</tr>
-<tr>
-  <td class="summary_signature"><a href="WebDriver.Config.html">WebDriver.Config</a></td>
-  
-    <td class="summary_synopsis"><p>Configuration for a WebDriver browser instance.
-  Note that this record will have fields added as development of
-  the library progresses.</p>
-</td>
-  
-</tr>
-<tr>
-  <td class="summary_signature"><a href="WebDriver.Cookie.html">WebDriver.Cookie</a></td>
-  
-    <td class="summary_synopsis"><p>A record for querying and manipulation of cookies.</p>
-</td>
-  
-</tr>
-
-        </table>
       
 
       

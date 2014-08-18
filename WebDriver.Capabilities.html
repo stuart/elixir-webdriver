@@ -20,166 +20,79 @@
     </script>
 
     <div id="content">
+      <div class="breadcrumbs">webdriver v0.6.0 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="WebDriver.html">WebDriver</a> &rarr; <a href="WebDriver.Capabilities.html">Capabilities</a></div>
+
       <h1>
         WebDriver.Capabilities
         
-          <small>record</small>
-        
       </h1>
+
+      <ul class="summary_links">
+        
+          <li><a href="#summary">Summary</a></li>
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+        
+      </ul>
 
       
         <div id="moduledoc" class="docstring">
-          <p>The capabilities record is defined in the WebDriver specification.
+          <p>  The capabilities struct is defined in the WebDriver specification.
   <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#Capabilities_JSON_Object">https://code.google.com/p/selenium/wiki/JsonWireProtocol#Capabilities_JSON_Object</a></p>
-
-<p>The current version of this code does not actually use the capabilities object.
+<p>  The current version of this code does not actually use the capabilities object.
   Support for various capabilities will be forthcoming.</p>
-
 <ul>
-<li><code>browserName</code> - The name of the browser being used.</li>
-<li><code>version</code> - The browser version or an empty string if unknown.</li>
-<li><code>driverName</code> - The name of the driver used</li>
-<li><code>driverVersion</code> - The driver version or an empty string if unknown.</li>
-<li><code>platform</code> - A key specifying which platform (OS) the browser is running on.</li>
-<li><code>javascriptEnabled</code> - specifies wether Javascript is enabled on the browser or not.</li>
-<li><code>takesScreenshot</code> - specifies wether the browser can take a screenshot or not.</li>
-<li><code>handlesAlerts</code> - wether the session can interact with popups or not.</li>
-<li><code>databaseEnabled</code> - wether the session can use database storage</li>
-<li><code>locationContextEnabled</code> - wether the session can use geolocation features.</li>
-<li><code>applicationCacheEnabled</code> - wether the session can use the application cache.</li>
-<li><code>browserConnectionEnabled</code> - wether the session can interrogate for browser connectivity.</li>
-<li><code>cssSelectorsEnabled</code> - wether the session can use CSS selectors for finding elements.</li>
-<li><code>webStorageEnabled</code> - wether the session can use web storage.</li>
-<li><code>rotatable</code> - wether the session can set the screen layout either Landscape or Portrait.</li>
-<li><code>acceptSslCerts</code> - wether the session should accept all SSL certificates by default.</li>
-<li><code>nativeEvents</code> - wether the session can produce native events when simulating user input.</li>
-<li><code>proxy</code> - details of any web proxy to use.</li>
+<li><code class="inline">browserName</code> - The name of the browser being used.
+</li>
+<li><code class="inline">version</code> - The browser version or an empty string if unknown.
+</li>
+<li><code class="inline">driverName</code> - The name of the driver used
+</li>
+<li><code class="inline">driverVersion</code> - The driver version or an empty string if unknown.
+</li>
+<li><code class="inline">platform</code> - A key specifying which platform (OS) the browser is running on.
+</li>
+<li><code class="inline">javascriptEnabled</code> - specifies wether Javascript is enabled on the browser or not.
+</li>
+<li><code class="inline">takesScreenshot</code> - specifies wether the browser can take a screenshot or not.
+</li>
+<li><code class="inline">handlesAlerts</code> - wether the session can interact with popups or not.
+</li>
+<li><code class="inline">databaseEnabled</code> - wether the session can use database storage
+</li>
+<li><code class="inline">locationContextEnabled</code> - wether the session can use geolocation features.
+</li>
+<li><code class="inline">applicationCacheEnabled</code> - wether the session can use the application cache.
+</li>
+<li><code class="inline">browserConnectionEnabled</code> - wether the session can interrogate for browser connectivity.
+</li>
+<li><code class="inline">cssSelectorsEnabled</code> - wether the session can use CSS selectors for finding elements.
+</li>
+<li><code class="inline">webStorageEnabled</code> - wether the session can use web storage.
+</li>
+<li><code class="inline">rotatable</code> - wether the session can set the screen layout either Landscape or Portrait.
+</li>
+<li><code class="inline">acceptSslCerts</code> - wether the session should accept all SSL certificates by default.
+</li>
+<li><code class="inline">nativeEvents</code> - wether the session can produce native events when simulating user input.
+</li>
+<li><code class="inline">proxy</code> - details of any web proxy to use.
+</li>
 </ul>
 
         </div>
       
 
       
-        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/capabilities.ex#L1" target="_blank" class="view_source">Source</a>
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/capabilities.ex#L1" class="view_source">Source</a>
       
 
       
-        <h2>Fields <small>(and defaults)</small></h2>
-        <ul class="summary">
-          
-            <li>
-              <span class="summary_signature">
-                <strong>browserName:</strong> ""
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>version:</strong> ""
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>driverName:</strong> ""
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>driverVersion:</strong> ""
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>platform:</strong> ""
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>javascriptEnabled:</strong> true
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>takesScreenshot:</strong> false
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>handlesAlerts:</strong> false
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>databaseEnabled:</strong> false
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>locationContextEnabled:</strong> false
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>applicationCacheEnabled:</strong> false
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>browserConnectionEnabled:</strong> false
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>cssSelectorsEnabled:</strong> false
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>webStorageEnabled:</strong> false
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>rotatable:</strong> false
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>acceptSslCerts:</strong> false
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>nativeEvents:</strong> false
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>proxy:</strong> []
-              </span>
-            </li>
-          
-        </ul>
-      
-
-      
-        <h2 id="functions_summary">Functions summary</h2>
+        <h2 id="summary">Summary<div class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></div></h2>
         <table class="summary">
           <tr>
   <td class="summary_signature"><a href="#from_response/1">from_response(response)</a></td>
@@ -192,37 +105,21 @@
       
 
       
-
-      
-        <div id="types_details" class="details_list">
-          <h2>Types</h2>
-          <div class="type_detail">
-  <p class="typespec" id="t:t/0">
-    <a href="#t:t/0">t</a> :: {WebDriver.Capabilities, term, term, term, term, term, term, term, term, term, term, term, term, term, term, term, term, term, term}
-  </p>
-  
-</div>
-<div class="type_detail">
-  <p class="typespec" id="t:options/0">
-    <a href="#t:options/0">options</a> :: [browserName: term, version: term, driverName: term, driverVersion: term, platform: term, javascriptEnabled: term, takesScreenshot: term, handlesAlerts: term, databaseEnabled: term, locationContextEnabled: term, applicationCacheEnabled: term, browserConnectionEnabled: term, cssSelectorsEnabled: term, webStorageEnabled: term, rotatable: term, acceptSslCerts: term, nativeEvents: term, proxy: term] | [{<a href="http://elixir-lang.org/docs/master/String.html#t:t/0">String.t</a>, term}]
-  </p>
-  
-</div>
-
-        </div>
-      
-
-      
         <div id="functions_details" class="details_list">
           <h2>Functions</h2>
           <div class="detail">
-  <p class="signature" id="from_response/1">
-    <strong>from_response(response)</strong>
-  </p>
+  <div class="detail_header" id="from_response/1">
+    <span class="signature"><strong>from_response(response)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#from_response/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
   <div class="docstring"></div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/capabilities.ex#L48" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/capabilities.ex#L48" class="view_source">Source</a>
   
 </div>
 

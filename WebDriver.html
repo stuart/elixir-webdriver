@@ -20,55 +20,64 @@
     </script>
 
     <div id="content">
+      <div class="breadcrumbs">webdriver v0.6.0 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="WebDriver.html">WebDriver</a></div>
+
       <h1>
         WebDriver
         
       </h1>
 
+      <ul class="summary_links">
+        
+          <li><a href="#summary">Summary</a></li>
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+        
+      </ul>
+
       
         <div id="moduledoc" class="docstring">
-          <p>This is the Elixir WebDriver application. It can be used to drive a
+          <p>  This is the Elixir WebDriver application. It can be used to drive a
   WebDriver enabled browser via Elixir code.</p>
-
-<p>The current version supports PhantomJS, ChromeDriver, FireFox and remote
+<p>  The current version supports PhantomJS, ChromeDriver, FireFox and remote
   Web Driver servers (e.g. Selenium).</p>
-
-<p>All drivers except &#39;remote&#39; manage running the browser in the application
+<p>  All drivers except ‘remote’ manage running the browser in the application
   supervision tree.</p>
-
-<p>This code is written to be very similar to the Selenium bindings for other
+<p>  This code is written to be very similar to the Selenium bindings for other
   languages.</p>
 
         </div>
       
 
       
-        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L1" target="_blank" class="view_source">Source</a>
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L1" class="view_source">Source</a>
       
 
       
-
-      
-        <h2 id="functions_summary">Functions summary</h2>
+        <h2 id="summary">Summary<div class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></div></h2>
         <table class="summary">
           <tr>
   <td class="summary_signature"><a href="#browsers/0">browsers()</a></td>
   
-    <td class="summary_synopsis"><p>Returns a list of the process names of all browsers that are running.</p>
+    <td class="summary_synopsis"><p>Returns a list of the process names of all browsers that are running</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#sessions/0">sessions()</a></td>
   
-    <td class="summary_synopsis"><p>Returns a list of all the process names of all sessions that are running.</p>
+    <td class="summary_synopsis"><p>Returns a list of all the process names of all sessions that are running</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#sessions/1">sessions(browser)</a></td>
   
-    <td class="summary_synopsis"><p>Returns a list of all the process names of sessions running on the specified browser.</p>
+    <td class="summary_synopsis"><p>Returns a list of all the process names of sessions running on the specified browser</p>
 </td>
   
 </tr>
@@ -77,7 +86,7 @@
   
     <td class="summary_synopsis"><p>Start the application. This is a callback called by
   :application.start :webdriver
-  and should probably not be called directly.</p>
+  and should probably not be called directly</p>
 </td>
   
 </tr>
@@ -85,7 +94,7 @@
   <td class="summary_signature"><a href="#start_browser/1">start_browser(config)</a></td>
   
     <td class="summary_synopsis"><p>Start a browser with the given configuration.
-  The <em>config</em> parameter is a WebDriver.Config record defined as</p>
+  The <em>config</em> parameter is a WebDriver.Config struct defined as</p>
 </td>
   
 </tr>
@@ -94,21 +103,21 @@
   
     <td class="summary_synopsis"><p>Start a session on the specified browser.
   You must specify a name for the session in order to refer to it
-  for further calls to the Session module.</p>
+  for further calls to the Session module</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#stop/1">stop(arg1)</a></td>
   
-    <td class="summary_synopsis"><p>Callback to clean up on exit. Currently does nothing much.</p>
+    <td class="summary_synopsis"><p>Callback to clean up on exit. Currently does nothing much</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#stop_all_browsers/0">stop_all_browsers()</a></td>
   
-    <td class="summary_synopsis"><p>Stops all browsers and sessions that are running.</p>
+    <td class="summary_synopsis"><p>Stops all browsers and sessions that are running</p>
 </td>
   
 </tr>
@@ -117,7 +126,7 @@
   
     <td class="summary_synopsis"><p>Stop the web browser referred to by name. You can also use the pid of the
   process if you wish.
-  This causes the browser and all associated sessions to be terminated.</p>
+  This causes the browser and all associated sessions to be terminated</p>
 </td>
   
 </tr>
@@ -126,7 +135,7 @@
   
     <td class="summary_synopsis"><p>Stop session. Kill a session on the current browser.
   This will attempt to terminate the session in the browser then it will
-  stop the process running the session in the VM.</p>
+  stop the process running the session in the VM</p>
 </td>
   
 </tr>
@@ -137,152 +146,189 @@
       
 
       
-
-      
-
-      
         <div id="functions_details" class="details_list">
           <h2>Functions</h2>
           <div class="detail">
-  <p class="signature" id="browsers/0">
-    <strong>browsers()</strong>
-  </p>
+  <div class="detail_header" id="browsers/0">
+    <span class="signature"><strong>browsers()</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#browsers/0" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Returns a list of the process names of all browsers that are running.</p>
+  <div class="docstring"><p>  Returns a list of the process names of all browsers that are running.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L96" target="_blank" class="view_source">Source</a>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="sessions/0">
-    <strong>sessions()</strong>
-  </p>
-  
-  <div class="docstring"><p>Returns a list of all the process names of all sessions that are running.</p>
-</div>
-  
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L124" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L97" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="sessions/1">
-    <strong>sessions(browser)</strong>
-  </p>
+  <div class="detail_header" id="sessions/0">
+    <span class="signature"><strong>sessions()</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#sessions/0" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Returns a list of all the process names of sessions running on the specified browser.</p>
+  <div class="docstring"><p>  Returns a list of all the process names of all sessions that are running.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L131" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L125" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="start/2">
-    <strong>start(atom1, config)</strong>
-  </p>
+  <div class="detail_header" id="sessions/1">
+    <span class="signature"><strong>sessions(browser)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#sessions/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Start the application. This is a callback called by
+  <div class="docstring"><p>  Returns a list of all the process names of sessions running on the specified browser.</p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L132" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <div class="detail_header" id="start/2">
+    <span class="signature"><strong>start(atom1, config)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#start/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <div class="docstring"><p>  Start the application. This is a callback called by
   :application.start :webdriver
   and should probably not be called directly.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L37" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L38" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="start_browser/1">
-    <strong>start_browser(config)</strong>
-  </p>
+  <div class="detail_header" id="start_browser/1">
+    <span class="signature"><strong>start_browser(config)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#start_browser/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Start a browser with the given configuration.
-  The <em>config</em> parameter is a WebDriver.Config record defined as</p>
-
-<p><code>defrecord Config, browser: :phantomjs, name: nil</code></p>
-
-<p>Currently Config is very minimal, future versions will add to this.
+  <div class="docstring"><p>  Start a browser with the given configuration.
+  The <em>config</em> parameter is a WebDriver.Config struct defined as</p>
+<p>  <code class="inline">defstruct  browser: :phantomjs, name: nil, root_url: &quot;&quot;</code></p>
+<p>  Currently Config is very minimal, future versions will add to this.
   Browser can be eithes :phantomjs or :firefox.</p>
-
-<p><em>Note that at the moment Firefox support is highly experimental.</em></p>
-
-<p>The name parameter is an atom with which you can reference the browser
+<p>  <em>Note that at the moment Firefox support is highly experimental.</em></p>
+<p>  The name parameter is an atom with which you can reference the browser
   process for further calls.</p>
-
-<p>Returns <code>{:ok, pid}</code> or <code>{:error, reason}</code></p>
-
-<p>Example:</p>
-
-<pre><code>iex&gt; config = WebDriver.Config.new(browser: :phantomjs, name: :test_browser)
+<p>  Returns <code class="inline">{:ok, pid}</code> or <code class="inline">{:error, reason}</code></p>
+<p>  Example:</p>
+<pre><code>iex&gt; config = %WebDriver.Config{browser: :phantomjs, name: :test_browser}
 iex&gt; WebDriver.start_browser config
 Starting phantomjs
 Phantom js started
-{:ok,#PID&lt;0.235.0&gt;}
-</code></pre>
+{:ok,#PID&lt;0.235.0&gt;}</code></pre>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L73" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L74" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="start_session/2">
-    <strong>start_session(browser, session_name)</strong>
-  </p>
+  <div class="detail_header" id="start_session/2">
+    <span class="signature"><strong>start_session(browser, session_name)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#start_session/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Start a session on the specified browser.
+  <div class="docstring"><p>  Start a session on the specified browser.
   You must specify a name for the session in order to refer to it
   for further calls to the Session module.</p>
-
-<p>Returns <code>{:ok, pid}</code> or <code>{:error, reason}</code></p>
+<p>  Returns <code class="inline">{:ok, pid}</code> or <code class="inline">{:error, reason}</code></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L108" target="_blank" class="view_source">Source</a>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="stop/1">
-    <strong>stop(arg1)</strong>
-  </p>
-  
-  <div class="docstring"><p>Callback to clean up on exit. Currently does nothing much.</p>
-</div>
-  
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L2" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L109" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="stop_all_browsers/0">
-    <strong>stop_all_browsers()</strong>
-  </p>
+  <div class="detail_header" id="stop/1">
+    <span class="signature"><strong>stop(arg1)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#stop/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Stops all browsers and sessions that are running.</p>
+  <div class="docstring"><p>  Callback to clean up on exit. Currently does nothing much.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L89" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L2" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="stop_browser/1">
-    <strong>stop_browser(name)</strong>
-  </p>
+  <div class="detail_header" id="stop_all_browsers/0">
+    <span class="signature"><strong>stop_all_browsers()</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#stop_all_browsers/0" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Stop the web browser referred to by name. You can also use the pid of the
+  <div class="docstring"><p>  Stops all browsers and sessions that are running.</p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L90" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <div class="detail_header" id="stop_browser/1">
+    <span class="signature"><strong>stop_browser(name)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#stop_browser/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <div class="docstring"><p>  Stop the web browser referred to by name. You can also use the pid of the
   process if you wish.
   This causes the browser and all associated sessions to be terminated.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L82" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L83" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="stop_session/1">
-    <strong>stop_session(session_name)</strong>
-  </p>
+  <div class="detail_header" id="stop_session/1">
+    <span class="signature"><strong>stop_session(session_name)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#stop_session/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Stop session. Kill a session on the current browser.
+  <div class="docstring"><p>  Stop session. Kill a session on the current browser.
   This will attempt to terminate the session in the browser then it will
   stop the process running the session in the VM.</p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L117" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L118" class="view_source">Source</a>
   
 </div>
 

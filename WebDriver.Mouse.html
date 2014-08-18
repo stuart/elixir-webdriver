@@ -20,59 +20,71 @@
     </script>
 
     <div id="content">
+      <div class="breadcrumbs">webdriver v0.6.0 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="WebDriver.html">WebDriver</a> &rarr; <a href="WebDriver.Mouse.html">Mouse</a></div>
+
       <h1>
         WebDriver.Mouse
         
       </h1>
 
+      <ul class="summary_links">
+        
+          <li><a href="#summary">Summary</a></li>
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+        
+      </ul>
+
       
         <div id="moduledoc" class="docstring">
-          <p>MOUSE EVENTS CURRENTLY DO NOT WORK IN FIREFOX</p>
+          <p>  Mouse driver event.</p>
 
         </div>
       
 
       
-        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/mouse.ex#L1" target="_blank" class="view_source">Source</a>
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/mouse.ex#L1" class="view_source">Source</a>
       
 
       
-
-      
-        <h2 id="functions_summary">Functions summary</h2>
+        <h2 id="summary">Summary<div class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></div></h2>
         <table class="summary">
           <tr>
   <td class="summary_signature"><a href="#button_down/2">button_down(session, button \\ :left)</a></td>
   
-    <td class="summary_synopsis"><p>Send a Button Down event.</p>
+    <td class="summary_synopsis"><p>Send a Button Down event</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#button_up/2">button_up(session, button \\ :left)</a></td>
   
-    <td class="summary_synopsis"><p>Send a Button Up event.</p>
+    <td class="summary_synopsis"><p>Send a Button Up event</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#click/2">click(session, button \\ :left)</a></td>
   
-    <td class="summary_synopsis"><p>Click a mouse button.</p>
+    <td class="summary_synopsis"><p>Click a mouse button</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#double_click/2">double_click(session, button \\ :left)</a></td>
   
-    <td class="summary_synopsis"><p>Send a double click mouse event.</p>
+    <td class="summary_synopsis"><p>Send a double click mouse event</p>
 </td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="#move_to/3">move_to(element, offsetx \\ 0, offsety \\ 0)</a></td>
   
-    <td class="summary_synopsis"><p>Move the mouse to the specified element.</p>
+    <td class="summary_synopsis"><p>Move the mouse to the specified element</p>
 </td>
   
 </tr>
@@ -83,96 +95,111 @@
       
 
       
-
-      
-
-      
         <div id="functions_details" class="details_list">
           <h2>Functions</h2>
           <div class="detail">
-  <p class="signature" id="button_down/2">
-    <strong>button_down(session, button \\ :left)</strong>
-  </p>
+  <div class="detail_header" id="button_down/2">
+    <span class="signature"><strong>button_down(session, button \\ :left)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#button_down/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Send a Button Down event.</p>
-
-<p>Parameters:
-    session : The session server process to send the event to.
-    button: The button to press, one of :left, :middle or :right</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown</a></p>
+  <div class="docstring"><p>  Send a Button Down event.</p>
+<p>  Parameters:</p>
+<pre><code>session : The session server process to send the event to.
+button: The button to press, one of :left, :middle or :right</code></pre>
+<p>  You will get an error if you fire a button down event on a button that is
+  already down (on some browsers).</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/mouse.ex#L43" target="_blank" class="view_source">Source</a>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="button_up/2">
-    <strong>button_up(session, button \\ :left)</strong>
-  </p>
-  
-  <div class="docstring"><p>Send a Button Up event.</p>
-
-<p>Parameters:
-    session : The session server process to send the event to.
-    button: The button to raise, one of :left, :middle or :right</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttonup">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttonup</a></p>
-</div>
-  
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/mouse.ex#L56" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/mouse.ex#L47" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="click/2">
-    <strong>click(session, button \\ :left)</strong>
-  </p>
+  <div class="detail_header" id="button_up/2">
+    <span class="signature"><strong>button_up(session, button \\ :left)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#button_up/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Click a mouse button.</p>
-
-<p>Parameters:
-    session : The session server process to send the click to.
-    button: The button to click, one of :left, :middle or :right</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click</a></p>
+  <div class="docstring"><p>  Send a Button Up event.</p>
+<p>  Parameters:</p>
+<pre><code>session : The session server process to send the event to.
+button: The button to raise, one of :left, :middle or :right</code></pre>
+<p>  You will get an error if you fire a button up event on a mouse
+  button that has not recieved a button down event previously.</p>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttonup">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttonup</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/mouse.ex#L29" target="_blank" class="view_source">Source</a>
-  
-</div>
-<div class="detail">
-  <p class="signature" id="double_click/2">
-    <strong>double_click(session, button \\ :left)</strong>
-  </p>
-  
-  <div class="docstring"><p>Send a double click mouse event.</p>
-
-<p>Parameters:
-    session : The session server process to send the event to.
-    button: The button to double click, one of :left, :middle or :right</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/doubleclick">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/doubleclick</a></p>
-</div>
-  
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/mouse.ex#L69" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/mouse.ex#L63" class="view_source">Source</a>
   
 </div>
 <div class="detail">
-  <p class="signature" id="move_to/3">
-    <strong>move_to(element, offsetx \\ 0, offsety \\ 0)</strong>
-  </p>
+  <div class="detail_header" id="click/2">
+    <span class="signature"><strong>click(session, button \\ :left)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#click/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
-  <div class="docstring"><p>Move the mouse to the specified element.</p>
-
-<p>Parameters:
-    element: The element to move the mouse to.
-    offsetx: X offset to the element coordinates
-    offsety: Y offset to the element coordinates</p>
-
-<p><a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/moveto">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/moveto</a></p>
+  <div class="docstring"><p>  Click a mouse button.</p>
+<p>  Parameters:</p>
+<pre><code>session : The session server process to send the click to.
+button: The button to click, one of :left, :middle or :right</code></pre>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/click</a></p>
 </div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/mouse.ex#L16" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/mouse.ex#L30" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <div class="detail_header" id="double_click/2">
+    <span class="signature"><strong>double_click(session, button \\ :left)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#double_click/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <div class="docstring"><p>  Send a double click mouse event.</p>
+<p>  Parameters:</p>
+<pre><code>session : The session server process to send the event to.
+button: The button to double click, one of :left, :middle or :right</code></pre>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/doubleclick">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/doubleclick</a></p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/mouse.ex#L76" class="view_source">Source</a>
+  
+</div>
+<div class="detail">
+  <div class="detail_header" id="move_to/3">
+    <span class="signature"><strong>move_to(element, offsetx \\ 0, offsety \\ 0)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#move_to/3" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <div class="docstring"><p>  Move the mouse to the specified element.</p>
+<p>  Parameters:</p>
+<pre><code>element: The element to move the mouse to.
+offsetx: X offset to the element coordinates
+offsety: Y offset to the element coordinates</code></pre>
+<p>  <a href="https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/moveto">https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/moveto</a></p>
+</div>
+  
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/mouse.ex#L16" class="view_source">Source</a>
   
 </div>
 

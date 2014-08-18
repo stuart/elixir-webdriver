@@ -20,82 +20,46 @@
     </script>
 
     <div id="content">
+      <div class="breadcrumbs">webdriver v0.6.0 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="WebDriver.html">WebDriver</a> &rarr; <a href="WebDriver.Config.html">Config</a></div>
+
       <h1>
         WebDriver.Config
         
-          <small>record</small>
-        
       </h1>
+
+      <ul class="summary_links">
+        
+        
+        
+        
+        
+      </ul>
 
       
         <div id="moduledoc" class="docstring">
-          <p>Configuration for a WebDriver browser instance.
+          <p>  Configuration for a WebDriver browser instance.
   Note that this record will have fields added as development of
   the library progresses.</p>
-
 <ul>
-<li><code>browser</code> - The type of browser, :phantomjs or :firefox</li>
-<li><code>name</code> - An atom to refer to the browser for later calls.</li>
-<li><code>root_url</code> - Used only for the Remote driver. This is the base url
-of the webdriver server. It must be a complete URL eg: &quot;http://localhost:5555/wd/hub&quot;
-This value is ignored for the other drivers, which set up their own root_url.</li>
+<li><code class="inline">browser</code> - The type of browser, :phantomjs or :firefox
+</li>
+<li><code class="inline">name</code> - An atom to refer to the browser for later calls.
+</li>
+<li><code class="inline">root_url</code> - Used only for the Remote driver. This is the base url
+  of the webdriver server. It must be a complete URL eg: “<a href="http://localhost:5555/wd/hub">http://localhost:5555/wd/hub</a>“
+  This value is ignored for the other drivers, which set up their own root_url.
+</li>
 </ul>
 
         </div>
       
 
       
-        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L18" target="_blank" class="view_source">Source</a>
-      
-
-      
-        <h2>Fields <small>(and defaults)</small></h2>
-        <ul class="summary">
-          
-            <li>
-              <span class="summary_signature">
-                <strong>browser:</strong> :phantomjs
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>name:</strong> nil
-              </span>
-            </li>
-          
-            <li>
-              <span class="summary_signature">
-                <strong>root_url:</strong> ""
-              </span>
-            </li>
-          
-        </ul>
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver.ex#L18" class="view_source">Source</a>
       
 
       
 
-      
-
-      
-
-      
-        <div id="types_details" class="details_list">
-          <h2>Types</h2>
-          <div class="type_detail">
-  <p class="typespec" id="t:t/0">
-    <a href="#t:t/0">t</a> :: {WebDriver.Config, term, term, term}
-  </p>
-  
-</div>
-<div class="type_detail">
-  <p class="typespec" id="t:options/0">
-    <a href="#t:options/0">options</a> :: [browser: term, name: term, root_url: term] | [{<a href="http://elixir-lang.org/docs/master/String.html#t:t/0">String.t</a>, term}]
-  </p>
-  
-</div>
-
-        </div>
       
 
       

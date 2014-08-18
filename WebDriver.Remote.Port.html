@@ -20,35 +20,44 @@
     </script>
 
     <div id="content">
+      <div class="breadcrumbs">webdriver v0.6.0 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="WebDriver.html">WebDriver</a> &rarr; Remote &rarr; <a href="WebDriver.Remote.Port.html">Port</a></div>
+
       <h1>
         WebDriver.Remote.Port
         
       </h1>
 
+      <ul class="summary_links">
+        
+          <li><a href="#summary">Summary</a></li>
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+        
+      </ul>
+
       
         <div id="moduledoc" class="docstring">
-          <p>This port connects to a remote Web Driver server. Unlike the other ports
+          <p>  This port connects to a remote Web Driver server. Unlike the other ports
   it does not manage starting and stopping of the server/browser.</p>
-
-<p>To start this port you must pass in the root_url in the config
+<p>  To start this port you must pass in the root_url in the config
   as a full url when starting it.</p>
-
-<pre><code>  iex&gt; config = WebDriver.Config.new(browser: :remote, name: :remote_test_browser,
+<pre><code>iex&gt; config = WebDriver.Config.new(browser: :remote, name: :remote_test_browser,
                 root_url: &quot;http://localhost:5555/wd/hub&quot;)
-  iex&gt; {:ok, pid} = WebDriver.start_browser config
-</code></pre>
+  iex&gt; {:ok, pid} = WebDriver.start_browser config</code></pre>
 
         </div>
       
 
       
-        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/remote/port.ex#L1" target="_blank" class="view_source">Source</a>
+        <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/remote/port.ex#L1" class="view_source">Source</a>
       
 
       
-
-      
-        <h2 id="functions_summary">Functions summary</h2>
+        <h2 id="summary">Summary<div class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></div></h2>
         <table class="summary">
           <tr>
   <td class="summary_signature"><a href="#start_link/2">start_link(config, sup)</a></td>
@@ -61,20 +70,21 @@
       
 
       
-
-      
-
-      
         <div id="functions_details" class="details_list">
           <h2>Functions</h2>
           <div class="detail">
-  <p class="signature" id="start_link/2">
-    <strong>start_link(config, sup)</strong>
-  </p>
+  <div class="detail_header" id="start_link/2">
+    <span class="signature"><strong>start_link(config, sup)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#start_link/2" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
   
   <div class="docstring"></div>
   
-    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/remote/port.ex#L22" target="_blank" class="view_source">Source</a>
+    <a href="https://github.com/stuart/elixir-webdriver/blob/master/lib/webdriver/remote/port.ex#L24" class="view_source">Source</a>
   
 </div>
 
