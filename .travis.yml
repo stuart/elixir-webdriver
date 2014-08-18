@@ -16,4 +16,4 @@ before_install:
    - "sh -e /etc/init.d/xvfb start"
 
 before_script: "export PATH=$PATH:`pwd`/vendor/elixir/bin"
-script: "MIX_ENV=test mix do deps.get, deps.compile, test"
+script: "MIX_ENV=test mix do local.hex deps.get, deps.compile, test"
