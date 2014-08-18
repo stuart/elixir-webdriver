@@ -4,7 +4,8 @@ defmodule WebDriver.Element do
 
     They all take an WebDriver.Element struct as the first argument.
     The WebDriver.Element struct is supposed to be an opaque data type and
-    is not meant to be manipulated.
+    is not meant to be manipulated. It contains the internal id of the element
+    used by the webdriver client and a the session name.
 
     Elements are associated with a particular session and have no meaning
     outside that WedDriver session.
@@ -51,10 +52,10 @@ defmodule WebDriver.Element do
 
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#POST_/session/:sessionId/element/:id/value
 
-    Parameters: [value: String]
+    Parameters: %{value: String}
   """
   def value element, value do
-    cmd element, :value, [value: String.codepoints value]
+    cmd element, :value, %{value: String.codepoints value}
   end
 
   @doc """
@@ -77,7 +78,7 @@ defmodule WebDriver.Element do
 
   @doc """
     Returns a boolean denoting if the element is selected or not.
-    Returns :element_not_selectable if it is not able to be selected.
+    Returns {:element_not_selectable, response} if it is not able to be selected.
 
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/selected
   """
@@ -131,16 +132,16 @@ defmodule WebDriver.Element do
 
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location
 
-    Returns [x: x, y: y]
+    Returns %{x: x, y: y}
   """
   def location element do
     case get_value element, :location do
     # Bug with Python Selenium
     # http://code.google.com/p/selenium/source/detail?r=bbcfab457b13
-    [{"toString",_},{"x",x},{"y",y}] ->
-        [x: x, y: y]
-    [{"x",x},{"y",y}] ->
-        [x: x, y: y]
+    %{"toString" => _,"x" => x,"y" => y} ->
+        %{x: x, y: y}
+    %{"x" => x, "y" => y} ->
+        %{x: x, y: y}
     response -> # Pass error responses through.
         response
     end
@@ -151,7 +152,7 @@ defmodule WebDriver.Element do
 
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/location_in_view
 
-    Returns [x: x, y: y]
+    Returns %{x: x, y: y}
   """
   def location_in_view element do
     do_location_in_view(get_value(element, :location))
@@ -164,10 +165,7 @@ defmodule WebDriver.Element do
   defp do_location_in_view response do
     # Bugfix
     # http://code.google.com/p/selenium/source/detail?r=bbcfab457b13
-    resp = Enum.into response, HashDict.new
-    {:ok, x} = HashDict.fetch(resp,"x")
-    {:ok, y} = HashDict.fetch(resp,"y")
-    [x: x, y: y]
+    %{x: response["x"], y: response["y"]}
   end
 
   @doc """
@@ -175,7 +173,7 @@ defmodule WebDriver.Element do
 
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/size
 
-    Returns [width: w, height: h]
+    Returns %{width: w, height: h}
   """
   def size element do
     do_size(get_value(element, :size))
@@ -186,10 +184,7 @@ defmodule WebDriver.Element do
   end
 
   defp do_size response do
-    resp = Enum.into response, HashDict.new
-    {:ok, h} = HashDict.fetch(resp,"height")
-    {:ok, w} = HashDict.fetch(resp,"width")
-    [width: w, height: h]
+    %{width: response["width"], height: response["height"]}
   end
 
   @doc """

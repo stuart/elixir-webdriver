@@ -37,7 +37,7 @@ defmodule WebDriverPhantomJSSessionTest do
 # Tests
   test "status should show that the Session is up" do
     resp = WebDriver.Session.status(:test)
-    assert [{"build", _},{"os",_}] = resp
+    assert %{"build" => _, "os" => _ } = resp
   end
 
   test "start_session should start a WebDriver session", meta do
@@ -53,7 +53,7 @@ defmodule WebDriverPhantomJSSessionTest do
   test "sessions lists the sessions on the Session" do
     response = Session.sessions(:test)
     Enum.each response, fn(session) ->
-      assert [{"id",_},{"capabilities",_}] = session
+      assert %{"id" => _,"capabilities" =>_} = session
     end
   end
 
@@ -142,19 +142,19 @@ defmodule WebDriverPhantomJSSessionTest do
     assert <<137,80,78,71,13,10,26,10,_ :: binary >> = :base64.decode(Session.screenshot :test)
   end
 
-  # test "no such frame error" do
-  #   assert {:no_such_frame, _ } = Session.frame :test, 123
-  # end
-  #
+  test "no such frame error" do
+    assert {:no_such_frame, _ } = Session.frame :test, 123
+  end
+
   test "window" do
     handle = Session.window_handle :test
     check :window, [handle]
   end
 
-  # test "error when there is no such window" do
-  #   assert {:no_such_window, _} = Session.window :test, "xyz"
-  # end
-  #
+  test "error when there is no such window" do
+    assert {:no_such_window, _} = Session.window :test, "xyz"
+  end
+  
   test "close window" do
     WebDriver.start_session :test_browser, :window_close
     assert {:ok, _} = Session.close_window :window_close
@@ -425,19 +425,19 @@ defmodule WebDriverPhantomJSSessionTest do
   test "location" do
     Session.url :test, "http://localhost:8888/page_1.html"
     element = Session.element :test, :id, "fixed"
-    assert [x: 100,y: 100] = Element.location element
+    assert %{x: 100,y: 100} = Element.location element
   end
 
   test "location_in_view" do
     Session.url :test, "http://localhost:8888/page_1.html"
     element = Session.element :test, :id, "fixed"
-    assert [x: 100,y: 100] = Element.location_in_view element
+    assert %{x: 100,y: 100} = Element.location_in_view element
   end
 
   test "size" do
     Session.url :test, "http://localhost:8888/page_1.html"
     element = Session.element :test, :id, "fixed"
-    assert [width: 100,height: 50] = Element.size element
+    assert %{height: 50, width: 100} = Element.size element
   end
 
   test "css gives the value of an elements css" do

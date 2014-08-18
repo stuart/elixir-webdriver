@@ -36,7 +36,32 @@ defmodule WebDriver.Error do
 
     The codes that can be returned are:
 
-
+       * :success
+       * :no_such_driver
+       * :no_such_element
+       * :no_such_frame
+       * :unknown_command
+       * :stale_element_reference
+       * :element_not_visible
+       * :invalid_element_state
+       * :unknown_error
+       * :element_not_selectable
+       * :javascript_error
+       * :x_path_lookup_error
+       * :timeout
+       * :no_such_window
+       * :invalid_cookie_domain
+       * :unable_to_set_cookie
+       * :unexpected_alert_open
+       * :no_alert_open_error
+       * :script_timeout
+       * :invalid_element_coordinates
+       * :ime_not_available
+       * :ime_engine_activation_failed
+       * :invalid_selector
+       * :session_not_created_exception
+       * :move_target_out_of_bounds
+       
   """
 
   defmodule ErrorMessage do

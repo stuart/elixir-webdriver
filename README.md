@@ -1,7 +1,7 @@
 # Web Driver for Elixir
 [![Build Status](https://travis-ci.org/stuart/elixir-webdriver.png?branch=master)](https://travis-ci.org/stuart/elixir-webdriver)
 
-[Current Version 0.5.0](https://github.com/stuart/elixir-webdriver/tree/0.5.0)
+[Current Version 0.6.0](https://github.com/stuart/elixir-webdriver/tree/0.6.0)
 
 This is an implementation of the WebDriver protocol client.
 It currently supports PhantomJS, FireFox, ChromeDriver and remote webdriver
@@ -100,7 +100,22 @@ Currently I have only tested extensively on OSX, and Ubuntu Linux.
 It should work on most UNIX like platforms. There is some rudimentary
 Windows support code in here, but I'm pretty sure that it won't work.
 
+## Support
+Please report any issues you have with using this library in the Github
+issues for the project:
+  https://github.com/stuart/elixir-webdriver/issues
+
+
 ## Changelog
+
+* 2014-08-18
+    - Version 0.6.0
+    - Changed JSON library to Jazz
+    - Converted responses to be maps rather than Keywords
+    - Use hex.pm dependencies as much as possible
+    - Stability fixes to tests
+    - Documentation updates and cleanup.
+
 * 2014-08-17
     - Version 0.5.2
     - Moved webdriver.xpi out of hex accessed path

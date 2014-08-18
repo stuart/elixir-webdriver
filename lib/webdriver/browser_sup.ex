@@ -6,7 +6,8 @@ defmodule WebDriver.BrowserSup do
     the running of browser instances and their associated session supervisors.
 
     If a browser crashes for any reason this will restart the browser and the
-    sessions that connect to it.
+    sessions that connect to it. Of course those sessions will have lost their
+    state.
   """
 
   @browsers [ firefox: WebDriver.Firefox.Port,
