@@ -97,6 +97,12 @@ Currently I have only tested extensively on OSX, and Ubuntu Linux.
 It should work on most UNIX like platforms. There is some rudimentary
 Windows support code in here, but I'm pretty sure that it won't work.
 
+## Support
+Please report any issues you have with using this library in the Github
+issues for the project:
+  https://github.com/stuart/elixir-webdriver/issues
+  
+
 ## Changelog
 * 2014-08-18
     - Version 0.6.0

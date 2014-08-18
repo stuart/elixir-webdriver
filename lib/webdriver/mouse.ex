@@ -39,6 +39,9 @@ defmodule WebDriver.Mouse do
       session : The session server process to send the event to.
       button: The button to press, one of :left, :middle or :right
 
+    You will get an error if you fire a button down event on a button that is
+    already down (on some browsers).
+
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttondown
   """
   def button_down session, button \\ :left do
@@ -51,6 +54,9 @@ defmodule WebDriver.Mouse do
     Parameters:
       session : The session server process to send the event to.
       button: The button to raise, one of :left, :middle or :right
+
+    You will get an error if you fire a button up event on a mouse
+    button that has not recieved a button down event previously.
 
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/buttonup
   """

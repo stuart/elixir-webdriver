@@ -1,4 +1,11 @@
 defmodule WebDriver.Keys do
+  @moduledoc """
+    This provides symbols to represent various non-printable keystrokes that
+    can be sent to a web browser.
+
+    The codes are defined in: https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/value
+
+  """
   @non_text_keys [
     { :key_null,      "\x{e000}" },
     { :key_cancel,    "\x{e001}"},
@@ -129,7 +136,7 @@ defmodule WebDriver.Keys do
     { :key_f11,       "\x{e03b}"},
     { :key_f12,       "\x{e03c}"},
     { :key_meta,      "\x{e03d}"}
-    
+
   ```
   """
   def key key_code do
