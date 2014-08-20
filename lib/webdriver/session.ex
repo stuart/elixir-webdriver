@@ -483,6 +483,7 @@ defmodule WebDriver.Session do
     case value do
       {:no_such_element, _resp} -> nil
       %{"ELEMENT" => id} -> %WebDriver.Element{id: URI.encode(id), session: name}
+      resp -> resp
     end
   end
 

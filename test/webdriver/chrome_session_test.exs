@@ -283,10 +283,10 @@ defmodule WebDriverChromeSessionTest do
   end
 
   # Not implemented on chrome
-  # test "active element" do
-  #   Session.url :cdtest, "http://localhost:8888/page_1.html"
-  #   assert is_element? = Session.active_element :cdtest
-  # end
+  test "active element" do
+    Session.url :cdtest, "http://localhost:8888/page_1.html"
+    assert {:invalid_command, 404, _,_} = Session.active_element :cdtest
+  end
 
   test "get orientation" do
     assert {:error, "Session does not support device rotation."} == Session.orientation(:cdtest)
