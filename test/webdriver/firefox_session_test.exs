@@ -42,10 +42,7 @@ defmodule WebDriverFirefoxSessionTest do
 
   test "sessions lists the sessions on the Session" do
     # GET Sessions does not work on firefox!
-    # response = Session.sessions(:fftest)
-    # Enum.each response, fn(session) ->
-    #   assert [{"id",_},{"capabilities",_}] = session
-    # end
+    assert {:invalid_request, 404, _, _} = Session.sessions(:fftest)
   end
 
   test "session returns the current session data" do

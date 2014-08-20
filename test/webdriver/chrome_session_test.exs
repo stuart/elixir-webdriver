@@ -39,13 +39,10 @@ defmodule WebDriverChromeSessionTest do
     assert meta[:session_id] != :null
   end
 
-  # FIXME: does not work on Chrome
-  # test "sessions lists the sessions on the Session" do
-  #   response = Session.sessions(:cdtest)
-  #   Enum.each response, fn(session) ->
-  #     assert [{"id",_},{"capabilities",_}] = session
-  #   end
-  # end
+  test "sessions lists the sessions on the Session" do
+    # GET Sessions does not work on chrome!
+    assert {:invalid_request, 404, _, _ } = Session.sessions(:cdtest)
+  end
 
   test "session returns the current session data" do
     { :ok, _ } = Session.start_session(:cdtest)
