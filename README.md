@@ -1,7 +1,7 @@
 # Web Driver for Elixir
 [![Build Status](https://travis-ci.org/stuart/elixir-webdriver.png?branch=master)](https://travis-ci.org/stuart/elixir-webdriver)
 
-[Current Version 0.6.0](https://github.com/stuart/elixir-webdriver/tree/0.6.0)
+[Current Version 0.6.1](https://github.com/stuart/elixir-webdriver/tree/0.6.1)
 
 This is an implementation of the WebDriver protocol client.
 It currently supports PhantomJS, FireFox, ChromeDriver and remote webdriver
@@ -20,7 +20,7 @@ add this to mix.exs deps:
 
 or if you do Hex.pm:
 
-```{:webdriver, "~>0.6.0"}```
+```{:webdriver, "~>0.6.1"}```
 
 and make sure the application block of mix.exs includes:
 ``` applications: [ :webdriver ] ```
@@ -111,6 +111,9 @@ issues for the project:
 
 
 ## Changelog
+* 2014-10-21
+    - Version 0.6.1
+    - Update deps to new syntax
 
 * 2014-08-18
     - Version 0.6.0
