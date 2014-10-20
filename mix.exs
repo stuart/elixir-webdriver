@@ -8,7 +8,11 @@ defmodule WebDriver.Mixfile do
       source_url: "https://github.com/stuart/elixir-webdriver",
       homepage_url: "http://stuart.github.io/elixir-webdriver",
       package: package,
-      deps: deps
+      deps: deps,
+      docs: [
+        readme: true,
+        main: "README"
+      ]
     ]
   end
 
