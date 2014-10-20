@@ -34,7 +34,7 @@ only run the appropriate ones. It uses the
 ```:os.find_executable``` function to find the appropriate paths so check
 that if a browser is not found.
 
-##[Documentation](http://stuart.github.io/elixir-webdriver/)
+##[Documentation](http://hexdocs.pm/webdriver)
 
 ## Usage
 
