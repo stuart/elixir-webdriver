@@ -8,7 +8,7 @@ defmodule WebDriver.Mixfile do
       source_url: "https://github.com/stuart/elixir-webdriver",
       homepage_url: "http://stuart.github.io/elixir-webdriver",
       package: package,
-      deps: deps(Mix.env)
+      deps: deps
     ]
   end
 
@@ -26,24 +26,13 @@ defmodule WebDriver.Mixfile do
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
     [
-     {:ibrowse,   github: "cmullaparthi/ibrowse", tag: "v4.1.0"},
-     {:httpotion, "~> 0.2.4"},
-     {:jazz,      "~> 0.2.0"}
+      {:ibrowse,   github: "cmullaparthi/ibrowse", tag: "v4.1.0"},
+      {:httpotion, "~> 0.2.4"},
+      {:jazz,      "~> 0.2.0"},
+      {:mock,      github: "jjh42/mock", only: :test},
+      {:earmark,   "~>0.1.10", only: :dev},
+      {:ex_doc,    "~>0.6", only: :dev}
      ]
-  end
-
-  defp deps :test do
-    deps ++ [{:mock,          github: "jjh42/mock"}]
-  end
-
-  defp deps :dev do
-    deps ++ [{:mock,          github: "jjh42/mock"},
-             {:earmark,       "~>0.1.10"},
-             {:ex_doc,        "~>0.5.2"}]
-  end
-
-  defp deps _ do
-    deps
   end
 
   defp package do

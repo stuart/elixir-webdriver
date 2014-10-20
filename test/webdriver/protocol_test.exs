@@ -412,7 +412,7 @@ defmodule WebDriverProtocolTest do
   end
 
 ## Test Harness Functions
-  #  Mocks a response to a POST request.
+  #  Mocks a response to a request.
   #  The response just echoes the request body.
   def test_get command, path do
     with_mock HTTPotion, [], [get: fn(url, headers) -> get(url, headers) end] do

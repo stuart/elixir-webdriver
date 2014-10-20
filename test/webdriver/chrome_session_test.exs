@@ -285,7 +285,7 @@ defmodule WebDriverChromeSessionTest do
   # Not implemented on chrome
   test "active element" do
     Session.url :cdtest, "http://localhost:8888/page_1.html"
-    assert {:invalid_command, 404, _,_} = Session.active_element :cdtest
+    assert {:invalid_request, 404, _,_} = Session.active_element :cdtest
   end
 
   test "get orientation" do

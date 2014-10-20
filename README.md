@@ -18,6 +18,10 @@ add this to mix.exs deps:
 
 ```{:webdriver, github: "stuart/elixir-webdriver"} ```
 
+or if you do Hex.pm:
+
+```{:webdriver, "~>0.6.0"}```
+
 and make sure the application block of mix.exs includes:
 ``` applications: [ :webdriver ] ```
 or call
@@ -26,9 +30,9 @@ or call
 Generate documentation with ```mix docs```.
 Run the tests with ```mix test```.
 The tests will check if PhantomJS, ChromeDriver and Firefox are installed and
-only run the appropriate ones. It uses
-```:os.find_executable``` to find the appropriate paths so check that if a
-browser is not found.
+only run the appropriate ones. It uses the
+```:os.find_executable``` function to find the appropriate paths so check
+that if a browser is not found.
 
 ##[Documentation](http://stuart.github.io/elixir-webdriver/)
 
