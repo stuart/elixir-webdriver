@@ -16,22 +16,23 @@ session storage.
 This library has been set up as a Mix application, so just
 add this to mix.exs deps:
 
-```{:webdriver, github: "stuart/elixir-webdriver"} ```
+    {:webdriver, github: "stuart/elixir-webdriver"}
 
 or if you do Hex.pm:
 
-```{:webdriver, "~>0.6.1"}```
+    {:webdriver, "~>0.6.1"}
 
 and make sure the application block of mix.exs includes:
-``` applications: [ :webdriver ] ```
+    applications: [ :webdriver ]
 or call
-``` :application.start :webdriver ``` in your code.
+    :application.start :webdriver
+in your code.
 
-Generate documentation with ```mix docs```.
-Run the tests with ```mix test```.
+Generate documentation with `mix docs`.
+Run the tests with `mix test`.
 The tests will check if PhantomJS, ChromeDriver and Firefox are installed and
 only run the appropriate ones. It uses the
-```:os.find_executable``` function to find the appropriate paths so check
+`:os.find_executable` function to find the appropriate paths so check
 that if a browser is not found.
 
 ##[Documentation](http://hexdocs.pm/webdriver)
@@ -41,8 +42,8 @@ that if a browser is not found.
 When the application starts it will fire up a supervision tree for
 the browsers to be run under.
 
-You can start a browser instance with ```WebDriver.start_browser config```
-where ```config``` is a WebDriver.Config record.
+You can start a browser instance with `WebDriver.start_browser config`
+where `config` is a WebDriver.Config record.
 
 Currently the config is very simple it just consists of two or three fields:
  * :browser - the type of browser to open, one of
@@ -55,7 +56,8 @@ Currently the config is very simple it just consists of two or three fields:
  web driver calls.
 
 You can then start up a session on the browser with
-```WebDriver.start_session browser_name, session_name```
+
+    WebDriver.start_session browser_name, session_name
 
 Once the session is started you can do commands on it, see the edoc documentation
 for more on specific commands.
@@ -92,11 +94,13 @@ You will need one or more of the following installed in the usual place
 for your OS:
 
 * PhantomJS version 1.9.7 or later: http://phantomjs.org/
+
 * FireFox: Get a recent version, please... https://www.mozilla.org/en-US/firefox/new/
-          If you installed webdriver with hex you will not have the firefox plugin.
-          Run `mix webdriver.firefox.install` to get the plugin.
+If you installed webdriver with hex you will not have the firefox plugin.
+Run `mix webdriver.firefox.install` to get the plugin.
 
 * ChromeDriver version 2.9 or later and Chrome (or Chromium): http://chromedriver.storage.googleapis.com/index.html
+
 * Remote Driver: This driver does not manage starting and stopping the browser for you. To
 use this you must have a webdriver server such as Selenium or PhantomJS running at a known url.
 
