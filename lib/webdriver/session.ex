@@ -96,6 +96,13 @@ defmodule WebDriver.Session do
   end
 
   @doc """
+    True if this session can handle alerts
+  """
+  def handles_alerts? name do
+    negotiated_capabilities(name).handlesAlerts
+  end
+
+  @doc """
     Start a session with the desired capabilities on the browser.
     This is automatically called when the Session server starts, but in
     some cases you may want to stop and restart sessions without stopping
@@ -642,6 +649,56 @@ defmodule WebDriver.Session do
     case screen_orientation do
       :landscape -> cmd name, {:orientation, %{ orientation: "LANDSCAPE"}}
       :portrait  -> cmd name, {:orientation, %{ orientation: "PORTRAIT"}}
+    end
+  end
+
+
+  @doc """
+    Gets the text of the currently displayed JavaScript alert(), confirm(),
+    or prompt() dialog.
+
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/alert_text
+  """
+  def alert_text name do
+    case handles_alerts? name do
+      true -> get_value name, :alert_text
+      false -> {:error, "Session does not handle alert, confirm or prompt dialogs."}
+    end
+  end
+
+  @doc """
+    Sets the text of the currently displayed JavaScript prompt() dialog.
+
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/alert_text
+  """
+  def alert_text name, keys do
+    case handles_alerts? name do
+      true -> cmd name, {:alert_text, %{text: keys}}
+      false -> {:error, "Session does not handle alert, confirm or prompt dialogs."}
+    end
+  end
+
+  @doc """
+    Accepts the currently shown dialog. This usually means clicking the "OK" button.
+
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/accept_alert
+  """
+  def accept_alert name do
+    case handles_alerts? name do
+      true -> cmd name, :accept_alert
+      false -> {:error, "Session does not handle alert, confirm or prompt dialogs."}
+    end
+  end
+
+  @doc """
+    Dismisses the currently shown dialog. This usually means clicking the "Cancel" button.
+
+    https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/dismiss_alert
+  """
+  def dismiss_alert name do
+    case handles_alerts? name do
+      true -> cmd name, :dismiss_alert
+      false -> {:error, "Session does not handle alert, confirm or prompt dialogs."}
     end
   end
 

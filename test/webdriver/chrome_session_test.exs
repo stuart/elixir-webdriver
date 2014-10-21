@@ -464,6 +464,28 @@ defmodule WebDriverChromeSessionTest do
     assert resp.status == 0
   end
 
+  test "alert_text" do
+    Session.url :cdtest, "http://localhost:8888/alert.html"
+    Session.element(:cdtest, :id, "alert") |> Element.click
+    assert "this is an alert" = Session.alert_text(:cdtest)
+    Session.accept_alert :cdtest
+  end
+
+  test "setting text in a prompt" do
+    Session.url :cdtest, "http://localhost:8888/alert.html"
+    Session.element(:cdtest, :id, "prompt") |> Element.click
+    Session.alert_text(:cdtest, "Stuart")
+    Session.accept_alert :cdtest
+    assert "Hello Stuart" = Session.element(:cdtest, :id, "result") |> Element.text
+  end
+
+  test "dismissing a prompt" do
+    Session.url :cdtest, "http://localhost:8888/alert.html"
+    Session.element(:cdtest, :id, "prompt") |> Element.click
+    Session.alert_text(:cdtest, "Stuart")
+    Session.dismiss_alert :cdtest
+    assert "" = Session.element(:cdtest, :id, "result") |> Element.text
+  end
 
   # Check that a request returns {ok, response} and the response status is 0
   defp check func, params \\ [] do

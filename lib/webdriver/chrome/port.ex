@@ -53,7 +53,7 @@ defmodule WebDriver.Chrome.Port do
 
   def normal_termination state do
     # Send a shutdown signal to the ChromeDriver process.
-    HTTPotion.get "#{state.root_url}/shutdown"
+    %HTTPotion.Response{} = HTTPotion.get "#{state.root_url}/shutdown"
     Port.close state.port
     :ok
   end
