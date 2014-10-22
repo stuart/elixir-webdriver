@@ -463,6 +463,28 @@ defmodule WebDriverFirefoxSessionTest do
     assert resp.status == 0
   end
 
+  test "alert_text" do
+    Session.url :fftest, "http://localhost:8888/alert.html"
+    Session.element(:fftest, :id, "alert") |> Element.click
+    assert "this is an alert" = Session.alert_text(:fftest)
+    Session.accept_alert :fftest
+  end
+
+  test "setting text in a prompt" do
+    Session.url :fftest, "http://localhost:8888/alert.html"
+    Session.element(:fftest, :id, "prompt") |> Element.click
+    Session.alert_text(:fftest, "Stuart")
+    Session.accept_alert :fftest
+    assert "Hello Stuart" = Session.element(:fftest, :id, "result") |> Element.text
+  end
+
+  test "dismissing a prompt" do
+    Session.url :fftest, "http://localhost:8888/alert.html"
+    Session.element(:fftest, :id, "prompt") |> Element.click
+    Session.alert_text(:fftest, "Stuart")
+    Session.dismiss_alert :fftest
+    assert "" = Session.element(:fftest, :id, "result") |> Element.text
+  end
 ############################################################################
 
   # Check that a request returns {ok, response} and the response status is 0

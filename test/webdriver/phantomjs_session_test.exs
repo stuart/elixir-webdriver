@@ -154,7 +154,7 @@ defmodule WebDriverPhantomJSSessionTest do
   test "error when there is no such window" do
     assert {:no_such_window, _} = Session.window :test, "xyz"
   end
-  
+
   test "close window" do
     WebDriver.start_session :test_browser, :window_close
     assert {:ok, _} = Session.close_window :window_close
@@ -471,6 +471,13 @@ defmodule WebDriverPhantomJSSessionTest do
   test "double click" do
     assert {:ok, resp} = Mouse.double_click :test
     assert resp.status == 0
+  end
+
+  # Phantom js does not handle alerts.
+  test "alert_text" do
+    Session.url :test, "http://localhost:8888/alert.html"
+    Session.element(:test, :id, "alert") |> Element.click
+    assert {:error, _message} = Session.alert_text(:test)
   end
 
 ############################################################################
