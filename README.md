@@ -115,6 +115,10 @@ issues for the project:
 
 
 ## Changelog
+* 2014-10-23
+    - Version 0.7.0
+    - Added Alert handling
+
 * 2014-10-21
     - Version 0.6.1
     - Update deps to new syntax

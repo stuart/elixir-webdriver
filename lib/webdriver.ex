@@ -2,6 +2,8 @@ defmodule WebDriver do
   use Application
 
   @moduledoc """
+    Version: #{ WebDriver.Mixfile.project[:version] }
+
     This is the Elixir WebDriver application. It can be used to drive a
     WebDriver enabled browser via Elixir code.
 
