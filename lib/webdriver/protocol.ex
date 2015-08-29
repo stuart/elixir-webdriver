@@ -850,11 +850,11 @@ defmodule WebDriver.Protocol do
     try do
       case request.method do
         :GET ->
-          HTTPotion.get(request.url, request.headers)
+          HTTPotion.get(request.url, [headers: request.headers])
         :POST ->
-          HTTPotion.post(request.url, request.body, request.headers)
+          HTTPotion.post(request.url, [body: request.body, headers: request.headers])
         :DELETE ->
-          HTTPotion.delete(request.url, request.headers)
+          HTTPotion.delete(request.url, [headers: request.headers])
       end |> handle_response(root_url) |> add_request(request)
     rescue
       [HTTPotion.HTTPError, :econnrefused] ->

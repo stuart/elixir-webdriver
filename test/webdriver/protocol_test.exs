@@ -415,21 +415,21 @@ defmodule WebDriverProtocolTest do
   #  Mocks a response to a request.
   #  The response just echoes the request body.
   def test_get command, path do
-    with_mock HTTPotion, [], [get: fn(url, headers) -> get(url, headers) end] do
+    with_mock HTTPotion, [get: fn(url, options) -> get(url, options[:headers]) end] do
       {:ok, _response} = command.("http://127.0.0.1:8080")
       assert_get path
     end
   end
 
   def test_post command, path, body do
-    with_mock HTTPotion, [], [post: fn(url, params, headers) -> post(url, params, headers) end] do
+    with_mock HTTPotion, [post: fn(url, options) -> post(url, options[:body], options[:headers]) end] do
       {:ok, _response} = command.("http://127.0.0.1:8080")
       assert_post path, body
     end
   end
 
   def test_delete command, path do
-    with_mock HTTPotion, [], [delete: fn(url, headers) -> delete(url, headers) end] do
+    with_mock HTTPotion, [delete: fn(url, options) -> delete(url, options[:headers]) end] do
       {:ok, _response} = command.("http://127.0.0.1:8080")
       assert_delete path
     end
@@ -459,7 +459,7 @@ defmodule WebDriverProtocolTest do
   defp assert_post path, body do
     # Jazz shuffles map keys around.
     b = JSON.decode!(body) |> JSON.encode!
-    assert called HTTPotion.post("http://127.0.0.1:8080#{path}", b, :_)
+    assert called HTTPotion.post("http://127.0.0.1:8080#{path}", [body: b, headers: :_])
   end
 
   defp assert_delete path do

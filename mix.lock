@@ -1,7 +1,7 @@
 %{"earmark": {:hex, :earmark, "0.1.17"},
   "ex_doc": {:hex, :ex_doc, "0.8.4"},
   "hoedown": {:git, "git://github.com/hoedown/hoedown.git", "34d28b5f1af41a8879985f2550ddcaa54c4e432b", []},
-  "httpotion": {:hex, :httpotion, "0.2.4"},
+  "httpotion": {:hex, :httpotion, "2.1.0"},
   "ibrowse": {:git, "git://github.com/cmullaparthi/ibrowse.git", "ea3305d21f37eced4fac290f64b068e56df7de80", [tag: "v4.1.2"]},
   "jazz": {:hex, :jazz, "0.2.1"},
   "jsonex": {:git, "git://github.com/marcelog/jsonex.git", "82e6c416eed5e791073427bf3079d7ab7b85a1e1", []},
