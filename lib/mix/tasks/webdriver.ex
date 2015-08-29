@@ -2,7 +2,7 @@ defmodule Mix.Tasks.Webdriver do
   defmodule Firefox.Install do
     use Mix.Task
 
-    @download_url "https://raw.githubusercontent.com/stuart/elixir-webdriver/feature/load_firefox_plugin_task/plugins/firefox/webdriver.xpi"
+    @download_url "https://raw.githubusercontent.com/stuart/elixir-webdriver/master/plugins/firefox/webdriver.xpi"
 
     def run(_) do
       Mix.shell.info "Downloading the Firefox Webdriver plugin."
