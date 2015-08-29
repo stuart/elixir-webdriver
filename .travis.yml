@@ -1,21 +1,12 @@
-language: erlang
+language: elixir
+
 notifications:
   recipients:
     - stuart.coyle@gmail.com
+
 otp_release:
-  - 17.0
-env:
-  - ELIXIR="v0.15.1"
+  - 17.4
 
 before_install:
-   - mkdir -p vendor/elixir
-   - wget -q https://github.com/elixir-lang/elixir/releases/download/$ELIXIR/Precompiled.zip && unzip -qq Precompiled.zip -d vendor/elixir
-   - export MIX_ENV=test
-   - "export DISPLAY=:99.0"
-   - "sh -e /etc/init.d/xvfb start"
-
-before_script:
-   - "export PATH=$PATH:`pwd`/vendor/elixir/bin"
-   - mix local.hex --force
-
-script: "MIX_ENV=test mix do deps.get, deps.compile, test"
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
