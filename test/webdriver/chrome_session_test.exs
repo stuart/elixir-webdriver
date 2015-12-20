@@ -258,7 +258,7 @@ defmodule WebDriverChromeSessionTest do
 
   test "a non existing element" do
     Session.url :cdtest, "http://localhost:8888/page_1.html"
-    assert nil = Session.element :cdtest, :tag, "nothing"
+    assert nil == Session.element :cdtest, :tag, "nothing"
   end
 
   test "find an element starting from a specified element" do
@@ -309,6 +309,7 @@ defmodule WebDriverChromeSessionTest do
     Session.url :cdtest, "http://localhost:8888/page_1.html"
     element = Session.element :cdtest, :link, "Back to Index"
     assert {:ok, _} = Element.click element
+    :timer.sleep(100)
     assert "http://localhost:8888/index.html" = Session.url :cdtest
   end
 
@@ -464,24 +465,28 @@ defmodule WebDriverChromeSessionTest do
     assert resp.status == 0
   end
 
-  test "alert_text" do
+ test "alert_text" do
     Session.url :cdtest, "http://localhost:8888/alert.html"
     Session.element(:cdtest, :id, "alert") |> Element.click
+    # It seems that the alert takes a while to be available
+    :timer.sleep(100)
     assert "this is an alert" = Session.alert_text(:cdtest)
     Session.accept_alert :cdtest
-  end
+ end
 
-  test "setting text in a prompt" do
+ test "setting text in a prompt" do
     Session.url :cdtest, "http://localhost:8888/alert.html"
     Session.element(:cdtest, :id, "prompt") |> Element.click
+    :timer.sleep(100)
     Session.alert_text(:cdtest, "Stuart")
     Session.accept_alert :cdtest
     assert "Hello Stuart" = Session.element(:cdtest, :id, "result") |> Element.text
-  end
+ end
 
   test "dismissing a prompt" do
     Session.url :cdtest, "http://localhost:8888/alert.html"
     Session.element(:cdtest, :id, "prompt") |> Element.click
+    :timer.sleep(100)
     Session.alert_text(:cdtest, "Stuart")
     Session.dismiss_alert :cdtest
     assert "" = Session.element(:cdtest, :id, "result") |> Element.text

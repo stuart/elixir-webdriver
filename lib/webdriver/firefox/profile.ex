@@ -21,6 +21,7 @@ defmodule WebDriver.Firefox.Profile do
     {"browser.startup.page", 0},
     {"browser.tabs.warnOnClose", false},
     {"browser.tabs.warnOnOpen", false},
+    {"browser.selfsupport.url", ""},
     {"devtools.errorconsole.enabled", true},
     {"dom.disable_open_during_load", false},
     {"dom.max_chrome_script_run_time", 30},
@@ -58,7 +59,7 @@ defmodule WebDriver.Firefox.Profile do
     {"webdriver_accept_untrusted_certs", true},
     {"webdriver_assume_untrusted_issuer", true},
     {"webdriver_enable_native_events", false},
-    {"webdriver.log.file", "/tmp/log/webdriver.log"}
+    {"webdriver.log.file", "/tmp/webdriver.log"}
   ]
 
   @webdriver_prefs [
