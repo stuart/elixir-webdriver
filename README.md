@@ -93,7 +93,9 @@ An example session is shown here:
 You will need one or more of the following installed in the usual place
 for your OS:
 
-* PhantomJS version 1.9.7 or later: http://phantomjs.org/
+* PhantomJS version 1.9.7: http://phantomjs.org/
+Note that PhantomJS version 2.0 has issues with GhostDriver and may not work.
+See: https://github.com/detro/ghostdriver/issues/394
 
 * FireFox: Get a recent version, please... https://www.mozilla.org/en-US/firefox/new/
 If you installed webdriver with hex you will not have the firefox plugin.
