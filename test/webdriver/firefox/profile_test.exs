@@ -9,6 +9,7 @@ defmodule FirefoxProfileTest do
     tempdir = Profile.make_temp_directory
     on_exit fn ->
       File.rm_rf tempdir
+      System.cmd("killall", ["firefox-bin"])
     end
     {:ok, [tempdir: tempdir]}
   end

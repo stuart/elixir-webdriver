@@ -261,7 +261,7 @@ defmodule WebDriverPhantomJSSessionTest do
 
   test "a non existing element" do
     Session.url :test, "http://localhost:8888/page_1.html"
-    assert nil = Session.element :test, :tag, "nothing"
+    assert nil == Session.element :test, :tag, "nothing"
   end
 
   test "find an element starting from a specified element" do

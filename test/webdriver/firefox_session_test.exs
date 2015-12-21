@@ -238,7 +238,7 @@ defmodule WebDriverFirefoxSessionTest do
 
   test "a non existing element" do
     Session.url :fftest, "http://localhost:8888/page_1.html"
-    assert nil = Session.element :fftest, :tag, "nothing"
+    assert nil == Session.element :fftest, :tag, "nothing"
   end
 
   test "find an element starting from a specified element" do

@@ -5,7 +5,7 @@ notifications:
 otp_release:
   - 17.0
 env:
-  - ELIXIR="v0.15.1"
+  - ELIXIR="v1.1.1"
 
 before_install:
    - mkdir -p vendor/elixir
