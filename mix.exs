@@ -3,7 +3,7 @@ defmodule WebDriver.Mixfile do
 
   def project do
     [ app: :webdriver,
-      version: "0.7.0",
+      version: "0.8.1",
       description: "Webdriver protocol for driving web browsers.",
       source_url: "https://github.com/stuart/elixir-webdriver",
       homepage_url: "http://stuart.github.io/elixir-webdriver",

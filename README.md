@@ -20,7 +20,7 @@ add this to mix.exs deps:
 
 or if you do Hex.pm:
 
-    {:webdriver, "~>0.7.0"}
+    {:webdriver, "~>0.8.0"}
 
 and make sure the application block of mix.exs includes:
     applications: [ :webdriver ]
@@ -117,6 +117,12 @@ issues for the project:
 
 
 ## Changelog
+* 2015-12-12
+    - Version 0.8.1
+    - Support for Elixir 1.1.1
+    - Support for Erlang OTP 18
+    - Fix Firefox and Chrome issues with new versions of these browsers.
+
 * 2014-10-23
     - Version 0.7.0
     - Added Alert handling
