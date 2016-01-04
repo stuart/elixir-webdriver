@@ -61,7 +61,7 @@ defmodule WebDriver.Error do
        * :invalid_selector
        * :session_not_created_exception
        * :move_target_out_of_bounds
-       
+
   """
 
   defmodule ErrorMessage do
@@ -72,7 +72,7 @@ defmodule WebDriver.Error do
     Create an ErrorMessage record from raw protocol error data.
   """
   def build_message([{"message", message},{"screen", screen},{"class", class},{"stackTrace", stack_trace}])do
-    ErrorMessage[ message: message, screen: screen, class: class, stack_trace: stack_trace ]
+    %ErrorMessage{message: message, screen: screen, class: class, stack_trace: stack_trace}
   end
 
   @doc """

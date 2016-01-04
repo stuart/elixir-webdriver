@@ -882,7 +882,7 @@ defmodule WebDriver.Protocol do
         # Cause some use upper case and some dont...
         url = Keyword.get(headers, :Location, Keyword.get(headers, :location))
         # Follow redirect
-        request = Request[method: :GET, url: url, headers: [{"Accept", "application/json;charset=UTF-8"}]]
+        request = %Request{method: :GET, url: url, headers: [{"Accept", "application/json;charset=UTF-8"}]}
         send_request root_url, request
   end
 

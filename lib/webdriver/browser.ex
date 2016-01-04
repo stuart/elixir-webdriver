@@ -53,7 +53,7 @@ defmodule WebDriver.Browser do
         case :application.get_env(:debug_browser) do
           {:ok, true} ->
              :error_logger.info_msg "#{__MODULE__}: #{info}"
-          _ ->
+          _ -> nil
         end
         { :noreply, state }
       end
