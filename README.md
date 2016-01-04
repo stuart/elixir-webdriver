@@ -20,7 +20,7 @@ add this to mix.exs deps:
 
 or if you do Hex.pm:
 
-    {:webdriver, "~>0.7.0"}
+    {:webdriver, "~>0.8.0"}
 
 and make sure the application block of mix.exs includes:
     applications: [ :webdriver ]
@@ -93,7 +93,9 @@ An example session is shown here:
 You will need one or more of the following installed in the usual place
 for your OS:
 
-* PhantomJS version 1.9.7 or later: http://phantomjs.org/
+* PhantomJS version 1.9.7: http://phantomjs.org/
+Note that PhantomJS version 2.0 has issues with GhostDriver and may not work.
+See: https://github.com/detro/ghostdriver/issues/394
 
 * FireFox: Get a recent version, please... https://www.mozilla.org/en-US/firefox/new/
 If you installed webdriver with hex you will not have the firefox plugin.
@@ -115,6 +117,12 @@ issues for the project:
 
 
 ## Changelog
+* 2015-12-12
+    - Version 0.8.1
+    - Support for Elixir 1.1.1
+    - Support for Erlang OTP 18
+    - Fix Firefox and Chrome issues with new versions of these browsers.
+
 * 2014-10-23
     - Version 0.7.0
     - Added Alert handling

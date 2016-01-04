@@ -6,6 +6,8 @@ notifications:
 
 otp_release:
   - 17.4
+env:
+  - ELIXIR="v1.1.1"
 
 before_install:
   - export DISPLAY=:99.0

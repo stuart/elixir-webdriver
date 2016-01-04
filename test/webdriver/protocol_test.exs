@@ -415,39 +415,53 @@ defmodule WebDriverProtocolTest do
   #  Mocks a response to a request.
   #  The response just echoes the request body.
   def test_get command, path do
+<<<<<<< HEAD
     with_mock HTTPotion, [get: fn(url, options) -> get(url, options[:headers]) end] do
+=======
+    with_mock HTTPotion, [], [get: fn(url, options) -> get(url, options) end] do
+>>>>>>> master
       {:ok, _response} = command.("http://127.0.0.1:8080")
       assert_get path
     end
   end
 
+<<<<<<< HEAD
   def test_post command, path, body do
     with_mock HTTPotion, [post: fn(url, options) -> post(url, options[:body], options[:headers]) end] do
+=======
+  def test_post command, path, options do
+    with_mock HTTPotion, [], [post: fn(url, options) -> post(url, options) end] do
+>>>>>>> master
       {:ok, _response} = command.("http://127.0.0.1:8080")
-      assert_post path, body
+      assert_post path, options
     end
   end
 
   def test_delete command, path do
+<<<<<<< HEAD
     with_mock HTTPotion, [delete: fn(url, options) -> delete(url, options[:headers]) end] do
+=======
+    with_mock HTTPotion, [], [delete: fn(url, options) -> delete(url, options) end] do
+>>>>>>> master
       {:ok, _response} = command.("http://127.0.0.1:8080")
       assert_delete path
     end
   end
 
-  def post(_url, body, _headers) do
+  def post(_url, options) do
+    body = Keyword.get(options, :body)
     %HTTPotion.Response{ body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{JSON.encode! body}}",
                        status_code: 201, headers: []}
   end
 
   # Mocks a response to a GET request. Just returns an HTTPotion Response
-  def get(_url, _headers) do
+  def get(_url, _options) do
     %HTTPotion.Response{ body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{JSON.encode!(%{})}}",
                        status_code: 200, headers: [] }
   end
 
   # Mocks a response to a DELETE request. Just returns an HTTPotion Response
-  def delete(_url, _headers) do
+  def delete(_url, _options) do
     %HTTPotion.Response{ body: "{\"sessionId\": \"1234\", \"status\": 0, \"value\": #{JSON.encode!(%{})}}",
                        status_code: 204, headers: [] }
   end
