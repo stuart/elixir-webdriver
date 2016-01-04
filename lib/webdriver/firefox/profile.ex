@@ -76,7 +76,7 @@ defmodule WebDriver.Firefox.Profile do
 
   def to_user_js profile do
     Enum.map(profile, fn({k,v}) -> "user_pref(\"#{k}\", #{quote_string(v)});" end)
-    |> Enum.join "\n"
+    |> Enum.join("\n")
   end
 
   def set_port(profile, port) when is_number(port) and port > 0 do

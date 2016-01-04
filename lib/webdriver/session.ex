@@ -571,7 +571,7 @@ defmodule WebDriver.Session do
   def elements name, using, value do
     get_value(name, {:elements,
                      %{ using: Keyword.get(@selectors,using), value: value }})
-    |> elements_value name
+    |> elements_value(name)
   end
 
   @doc """
@@ -588,7 +588,7 @@ defmodule WebDriver.Session do
     get_value(name, {:elements, start_element.id,
                      %{ using: Keyword.get(@selectors,using), value: value }})
       0
-    |> elements_value name
+    |> elements_value(name)
   end
 
   @doc """
@@ -597,7 +597,7 @@ defmodule WebDriver.Session do
     https://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/active
   """
   def active_element name do
-    get_value(name, :active_element) |> element_value name
+    get_value(name, :active_element) |> element_value(name)
   end
 
   # def element_by_id name, element do

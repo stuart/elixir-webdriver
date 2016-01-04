@@ -33,9 +33,9 @@ defmodule WebDriver.Mixfile do
       {:ibrowse,   github: "cmullaparthi/ibrowse", tag: "v4.1.2"},
       {:httpotion, "~> 2.1"},
       {:jazz,      "~> 0.2.1"},
-      {:mock,      github: "jjh42/mock", only: :test},
-      {:earmark,   "~>0.1.10", only: :dev},
-      {:ex_doc,    "~>0.6", only: :dev}
+      {:mock,      "~> 0.1.1", only: :test},
+      {:earmark,   "~> 0.1.10", only: :dev},
+      {:ex_doc,    "~> 0.6", only: :dev}
      ]
   end
 

@@ -460,7 +460,7 @@ defmodule WebDriverProtocolTest do
   defp assert_post path, body do
     # Jazz shuffles map keys around.
     b = JSON.decode!(body) |> JSON.encode!
-    assert called HTTPotion.post("http://127.0.0.1:8080#{path}", :_)
+    assert called HTTPotion.post("http://127.0.0.1:8080#{path}", [body: b, headers: :_])
   end
 
   defp assert_delete path do
