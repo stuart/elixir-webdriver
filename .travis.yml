@@ -1,13 +1,13 @@
 language: elixir
 
+elixir:
+  - 1.2
+otp_release:
+  - 18.2
+
 notifications:
   recipients:
     - stuart.coyle@gmail.com
-
-otp_release:
-  - 17.4
-env:
-  - ELIXIR="v1.1.1"
 
 before_install:
   - export DISPLAY=:99.0
