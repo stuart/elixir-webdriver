@@ -5,6 +5,9 @@ elixir:
 otp_release:
   - 18.2
 
+addons:
+  firefox: latest
+
 notifications:
   recipients:
     - stuart.coyle@gmail.com
