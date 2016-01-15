@@ -834,7 +834,7 @@ defmodule WebDriver.Protocol do
     send_request root_url, request, 0
   end
 
-  defp send_request root_url, _request, 5 do
+  defp send_request root_url, _request, 100 do
     raise "We seem to have lost the connection to the browser at #{root_url}"
   end
 
