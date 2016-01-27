@@ -9,4 +9,4 @@ erl_crash.dump
 .*.swp
 docs
 .DS_Store
-.bak
+*.bak
