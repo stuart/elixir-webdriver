@@ -21,7 +21,7 @@ defmodule WebDriver.Mixfile do
     [
       mod: { WebDriver, []},
       registered:   [ :webdriver ],
-      applications: [ :httpotion ],
+      applications: [ :httpotion, :jazz ],
       env: [ debug_browser: false ]
     ]
   end

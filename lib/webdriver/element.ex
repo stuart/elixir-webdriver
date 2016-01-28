@@ -200,14 +200,14 @@ defmodule WebDriver.Element do
 # Private Functions
   # Get a value from the server
   defp get_value element, command do
-    case :gen_server.call element.session, {command, element.id} do
+    case :gen_server.call element.session, {command, element.id}, 60000 do
       {:ok, response} -> response.value
       response -> response
     end
   end
 
   defp get_value element, command, params do
-    case :gen_server.call element.session, {command, element.id, params} do
+    case :gen_server.call element.session, {command, element.id, params}, 60000 do
       {:ok, response} -> response.value
       response -> response
     end
