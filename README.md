@@ -16,11 +16,15 @@ session storage.
 This library has been set up as a Mix application, so just
 add this to mix.exs deps:
 
-    {:webdriver, github: "stuart/elixir-webdriver"}
+```elixir
+{:webdriver, github: "stuart/elixir-webdriver"}
+```
 
 or if you do Hex.pm:
 
-    {:webdriver, "~>0.8.0"}
+```elixir
+{:webdriver, "~>0.8.0"}
+```
 
 and make sure the application block of mix.exs includes:
     applications: [ :webdriver ]
@@ -35,7 +39,9 @@ only run the appropriate ones. It uses the
 `:os.find_executable` function to find the appropriate paths so check
 that if a browser is not found.
 
-##[Documentation](http://hexdocs.pm/webdriver)
+## Documentation
+
+http://hexdocs.pm/webdriver
 
 ## Usage
 
@@ -57,7 +63,9 @@ Currently the config is very simple it just consists of two or three fields:
 
 You can then start up a session on the browser with
 
-    WebDriver.start_session browser_name, session_name
+```elixir
+WebDriver.start_session browser_name, session_name
+```
 
 Once the session is started you can do commands on it, see the edoc documentation
 for more on specific commands.
